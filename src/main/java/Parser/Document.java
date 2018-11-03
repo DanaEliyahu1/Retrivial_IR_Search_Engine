@@ -1,6 +1,7 @@
 package Parser;
 
 import javax.print.Doc;
+import javax.xml.soap.Text;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -11,13 +12,17 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Document {
-
-    int place;
+    String City;
+    String ID;
     String path;
+    String Text;
 
-    public Document(String path, int place) {
-        this.place = place;
+    public Document(String path, String city, String id, String text) {
+        this.City = city;
         this.path = path;
+        this.ID=id;
+        this.Text= text;
+
     }
 
     public ArrayList<String> GetTokens() {

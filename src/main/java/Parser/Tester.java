@@ -30,8 +30,9 @@ public class Tester{
             DollarHash.add(dollararr[i]);
         }
         Parse parse=new Parse(StopWord,Months,NumberHash,DollarHash);
-        Document doc=new Document("C:\\Users\\דנה\\Desktop\\test\\test",0);
-        parse.parse(doc);
+ //       Document doc=new Document("C:\\Users\\דנה\\Desktop\\test\\test",0);
+        ReadFile readFile = new ReadFile("C:\\Users\\דנה\\Desktop\\test");
+        readFile.GetDoc("test");
     }
 
 
