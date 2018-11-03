@@ -1,5 +1,6 @@
 package Parser;
 
+import java.text.NumberFormat;
 import java.util.*;
 
 public class Parse {
@@ -39,60 +40,125 @@ public class Parse {
     }
 
     private boolean ParseRules() {
+        if (Tokens.get(i).equals("$9.9")) {
+            System.out.println(Tokens.get(i + 1));
+        }
         if (StopWord.contains(Tokens.get(i))) {
             return false;
         }
-        if (Tokens.get(i).equals("November")) {
-            System.out.println();
-        }
-        if (Character.isDigit(Tokens.get(i).charAt(0))) {
+        if (Tokens.get(i).contains("-")) {
+            SpecialTermsMap.put(Tokens.get(i), null);
+        } else if (Character.isDigit(Tokens.get(i).charAt(0))) {
             //Special
-            if (Months.contains(Tokens.get(i+1))) {
-                SpecialTermsMap.put(TranslateMonths(i+1)+"-" + Tokens.get(i), "");
+            if (Months.contains(Tokens.get(i + 1))) {
+                SpecialTermsMap.put(TranslateMonths(i + 1) + "-" + Tokens.get(i), "");
                 return true;
-            } else if (NumberHash.contains(Tokens.get(i+1))) {
+            } else if (NumberHash.contains(Tokens.get(i + 1))) {
                 SpecialTermsMap.put(NumberToTerm(), "");
                 return true;
-            } else if (DollarHash.contains(Tokens.get(i+1))) {
+            } else if (DollarHash.contains(Tokens.get(i + 1))) {
                 SpecialTermsMap.put(PriceToTerm(), "");
                 return true;
-            } else if (Tokens.get(i+1).equals("percent") || Tokens.get(i+1).equals("percentage") || Tokens.get(i+1).equals("%")) {
-                SpecialTermsMap.put(PercentToTerm(), "");
+            } else if (Tokens.get(i).charAt(Tokens.get(i).length() - 1) == '%') {
+                SpecialTermsMap.put(Tokens.get(i), "");
+                return true;
+            } else if (Tokens.get(i + 1).equals("percent") || Tokens.get(i + 1).equals("percentage") || Tokens.get(i + 1).equals("%")) {
+                SpecialTermsMap.put(Tokens.get(i) + "%", "");
                 return true;
             }
-            return false;
-        }else if (Months.contains(Tokens.get(i)) &&Character.isDigit(Tokens.get(i+1).charAt(0))) {
-            SpecialTermsMap.put(Tokens.get(i+1)+"-"+TranslateMonths(i), "");
+            SpecialTermsMap.put(TokenToNum(), "");
+        } else if (Months.contains(Tokens.get(i)) && Character.isDigit(Tokens.get(i + 1).charAt(0))) {
+            SpecialTermsMap.put(Tokens.get(i + 1) + "-" + TranslateMonths(i), "");
 
 
         } else if (Character.isUpperCase(Tokens.get(i).charAt(0))) {
             return true;
-
-        }  else if (Tokens.get(i).contains("-")) {
-            SpecialTermsMap.put(Tokens.get(i), null);
+        }
+        else if(Tokens.get(i).charAt(0)=='$'){
+            SpecialTermsMap.put(PriceToTerm(),"");
         }
         return false;
     }
 
-    private String MonthsToTerm() {
-
-
-
-
-
-        return Tokens.get(i);
-    }
-
-    private String PercentToTerm() {
-        return Tokens.get(i);
+    private String TokenToNum() {
+        if (Tokens.get(i).contains("/")) {
+            return Tokens.get(i);
+        }
+        String tokenWithoutCommas = Tokens.get(i).replaceAll(",", "");
+        double number = -1;
+        if (tokenWithoutCommas.contains(".")) {
+            number = Double.parseDouble(tokenWithoutCommas);
+        } else {
+            number = (double) Integer.parseInt(tokenWithoutCommas);
+        }
+        if ((number < 1000) && Tokens.get(i + 1).contains("/")) {
+            return Tokens.get(i) + " " + Tokens.get(i + 1);
+        } else if (number < 1000) {
+            return Tokens.get(i);
+        }else if ((number >= 1000) && (number < 1000000)) {
+            double newnum = number / 1000;
+            return "" + newnum + "K";
+        } else if (number >= 1000000 && number < 1000000000) {
+            double newnum = number / 1000000;
+            return "" + newnum + "M";
+        } else if (number <= 1000000000) {
+            double newnum = number / 1000000000;
+            return "" + newnum + "B";
+        }
+        return null;
     }
 
     private String PriceToTerm() {
-        return Tokens.get(i);
+        String tokenWithoutCommas = Tokens.get(i).replaceAll(",", "");
+        tokenWithoutCommas=tokenWithoutCommas.replaceAll("\\$","");
+        double number = -1;
+        if (tokenWithoutCommas.contains(".")) {
+            number = Double.parseDouble(tokenWithoutCommas);
+        } else {
+            number = (double) Integer.parseInt(tokenWithoutCommas);
+        }
+        double newnumber=number;
+        switch (Tokens.get(i+1)){
+            case "Dollars":
+            case "dollars":
+                newnumber=number;
+                break;
+            case "m":
+            case "million":
+                newnumber=number*1000000;
+                break;
+            case "bn":
+            case "billion":
+                newnumber=number*1000000000;
+                break;
+            case "trillion":
+                newnumber=number*1000000000000.0;
+                break;
+        } if(newnumber>=1000000){
+            newnumber=newnumber/1000000;
+            if( newnumber==Math.floor(newnumber)){
+                return ((int)newnumber)+" M Dollars";
+            }
+            return newnumber+" M Dollars";
+        }
+        if( newnumber==Math.floor(newnumber)){
+            return ((int)newnumber)+" Dollars";
+        }
+        return newnumber+" Dollars";
     }
 
-    private String NumberToTerm() {
-        return Tokens.get(i);
+    public String NumberToTerm() {
+        switch (Tokens.get(i + 1)) {
+            case "Thousand":
+                return Tokens.get(i) + "K";
+            case "Million":
+                return Tokens.get(i) + "M";
+            case "Billion":
+                return Tokens.get(i) + "B";
+            case "Trillion":
+                return Tokens.get(i) + "000B";
+        }
+        return null;
     }
 
     private String TranslateMonths(int token) {

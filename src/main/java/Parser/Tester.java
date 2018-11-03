@@ -30,7 +30,7 @@ public class Tester{
         NumberHash.add("Million");
         NumberHash.add("Billion");
         NumberHash.add("Trillion");
-        String[] dollararr={"dollars","Dollars","$","m Dollars","bn Dollars","U.S. dollars"};
+        String[] dollararr={"dollars","Dollars","$","m","bn","U.S.","million","billion","trillion"};
         HashSet DollarHash=new HashSet();
         for (int i = 0; i <dollararr.length ; i++) {
             DollarHash.add(dollararr[i]);
