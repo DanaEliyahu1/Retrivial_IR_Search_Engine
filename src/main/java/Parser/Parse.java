@@ -27,7 +27,7 @@ public class Parse {
     public void parse(Document Doc) {
         Tokens = Doc.GetTokens();
         // Tokens = currline.split(" |\\%|\\$|\\(|\\)\\[|\\\\]|\\\"|\\)|\\:|\\;");
-        for (int i = 0; i < Tokens.size(); i++) {
+        for (i = 0; i < Tokens.size(); i++) {
             if (ParseRules()) {
                 i++;
             }
@@ -42,13 +42,13 @@ public class Parse {
         if (StopWord.contains(Tokens.get(i))) {
             return false;
         }
-        if (Tokens.get(i).equals("")) {
+        if (Tokens.get(i).equals("November")) {
             System.out.println();
         }
         if (Character.isDigit(Tokens.get(i).charAt(0))) {
             //Special
             if (Months.contains(Tokens.get(i+1))) {
-                SpecialTermsMap.put(DateToTerm(), "");
+                SpecialTermsMap.put(TranslateMonths(i+1)+"-" + Tokens.get(i), "");
                 return true;
             } else if (NumberHash.contains(Tokens.get(i+1))) {
                 SpecialTermsMap.put(NumberToTerm(), "");
@@ -61,20 +61,25 @@ public class Parse {
                 return true;
             }
             return false;
+        }else if (Months.contains(Tokens.get(i)) &&Character.isDigit(Tokens.get(i+1).charAt(0))) {
+            SpecialTermsMap.put(Tokens.get(i+1)+"-"+TranslateMonths(i), "");
+
+
         } else if (Character.isUpperCase(Tokens.get(i).charAt(0))) {
             return true;
 
-        } else if (Months.contains(Tokens.get(i))) {
-            SpecialTermsMap.put(MonthsToTerm(), "");
-
-
-        } else if (Tokens.get(i).contains("-")) {
+        }  else if (Tokens.get(i).contains("-")) {
             SpecialTermsMap.put(Tokens.get(i), null);
         }
         return false;
     }
 
     private String MonthsToTerm() {
+
+
+
+
+
         return Tokens.get(i);
     }
 
@@ -90,68 +95,68 @@ public class Parse {
         return Tokens.get(i);
     }
 
-    private String DateToTerm() {
-        switch (Tokens.get(i+1)) {
+    private String TranslateMonths(int token) {
+        switch (Tokens.get(token)) {
             case "Jan":
             case "January":
             case "january":
             case "JANUARY":
-                return "01-" + Tokens.get(i);
+                return "01";
             case "Feb":
             case "February":
             case "february":
             case "FEBRUARY":
-                return "02-" + Tokens.get(i);
+                return "02";
             case "Mar":
             case "March":
             case "march":
             case "MARCH":
-                return "03-" + Tokens.get(i);
+                return "03";
             case "Apr":
             case "April":
             case "april":
             case "APRIL":
-                return "04-" + Tokens.get(i);
+                return "04";
             case "May":
             case "may":
             case "MAY":
-                return "05-" + Tokens.get(i);
+                return "05";
             case "Jun":
             case "June":
             case "june":
             case "JUNE":
-                return "06-" + Tokens.get(i);
+                return "06";
             case "Jul":
             case "July":
             case "july":
             case "JULY":
-                return "07-" + Tokens.get(i);
+                return "07";
             case "Aug":
             case "August":
             case "august":
             case "AUGUST":
-                return "08-" + Tokens.get(i);
+                return "08";
             case "Sept":
             case "Sep":
             case "September":
             case "september":
             case "SEPTEMBER":
-                return "09-" + Tokens.get(i);
+                return "09";
             case "October":
             case "Oct":
             case "october":
             case "OCTOBER":
-                return "10-" + Tokens.get(i);
+                return "10";
             case "November":
             case "Nov":
             case "november":
             case "NOVEMBER":
-                return "11-" + Tokens.get(i);
+                return "11";
             case "December":
             case "Dec":
             case "december":
             case "DECEMBER":
-                return "12-" + Tokens.get(i);
+                return "12";
         }
         return null;
     }

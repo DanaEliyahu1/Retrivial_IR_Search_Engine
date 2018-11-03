@@ -44,9 +44,8 @@ String path;
                    }else {
                        TokenArr.add(token[i].substring(0, token[i].length() - 1));
                    }
-
-
                 }
+                TokenArr.add(token[i]);
             }
         }
 
