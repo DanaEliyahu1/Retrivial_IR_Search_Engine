@@ -32,10 +32,6 @@ public class Tester{
         Parse parse=new Parse(StopWord,Months,NumberHash,DollarHash);
         Document doc=new Document("C:\\Users\\דנה\\Desktop\\test\\test",0);
         parse.parse(doc);
-        ////
-        Stemmer s=new Stemmer();
-        System.out.println(s.StemToken("components"));
-        System.out.println(s.StemToken("argument"));
     }
 
 

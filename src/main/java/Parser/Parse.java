@@ -6,7 +6,7 @@ import java.util.*;
 public class Parse {
 
     HashSet StopWord;
-    TreeMap TermsMap;
+    TreeMap<String, String> TermsMap;
     TreeMap<String, String> SpecialTermsMap;
     Stemmer stemmer;
     HashSet Months;
@@ -20,7 +20,7 @@ public class Parse {
         this.Months = months;
         this.NumberHash = numberHash;
         this.DollarHash = dollarHash;
-        Stemmer stemmer = new Stemmer();
+        stemmer = new Stemmer();
         TermsMap = new TreeMap();
         SpecialTermsMap = new TreeMap();
     }
@@ -36,12 +36,12 @@ public class Parse {
         for (Map.Entry<String, String> entry : SpecialTermsMap.entrySet()) {
             System.out.println("Key: " + entry.getKey() + ". Value: " + entry.getValue());
         }
+        for (Map.Entry<String, String> entry : TermsMap.entrySet()) {
+            System.out.println("Key: " + entry.getKey() + ". Value: " + entry.getValue());
+        }
     }
 
     private boolean ParseRules() {
-        if (Tokens.get(i).equals("$9.9")) {
-            System.out.println(Tokens.get(i + 1));
-        }
         if (StopWord.contains(Tokens.get(i))) {
             return false;
         }
@@ -76,6 +76,10 @@ public class Parse {
         else if(Tokens.get(i).charAt(0)=='$'){
             SpecialTermsMap.put(PriceToTerm(),"");
         }
+        else{
+            TermsMap.put(stemmer.StemToken(Tokens.get(i)),"");
+        }
+
         return false;
     }
 

@@ -42,7 +42,7 @@ public class Document {
                 {
                     token[i] = token[i].substring(1);
                 }
-                while (!token[i].equals("") && (token[i].charAt(token[i].length()-1) == '\n' || token[i].charAt(token[i].length()-1) == ']' || token[i].charAt(token[i].length()-1) == ')' || token[i].charAt(token[i].length()-1) == ',' || token[i].charAt(token[i].length()-1) == '.'))
+                while (!token[i].equals("") && (token[i].charAt(token[i].length()-1) == '\n' || token[i].charAt(token[i].length()-1) == ']' || token[i].charAt(token[i].length()-1) == ')' || token[i].charAt(token[i].length()-1) == ',' || token[i].charAt(token[i].length()-1) == '.'|| token[i].charAt(token[i].length()-1) == ':'|| token[i].charAt(token[i].length()-1) == '?'))
                 {
                     token[i] = token[i].substring(0, token[i].length() - 1);
                 }
