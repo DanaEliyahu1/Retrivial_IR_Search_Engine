@@ -13,15 +13,19 @@ Scanner scanner;
     public Document(File file, int place) {
         this.place = place;
         try {
-            this.scanner = new Scanner(file);
+            this.scanner = new Scanner(file).useDelimiter("\\s*.\\s*");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        scanner.useDelimiter(".");
     }
 
     public String GetNextLine(){
-return scanner.next();
+        if(scanner.hasNext())
+            return scanner.next();
+        scanner.close();
+        return "";
+
+
 
 }
 
