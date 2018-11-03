@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Document {
@@ -19,7 +20,7 @@ String path;
         this.path=path;
     }
 
-    public String [] GetTokens(){
+    public ArrayList<String> GetTokens(){
         try {
            String content= new String(Files.readAllBytes(Paths.get(path)), Charset.defaultCharset());
             String [] text = content.split("<TEXT>");
@@ -33,14 +34,23 @@ String path;
         return null;
     }
 
-    public String [] eliminate(String [] token) {
+    public ArrayList<String> eliminate(String [] token) {
+        ArrayList<String> TokenArr= new ArrayList<>();
         for (int i = 0; i <token.length ; i++) {
-            if ((token[i].charAt(token[i].length() - 1)) == '.' || (token[i].charAt(token[i].length() - 1)) == ',') {
-                 token[i]=token[i].substring(0,token[i].length()-1);
+            if(!(token[i].equals(""))){
+                if ((token[i].charAt(token[i].length() - 1)) == '.' || (token[i].charAt(token[i].length() - 1)) == ',') {
+                   if((token[i].charAt(0)) == '\n'){
+                       TokenArr.add(token[i].substring(1, token[i].length() - 1));
+                   }else {
+                       TokenArr.add(token[i].substring(0, token[i].length() - 1));
+                   }
+
+
+                }
             }
         }
 
-        return token;
+        return TokenArr;
     }
 
 
