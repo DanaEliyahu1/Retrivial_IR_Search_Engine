@@ -36,7 +36,7 @@ public class Tester{
             DollarHash.add(dollararr[i]);
         }
         Parse parse=new Parse(StopWord,Months,NumberHash,DollarHash);
-        Document doc=new Document(new File("text.txt"),0);
+        Document doc=new Document("C:\\Users\\דנה\\Desktop\\test",0);
         parse.parse(doc);
     }
 

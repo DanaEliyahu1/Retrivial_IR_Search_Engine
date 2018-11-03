@@ -3,30 +3,45 @@ package Parser;
 import javax.print.Doc;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Scanner;
 
 public class Document {
 
 int place;
-Scanner scanner;
+String path;
 
-    public Document(File file, int place) {
+    public Document(String path, int place) {
         this.place = place;
-        try {
-            this.scanner = new Scanner(file).useDelimiter("\\s*.\\s*");
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+        this.path=path;
     }
 
-    public String GetNextLine(){
-        if(scanner.hasNext())
-            return scanner.next();
-        scanner.close();
-        return "";
+    public String [] GetTokens(){
+        try {
+           String content= new String(Files.readAllBytes(Paths.get(path)), Charset.defaultCharset());
+            String [] text = content.split("<TEXT>");
+            String [] Tokens= text[1].split(" ");
+            return eliminate(Tokens);
+        } catch (IOException e) {
+            e.printStackTrace();
 
+        }
 
+        return null;
+    }
 
-}
+    public String [] eliminate(String [] token) {
+        for (int i = 0; i <token.length ; i++) {
+            if ((token[i].charAt(token[i].length() - 1)) == '.' || (token[i].charAt(token[i].length() - 1)) == ',') {
+                 token[i]=token[i].substring(0,token[i].length()-1);
+            }
+        }
+
+        return token;
+    }
+
 
 }
