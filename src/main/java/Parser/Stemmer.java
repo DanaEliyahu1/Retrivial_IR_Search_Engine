@@ -10,7 +10,11 @@ public class Stemmer {
             i_end, /* offset to end of stemmed word */
             j, k;
     private static final int INC = 50;
-
+public String StemToken(String string){
+    add(string.toCharArray(),string.length());
+    stem();
+    return this.toString();
+}
     /* unit of size whereby b is increased */
     public Stemmer() {
         b = new char[INC];

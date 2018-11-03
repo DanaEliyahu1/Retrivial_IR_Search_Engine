@@ -27,7 +27,6 @@ public class Parse {
 
     public void parse(Document Doc) {
         Tokens = Doc.GetTokens();
-        // Tokens = currline.split(" |\\%|\\$|\\(|\\)\\[|\\\\]|\\\"|\\)|\\:|\\;");
         for (i = 0; i < Tokens.size(); i++) {
             if (ParseRules()) {
                 i++;
