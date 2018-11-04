@@ -5,13 +5,14 @@ import java.util.*;
 
 public class Parse {
 
-    HashSet StopWord;
-    TreeMap<String, String> TermsMap;
-    TreeMap<String, String> SpecialTermsMap;
-    Stemmer stemmer;
-    HashSet Months;
-    HashSet NumberHash;
-    HashSet DollarHash;
+    static HashSet StopWord;
+    TreeMap<String, TermInfo> TermsMap;
+    TreeMap<String, TermInfo> SpecialTermsMap;
+    static Stemmer stemmer;
+    static HashSet Months;
+    static HashSet NumberHash;
+    static HashSet DollarHash;
+    static TreeSet<String> TermCollection ;
     ArrayList<String> Tokens;
     int i;
 
@@ -33,10 +34,10 @@ public class Parse {
             }
         }
 
-        for (Map.Entry<String, String> entry : SpecialTermsMap.entrySet()) {
+        for (Map.Entry<String, TermInfo> entry : SpecialTermsMap.entrySet()) {
             System.out.println("Key: " + entry.getKey() + ". Value: " + entry.getValue());
         }
-        for (Map.Entry<String, String> entry : TermsMap.entrySet()) {
+        for (Map.Entry<String, TermInfo> entry : TermsMap.entrySet()) {
             System.out.println("Key: " + entry.getKey() + ". Value: " + entry.getValue());
         }
     }
@@ -46,38 +47,37 @@ public class Parse {
             return false;
         }
         if (Tokens.get(i).contains("-")) {
-            SpecialTermsMap.put(Tokens.get(i), null);
+            AddTermToTree(false,Tokens.get(i));
+            return false;
         } else if (Character.isDigit(Tokens.get(i).charAt(0))) {
             //Special
             if (Months.contains(Tokens.get(i + 1))) {
-                SpecialTermsMap.put(TranslateMonths(i + 1) + "-" + Tokens.get(i), "");
+                AddTermToTree(false,TranslateMonths(i + 1) + "-" + Tokens.get(i));
                 return true;
             } else if (NumberHash.contains(Tokens.get(i + 1))) {
-                SpecialTermsMap.put(NumberToTerm(), "");
+                AddTermToTree(false,NumberToTerm());
                 return true;
             } else if (DollarHash.contains(Tokens.get(i + 1))) {
-                SpecialTermsMap.put(PriceToTerm(), "");
+                AddTermToTree(false,PriceToTerm());
                 return true;
             } else if (Tokens.get(i).charAt(Tokens.get(i).length() - 1) == '%') {
-                SpecialTermsMap.put(Tokens.get(i), "");
+                AddTermToTree(false,Tokens.get(i));
                 return true;
             } else if (Tokens.get(i + 1).equals("percent") || Tokens.get(i + 1).equals("percentage") || Tokens.get(i + 1).equals("%")) {
-                SpecialTermsMap.put(Tokens.get(i) + "%", "");
+                AddTermToTree(false,Tokens.get(i) + "%");
                 return true;
             }
-            SpecialTermsMap.put(TokenToNum(), "");
+            AddTermToTree(false,TokenToNum());
         } else if (Months.contains(Tokens.get(i)) && Character.isDigit(Tokens.get(i + 1).charAt(0))) {
-            SpecialTermsMap.put(Tokens.get(i + 1) + "-" + TranslateMonths(i), "");
-
-
+            AddTermToTree(false,Tokens.get(i + 1) + "-" + TranslateMonths(i));
         } else if (Character.isUpperCase(Tokens.get(i).charAt(0))) {
             return true;
         }
         else if(Tokens.get(i).charAt(0)=='$'){
-            SpecialTermsMap.put(PriceToTerm(),"");
+            AddTermToTree(false,PriceToTerm());
         }
         else{
-            TermsMap.put(stemmer.StemToken(Tokens.get(i)),"");
+            AddTermToTree(true,stemmer.StemToken(Tokens.get(i)));
         }
 
         return false;
@@ -230,4 +230,30 @@ public class Parse {
         return null;
     }
 
+    public void AddTermToTree(boolean TreeMap, String Token){
+    //true = termtree
+    // false= specialtreemap
+        if(TreeMap){
+        if(TermsMap.containsKey(Token)){
+            TermsMap.get(Token).TermCount++;
+        }
+        else {
+            TermsMap.put(Token,new TermInfo());
+        }
+        }
+        else {
+            if(SpecialTermsMap.containsKey(Token)){
+                SpecialTermsMap.get(Token).TermCount++;
+            }
+            else {
+                SpecialTermsMap.put(Token,new TermInfo());
+            }
+
+        }
+    }
+    public void ResultToFile (){
+        
+
+
+    }
 }
