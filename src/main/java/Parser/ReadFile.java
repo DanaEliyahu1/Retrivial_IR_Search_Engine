@@ -43,6 +43,9 @@ public class ReadFile {
             City=City3[0];
         }
         String Text=City1[1].split("</TEXT>")[0];
+        if(Text.contains("[Text]")){
+            Text=Text.split("[Text]")[1];
+        }
         return new Document(path+ File.separator+FileName,City,Id,Text);
     }
     public void GetFile(){

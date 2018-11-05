@@ -40,12 +40,12 @@ public class Parse {
             }
         }
 
-//        for (Map.Entry<String, TermInfo> entry : SpecialTermsMap.entrySet()) {
-//            System.out.println("Key: " + entry.getKey() + ". Value: " + entry.getValue());
-//        }
-//        for (Map.Entry<String, TermInfo> entry : TermsMap.entrySet()) {
-//            System.out.println("Key: " + entry.getKey() + ". Value: " + entry.getValue());
-//        }
+        for (Map.Entry<String, TermInfo> entry : SpecialTermsMap.entrySet()) {
+            System.out.println("Key: " + entry.getKey() + ". Value: " + entry.getValue());
+        }
+        for (Map.Entry<String, TermInfo> entry : TermsMap.entrySet()) {
+            System.out.println("Key: " + entry.getKey() + ". Value: " + entry.getValue());
+        }
     }
 
     private boolean ParseRules() {
