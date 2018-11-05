@@ -1,9 +1,15 @@
 package Parser;
 
+import FileManager.FileManager;
+
 import java.text.NumberFormat;
 import java.util.*;
 
 public class Parse {
+    public Parse() {
+        TermsMap=new TreeMap<String, TermInfo>() ;
+         SpecialTermsMap=new TreeMap<String, TermInfo>();
+    }
 
     static HashSet StopWord;
     TreeMap<String, TermInfo> TermsMap;
@@ -34,12 +40,12 @@ public class Parse {
             }
         }
 
-        for (Map.Entry<String, TermInfo> entry : SpecialTermsMap.entrySet()) {
-            System.out.println("Key: " + entry.getKey() + ". Value: " + entry.getValue());
-        }
-        for (Map.Entry<String, TermInfo> entry : TermsMap.entrySet()) {
-            System.out.println("Key: " + entry.getKey() + ". Value: " + entry.getValue());
-        }
+//        for (Map.Entry<String, TermInfo> entry : SpecialTermsMap.entrySet()) {
+//            System.out.println("Key: " + entry.getKey() + ". Value: " + entry.getValue());
+//        }
+//        for (Map.Entry<String, TermInfo> entry : TermsMap.entrySet()) {
+//            System.out.println("Key: " + entry.getKey() + ". Value: " + entry.getValue());
+//        }
     }
 
     private boolean ParseRules() {
@@ -49,7 +55,7 @@ public class Parse {
         if (Tokens.get(i).contains("-")) {
             AddTermToTree(false,Tokens.get(i));
             return false;
-        } else if (Character.isDigit(Tokens.get(i).charAt(0))) {
+        } else if (Character.isDigit(Tokens.get(i).charAt(0))&&Tokens.get(i).matches("^[0-9]+([,.][0-9]?)?$")) {
             //Special
             if (Months.contains(Tokens.get(i + 1))) {
                 AddTermToTree(false,TranslateMonths(i + 1) + "-" + Tokens.get(i));
@@ -252,7 +258,13 @@ public class Parse {
         }
     }
     public void ResultToFile (){
-        
+         FileManager fileManager=new FileManager();
+        for (Map.Entry<String, TermInfo> entry : SpecialTermsMap.entrySet()) {
+           fileManager.AddTermTofile(entry.getKey(),entry.getValue());
+        }
+        for (Map.Entry<String, TermInfo> entry : TermsMap.entrySet()) {
+            fileManager.AddTermTofile(entry.getKey(),entry.getValue());
+        }
 
 
     }

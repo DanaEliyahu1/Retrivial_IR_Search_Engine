@@ -18,7 +18,7 @@ public class ReadFile {
     public Document [] GetDoc (String filename){
         FileName=filename;
         try {
-            String content = new String(Files.readAllBytes(Paths.get(path+ File.separator+filename)), Charset.defaultCharset());
+            String content = new String(Files.readAllBytes(Paths.get(path+ "\\"+filename)), Charset.defaultCharset());
             String[] document = content.split("<DOC>");
             Document [] Doc = new Document[document.length-1];
             for (int i = 0; i <Doc.length ; i++) {
@@ -45,7 +45,18 @@ public class ReadFile {
         String Text=City1[1].split("</TEXT>")[0];
         return new Document(path+ File.separator+FileName,City,Id,Text);
     }
+    public void GetFile(){
 
+        File [] FileList= new File(path).listFiles();
+        for (int i = 1; i <FileList.length ; i++) {
+            System.out.println("*********************************"+i);
+          Document [] CurrDoc=  GetDoc(FileList[i].getName()+"\\"+FileList[i].getName());
+            for (int j = 0; j <CurrDoc.length ; j++) {
+                Parse parse = new Parse();
+                parse.parse(CurrDoc[j]);
+            }
+        }
+    }
 
 }
 
