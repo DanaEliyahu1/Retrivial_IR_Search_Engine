@@ -36,31 +36,13 @@ public class Parse {
         Tokens = Doc.GetTokens();
         int size=Tokens.size()-1;
         for (i = 0; i <size ; i++) {
-            if (ParseRules()) {
-                i++;
+            try {
+                if (ParseRules()) {
+                    i++;
+                }
+            }catch (Exception e){
+                System.out.println("@");
             }
-        }
-        try {
-            if (!StopWord.contains(Tokens.get(i))) {
-            if (Tokens.get(i).contains("-")) {
-                AddTermToTree(false,Tokens.get(i));
-            } else if (Character.isDigit(Tokens.get(i).charAt(0))&&Tokens.get(i).matches("^[0-9]+([,.][0-9]?)?$")) {
-                 if (Tokens.get(i).charAt(Tokens.get(i).length() - 1) == '%') {
-                    AddTermToTree(false,Tokens.get(i));
-                } else
-                AddTermToTree(false,TokenToNum());
-            } else if (Character.isUpperCase(Tokens.get(i).charAt(0))) {
-               //todo
-            }
-            else if(Tokens.get(i).charAt(0)=='$'){
-                AddTermToTree(false,PriceToTerm());
-            }
-            else{
-                AddTermToTree(true,stemmer.StemToken(Tokens.get(i)));
-            }
-            }
-        }
-        catch (Exception e){
 
         }
 /*
@@ -119,7 +101,7 @@ public class Parse {
         }
         String tokenWithoutCommas = Tokens.get(i).replaceAll(",", "");
         double number = -1;
-        if (tokenWithoutCommas.contains(".")) {
+        if (tokenWithoutCommas.contains(".")||tokenWithoutCommas.length()>9) {
             number = Double.parseDouble(tokenWithoutCommas);
         } else {
             number = (double) Integer.parseInt(tokenWithoutCommas);
@@ -143,12 +125,20 @@ public class Parse {
 
     private String PriceToTerm() {
         String tokenWithoutCommas = Tokens.get(i).replaceAll(",", "");
+        tokenWithoutCommas=tokenWithoutCommas.replaceAll("O","0");
         tokenWithoutCommas=tokenWithoutCommas.replaceAll("\\$","");
         double number = -1;
         if(Tokens.get(i).contains("/")){
             return Tokens.get(i);
         }
-        if (tokenWithoutCommas.contains(".")) {
+        if(tokenWithoutCommas.contains("m")){
+            return  tokenWithoutCommas.substring(0,tokenWithoutCommas.length()-1)+" M Dollars";
+
+        }
+        if(tokenWithoutCommas.equals("")){
+            return "";
+        }
+        if (tokenWithoutCommas.contains(".")||tokenWithoutCommas.length()>9) {
             number = Double.parseDouble(tokenWithoutCommas);
         } else {
             number = (double) Integer.parseInt(tokenWithoutCommas);
@@ -285,7 +275,7 @@ public class Parse {
         }
     }
     public void ResultToFile (){
-         FileManager fileManager=new FileManager();
+         FileManager fileManager=new FileManager("changeLater");
         for (Map.Entry<String, TermInfo> entry : SpecialTermsMap.entrySet()) {
            fileManager.AddTermTofile(entry.getKey(),entry.getValue());
         }
