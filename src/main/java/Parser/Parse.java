@@ -34,18 +34,42 @@ public class Parse {
 
     public void parse(Document Doc) {
         Tokens = Doc.GetTokens();
-        for (i = 0; i < Tokens.size(); i++) {
+        int size=Tokens.size()-1;
+        for (i = 0; i <size ; i++) {
             if (ParseRules()) {
                 i++;
             }
         }
+        try {
+            if (!StopWord.contains(Tokens.get(i))) {
+            if (Tokens.get(i).contains("-")) {
+                AddTermToTree(false,Tokens.get(i));
+            } else if (Character.isDigit(Tokens.get(i).charAt(0))&&Tokens.get(i).matches("^[0-9]+([,.][0-9]?)?$")) {
+                 if (Tokens.get(i).charAt(Tokens.get(i).length() - 1) == '%') {
+                    AddTermToTree(false,Tokens.get(i));
+                } else
+                AddTermToTree(false,TokenToNum());
+            } else if (Character.isUpperCase(Tokens.get(i).charAt(0))) {
+               //todo
+            }
+            else if(Tokens.get(i).charAt(0)=='$'){
+                AddTermToTree(false,PriceToTerm());
+            }
+            else{
+                AddTermToTree(true,stemmer.StemToken(Tokens.get(i)));
+            }
+            }
+        }
+        catch (Exception e){
 
+        }
+/*
         for (Map.Entry<String, TermInfo> entry : SpecialTermsMap.entrySet()) {
             System.out.println("Key: " + entry.getKey() + ". Value: " + entry.getValue());
         }
         for (Map.Entry<String, TermInfo> entry : TermsMap.entrySet()) {
             System.out.println("Key: " + entry.getKey() + ". Value: " + entry.getValue());
-        }
+        }*/
     }
 
     private boolean ParseRules() {
@@ -121,6 +145,9 @@ public class Parse {
         String tokenWithoutCommas = Tokens.get(i).replaceAll(",", "");
         tokenWithoutCommas=tokenWithoutCommas.replaceAll("\\$","");
         double number = -1;
+        if(Tokens.get(i).contains("/")){
+            return Tokens.get(i);
+        }
         if (tokenWithoutCommas.contains(".")) {
             number = Double.parseDouble(tokenWithoutCommas);
         } else {
