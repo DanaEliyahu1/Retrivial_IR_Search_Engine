@@ -45,6 +45,7 @@ public class Parse {
             }
 
         }
+        ResultToFile();
 /*
         for (Map.Entry<String, TermInfo> entry : SpecialTermsMap.entrySet()) {
             System.out.println("Key: " + entry.getKey() + ". Value: " + entry.getValue());

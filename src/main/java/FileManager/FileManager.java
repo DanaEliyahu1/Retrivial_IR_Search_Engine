@@ -3,11 +3,6 @@ package FileManager;
 import Parser.TermInfo;
 
 import java.io.*;
-import java.nio.charset.Charset;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Map;
 import java.util.PriorityQueue;
 import java.util.TreeMap;
 
@@ -35,15 +30,15 @@ public class FileManager {
         PriorityAll++;
         if (Cache.size() > 10000) {
             PointerCache keytofile = Q.poll();
-            String Value = Cache.get(keytofile.pointer);
-            Cache.remove(keytofile.pointer);
-            File file =new File(geturl(keytofile.pointer));
+            String Value = Cache.get(keytofile.pointerterm);
+            Cache.remove(keytofile.pointerterm);
+            File file =new File(geturl(keytofile.pointerterm));
             try {
                 file.createNewFile();
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            try (FileWriter fw = new FileWriter(geturl(keytofile.pointer), true);
+            try (FileWriter fw = new FileWriter(geturl(keytofile.pointerterm), true);
                  BufferedWriter bw = new BufferedWriter(fw);
                  PrintWriter out = new PrintWriter(bw)) {
                 out.print(Value);
@@ -107,15 +102,42 @@ public class FileManager {
     public void setDocId(String docId) {
         DocId = docId;
     }
+
+    public void AllTermToDisk(){
+
+        while (!Q.isEmpty()){
+            PointerCache keytofile = Q.poll();
+            String Value = Cache.get(keytofile.pointerterm);
+            Cache.remove(keytofile.pointerterm);
+            File file =new File(geturl(keytofile.pointerterm));
+            try {
+                file.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            try (FileWriter fw = new FileWriter(geturl(keytofile.pointerterm), true);
+                 BufferedWriter bw = new BufferedWriter(fw);
+                 PrintWriter out = new PrintWriter(bw)) {
+                out.print(Value);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        }
+        //todo
+
+
 }
+
+
 
 class PointerCache {
     double priority;
-    String pointer;
+    String pointerterm;
 
 
-    public PointerCache(String pointer, double priority) {
-        this.pointer = pointer;
+    public PointerCache(String pointerterm, double priority) {
+        this.pointerterm = pointerterm;
         this.priority = priority;
     }
 }
