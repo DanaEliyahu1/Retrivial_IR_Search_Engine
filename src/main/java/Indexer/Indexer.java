@@ -14,6 +14,7 @@ import static FileManager.FileManager.geturl;
 public class Indexer {
 
     TreeMap <String,String []> Index;
+    TreeMap <String,String[]> CityIndex;
 
     public Indexer() {
         Index = new TreeMap<> ();

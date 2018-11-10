@@ -59,7 +59,7 @@ public class ReadFile {
                 for (int j = 0; j < CurrDoc.length; j++) {
                     Parse parse = new Parse();
                     parse.parse(CurrDoc[j]);
-                    parse.ResultToFile();
+
                 }
                 Parse.fileManager.AllTermToDisk();
 
