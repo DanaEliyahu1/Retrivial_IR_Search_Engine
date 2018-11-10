@@ -29,7 +29,7 @@ public class Document {
             //String content = new String(Files.readAllBytes(Paths.get(path)), Charset.defaultCharset());
             //String[] text = content.split("<TEXT>");
             //String cutend=text[1].split("</TEXT>")[0];
-            String[] Tokens = Text.split(" ");
+            String[] Tokens = Text.split(" \\|?\\|--");
             return eliminate(Tokens);
     }
 
@@ -37,7 +37,7 @@ public class Document {
         ArrayList<String> TokenArr = new ArrayList<>();
         for (int i = 0; i < token.length; i++) {
             if (!(token[i].equals(""))) {
-                while (!token[i].equals("") && (token[i].charAt(0) == '\n' || token[i].charAt(0) == '[' || token[i].charAt(0) == '('|| token[i].charAt(0) == '\"'|| token[i].charAt(0) == '?'))
+                while (!token[i].equals("") && (token[i].charAt(0) == '\n' || token[i].charAt(0) == '[' || token[i].charAt(0) == '('|| token[i].charAt(0) == '\"'|| token[i].charAt(0) == '?' || token[i].charAt(0) == '\''))
                 {
                     token[i] = token[i].substring(1);
                 }
