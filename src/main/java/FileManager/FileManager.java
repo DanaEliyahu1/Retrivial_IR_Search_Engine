@@ -86,7 +86,7 @@ public class FileManager {
             case 'r':
             case 's':
             case 't':
-                return "Indexing\\p-t\\"+pointer+".txt";
+                return "Indexing\\t-p\\"+pointer+".txt";
             case 'u':
             case 'v':
             case 'w':
@@ -127,6 +127,24 @@ public class FileManager {
         }
         //todo
 
+    public void DocPosting(String ID,String City,int maxtf, int uniqueterms){
+        File file =new File("Documents\\"+ID+".txt");
+        try {
+            file.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try (FileWriter fw = new FileWriter("Documents\\"+ID+".txt", true);
+             BufferedWriter bw = new BufferedWriter(fw);
+             PrintWriter out = new PrintWriter(bw)) {
+            out.print( "|" + City + "," + maxtf+ ","+ uniqueterms);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+
+    }
 
 }
 

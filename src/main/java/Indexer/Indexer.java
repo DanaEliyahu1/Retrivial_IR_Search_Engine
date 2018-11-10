@@ -2,6 +2,7 @@ package Indexer;
 import FileManager.FileManager;
 
 import java.io.*;
+import java.lang.reflect.Parameter;
 import java.util.*;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
@@ -24,8 +25,11 @@ public class Indexer {
         File folder = new File("Terms");
         File[] ListOfFile= folder.listFiles();
         for (int i = 0; i <ListOfFile.length ; i++) {
-
+            String key= ListOfFile[i].getName();
+            key=key.substring(0,key.length()-3);
        IndexFile(ListOfFile[i]);
+       String [] values =IndexFile(ListOfFile[i]);
+       Index.put(key,values);
 
         }
 
@@ -33,7 +37,8 @@ public class Indexer {
 
     }
 
-    private void IndexFile(File file) {
+    private String[] IndexFile(File file) {
+        String [] values= new String[3];
         try {
             String content = new String(Files.readAllBytes(Paths.get( "Terms\\" + file.getName())), Charset.defaultCharset());
             String [] Parmeters= content.split("|");
@@ -41,9 +46,10 @@ public class Indexer {
             StringJoiner sj=new StringJoiner("|");
             for (int i = 0; i <Parmeters.length ; i++) {
                 sj.add(Parmeters[i]);
-
-
             }
+            values[0]=""+Parmeters.length;
+            values[1]=file.getName();
+            //todo more parmaters
             try (FileWriter fw = new FileWriter(geturl(file.getName()), false);
                  BufferedWriter bw = new BufferedWriter(fw);
                  PrintWriter out = new PrintWriter(bw)) {
@@ -55,7 +61,7 @@ public class Indexer {
             e.printStackTrace();
         }
 
-
+        return values;
     }
 
 

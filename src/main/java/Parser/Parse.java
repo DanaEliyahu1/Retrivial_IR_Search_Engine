@@ -10,6 +10,7 @@ public class Parse {
         TermsMap=new TreeMap<String, TermInfo>() ;
          SpecialTermsMap=new TreeMap<String, TermInfo>();
     }
+    String City;
     static FileManager fileManager;
     static HashSet StopWord;
     TreeMap<String, TermInfo> TermsMap;
@@ -33,9 +34,9 @@ public class Parse {
         TermsMap = new TreeMap();
         SpecialTermsMap = new TreeMap();
     }
-
     public void parse(Document Doc) {
         this.DocID=Doc.ID;
+        this.City=Doc.City;
         Tokens = Doc.GetTokens();
         int size=Tokens.size()-1;
         for (i = 0; i <size ; i++) {
@@ -279,13 +280,22 @@ public class Parse {
         }
     }
     public void ResultToFile (){
+        int counter=0;
          fileManager.setDocId(DocID);
         for (Map.Entry<String, TermInfo> entry : SpecialTermsMap.entrySet()) {
            fileManager.AddTermTofile(entry.getKey(),entry.getValue());
+           if(counter<entry.getValue().TermCount){
+               counter=entry.getValue().TermCount;
+           }
+
         }
         for (Map.Entry<String, TermInfo> entry : TermsMap.entrySet()) {
-            fileManager.AddTermTofile(entry.getKey(),entry.getValue());
+            fileManager.AddTermTofile(entry.getKey(), entry.getValue());
+            if (counter < entry.getValue().TermCount) {
+                counter = entry.getValue().TermCount;
+            }
         }
-
+        int uniqueterms=SpecialTermsMap.size() + TermsMap.size();
+        fileManager.DocPosting(DocID,City,counter,uniqueterms);
     }
 }
