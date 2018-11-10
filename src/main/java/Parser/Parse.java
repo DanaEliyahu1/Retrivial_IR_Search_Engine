@@ -10,7 +10,7 @@ public class Parse {
         TermsMap=new TreeMap<String, TermInfo>() ;
          SpecialTermsMap=new TreeMap<String, TermInfo>();
     }
-
+    static FileManager fileManager;
     static HashSet StopWord;
     TreeMap<String, TermInfo> TermsMap;
     TreeMap<String, TermInfo> SpecialTermsMap;
@@ -21,18 +21,21 @@ public class Parse {
     static TreeSet<String> TermCollection ;
     ArrayList<String> Tokens;
     int i;
+    String DocID;
 
     public Parse(HashSet stopWord, HashSet months, HashSet numberHash, HashSet dollarHash) {
         this.StopWord = stopWord;
         this.Months = months;
         this.NumberHash = numberHash;
         this.DollarHash = dollarHash;
+        fileManager = new FileManager("changelater");
         stemmer = new Stemmer();
         TermsMap = new TreeMap();
         SpecialTermsMap = new TreeMap();
     }
 
     public void parse(Document Doc) {
+        this.DocID=Doc.ID;
         Tokens = Doc.GetTokens();
         int size=Tokens.size()-1;
         for (i = 0; i <size ; i++) {
@@ -276,14 +279,13 @@ public class Parse {
         }
     }
     public void ResultToFile (){
-         FileManager fileManager=new FileManager("changeLater");
+         fileManager.setDocId(DocID);
         for (Map.Entry<String, TermInfo> entry : SpecialTermsMap.entrySet()) {
            fileManager.AddTermTofile(entry.getKey(),entry.getValue());
         }
         for (Map.Entry<String, TermInfo> entry : TermsMap.entrySet()) {
             fileManager.AddTermTofile(entry.getKey(),entry.getValue());
         }
-
 
     }
 }

@@ -96,7 +96,8 @@ public class FileManager {
                 return "Indexing\\u-z\\"+pointer+".txt";
         }
 
-   return null;
+
+   return "Indexing\\u-z\\"+pointer+".txt";
     }
 
     public void setDocId(String docId) {

@@ -61,6 +61,7 @@ public class ReadFile {
                     parse.parse(CurrDoc[j]);
                     parse.ResultToFile();
                 }
+                Parse.fileManager.AllTermToDisk();
 
             } catch (Exception e) {
                 e.printStackTrace();
