@@ -1,36 +1,38 @@
 package FileManager;
 
 import Parser.TermInfo;
-
 import java.io.*;
-import java.util.PriorityQueue;
-import java.util.TreeMap;
+import java.util.*;
 
 public class FileManager {
-    TreeMap<String, String> Cache;
-
+    TreeMap<String, TreePointerToQ> Cache;
     PriorityQueue<PointerCache> Q;
     String DocId;
     double PriorityAll;
+    HashMap<String,String> cities;
 
     public FileManager(String docId) {
         DocId = docId;
-        Cache=new TreeMap<String,String>();
+        Cache=new TreeMap<String,TreePointerToQ>();
         Q=new PriorityQueue<PointerCache>((x,y)->{ return (int) (x.priority-y.priority);});
+        cities=new HashMap<String,String>();
     }
 
 
     public void AddTermTofile(String key, TermInfo value) {
         if (Cache.containsKey(key)) {
-            Cache.put(key, Cache.get(key) + "|" + DocId + "," + value.toString());
+            Cache.get(key).value=Cache.get(key).value + "|" + DocId + "," + value.toString();
+            Cache.get(key).pc.priority=PriorityAll;
+            Cache.put(key, Cache.get(key));
         } else {
-            Cache.put(key, "|" + DocId + "," + value.toString());
-            Q.add(new PointerCache(key, PriorityAll));
+            PointerCache newpc=new PointerCache(key, PriorityAll);
+            Cache.put(key,new TreePointerToQ(newpc, "|" + DocId + "," + value.toString()));
+            Q.add(newpc);
         }
         PriorityAll++;
         if (Cache.size() > 10000) {
             PointerCache keytofile = Q.poll();
-            String Value = Cache.get(keytofile.pointerterm);
+            String Value = Cache.get(keytofile.pointerterm).value;
             Cache.remove(keytofile.pointerterm);
             File file =new File(geturl(keytofile.pointerterm));
             try {
@@ -62,6 +64,7 @@ public class FileManager {
             case '8':
             case '9':
             case '$':
+                pointer=pointer.replaceAll("/","-");
                 return "Indexing\\Numbers\\"+pointer+".txt";
             case 'a':
             case 'b':
@@ -86,7 +89,7 @@ public class FileManager {
             case 'r':
             case 's':
             case 't':
-                return "Indexing\\t-p\\"+pointer+".txt";
+                return "Indexing\\p-t\\"+pointer+".txt";
             case 'u':
             case 'v':
             case 'w':
@@ -108,7 +111,7 @@ public class FileManager {
 
         while (!Q.isEmpty()){
             PointerCache keytofile = Q.poll();
-            String Value = Cache.get(keytofile.pointerterm);
+            String Value = Cache.get(keytofile.pointerterm).value;
             Cache.remove(keytofile.pointerterm);
             File file =new File(geturl(keytofile.pointerterm));
             try {
@@ -128,6 +131,7 @@ public class FileManager {
         //todo
 
     public void DocPosting(String ID,String City,int maxtf, int uniqueterms){
+        AddDocToCityIndex(ID,City);
         File file =new File("Documents\\"+ID+".txt");
         try {
             file.createNewFile();
@@ -141,22 +145,51 @@ public class FileManager {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
-
+    }
+    void AddDocToCityIndex(String DocId,String City){
+        if (cities.containsKey(City)) {
+            cities.put(City, "," + DocId);
+        } else {
+            cities.put(City, DocId);
+        }
+    }
+    public void CitiesToDisk(){
+        Iterator<Map.Entry<String,String>> it= cities.entrySet().iterator();
+        while (it.hasNext()){
+            Map.Entry<String,String> currCity=it.next();
+            File file =new File("Cities\\"+currCity.getKey()+".txt");
+            try {
+                file.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            try (FileWriter fw = new FileWriter("Cities\\"+currCity.getKey()+".txt", true);
+                 BufferedWriter bw = new BufferedWriter(fw);
+                 PrintWriter out = new PrintWriter(bw)) {
+                out.print(currCity.getValue());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
 }
-
-
 
 class PointerCache {
     double priority;
     String pointerterm;
 
-
     public PointerCache(String pointerterm, double priority) {
         this.pointerterm = pointerterm;
         this.priority = priority;
+    }
+}
+class TreePointerToQ{
+    public PointerCache pc;
+    public String value;
+
+    public TreePointerToQ(PointerCache pc, String value) {
+        this.pc = pc;
+        this.value = value;
     }
 }

@@ -1,14 +1,11 @@
 package Indexer;
-import FileManager.FileManager;
 
 import java.io.*;
-import java.lang.reflect.Parameter;
 import java.util.*;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.TreeMap;
-
 import static FileManager.FileManager.geturl;
 
 public class Indexer {
@@ -18,31 +15,44 @@ public class Indexer {
 
     public Indexer() {
         Index = new TreeMap<> ();
-
+        CityIndex=new TreeMap<>();
     }
 
-
     public void Index(){
-        File folder = new File("Terms");
+        File folder = new File("Indexing");
+        File[] ListOfFile= folder.listFiles();
+        for (int i = 0; i <ListOfFile.length ; i++) {
+            File[] CurrFolder= ListOfFile[i].listFiles();
+            for (int j = 0; j <CurrFolder.length; j++) {
+                try{
+                    String key= CurrFolder[j].getName();
+                    key=key.substring(0,key.length()-4);
+                    String [] values =IndexFile(CurrFolder[j]);
+                    Index.put(key,values);
+                }
+                catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+
+        }
+        IndexCities();
+    }
+    public void IndexCities(){
+        File folder = new File("Cities");
         File[] ListOfFile= folder.listFiles();
         for (int i = 0; i <ListOfFile.length ; i++) {
             String key= ListOfFile[i].getName();
             key=key.substring(0,key.length()-3);
-       IndexFile(ListOfFile[i]);
-       String [] values =IndexFile(ListOfFile[i]);
-       Index.put(key,values);
-
+            CityIndex.put(key,null);
         }
-
-
-
     }
 
     private String[] IndexFile(File file) {
         String [] values= new String[3];
         try {
-            String content = new String(Files.readAllBytes(Paths.get( "Terms\\" + file.getName())), Charset.defaultCharset());
-            String [] Parmeters= content.split("|");
+            String content = new String(Files.readAllBytes(file.toPath()));
+            String [] Parmeters= content.substring(1).split("\\|");
             qSort(Parmeters,0,Parmeters.length-1);
             StringJoiner sj=new StringJoiner("|");
             for (int i = 0; i <Parmeters.length ; i++) {

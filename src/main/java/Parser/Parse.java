@@ -66,7 +66,7 @@ public class Parse {
         if (Tokens.get(i).contains("-")) {
             AddTermToTree(false,Tokens.get(i));
             return false;
-        } else if (Character.isDigit(Tokens.get(i).charAt(0))&&Tokens.get(i).matches("^[0-9]+([,.][0-9]?)?$")) {
+        } else if (Character.isDigit(Tokens.get(i).charAt(0))&&Tokens.get(i).matches("^([0-9]{1,3}(,[0-9]{3})*(\\.[0-9]+)?|\\.[0-9]+)$")) {
             //Special
             if (Months.contains(Tokens.get(i + 1))) {
                 AddTermToTree(false,TranslateMonths(i + 1) + "-" + Tokens.get(i));
@@ -261,12 +261,13 @@ public class Parse {
     public void AddTermToTree(boolean TreeMap, String Token){
     //true = termtree
     // false= specialtreemap
+        String newtoken=Token.toLowerCase().replaceAll("[^a-zA-Z0-9\\.\\-]","");
         if(TreeMap){
-        if(TermsMap.containsKey(Token)){
-            TermsMap.get(Token).TermCount++;
+        if(TermsMap.containsKey(newtoken)){
+            TermsMap.get(newtoken).TermCount++;
         }
         else {
-            TermsMap.put(Token,new TermInfo());
+            TermsMap.put(newtoken,new TermInfo());
         }
         }
         else {
@@ -296,6 +297,7 @@ public class Parse {
             }
         }
         int uniqueterms=SpecialTermsMap.size() + TermsMap.size();
+        System.out.println(uniqueterms);
         fileManager.DocPosting(DocID,City,counter,uniqueterms);
     }
 }

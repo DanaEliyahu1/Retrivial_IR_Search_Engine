@@ -5,12 +5,12 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import Indexer.Indexer;
 
 public class ReadFile {
 
     String path;
     private String FileName;
-
     public ReadFile(String path) {
         this.path = path;
     }
@@ -40,7 +40,7 @@ public class ReadFile {
         String[] City2 = City1[0].split("<F P=104>");
         if (City2.length != 1) {
             String[] City3 = City2[1].split("</F>");
-            City = City3[0];
+            City = City3[0].split(" ")[0];
         }
         String Text = City1[1].split("</TEXT>")[0];
         if (Text.contains("[Text]")) {
@@ -55,20 +55,34 @@ public class ReadFile {
         for (int i = 1; i < FileList.length; i++) {
             System.out.println("*********************************" + i);
             try {
-                Document[] CurrDoc = GetDoc(FileList[i].getName() + "\\" + FileList[i].getName());
-                for (int j = 0; j < CurrDoc.length; j++) {
-                    Parse parse = new Parse();
-                    parse.parse(CurrDoc[j]);
-
+                File[] CurrFolder=FileList[i].listFiles();
+                for (int j = 0; j < CurrFolder.length; j++) {
+                    Document[] CurrDoc = GetDoc(FileList[i].getName() + "\\" + CurrFolder[j].getName());
+                    for (int k = 0; k < CurrDoc.length; k++) {
+                        Parse parse = new Parse();
+                        parse.parse(CurrDoc[k]);
+                    }
                 }
-                Parse.fileManager.AllTermToDisk();
-
             } catch (Exception e) {
                 e.printStackTrace();
                 System.out.println("#");
             }
 
         }
+        try{
+            Parse.fileManager.AllTermToDisk();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        try{
+            Parse.fileManager.CitiesToDisk();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        Indexer indexer=new Indexer();
+        indexer.Index();
     }
 
 }

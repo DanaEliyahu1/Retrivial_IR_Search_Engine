@@ -2,21 +2,27 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0f921457-46cd-4350-bc0e-a504e616ee8d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/FileManager/FileManager.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/FileManager/PointerCache.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/Parser/Document.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/Parser/Parse.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/Parser/ReadFile.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/Parser/Stemmer.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/Parser/TermInfo.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/Parser/Tester.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cities/text.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Indexing/text.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/FileManager/FileManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/FileManager/FileManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Indexer/Indexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Indexer/Indexer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Parser/Document.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Parser/Document.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Parser/Parse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Parser/Parse.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Parser/ReadFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Parser/ReadFile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Parser/ReadFile.java___jb_tmp___" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Parser/Tester.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Parser/Tester.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/FileManager/FileManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/FileManager/FileManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/FileManager/PointerCache.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/FileManager/PointerCache.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Parser/Document.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Parser/Document.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Parser/Parse.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Parser/Parse.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Parser/ReadFile.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Parser/ReadFile.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Parser/Tester.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Parser/Tester.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -24,6 +30,9 @@
   </component>
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/IR$Tester.ic" NAME="Tester Coverage Results" MODIFIED="1541424630967" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>Parser.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/urban_guacamole$Tester.ic" NAME="Tester Coverage Results" MODIFIED="1542133931178" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>Parser.*</FILTER>
     </SUITE>
   </component>
@@ -87,11 +96,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file leaf-file-name="Tester.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Parser/Tester.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="209">
-              <caret line="39" column="46" selection-start-line="39" selection-start-column="46" selection-end-line="39" selection-end-column="46" />
+            <state relative-caret-position="148">
+              <caret line="49" column="97" selection-start-line="49" selection-start-column="38" selection-end-line="49" selection-end-column="100" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -99,11 +108,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file leaf-file-name="Parse.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Parser/Parse.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="168">
-              <caret line="292" column="66" lean-forward="true" selection-start-line="292" selection-start-column="66" selection-end-line="292" selection-end-column="66" />
+            <state relative-caret-position="156">
+              <caret line="83" column="44" lean-forward="true" selection-start-line="83" selection-start-column="44" selection-end-line="83" selection-end-column="44" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#NumberToTerm#0;class#Parse#0" />
@@ -113,23 +122,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/FileManager/FileManager.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
-              <caret line="117" column="13" lean-forward="true" selection-start-line="117" selection-start-column="13" selection-end-line="117" selection-end-column="13" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
+      <file leaf-file-name="Indexer.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Indexer/Indexer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="267">
-              <caret line="16" column="40" selection-start-line="16" selection-start-column="40" selection-end-line="16" selection-end-column="40" />
+            <state relative-caret-position="72">
+              <caret line="48" column="5" selection-start-line="48" selection-start-column="5" selection-end-line="48" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -137,11 +134,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file leaf-file-name="ReadFile.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/Parser/ReadFile.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="100">
-              <caret line="61" selection-start-line="61" selection-end-line="61" />
+            <state relative-caret-position="-236">
+              <caret line="56" column="17" lean-forward="true" selection-start-line="56" selection-start-column="17" selection-end-line="56" selection-end-column="17" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -149,20 +146,29 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file leaf-file-name="TermInfo.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Parser/TermInfo.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="378">
+            <state relative-caret-position="216">
               <caret line="14" column="8" selection-start-line="14" selection-start-column="8" selection-end-line="14" selection-end-column="8" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file leaf-file-name="Stemmer.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/Parser/Stemmer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="341">
+              <caret line="481" column="6" selection-start-line="481" selection-start-column="6" selection-end-line="481" selection-end-column="6" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Document.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Parser/Document.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="479">
-              <caret line="39" column="247" selection-start-line="39" selection-start-column="247" selection-end-line="39" selection-end-column="247" />
+            <state relative-caret-position="-19">
+              <caret line="34" selection-start-line="34" selection-end-line="34" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -207,11 +213,11 @@
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/Parser/TermInfo.java" />
         <option value="$PROJECT_DIR$/src/main/java/Parser/Tester.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Parser/Document.java" />
-        <option value="$PROJECT_DIR$/src/main/java/FileManager/FileManager.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Parser/Parse.java" />
         <option value="$PROJECT_DIR$/src/main/java/Parser/ReadFile.java" />
         <option value="$PROJECT_DIR$/src/main/java/Indexer/Indexer.java" />
+        <option value="$PROJECT_DIR$/src/main/java/FileManager/FileManager.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Parser/Document.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Parser/Parse.java" />
       </list>
     </option>
   </component>
@@ -232,6 +238,9 @@
       <select />
     </treeState>
   </component>
+  <component name="NodePackageJsonFileManager">
+    <packageJsonPaths />
+  </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-35" />
     <option name="y" value="9" />
@@ -240,95 +249,75 @@
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
-    <navigator proportions="" version="1">
+    <navigator currentView="PackagesPane" proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="IR" type="b2602c69:ProjectViewProjectNode" />
-              <item name="IR" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="IR" type="b2602c69:ProjectViewProjectNode" />
-              <item name="IR" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="IR" type="b2602c69:ProjectViewProjectNode" />
-              <item name="IR" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="IR" type="b2602c69:ProjectViewProjectNode" />
-              <item name="IR" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="IR" type="b2602c69:ProjectViewProjectNode" />
-              <item name="IR" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="FileManager" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="IR" type="b2602c69:ProjectViewProjectNode" />
-              <item name="IR" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="FileManager" type="462c0819:PsiDirectoryNode" />
-              <item name="FileManager.java" type="529ef68f:ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
-            </path>
-            <path>
-              <item name="IR" type="b2602c69:ProjectViewProjectNode" />
-              <item name="IR" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="Indexer" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="IR" type="b2602c69:ProjectViewProjectNode" />
-              <item name="IR" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="Parser" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="IR" type="b2602c69:ProjectViewProjectNode" />
-              <item name="IR" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
       <pane id="PackagesPane">
         <subPane>
           <expand>
             <path>
-              <item name="IR" type="58d84e3e:PackageViewProjectNode" />
-              <item name="IR" type="616d4139:PackageViewModuleNode" />
+              <item name="urban-guacamole" type="58d84e3e:PackageViewProjectNode" />
+              <item name="urban-guacamole" type="616d4139:PackageViewModuleNode" />
             </path>
             <path>
-              <item name="IR" type="58d84e3e:PackageViewProjectNode" />
-              <item name="IR" type="616d4139:PackageViewModuleNode" />
+              <item name="urban-guacamole" type="58d84e3e:PackageViewProjectNode" />
+              <item name="urban-guacamole" type="616d4139:PackageViewModuleNode" />
+              <item name="FileManager" type="1f31426a:PackageElementNode" />
+            </path>
+            <path>
+              <item name="urban-guacamole" type="58d84e3e:PackageViewProjectNode" />
+              <item name="urban-guacamole" type="616d4139:PackageViewModuleNode" />
+              <item name="Indexer" type="1f31426a:PackageElementNode" />
+            </path>
+            <path>
+              <item name="urban-guacamole" type="58d84e3e:PackageViewProjectNode" />
+              <item name="urban-guacamole" type="616d4139:PackageViewModuleNode" />
               <item name="Parser" type="1f31426a:PackageElementNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="urban-guacamole" type="b2602c69:ProjectViewProjectNode" />
+              <item name="urban-guacamole" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="urban-guacamole" type="b2602c69:ProjectViewProjectNode" />
+              <item name="urban-guacamole" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="urban-guacamole" type="b2602c69:ProjectViewProjectNode" />
+              <item name="urban-guacamole" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="urban-guacamole" type="b2602c69:ProjectViewProjectNode" />
+              <item name="urban-guacamole" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="urban-guacamole" type="b2602c69:ProjectViewProjectNode" />
+              <item name="urban-guacamole" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="FileManager" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
       <pane id="Scope" />
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -357,16 +346,13 @@
   <component name="RunManager">
     <configuration name="Tester" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Parser.Tester" />
-      <module name="IR" />
+      <module name="urban-guacamole" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="Parser.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
     </configuration>
     <recent_temporary>
       <list>
@@ -393,6 +379,8 @@
       <workItem from="1541516903463" duration="16205000" />
       <workItem from="1541662034111" duration="8341000" />
       <workItem from="1541864475152" duration="6950000" />
+      <workItem from="1542101767573" duration="7284000" />
+      <workItem from="1542132904878" duration="9747000" />
     </task>
     <task id="LOCAL-00001" summary="1">
       <created>1541160849208</created>
@@ -534,76 +522,82 @@
       <option name="project" value="LOCAL" />
       <updated>1541870153865</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="Default Changelist">
+      <created>1542102847433</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1542102847433</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="98106000" />
+    <option name="totallyTimeSpent" value="115137000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.204236" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Image Layers" order="2" />
-      <window_info id="Designer" order="3" />
-      <window_info id="UI Designer" order="4" />
-      <window_info id="Capture Tool" order="5" />
-      <window_info id="Favorites" order="6" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49924356" weight="0.3289689" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49848714" weight="0.32569557" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.5417349" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49848714" visible="true" weight="0.0016366612" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5015129" side_tool="true" visible="true" weight="0.0016366612" />
-      <window_info anchor="bottom" id="Version Control" order="10" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Messages" order="11" sideWeight="0.49924356" weight="0.32569557" />
-      <window_info anchor="right" id="Coverage" order="0" side_tool="true" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="1" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="2" weight="0.1505295" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="3" weight="0.25" />
       <window_info anchor="right" id="Palette" order="4" />
-      <window_info anchor="right" id="Capture Analysis" order="5" />
-      <window_info anchor="right" id="Theme Preview" order="6" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Messages" order="11" sideWeight="0.49924356" weight="0.32569557" />
       <window_info anchor="right" id="Palette&#9;" order="7" />
-      <window_info anchor="right" id="Database" order="8" weight="0.045385778" />
+      <window_info id="Image Layers" order="2" />
+      <window_info anchor="right" id="Capture Analysis" order="5" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.28366113" side_tool="true" visible="true" weight="0.3344209" />
       <window_info anchor="right" id="Maven Projects" order="9" weight="0.050680786" />
+      <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="10" sideWeight="0.49924356" weight="0.21044046" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.7163389" visible="true" weight="0.3344209" />
+      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.4977307" weight="0.0016313214" />
+      <window_info id="Capture Tool" order="5" />
+      <window_info id="Designer" order="3" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14447807" />
+      <window_info anchor="right" id="Database" order="8" weight="0.045385778" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="right" id="Ant Build" order="2" weight="0.1505295" />
+      <window_info id="UI Designer" order="4" />
+      <window_info anchor="right" id="Theme Preview" order="6" />
+      <window_info id="Favorites" order="6" side_tool="true" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.7700454" weight="0.47960848" />
+      <window_info anchor="right" id="Coverage" order="0" side_tool="true" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="3" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="1" type="SLIDING" weight="0.4" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49924356" weight="0.3289689" />
     </layout>
     <layout-to-restore>
+      <window_info anchor="right" id="Palette" order="4" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="3" weight="0.25" />
+      <window_info anchor="right" id="Capture Analysis" order="5" />
+      <window_info anchor="right" id="Coverage" order="0" side_tool="true" />
+      <window_info anchor="bottom" id="Version Control" order="10" show_stripe_button="false" />
+      <window_info anchor="right" id="Theme Preview" order="6" />
+      <window_info anchor="bottom" id="Message" order="0" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.204236" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="1" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="2" weight="0.1505295" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49848714" weight="0.32569557" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
       <window_info id="UI Designer" order="4" />
-      <window_info id="Capture Tool" order="5" />
-      <window_info id="Favorites" order="6" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49924356" weight="0.3289689" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49848714" weight="0.32569557" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.5417349" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49924356" weight="0.0" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5015129" side_tool="true" visible="true" weight="0.28968903" />
-      <window_info anchor="bottom" id="Version Control" order="10" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Messages" order="11" sideWeight="0.49924356" weight="0.32569557" />
-      <window_info anchor="right" id="Coverage" order="0" side_tool="true" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="1" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="2" weight="0.1505295" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="3" weight="0.25" />
-      <window_info anchor="right" id="Palette" order="4" />
-      <window_info anchor="right" id="Capture Analysis" order="5" />
-      <window_info anchor="right" id="Theme Preview" order="6" />
-      <window_info anchor="right" id="Palette&#9;" order="7" />
       <window_info anchor="right" id="Database" order="8" weight="0.045385778" />
+      <window_info anchor="right" id="Palette&#9;" order="7" />
+      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49924356" weight="0.0" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.5417349" />
+      <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5015129" side_tool="true" visible="true" weight="0.28968903" />
+      <window_info id="Capture Tool" order="5" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49924356" weight="0.3289689" />
+      <window_info anchor="bottom" id="Messages" order="11" sideWeight="0.49924356" weight="0.32569557" />
       <window_info anchor="right" id="Maven Projects" order="9" weight="0.050680786" />
+      <window_info id="Favorites" order="6" side_tool="true" />
     </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -628,24 +622,26 @@
     <MESSAGE value="Started Indexing" />
     <MESSAGE value="STRTED POSTING FOR DOC AND INDEX VALUES" />
     <MESSAGE value="added folders" />
-    <option name="LAST_COMMIT_MESSAGE" value="added folders" />
+    <MESSAGE value="Default Changelist" />
+    <option name="LAST_COMMIT_MESSAGE" value="Default Changelist" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/FileManager/FileManager.java</url>
-          <line>23</line>
+          <url>file://$PROJECT_DIR$/src/main/java/Indexer/Indexer.java</url>
+          <line>88</line>
           <properties />
-          <option name="timeStamp" value="139" />
+          <option name="timeStamp" value="24" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/Parser/ReadFile.java</url>
-          <line>62</line>
+          <url>file://$PROJECT_DIR$/src/main/java/Indexer/Indexer.java</url>
+          <line>94</line>
           <properties />
-          <option name="timeStamp" value="140" />
+          <option name="timeStamp" value="27" />
         </line-breakpoint>
       </breakpoints>
+      <option name="time" value="28" />
     </breakpoint-manager>
   </component>
   <component name="antWorkspaceConfiguration">
@@ -653,6 +649,144 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/main/java/Parser/Tester.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="731">
+          <caret line="48" selection-start-line="48" selection-end-line="48" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/FileManager/FileManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="31" column="30" selection-start-line="31" selection-start-column="30" selection-end-line="31" selection-end-column="30" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Indexer/Indexer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="561">
+          <caret line="33" column="22" selection-start-line="33" selection-start-column="22" selection-end-line="33" selection-end-column="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Parser/ReadFile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1122">
+          <caret line="72" column="5" selection-start-line="72" selection-start-column="5" selection-end-line="72" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Parser/TermInfo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="8" selection-start-line="14" selection-start-column="8" selection-end-line="14" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Parser/Document.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="884">
+          <caret line="61" column="70" selection-start-line="61" selection-start-column="70" selection-end-line="61" selection-end-column="70" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Parser/Parse.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1207">
+          <caret line="71" column="78" selection-start-line="71" selection-start-column="78" selection-end-line="71" selection-end-column="78" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#NumberToTerm#0;class#Parse#0" />
+            <element signature="method#TranslateMonths#0;class#Parse#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Parser/Tester.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="578">
+          <caret line="39" column="46" selection-start-line="39" selection-start-column="46" selection-end-line="39" selection-end-column="46" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Parser/Parse.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3672">
+          <caret line="292" column="66" lean-forward="true" selection-start-line="292" selection-start-column="66" selection-end-line="292" selection-end-column="66" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#NumberToTerm#0;class#Parse#0" />
+            <element signature="method#TranslateMonths#0;class#Parse#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/FileManager/FileManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1887">
+          <caret line="117" column="13" lean-forward="true" selection-start-line="117" selection-start-column="13" selection-end-line="117" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Parser/ReadFile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="935">
+          <caret line="61" selection-start-line="61" selection-end-line="61" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Parser/TermInfo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="8" selection-start-line="14" selection-start-column="8" selection-end-line="14" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Parser/Document.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="39" column="247" selection-start-line="39" selection-start-column="247" selection-end-line="39" selection-end-column="247" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Indexer/Indexer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="16" column="40" selection-start-line="16" selection-start-column="40" selection-end-line="16" selection-end-column="40" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/package-info.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/text.txt" />
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_191/src.zip!/java/util/Scanner.java">
@@ -666,13 +800,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-7">
           <caret line="657" selection-start-line="657" selection-end-line="657" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Parser/Stemmer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="12717">
-          <caret line="481" column="6" selection-start-line="481" selection-start-column="6" selection-end-line="481" selection-end-column="6" />
         </state>
       </provider>
     </entry>
@@ -690,17 +817,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Parser/Tester.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="148">
+          <caret line="49" column="97" selection-start-line="49" selection-start-column="38" selection-end-line="49" selection-end-column="100" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Parser/TermInfo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
+        <state relative-caret-position="216">
           <caret line="14" column="8" selection-start-line="14" selection-start-column="8" selection-end-line="14" selection-end-column="8" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Parser/Tester.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/Parser/Stemmer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="39" column="46" selection-start-line="39" selection-start-column="46" selection-end-line="39" selection-end-column="46" />
+        <state relative-caret-position="341">
+          <caret line="481" column="6" selection-start-line="481" selection-start-column="6" selection-end-line="481" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Indexer/Indexer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="48" column="5" selection-start-line="48" selection-start-column="5" selection-end-line="48" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -709,8 +853,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Parser/Document.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="479">
-          <caret line="39" column="247" selection-start-line="39" selection-start-column="247" selection-end-line="39" selection-end-column="247" />
+        <state relative-caret-position="-19">
+          <caret line="34" selection-start-line="34" selection-end-line="34" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -719,8 +863,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/FileManager/FileManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="117" column="13" lean-forward="true" selection-start-line="117" selection-start-column="13" selection-end-line="117" selection-end-column="13" />
+        <state relative-caret-position="122">
+          <caret line="190" column="35" lean-forward="true" selection-start-line="190" selection-start-column="35" selection-end-line="190" selection-end-column="35" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -729,8 +873,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Parser/Parse.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="292" column="66" lean-forward="true" selection-start-line="292" selection-start-column="66" selection-end-line="292" selection-end-column="66" />
+        <state relative-caret-position="156">
+          <caret line="83" column="44" lean-forward="true" selection-start-line="83" selection-start-column="44" selection-end-line="83" selection-end-column="44" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#NumberToTerm#0;class#Parse#0" />
@@ -741,18 +885,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Parser/ReadFile.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="61" selection-start-line="61" selection-end-line="61" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Indexer/Indexer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="267">
-          <caret line="16" column="40" selection-start-line="16" selection-start-column="40" selection-end-line="16" selection-end-column="40" />
+        <state relative-caret-position="-236">
+          <caret line="56" column="17" lean-forward="true" selection-start-line="56" selection-start-column="17" selection-end-line="56" selection-end-column="17" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
