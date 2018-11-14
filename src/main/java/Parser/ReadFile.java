@@ -40,7 +40,13 @@ public class ReadFile {
         String[] City2 = City1[0].split("<F P=104>");
         if (City2.length != 1) {
             String[] City3 = City2[1].split("</F>");
-            City = City3[0].split(" ")[2];
+            String[] City4 = City3[0].split(" ");
+            for (int i = 0; i <City4.length ; i++) {
+                if(!City4[i].equals("")){
+                    City=City4[i];
+                    break;
+                }
+            }
         }
         String Text = City1[1].split("</TEXT>")[0];
         if (Text.contains("[Text]")) {

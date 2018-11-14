@@ -6,6 +6,7 @@ import java.util.*;
 import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 public class FileManager {
     TreeMap<String, TreePointerToQ> Cache;
@@ -13,7 +14,7 @@ public class FileManager {
     String DocId;
     double PriorityAll;
     HashMap<String,String> cities;
-    Executor threadpool;
+    ExecutorService threadpool;
 
     public FileManager(String docId) {
         DocId = docId;
@@ -112,8 +113,8 @@ public class FileManager {
         DocId = docId;
     }
 
-    public void AllTermToDisk(){
-
+    public void AllTermToDisk() throws InterruptedException {
+            threadpool.shutdown();
         while (!Q.isEmpty()){
             PointerCache keytofile = Q.poll();
             String Value = Cache.get(keytofile.pointerterm).value;
