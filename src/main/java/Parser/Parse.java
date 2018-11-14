@@ -49,7 +49,7 @@ public class Parse {
             }
 
         }
-        ResultToFile();
+        fileManager.ResultToFile( DocID,SpecialTermsMap, TermsMap, City);
 /*
         for (Map.Entry<String, TermInfo> entry : SpecialTermsMap.entrySet()) {
             System.out.println("Key: " + entry.getKey() + ". Value: " + entry.getValue());
@@ -297,7 +297,6 @@ public class Parse {
             }
         }
         int uniqueterms=SpecialTermsMap.size() + TermsMap.size();
-        System.out.println(uniqueterms);
         fileManager.DocPosting(DocID,City,counter,uniqueterms);
     }
 }

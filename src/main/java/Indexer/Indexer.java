@@ -26,6 +26,7 @@ public class Indexer {
             for (int j = 0; j <CurrFolder.length; j++) {
                 try{
                     String key= CurrFolder[j].getName();
+                    System.out.println(key);
                     key=key.substring(0,key.length()-4);
                     String [] values =IndexFile(CurrFolder[j]);
                     Index.put(key,values);

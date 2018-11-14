@@ -3,6 +3,9 @@ package FileManager;
 import Parser.TermInfo;
 import java.io.*;
 import java.util.*;
+import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class FileManager {
     TreeMap<String, TreePointerToQ> Cache;
@@ -10,26 +13,28 @@ public class FileManager {
     String DocId;
     double PriorityAll;
     HashMap<String,String> cities;
+    Executor threadpool;
 
     public FileManager(String docId) {
         DocId = docId;
         Cache=new TreeMap<String,TreePointerToQ>();
         Q=new PriorityQueue<PointerCache>((x,y)->{ return (int) (x.priority-y.priority);});
         cities=new HashMap<String,String>();
+        PriorityAll=0;
+        threadpool= Executors.newFixedThreadPool(1);
     }
 
 
     public void AddTermTofile(String key, TermInfo value) {
         if (Cache.containsKey(key)) {
             Cache.get(key).value=Cache.get(key).value + "|" + DocId + "," + value.toString();
-            Cache.get(key).pc.priority=PriorityAll;
+            Cache.get(key).pc.priority++;
             Cache.put(key, Cache.get(key));
         } else {
             PointerCache newpc=new PointerCache(key, PriorityAll);
             Cache.put(key,new TreePointerToQ(newpc, "|" + DocId + "," + value.toString()));
             Q.add(newpc);
         }
-        PriorityAll++;
         if (Cache.size() > 10000) {
             PointerCache keytofile = Q.poll();
             String Value = Cache.get(keytofile.pointerterm).value;
@@ -148,7 +153,7 @@ public class FileManager {
     }
     void AddDocToCityIndex(String DocId,String City){
         if (cities.containsKey(City)) {
-            cities.put(City, "," + DocId);
+            cities.put(City,cities.get(City)+ "," + DocId);
         } else {
             cities.put(City, DocId);
         }
@@ -171,8 +176,33 @@ public class FileManager {
                 e.printStackTrace();
             }
         }
-    }
 
+    }
+    public void ResultToFile (String DocID,TreeMap<String,TermInfo> SpecialTermsMap,TreeMap <String,TermInfo>TermsMap,String City){
+        threadpool.execute(new Runnable() {
+            @Override
+            public void run() {
+                int counter=0;
+                setDocId(DocID);
+                for (Map.Entry<String, TermInfo> entry : SpecialTermsMap.entrySet()) {
+                    AddTermTofile(entry.getKey(),entry.getValue());
+                    if(counter<entry.getValue().TermCount){
+                        counter=entry.getValue().TermCount;
+                    }
+
+                }
+                for (Map.Entry<String, TermInfo> entry : TermsMap.entrySet()) {
+                    AddTermTofile(entry.getKey(), entry.getValue());
+                    if (counter < entry.getValue().TermCount) {
+                        counter = entry.getValue().TermCount;
+                    }
+                }
+                int uniqueterms=SpecialTermsMap.size() + TermsMap.size();
+                DocPosting(DocID,City,counter,uniqueterms);
+            }
+        });
+
+    }
 }
 
 class PointerCache {

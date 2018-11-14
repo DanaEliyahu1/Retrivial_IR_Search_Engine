@@ -2,9 +2,9 @@ package Parser;
 
 public class TermInfo {
 
-    int TermCount;
-    double priority;
-    String key;
+   public int TermCount;
+   // public double priority;
+   // public String key;
 
     public TermInfo() {
 
