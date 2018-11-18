@@ -47,7 +47,7 @@ public class Tester{
 //            parse.parse(Docs[i]);
 //        }
 
-    ReadFile readFile = new ReadFile("d:\\documents\\users\\haiatn\\Downloads\\corpus\\corpus");
+    ReadFile readFile = new ReadFile("D:\\documents\\users\\danaeliy\\Downloads\\corpus\\corpus");
     readFile.GetFile();
 
 
