@@ -71,42 +71,42 @@ public class FileManager {
             case '9':
             case '$':
                 pointer=pointer.replaceAll("/","-");
-                return postingpath+ "Indexing\\Numbers\\"+pointer+".txt";
+                return postingpath+ "\\Indexing\\Numbers\\"+pointer+".txt";
             case 'a':
             case 'b':
             case 'c':
             case 'd':
             case 'e':
-                return postingpath+"Indexing\\a-e\\"+pointer+".txt";
+                return postingpath+"\\Indexing\\a-e\\"+pointer+".txt";
             case 'f':
             case 'g':
             case 'h':
             case 'i':
             case 'j':
-                return postingpath+"Indexing\\f-j\\"+pointer+".txt";
+                return postingpath+"\\Indexing\\f-j\\"+pointer+".txt";
             case 'k':
             case 'l':
             case 'm':
             case 'n':
             case 'o':
-                return postingpath+"Indexing\\k-o\\"+pointer+".txt";
+                return postingpath+"\\Indexing\\k-o\\"+pointer+".txt";
             case 'p':
             case 'q':
             case 'r':
             case 's':
             case 't':
-                return postingpath+"Indexing\\p-t\\"+pointer+".txt";
+                return postingpath+"\\Indexing\\p-t\\"+pointer+".txt";
             case 'u':
             case 'v':
             case 'w':
             case 'x':
             case 'y':
             case 'z':
-                return postingpath+"Indexing\\u-z\\"+pointer+".txt";
+                return postingpath+"\\Indexing\\u-z\\"+pointer+".txt";
         }
 
 
-   return postingpath+"Indexing\\u-z\\"+pointer+".txt";
+   return postingpath+"\\Indexing\\u-z\\"+pointer+".txt";
     }
 
     public void setDocId(String docId) {
@@ -138,13 +138,13 @@ public class FileManager {
 
     public void DocPosting(String ID,String City,int maxtf, int uniqueterms){
         AddDocToCityIndex(ID,City);
-        File file =new File(postingpath+"Documents\\"+ID+".txt");
+        File file =new File(postingpath+"\\Documents\\"+ID+".txt");
         try {
             file.createNewFile();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        try (FileWriter fw = new FileWriter(postingpath+"Documents\\"+ID+".txt", true);
+        try (FileWriter fw = new FileWriter(postingpath+"\\Documents\\"+ID+".txt", true);
              BufferedWriter bw = new BufferedWriter(fw);
              PrintWriter out = new PrintWriter(bw)) {
             out.print( "|" + City + "," + maxtf+ ","+ uniqueterms);
@@ -163,13 +163,13 @@ public class FileManager {
         Iterator<Map.Entry<String,String>> it= cities.entrySet().iterator();
         while (it.hasNext()){
             Map.Entry<String,String> currCity=it.next();
-            File file =new File(postingpath+"Cities\\"+currCity.getKey()+".txt");
+            File file =new File(postingpath+"\\Cities\\"+currCity.getKey()+".txt");
             try {
                 file.createNewFile();
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            try (FileWriter fw = new FileWriter(postingpath+"Cities\\"+currCity.getKey()+".txt", true);
+            try (FileWriter fw = new FileWriter(postingpath+"\\Cities\\"+currCity.getKey()+".txt", true);
                  BufferedWriter bw = new BufferedWriter(fw);
                  PrintWriter out = new PrintWriter(bw)) {
                 out.print(currCity.getValue());

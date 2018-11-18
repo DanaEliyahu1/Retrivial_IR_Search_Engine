@@ -4,10 +4,12 @@ import FileManager.FileManager;
 import Parser.Parse;
 import Parser.ReadFile;
 import Parser.Stemmer;
+import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
+import java.util.Dictionary;
 import java.util.HashSet;
 
 public class GetPathController {
@@ -17,13 +19,13 @@ public class GetPathController {
     public boolean IsStem;
 
     public void choosecorpus(){
-        FileChooser fc = new FileChooser();
-        corpusselected = fc.showOpenDialog(stage);
+       DirectoryChooser dc=new DirectoryChooser();
+        corpusselected = dc.showDialog(stage);
     }
 
     public void chooseposting(){
-        FileChooser fc = new FileChooser();
-        postingselected = fc.showOpenDialog(stage);
+        DirectoryChooser dc=new DirectoryChooser();
+        postingselected = dc.showDialog(stage);
     }
 
 
