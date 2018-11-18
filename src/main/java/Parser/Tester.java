@@ -2,10 +2,7 @@ package Parser;
 
 import FileManager.FileManager;
 
-import javax.print.Doc;
-import java.io.File;
 import java.util.HashSet;
-import java.util.TreeMap;
 
 public class Tester{
 
@@ -37,7 +34,7 @@ public class Tester{
         Parse.Months=Months;
         Parse.StopWord=StopWord;
         Parse.stemmer=new Stemmer();
-        Parse.fileManager=new FileManager("");
+       // Parse.fileManager=new FileManager("", postingselected.getPath());
         //Parse parse = new Parse(StopWord, Months, NumberHash, DollarHash);
         //       Document doc=new Document("C:\\Users\\דנה\\Desktop\\test\\test",0);
 //        ReadFile readFile = new ReadFile("C:\\Users\\דנה\\Desktop\\test");

@@ -1,5 +1,7 @@
 package Indexer;
 
+import FileManager.FileManager;
+
 import java.io.*;
 import java.util.*;
 import java.nio.charset.Charset;
@@ -9,17 +11,18 @@ import java.util.TreeMap;
 import static FileManager.FileManager.geturl;
 
 public class Indexer {
-
+    FileManager fileManager;
     TreeMap <String,String []> Index;
     TreeMap <String,String[]> CityIndex;
 
-    public Indexer() {
+    public Indexer(FileManager fileManager) {
         Index = new TreeMap<> ();
         CityIndex=new TreeMap<>();
+        this.fileManager=fileManager;
     }
 
     public void Index(){
-        File folder = new File("Indexing");
+        File folder = new File(fileManager.postingpath+"Indexing");
         File[] ListOfFile= folder.listFiles();
         for (int i = 0; i <ListOfFile.length ; i++) {
             File[] CurrFolder= ListOfFile[i].listFiles();
@@ -40,7 +43,7 @@ public class Indexer {
         IndexCities();
     }
     public void IndexCities(){
-        File folder = new File("Cities");
+        File folder = new File(fileManager.postingpath+"Cities");
         File[] ListOfFile= folder.listFiles();
         for (int i = 0; i <ListOfFile.length ; i++) {
             String key= ListOfFile[i].getName();

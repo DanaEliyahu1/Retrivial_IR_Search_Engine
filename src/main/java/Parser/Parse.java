@@ -2,7 +2,7 @@ package Parser;
 
 import FileManager.FileManager;
 
-import java.text.NumberFormat;
+import java.io.File;
 import java.util.*;
 
 public class Parse {
@@ -11,25 +11,25 @@ public class Parse {
          SpecialTermsMap=new TreeMap<String, TermInfo>();
     }
     String City;
-    static FileManager fileManager;
-    static HashSet StopWord;
+    public static FileManager fileManager;
+    public static HashSet StopWord;
     TreeMap<String, TermInfo> TermsMap;
     TreeMap<String, TermInfo> SpecialTermsMap;
-    static Stemmer stemmer;
-    static HashSet Months;
-    static HashSet NumberHash;
-    static HashSet DollarHash;
+    public static Stemmer stemmer;
+    public static HashSet Months;
+    public static HashSet NumberHash;
+    public static HashSet DollarHash;
     static TreeSet<String> TermCollection ;
     ArrayList<String> Tokens;
     int i;
     String DocID;
 
-    public Parse(HashSet stopWord, HashSet months, HashSet numberHash, HashSet dollarHash) {
+    public Parse(HashSet stopWord, HashSet months, HashSet numberHash, HashSet dollarHash,File postingselected) {
         this.StopWord = stopWord;
         this.Months = months;
         this.NumberHash = numberHash;
         this.DollarHash = dollarHash;
-        fileManager = new FileManager("changelater");
+        fileManager = new FileManager("changelater", postingselected.getPath());
         stemmer = new Stemmer();
         TermsMap = new TreeMap();
         SpecialTermsMap = new TreeMap();

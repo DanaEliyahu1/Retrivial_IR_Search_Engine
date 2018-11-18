@@ -5,20 +5,22 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+
+import FileManager.FileManager;
 import Indexer.Indexer;
 
 public class ReadFile {
 
-    String path;
+    String corpuspath;
     private String FileName;
-    public ReadFile(String path) {
-        this.path = path;
+    public ReadFile(String corpuspath) {
+        this.corpuspath = corpuspath;
     }
 
     public Document[] GetDoc(String filename) {
         FileName = filename;
         try {
-            String content = new String(Files.readAllBytes(Paths.get(path + "\\" + filename)), Charset.defaultCharset());
+            String content = new String(Files.readAllBytes(Paths.get(corpuspath + "\\" + filename)), Charset.defaultCharset());
             String[] document = content.split("<DOC>");
             Document[] Doc = new Document[document.length - 1];
             for (int i = 0; i < Doc.length; i++) {
@@ -52,12 +54,12 @@ public class ReadFile {
         if (Text.contains("[Text]")) {
             Text = Text.split("[Text]")[1];
         }
-        return new Document(path + File.separator + FileName, City, Id, Text);
+        return new Document(corpuspath + File.separator + FileName, City, Id, Text);
     }
 
     public void GetFile() {
 
-        File[] FileList = new File(path).listFiles();
+        File[] FileList = new File(corpuspath).listFiles();
         for (int i = 1; i < FileList.length; i++) {
             System.out.println("*********************************" + i);
             try {
@@ -87,7 +89,7 @@ public class ReadFile {
         catch (Exception e){
             e.printStackTrace();
         }
-        Indexer indexer=new Indexer();
+        Indexer indexer=new Indexer(Parse.fileManager);
         indexer.Index();
     }
 

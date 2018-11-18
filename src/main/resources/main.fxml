@@ -15,14 +15,14 @@
             <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
                   <ComboBox prefWidth="150.0" />
-                  <CheckBox mnemonicParsing="false" prefHeight="49.0" prefWidth="186.0" text="Stemming" />
+                  <CheckBox  fx:id="checkBox" mnemonicParsing="false" prefHeight="49.0" prefWidth="186.0" text="Stemming" />
                </children>
             </HBox>
          </top>
          <left>
             <VBox prefHeight="300.0" prefWidth="154.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="53.0" prefWidth="154.0" text="Start" />
+                  <Button mnemonicParsing="false" prefHeight="53.0" prefWidth="154.0" text="Start" onAction="#StartButton"/>
                   <Button mnemonicParsing="false" prefHeight="55.0" prefWidth="154.0" text="Reset" />
                   <Button mnemonicParsing="false" prefHeight="57.0" prefWidth="153.0" text="Show Dictionary" />
                   <Button mnemonicParsing="false" prefHeight="56.0" prefWidth="157.0" text="Load Dictionary" />
