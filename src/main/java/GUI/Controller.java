@@ -18,12 +18,16 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class Controller {
 
     public Stage stage;
     public CheckBox checkBox;
     public GetPathController NewGetPath;
+    public static int Termunique;
+
 
 
 
@@ -89,6 +93,25 @@ public class Controller {
         newStage.show();
 
 
+    }
+    public void LoadDic(){
+        TreeMap<String,String[]> Dic=new TreeMap<>();
+        String content = null;
+        try {
+            content = new String(Files.readAllBytes(Paths.get(NewGetPath.postingselected.getPath()+"\\Dictionary.txt")), Charset.defaultCharset());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        String [] Terms =content.split("\n");
+        for (int i = 0; i <Terms.length ; i++) {
+            String[] keyvalue=Terms[i].split(",");
+            String[] value={keyvalue[1]};
+            Dic.put(keyvalue[0],value);
+        }
+
+        for (Map.Entry<String, String[]> entry : Dic.entrySet()) {
+            System.out.println("Key: " + entry.getKey() + ". Value: " + entry.getValue()[0]);
+        }
     }
 
     public void setStage(Stage stage) {

@@ -20,6 +20,7 @@ public class Parse {
     public static HashSet NumberHash;
     public static HashSet DollarHash;
     public static boolean isStemmig;
+    public TreeMap<String,TermInfo> CapitalLetterWords;
     static TreeSet<String> TermCollection ;
     ArrayList<String> Tokens;
     int i;
@@ -32,6 +33,7 @@ public class Parse {
         this.DollarHash = dollarHash;
         fileManager = new FileManager("changelater", postingselected.getPath());
         stemmer = new Stemmer();
+        CapitalLetterWords=new TreeMap<>();
         TermsMap = new TreeMap();
         SpecialTermsMap = new TreeMap();
     }
@@ -46,11 +48,12 @@ public class Parse {
                     i++;
                 }
             }catch (Exception e){
+                //e.printStackTrace();
                 System.out.println("@");
             }
 
         }
-        fileManager.ResultToFile( DocID,SpecialTermsMap, TermsMap, City);
+        fileManager.ResultToFile( DocID,SpecialTermsMap, TermsMap, City,CapitalLetterWords);
 /*
         for (Map.Entry<String, TermInfo> entry : SpecialTermsMap.entrySet()) {
             System.out.println("Key: " + entry.getKey() + ". Value: " + entry.getValue());
@@ -89,21 +92,24 @@ public class Parse {
         } else if (Months.contains(Tokens.get(i)) && Character.isDigit(Tokens.get(i + 1).charAt(0))) {
             AddTermToTree(false,Tokens.get(i + 1) + "-" + TranslateMonths(i));
         } else if (Character.isUpperCase(Tokens.get(i).charAt(0))) {
-            return true;
+            if(CapitalLetterWords.containsKey(Tokens.get(i))){
+                CapitalLetterWords.get(Tokens.get(i)).TermCount++;
+            }
         }
         else if(Tokens.get(i).charAt(0)=='$'){
             AddTermToTree(false,PriceToTerm());
+            return false;
         }
         else{
             if(isStemmig){
                 AddTermToTree(true,stemmer.StemToken(Tokens.get(i)));
+                return false;
             }
             else{
                 AddTermToTree(true,Tokens.get(i));
+                return false;
             }
-
         }
-
         return false;
     }
 
@@ -268,7 +274,8 @@ public class Parse {
     public void AddTermToTree(boolean TreeMap, String Token){
     //true = termtree
     // false= specialtreemap
-        String newtoken=Token.toLowerCase().replaceAll("[^a-zA-Z0-9\\.\\-]","");
+        String newtoken=Token.toLowerCase().replaceAll("[^a-z0-9\\.\\-]","");
+        if(newtoken.equals("")) return;
         if(TreeMap){
         if(TermsMap.containsKey(newtoken)){
             TermsMap.get(newtoken).TermCount++;

@@ -1,6 +1,8 @@
 package Indexer;
 
 import FileManager.FileManager;
+import GUI.Controller;
+import Parser.Parse;
 
 import java.io.*;
 import java.util.*;
@@ -27,9 +29,9 @@ public class Indexer {
         for (int i = 0; i < ListOfFile.length; i++) {
             File[] CurrFolder = ListOfFile[i].listFiles();
             for (int j = 0; j < CurrFolder.length; j++) {
+                if(j%100==0) System.out.println(j);
                 try {
                     String key = CurrFolder[j].getName();
-                    System.out.println(key);
                     key = key.substring(0, key.length() - 4);
                     String [] values =IndexFile(CurrFolder[j]);
                     Index.put(key,values);
@@ -39,7 +41,44 @@ public class Indexer {
             }
 
         }
+        //add capslock trre
+
+        for (Map.Entry<String, String> entry :FileManager.AllCapitalLetterWords.entrySet()) {
+            if(Index.containsKey(entry.getKey().toLowerCase())){
+                System.out.println(geturl(entry.getKey())+".txt");
+                try (FileWriter fw = new FileWriter(geturl(entry.getKey())+".txt",true);
+                     BufferedWriter bw = new BufferedWriter(fw);
+                     PrintWriter out = new PrintWriter(bw)) {
+                    out.print(entry.getValue());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            else{
+                System.out.println(geturl(entry.getKey())+".txt");
+                File file =new File(geturl(entry.getKey()+".txt"));
+                try {
+                    file.createNewFile();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                try (FileWriter fw = new FileWriter(geturl(entry.getKey())+".txt",true);
+                     BufferedWriter bw = new BufferedWriter(fw);
+                     PrintWriter out = new PrintWriter(bw)) {
+                    out.print(entry.getValue());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+
+        //city index
+        System.out.println("index city");
         IndexCities();
+        Controller.Termunique=Index.size();
+
+
         File filedic = new File(fileManager.postingpath + "\\Dictionary.txt");
         String term = "";
         for (Map.Entry<String, String[]> entry : Index.entrySet()) {

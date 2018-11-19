@@ -1,6 +1,7 @@
 package GUI;
 
 import FileManager.FileManager;
+import Indexer.Indexer;
 import Parser.Parse;
 import Parser.ReadFile;
 import Parser.Stemmer;
@@ -12,6 +13,7 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.util.Dictionary;
 import java.util.HashSet;
+import java.util.TreeSet;
 
 public class GetPathController {
     public File corpusselected;
@@ -86,10 +88,15 @@ public class GetPathController {
             Parse.StopWord=StopWord;
             Parse.stemmer=new Stemmer();
             Parse.isStemmig=IsStem;
+           // Parse.CapitalLetterWords= new TreeSet<>();
             Parse.fileManager=new FileManager("",postingselected.getPath());
             ReadFile readFile = new ReadFile(corpusselected.getPath());
+            long start=System.nanoTime();
             readFile.GetFile();
-            stage.close();
+            long end=System.nanoTime();
+            long duratation=end-start;
+            double minutes= (duratation/60000000000.0);
+            showAlert("Total Documents indexed "+FileManager.DocNum+". Total Unique terms indexed "+Controller.Termunique+". "+" runtime "+minutes+"minutes.");
 
 
     }

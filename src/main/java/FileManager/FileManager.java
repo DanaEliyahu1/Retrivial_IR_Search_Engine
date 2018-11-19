@@ -5,6 +5,7 @@ import java.io.*;
 import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 public class FileManager {
     TreeMap<String, TreePointerToQ> Cache;
@@ -13,7 +14,9 @@ public class FileManager {
     int PriorityAll;
     HashMap<String,String> cities;
     ExecutorService threadpool;
-     public static String postingpath;
+    public static int DocNum;
+    public static String postingpath;
+    public static TreeMap<String,String> AllCapitalLetterWords;
 
     public FileManager(String docId, String path) {
         DocId = docId;
@@ -23,6 +26,7 @@ public class FileManager {
         PriorityAll=0;
         threadpool= Executors.newFixedThreadPool(1);
         postingpath=path;
+        AllCapitalLetterWords =new TreeMap<>();
     }
 
 
@@ -36,7 +40,7 @@ public class FileManager {
             Cache.put(key,new TreePointerToQ(newpc, "|" + DocId + "," + value.toString()));
             Q.add(newpc);
         }
-        if (Cache.size() > 30000) {
+        if (Cache.size() > 10000) {
             PointerCache keytofile = Q.poll();
             String Value = Cache.get(keytofile.pointerterm).value;
             Cache.remove(keytofile.pointerterm);
@@ -114,9 +118,12 @@ public class FileManager {
     }
 
     public void AllTermToDisk() throws InterruptedException {
+        System.out.println("writing to disk");
             threadpool.shutdown();
+            threadpool.awaitTermination(10, TimeUnit.MINUTES);
+        System.out.println("finished to disk");
         while (!Q.isEmpty()){
-
+            System.out.println(Q.size());
             PointerCache keytofile = Q.poll();
             String Value = Cache.get(keytofile.pointerterm).value;
             Cache.remove(keytofile.pointerterm);
@@ -138,6 +145,7 @@ public class FileManager {
         //todo
 
     public void DocPosting(String ID,String City,int maxtf, int uniqueterms){
+        DocNum++;
         AddDocToCityIndex(ID,City);
         File file =new File(postingpath+"\\Documents\\"+ID+".txt");
         try {
@@ -154,6 +162,7 @@ public class FileManager {
         }
     }
     void AddDocToCityIndex(String DocId,String City){
+        if(City.equals(""))return;
         if (cities.containsKey(City)) {
             cities.put(City,cities.get(City)+ "," + DocId);
         } else {
@@ -161,6 +170,7 @@ public class FileManager {
         }
     }
     public void CitiesToDisk(){
+        System.out.println("cities to disk");
         Iterator<Map.Entry<String,String>> it= cities.entrySet().iterator();
         while (it.hasNext()){
             Map.Entry<String,String> currCity=it.next();
@@ -180,7 +190,7 @@ public class FileManager {
         }
 
     }
-    public void ResultToFile (String DocID,TreeMap<String,TermInfo> SpecialTermsMap,TreeMap <String,TermInfo>TermsMap,String City){
+    public void ResultToFile(String DocID, TreeMap<String, TermInfo> SpecialTermsMap, TreeMap<String, TermInfo> TermsMap, String City, TreeMap<String, TermInfo> capitalLetterWords){
         threadpool.execute(new Runnable() {
             @Override
             public void run() {
@@ -203,6 +213,14 @@ public class FileManager {
                 DocPosting(DocID,City,counter,uniqueterms);
             }
         });
+        for (Map.Entry<String, TermInfo> entry : capitalLetterWords.entrySet()) {
+           if(!AllCapitalLetterWords.containsKey(entry.getKey())){
+               AllCapitalLetterWords.put(entry.getKey(),"|"+DocID+","+entry.getValue().TermCount);
+           }
+           else{
+               AllCapitalLetterWords.put(entry.getKey(),AllCapitalLetterWords.get(entry.getKey())+"|"+DocID+","+entry.getValue().TermCount);
+           }
+        }
 
     }
 }
