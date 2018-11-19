@@ -10,7 +10,7 @@ public class FileManager {
     TreeMap<String, TreePointerToQ> Cache;
     PriorityQueue<PointerCache> Q;
     String DocId;
-    double PriorityAll;
+    int PriorityAll;
     HashMap<String,String> cities;
     ExecutorService threadpool;
      public static String postingpath;
@@ -18,7 +18,7 @@ public class FileManager {
     public FileManager(String docId, String path) {
         DocId = docId;
         Cache=new TreeMap<String,TreePointerToQ>();
-        Q=new PriorityQueue<PointerCache>((x,y)->{ return (int) (x.priority-y.priority);});
+        Q=new PriorityQueue<PointerCache>((x,y)->{ return (int)(x.priority-y.priority);});
         cities=new HashMap<String,String>();
         PriorityAll=0;
         threadpool= Executors.newFixedThreadPool(1);
@@ -36,7 +36,7 @@ public class FileManager {
             Cache.put(key,new TreePointerToQ(newpc, "|" + DocId + "," + value.toString()));
             Q.add(newpc);
         }
-        if (Cache.size() > 10000) {
+        if (Cache.size() > 30000) {
             PointerCache keytofile = Q.poll();
             String Value = Cache.get(keytofile.pointerterm).value;
             Cache.remove(keytofile.pointerterm);
@@ -116,6 +116,7 @@ public class FileManager {
     public void AllTermToDisk() throws InterruptedException {
             threadpool.shutdown();
         while (!Q.isEmpty()){
+
             PointerCache keytofile = Q.poll();
             String Value = Cache.get(keytofile.pointerterm).value;
             Cache.remove(keytofile.pointerterm);
@@ -207,10 +208,10 @@ public class FileManager {
 }
 
 class PointerCache {
-    double priority;
+    int priority;
     String pointerterm;
 
-    public PointerCache(String pointerterm, double priority) {
+    public PointerCache(String pointerterm, int priority) {
         this.pointerterm = pointerterm;
         this.priority = priority;
     }

@@ -19,6 +19,7 @@ public class Parse {
     public static HashSet Months;
     public static HashSet NumberHash;
     public static HashSet DollarHash;
+    public static boolean isStemmig;
     static TreeSet<String> TermCollection ;
     ArrayList<String> Tokens;
     int i;
@@ -94,7 +95,13 @@ public class Parse {
             AddTermToTree(false,PriceToTerm());
         }
         else{
-            AddTermToTree(true,stemmer.StemToken(Tokens.get(i)));
+            if(isStemmig){
+                AddTermToTree(true,stemmer.StemToken(Tokens.get(i)));
+            }
+            else{
+                AddTermToTree(true,Tokens.get(i));
+            }
+
         }
 
         return false;

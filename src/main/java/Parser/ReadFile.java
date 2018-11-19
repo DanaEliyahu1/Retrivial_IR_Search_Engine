@@ -60,12 +60,14 @@ public class ReadFile {
     public void GetFile() {
 
         File[] FileList = new File(corpuspath).listFiles();
+        File[] CurrFolder=null;
+        Document[] CurrDoc=null;
         for (int i = 1; i < FileList.length; i++) {
             System.out.println("*********************************" + i);
             try {
-                File[] CurrFolder=FileList[i].listFiles();
+                CurrFolder=FileList[i].listFiles();
                 for (int j = 0; j < CurrFolder.length; j++) {
-                    Document[] CurrDoc = GetDoc(FileList[i].getName() + "\\" + CurrFolder[j].getName());
+                    CurrDoc = GetDoc(FileList[i].getName() + "\\" + CurrFolder[j].getName());
                     for (int k = 0; k < CurrDoc.length; k++) {
                         Parse parse = new Parse();
                         parse.parse(CurrDoc[k]);

@@ -21,29 +21,40 @@ public class Indexer {
         this.fileManager=fileManager;
     }
 
-    public void Index(){
-        File folder = new File(fileManager.postingpath+"Indexing");
-        File[] ListOfFile= folder.listFiles();
-        for (int i = 0; i <ListOfFile.length ; i++) {
-            File[] CurrFolder= ListOfFile[i].listFiles();
-            for (int j = 0; j <CurrFolder.length; j++) {
-                try{
-                    String key= CurrFolder[j].getName();
+    public void Index() {
+        File folder = new File(fileManager.postingpath + "\\Indexing");
+        File[] ListOfFile = folder.listFiles();
+        for (int i = 0; i < ListOfFile.length; i++) {
+            File[] CurrFolder = ListOfFile[i].listFiles();
+            for (int j = 0; j < CurrFolder.length; j++) {
+                try {
+                    String key = CurrFolder[j].getName();
                     System.out.println(key);
-                    key=key.substring(0,key.length()-4);
+                    key = key.substring(0, key.length() - 4);
                     String [] values =IndexFile(CurrFolder[j]);
                     Index.put(key,values);
-                }
-                catch (Exception e){
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
 
         }
         IndexCities();
+        File filedic = new File(fileManager.postingpath + "\\Dictionary.txt");
+        String term = "";
+        for (Map.Entry<String, String[]> entry : Index.entrySet()) {
+            term+=(entry.getKey()+","+entry.getValue()[0]+"\n");
+        }
+        try (FileWriter fw = new FileWriter(filedic,false);
+             BufferedWriter bw = new BufferedWriter(fw);
+             PrintWriter out = new PrintWriter(bw)) {
+            out.print(term);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     public void IndexCities(){
-        File folder = new File(fileManager.postingpath+"Cities");
+        File folder = new File(fileManager.postingpath+"\\Cities");
         File[] ListOfFile= folder.listFiles();
         for (int i = 0; i <ListOfFile.length ; i++) {
             String key= ListOfFile[i].getName();
