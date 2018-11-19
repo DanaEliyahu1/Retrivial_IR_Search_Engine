@@ -79,13 +79,12 @@ public class Controller {
 
         ShowDictionary showd = fxmlLoader.getController();
         String content = null;
-        System.out.println(NewGetPath.postingselected.getPath()+"\\Dictionary.txt");
         try {
             content = new String(Files.readAllBytes(Paths.get(NewGetPath.postingselected.getPath()+"\\Dictionary.txt")), Charset.defaultCharset());
         } catch (IOException e) {
             e.printStackTrace();
         }
-        showd.Label.setText(content);
+        showd.text.setText(content);
         newStage.initModality(Modality.APPLICATION_MODAL);
         newStage.show();
 
