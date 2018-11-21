@@ -79,6 +79,7 @@ public class ReadFile {
             }
 
         }
+        /*
         try{
             Parse.fileManager.AllTermToDisk();
         }
@@ -93,6 +94,8 @@ public class ReadFile {
         }
         Indexer indexer=new Indexer(Parse.fileManager);
         indexer.Index();
+        */
+
     }
 
 }

@@ -1,49 +1,41 @@
 package FileManager;
 
+import Indexer.Indexer;
 import Parser.TermInfo;
 import java.io.*;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 public class FileManager {
+
     TreeMap<String, TreePointerToQ> Cache;
     PriorityQueue<PointerCache> Q;
-    String DocId;
     int PriorityAll;
     HashMap<String,String> cities;
-    ExecutorService threadpool;
     public static int DocNum;
     public static String postingpath;
-    public static TreeMap<String,String> AllCapitalLetterWords;
+
 
     public FileManager(String docId, String path) {
-        DocId = docId;
         Cache=new TreeMap<String,TreePointerToQ>();
         Q=new PriorityQueue<PointerCache>((x,y)->{ return (int)(x.priority-y.priority);});
         cities=new HashMap<String,String>();
         PriorityAll=0;
-        threadpool= Executors.newFixedThreadPool(1);
+
         postingpath=path;
-        AllCapitalLetterWords =new TreeMap<>();
+
     }
 
-
+/*
     public void AddTermTofile(String key, TermInfo value) {
-        if (Cache.containsKey(key)) {
-            Cache.get(key).value=Cache.get(key).value + "|" + DocId + "," + value.toString();
-            Cache.get(key).pc.priority++;
-            Cache.put(key, Cache.get(key));
-        } else {
-            PointerCache newpc=new PointerCache(key, PriorityAll);
-            Cache.put(key,new TreePointerToQ(newpc, "|" + DocId + "," + value.toString()));
-            Q.add(newpc);
-        }
+
         if (Cache.size() > 10000) {
-            PointerCache keytofile = Q.poll();
-            String Value = Cache.get(keytofile.pointerterm).value;
-            Cache.remove(keytofile.pointerterm);
+
             File file =new File(geturl(keytofile.pointerterm));
             try {
                 file.createNewFile();
@@ -59,7 +51,7 @@ public class FileManager {
             }
         }
     }
-
+*/
     public static String geturl(String pointer) {
         char first =pointer.charAt(0);
         switch (first){
@@ -113,14 +105,9 @@ public class FileManager {
    return postingpath+"\\Indexing\\u-z\\"+pointer+".txt";
     }
 
-    public void setDocId(String docId) {
-        DocId = docId;
-    }
 
     public void AllTermToDisk() throws InterruptedException {
         System.out.println("writing to disk");
-            threadpool.shutdown();
-            threadpool.awaitTermination(10, TimeUnit.MINUTES);
         System.out.println("finished to disk");
         while (!Q.isEmpty()){
             System.out.println(Q.size());
@@ -190,38 +177,65 @@ public class FileManager {
         }
 
     }
-    public void ResultToFile(String DocID, TreeMap<String, TermInfo> SpecialTermsMap, TreeMap<String, TermInfo> TermsMap, String City, TreeMap<String, TermInfo> capitalLetterWords){
-        threadpool.execute(new Runnable() {
-            @Override
-            public void run() {
-                int counter=0;
-                setDocId(DocID);
-                for (Map.Entry<String, TermInfo> entry : SpecialTermsMap.entrySet()) {
-                    AddTermTofile(entry.getKey(),entry.getValue());
-                    if(counter<entry.getValue().TermCount){
-                        counter=entry.getValue().TermCount;
-                    }
 
-                }
-                for (Map.Entry<String, TermInfo> entry : TermsMap.entrySet()) {
-                    AddTermTofile(entry.getKey(), entry.getValue());
-                    if (counter < entry.getValue().TermCount) {
-                        counter = entry.getValue().TermCount;
-                    }
-                }
-                int uniqueterms=SpecialTermsMap.size() + TermsMap.size();
-                DocPosting(DocID,City,counter,uniqueterms);
-            }
-        });
-        for (Map.Entry<String, TermInfo> entry : capitalLetterWords.entrySet()) {
-           if(!AllCapitalLetterWords.containsKey(entry.getKey())){
-               AllCapitalLetterWords.put(entry.getKey(),"|"+DocID+","+entry.getValue().TermCount);
-           }
-           else{
-               AllCapitalLetterWords.put(entry.getKey(),AllCapitalLetterWords.get(entry.getKey())+"|"+DocID+","+entry.getValue().TermCount);
-           }
+
+    public void AddToPosting(String key, TermInfo value, String docID, int i) {
+        if (Cache.containsKey(key)) {
+            Cache.get(key).value=Cache.get(key).value + "|" + docID + "," + value.toString();
+            Cache.get(key).pc.priority++;
+            Cache.put(key, Cache.get(key));
+        } else {
+            PointerCache newpc=new PointerCache(key, PriorityAll);
+            Cache.put(key,new TreePointerToQ(newpc, "|" + docID + "," + value.toString()));
+            Q.add(newpc);
         }
+        if(Cache.size()>1500){
+            TreeMap<String ,TreePointerToQ> TermToFile=new TreeMap<String,  TreePointerToQ>();
+            for (int j = 0; j <1000 ; j++) {
+                TreePointerToQ Value=Cache.remove(Q.poll().pointerterm);
+                TermToFile.put(Value.pc.pointerterm,Value);
+            }
+            char currletter = '*';
+            String [] currentfile=null;
+            for (Map.Entry<String, TreePointerToQ> entry : TermToFile.entrySet()) {
+                if(Character.isLowerCase(entry.getKey().charAt(0))){
+                    if(entry.getKey().charAt(0)!=currletter){
+                        if(currentfile!=null){
+                            StringJoiner sj=new StringJoiner("|");
+                            for (int k = 0; k <currentfile.length ;k++) {
+                                sj.add(currentfile[k]);
+                            }
+                            try (FileWriter fw = new FileWriter(postingpath+"\\Indexing\\"+currletter+".txt", true);
+                                 BufferedWriter bw = new BufferedWriter(fw);
+                                 PrintWriter out = new PrintWriter(bw)) {
+                                out.print(sj);
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        currletter=entry.getKey().charAt(0);
+                        try {
+                            String[] arrFromFile=new String(Files.readAllBytes(Paths.get(postingpath +"\\Indexing\\"+ currletter+".txt")), Charset.defaultCharset()).split("\n");
+                            if(Character.isLetter(key.charAt(0))){
+                                currentfile=new String[Indexer.linenumber[currletter-97]];
+                            }else{
+                                currentfile=new String[Indexer.linenumber[0]];
+                            }
+                            for (int j = 0; j < arrFromFile.length; j++) {
+                                currentfile[j]=arrFromFile[j];
+                            }
+                            arrFromFile=null;
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
 
+                    }
+                    currentfile[entry.getValue().lineNumber]+=entry.getValue().value;
+                }
+
+            }
+
+        }
     }
 }
 
@@ -237,6 +251,7 @@ class PointerCache {
 class TreePointerToQ{
     public PointerCache pc;
     public String value;
+    public int lineNumber;
 
     public TreePointerToQ(PointerCache pc, String value) {
         this.pc = pc;

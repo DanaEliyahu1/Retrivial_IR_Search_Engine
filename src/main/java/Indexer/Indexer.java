@@ -3,6 +3,7 @@ package Indexer;
 import FileManager.FileManager;
 import GUI.Controller;
 import Parser.Parse;
+import Parser.TermInfo;
 
 import java.io.*;
 import java.util.*;
@@ -10,19 +11,28 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.TreeMap;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 import static FileManager.FileManager.geturl;
 
 public class Indexer {
+    public static TreeMap<String,int []> AllCapitalLetterWords;
+    ExecutorService threadpool;
     FileManager fileManager;
-    TreeMap <String,String []> Index;
+    TreeMap <String,int []> Index;
     TreeMap <String,String[]> CityIndex;
+    public static int [] linenumber;
 
     public Indexer(FileManager fileManager) {
+        threadpool= Executors.newFixedThreadPool(1);
+        AllCapitalLetterWords =new TreeMap<>();
         Index = new TreeMap<> ();
         CityIndex=new TreeMap<>();
         this.fileManager=fileManager;
+         linenumber=new  int[27];
     }
-
+/*
     public void Index() {
         File folder = new File(fileManager.postingpath + "\\Indexing");
         File[] ListOfFile = folder.listFiles();
@@ -92,6 +102,7 @@ public class Indexer {
             e.printStackTrace();
         }
     }
+    */
     public void IndexCities(){
         File folder = new File(fileManager.postingpath+"\\Cities");
         File[] ListOfFile= folder.listFiles();
@@ -101,7 +112,7 @@ public class Indexer {
             CityIndex.put(key,null);
         }
     }
-
+/*
     private String[] IndexFile(File file) {
         String [] values= new String[3];
         try {
@@ -128,7 +139,65 @@ public class Indexer {
 
         return values;
     }
+    */
+    public void ResultToFile(String DocID, TreeMap<String, TermInfo> SpecialTermsMap, TreeMap<String, TermInfo> TermsMap, String City, TreeMap<String, TermInfo> capitalLetterWords){
+        threadpool.execute(new Runnable() {
+            @Override
+            public void run() {
+                int counter=0;
+                for (Map.Entry<String, TermInfo> entry : SpecialTermsMap.entrySet()) {
+                    AddTermToDic(entry.getKey(),entry.getValue(),DocID);
+                    if(counter<entry.getValue().TermCount){
+                        counter=entry.getValue().TermCount;
+                    }
 
+                }
+                for (Map.Entry<String, TermInfo> entry : TermsMap.entrySet()) {
+                    AddTermToDic(entry.getKey(), entry.getValue(),DocID);
+                    if (counter < entry.getValue().TermCount) {
+                        counter = entry.getValue().TermCount;
+                    }
+                }
+                int uniqueterms=SpecialTermsMap.size() + TermsMap.size();
+                fileManager.DocPosting(DocID,City,counter,uniqueterms);
+            }
+        });
+        for (Map.Entry<String, TermInfo> entry : capitalLetterWords.entrySet()) {
+            if(!Index.containsKey(entry.getKey().toLowerCase())){
+               // AddTermToCapital(entry.getKey(),entry.getValue());
+            }
+            else{
+             // MergeTerm(entry.getKey(),entry.getValue());
+            }
+        }
+
+    }
+
+    private void AddTermToDic(String key, TermInfo value,String DocID) {
+        if(Index.containsKey(key)){
+            int [] setvalue=Index.get(key);
+            setvalue[0]++;
+            setvalue[2]+=value.TermCount;
+            fileManager.AddToPosting(key,value,DocID,setvalue[1]);
+        }
+        else {
+            int line=-1;
+            if(Character.isLetter(key.charAt(0))){
+                line=linenumber[key.toLowerCase().charAt(0)-97];
+            }else{
+                line=linenumber[26];
+            }
+            int [] setnewvalue={1,line,value.TermCount};
+            Index.put(key,setnewvalue);
+            fileManager.AddToPosting(key,value,DocID,line);
+            if(Character.isLetter(key.charAt(0))){
+                linenumber[key.toLowerCase().charAt(0)-97]++;
+            }else{
+                linenumber[26]++;
+            }
+        }
+
+    }
 
 
     // Java program for implementation of QuickSort
@@ -137,7 +206,7 @@ public class Indexer {
         position in sorted array, and places all
         smaller (smaller than pivot) to left of
         pivot and all greater elements to right
-        of pivot */
+        of pivot *//*
          int partition(String arr[], int low, int high)
         {
             int pivot =Integer.parseInt(arr[high].split(",")[1]);
@@ -163,18 +232,17 @@ public class Indexer {
             arr[high] = temp;
 
             return i+1;
-        }
+        }*/
 
         /* The main function that implements QuickSort()
         arr[] --> Array to be sorted,
         low --> Starting index,
         high --> Ending index */
-        void qSort(String arr[], int low, int high)
+     /*   void qSort(String arr[], int low, int high)
         {
             if (low < high)
             {
-            /* pi is partitioning index, arr[pi] is
-            now at right place */
+
                 int pi = partition(arr, low, high);
 
                 // Recursively sort elements before
@@ -182,5 +250,5 @@ public class Indexer {
                 qSort(arr, low, pi-1);
                 qSort(arr, pi+1, high);
             }
-        }
+        }*/
     }

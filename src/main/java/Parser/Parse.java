@@ -1,6 +1,7 @@
 package Parser;
 
 import FileManager.FileManager;
+import Indexer.Indexer;
 
 import java.io.File;
 import java.util.*;
@@ -9,9 +10,10 @@ public class Parse {
     public Parse() {
         TermsMap=new TreeMap<String, TermInfo>() ;
          SpecialTermsMap=new TreeMap<String, TermInfo>();
+        CapitalLetterWords=new TreeMap<String,TermInfo>();
     }
     String City;
-    public static FileManager fileManager;
+    public static Indexer indexer;
     public static HashSet StopWord;
     TreeMap<String, TermInfo> TermsMap;
     TreeMap<String, TermInfo> SpecialTermsMap;
@@ -25,18 +27,18 @@ public class Parse {
     ArrayList<String> Tokens;
     int i;
     String DocID;
-
+/*
     public Parse(HashSet stopWord, HashSet months, HashSet numberHash, HashSet dollarHash,File postingselected) {
         this.StopWord = stopWord;
         this.Months = months;
         this.NumberHash = numberHash;
         this.DollarHash = dollarHash;
-        fileManager = new FileManager("changelater", postingselected.getPath());
         stemmer = new Stemmer();
         CapitalLetterWords=new TreeMap<>();
         TermsMap = new TreeMap();
         SpecialTermsMap = new TreeMap();
     }
+    */
     public void parse(Document Doc) {
         this.DocID=Doc.ID;
         this.City=Doc.City;
@@ -48,12 +50,12 @@ public class Parse {
                     i++;
                 }
             }catch (Exception e){
-                //e.printStackTrace();
+                e.printStackTrace();
                 System.out.println("@");
             }
 
         }
-        fileManager.ResultToFile( DocID,SpecialTermsMap, TermsMap, City,CapitalLetterWords);
+    indexer.ResultToFile( DocID,SpecialTermsMap, TermsMap, City,CapitalLetterWords);
 /*
         for (Map.Entry<String, TermInfo> entry : SpecialTermsMap.entrySet()) {
             System.out.println("Key: " + entry.getKey() + ". Value: " + entry.getValue());
@@ -293,24 +295,5 @@ public class Parse {
             }
 
         }
-    }
-    public void ResultToFile (){
-        int counter=0;
-         fileManager.setDocId(DocID);
-        for (Map.Entry<String, TermInfo> entry : SpecialTermsMap.entrySet()) {
-           fileManager.AddTermTofile(entry.getKey(),entry.getValue());
-           if(counter<entry.getValue().TermCount){
-               counter=entry.getValue().TermCount;
-           }
-
-        }
-        for (Map.Entry<String, TermInfo> entry : TermsMap.entrySet()) {
-            fileManager.AddTermTofile(entry.getKey(), entry.getValue());
-            if (counter < entry.getValue().TermCount) {
-                counter = entry.getValue().TermCount;
-            }
-        }
-        int uniqueterms=SpecialTermsMap.size() + TermsMap.size();
-        fileManager.DocPosting(DocID,City,counter,uniqueterms);
     }
 }

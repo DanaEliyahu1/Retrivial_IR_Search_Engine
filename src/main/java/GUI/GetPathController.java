@@ -11,6 +11,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.Dictionary;
 import java.util.HashSet;
 import java.util.TreeSet;
@@ -33,15 +34,20 @@ public class GetPathController {
 
 
     public void StartDictinory() throws Exception {
-
+        String [] Letter={"a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"};
         if(IsStem){
+
             new File(postingselected.getPath()+"/Stemming").mkdir();
             new File(postingselected.getPath()+"/Stemming/Indexing").mkdir();
-            new File(postingselected.getPath()+"/Stemming/Indexing/a-e").mkdir();
-            new File(postingselected.getPath()+"/Stemming/Indexing/f-j").mkdir();
-            new File(postingselected.getPath()+"/Stemming/Indexing/k-o").mkdir();
-            new File(postingselected.getPath()+"/Stemming/Indexing/p-t").mkdir();
-            new File(postingselected.getPath()+"/Stemming/Indexing/u-z").mkdir();
+            for (int i = 0; i <Letter.length ; i++) {
+                File file =new File(postingselected.getPath()+"/Stemming/Indexing/"+Letter[i]+".txt");
+                try {
+                    file.createNewFile();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+            }
             new File(postingselected.getPath()+"/Stemming/Indexing/Numbers").mkdir();
             new File(postingselected.getPath()+"/Stemming/Documents").mkdir();
             new File(postingselected.getPath()+"/Stemming/Cities").mkdir();
@@ -50,11 +56,15 @@ public class GetPathController {
         else {
             new File(postingselected.getPath()+"/NotStemming").mkdir();
             new File(postingselected.getPath()+"/NotStemming/Indexing").mkdir();
-            new File(postingselected.getPath()+"/NotStemming/Indexing/a-e").mkdir();
-            new File(postingselected.getPath()+"/NotStemming/Indexing/f-j").mkdir();
-            new File(postingselected.getPath()+"/NotStemming/Indexing/k-o").mkdir();
-            new File(postingselected.getPath()+"/NotStemming/Indexing/p-t").mkdir();
-            new File(postingselected.getPath()+"/NotStemming/Indexing/u-z").mkdir();
+            for (int i = 0; i <Letter.length ; i++) {
+                File file =new File(postingselected.getPath()+"/NotStemming/Indexing/"+Letter[i]+".txt");
+                try {
+                    file.createNewFile();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+            }
             new File(postingselected.getPath()+"/NotStemming/Indexing/Numbers").mkdir();
             new File(postingselected.getPath()+"/NotStemming/Documents").mkdir();
             new File(postingselected.getPath()+"/NotStemming/Cities").mkdir();
@@ -88,8 +98,9 @@ public class GetPathController {
             Parse.StopWord=StopWord;
             Parse.stemmer=new Stemmer();
             Parse.isStemmig=IsStem;
+            Parse.indexer=new Indexer(new FileManager("",postingselected.getPath()));
            // Parse.CapitalLetterWords= new TreeSet<>();
-            Parse.fileManager=new FileManager("",postingselected.getPath());
+           // Parse.fileManager=new FileManager("",postingselected.getPath());
             ReadFile readFile = new ReadFile(corpusselected.getPath());
             long start=System.nanoTime();
             readFile.GetFile();
