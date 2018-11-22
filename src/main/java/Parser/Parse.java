@@ -69,7 +69,7 @@ public class Parse {
             return false;
         }
         if (Tokens.get(i).contains("-")) {
-            AddTermToTree(false,Tokens.get(i));
+            AddTermToTree(false,Tokens.get(i).toLowerCase());
             return false;
         } else if (Character.isDigit(Tokens.get(i).charAt(0))&&Tokens.get(i).matches("^([0-9]{1,3}(,[0-9]{3})*(\\.[0-9]+)?|\\.[0-9]+)$")) {
             //Special

@@ -140,10 +140,12 @@ public class Indexer {
             @Override
             public void run() {
                 int counter=0;
+                String mostTf="";
                 for (Map.Entry<String, TermInfo> entry : SpecialTermsMap.entrySet()) {
                     AddTermToDic(entry.getKey(),entry.getValue(),DocID);
                     if(counter<entry.getValue().TermCount){
                         counter=entry.getValue().TermCount;
+                        mostTf=entry.getKey();
                     }
 
                 }
@@ -151,10 +153,11 @@ public class Indexer {
                     AddTermToDic(entry.getKey(), entry.getValue(),DocID);
                     if (counter < entry.getValue().TermCount) {
                         counter = entry.getValue().TermCount;
+                        mostTf=entry.getKey();
                     }
                 }
                 int uniqueterms=SpecialTermsMap.size() + TermsMap.size();
-                fileManager.DocPosting(DocID,City,counter,uniqueterms);
+                fileManager.DocPosting(DocID,City,counter,uniqueterms,mostTf);
             }
         });
         for (Map.Entry<String, TermInfo> entry : capitalLetterWords.entrySet()) {

@@ -51,9 +51,11 @@ public class GetPathController {
             new File(postingselected.getPath()+"/Stemming/Cities").mkdir();
             File file =new File(postingselected.getPath()+"/Stemming/Indexing/Numbers.txt");
             File file1 =new File(postingselected.getPath()+"/Stemming/Indexing/CapitalLetters.txt");
+            File file2 =new File(postingselected.getPath()+"/Stemming/Indexing/Else.txt");
             try {
                 file.createNewFile();
                 file1.createNewFile();
+                file2.createNewFile();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -74,9 +76,11 @@ public class GetPathController {
             new File(postingselected.getPath()+"/NotStemming/Cities").mkdir();
             File file =new File(postingselected.getPath()+"/NotStemming/Indexing/Numbers.txt");
             File file1 =new File(postingselected.getPath()+"/NotStemming/Indexing/CapitalLetters.txt");
+            File file2 =new File(postingselected.getPath()+"/NotStemming/Indexing/Else.txt");
             try {
                 file.createNewFile();
                 file1.createNewFile();
+                file2.createNewFile();
             } catch (IOException e) {
                 e.printStackTrace();
             }
