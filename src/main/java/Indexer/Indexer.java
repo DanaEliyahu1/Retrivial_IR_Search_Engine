@@ -1,20 +1,13 @@
 package Indexer;
 
 import FileManager.FileManager;
-import GUI.Controller;
-import Parser.Parse;
 import Parser.TermInfo;
 
 import java.io.*;
 import java.util.*;
-import java.nio.charset.Charset;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.TreeMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-
-import static FileManager.FileManager.geturl;
 
 public class Indexer {
     public static TreeMap<String,int []> AllCapitalLetterWords;
@@ -22,7 +15,8 @@ public class Indexer {
     FileManager fileManager;
     TreeMap <String,int []> Index;
     TreeMap <String,String[]> CityIndex;
-    public static int [] linenumber;
+    TreeMap<String,String> CapitalLetterPosting;
+    public static int [] linenumber; //27-numbers 28-capitalLetters
 
     public Indexer(FileManager fileManager) {
         threadpool= Executors.newFixedThreadPool(1);
@@ -30,7 +24,8 @@ public class Indexer {
         Index = new TreeMap<> ();
         CityIndex=new TreeMap<>();
         this.fileManager=fileManager;
-         linenumber=new  int[27];
+         linenumber=new  int[28];
+         CapitalLetterPosting=new TreeMap<>();
     }
 /*
     public void Index() {
@@ -164,13 +159,28 @@ public class Indexer {
         });
         for (Map.Entry<String, TermInfo> entry : capitalLetterWords.entrySet()) {
             if(!Index.containsKey(entry.getKey().toLowerCase())){
-               // AddTermToCapital(entry.getKey(),entry.getValue());
+               AddTermToCapital(entry.getKey(),entry.getValue(),DocID);
             }
             else{
-             // MergeTerm(entry.getKey(),entry.getValue());
+                AddTermToDic(entry.getKey().toLowerCase(), entry.getValue(),DocID);
             }
         }
 
+    }
+
+    private void AddTermToCapital(String key, TermInfo value, String DocID) {
+        if(Index.containsKey(key)){
+            int [] setvalue=Index.get(key);
+            setvalue[0]++;
+            setvalue[2]+=value.TermCount;
+            CapitalLetterPosting.put(key,CapitalLetterPosting.get(key)+"|" + DocID + "," + value.toString());
+        }
+        else {
+            int [] setnewvalue={1,linenumber[28],value.TermCount};
+            Index.put(key,setnewvalue);
+            CapitalLetterPosting.put(key,"|" + DocID + "," + value.toString());
+            linenumber[28]++;
+        }
     }
 
     private void AddTermToDic(String key, TermInfo value,String DocID) {
@@ -199,6 +209,25 @@ public class Indexer {
 
     }
 
+    public void FinishIndexing() {
+        fileManager.CitiesToDisk();
+        for (Map.Entry<String, int[]> entry : AllCapitalLetterWords.entrySet()) {
+            if(Index.containsKey(entry.getKey().toLowerCase())){
+                int[] value=Index.get(entry.getKey().toLowerCase());
+                value[0]+=AllCapitalLetterWords.get(entry.getKey())[0];
+                value[2]+=AllCapitalLetterWords.get(entry.getKey())[2];
+                fileManager.SetCapitalToLoweCasePosting(entry.getKey().toLowerCase(),CapitalLetterPosting.get(entry.getKey()));
+                AllCapitalLetterWords.remove(entry);
+            }
+        }
+        fileManager.AddCapitalLettersToDisk(CapitalLetterPosting);
+        try {
+            fileManager.AllTermToDisk();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        fileManager.AllDocumentsToDisk();
+    }
 
     // Java program for implementation of QuickSort
         /* This function takes last element as pivot,

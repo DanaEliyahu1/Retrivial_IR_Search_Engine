@@ -6,9 +6,6 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-import FileManager.FileManager;
-import Indexer.Indexer;
-
 public class ReadFile {
 
     String corpuspath;
@@ -79,22 +76,8 @@ public class ReadFile {
             }
 
         }
-        /*
-        try{
-            Parse.fileManager.AllTermToDisk();
-        }
-        catch (Exception e){
-            e.printStackTrace();
-        }
-        try{
-            Parse.fileManager.CitiesToDisk();
-        }
-        catch (Exception e){
-            e.printStackTrace();
-        }
-        Indexer indexer=new Indexer(Parse.fileManager);
-        indexer.Index();
-        */
+        Parse.indexer.FinishIndexing();
+
 
     }
 

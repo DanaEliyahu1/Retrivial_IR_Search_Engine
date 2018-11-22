@@ -50,7 +50,6 @@ public class Parse {
                     i++;
                 }
             }catch (Exception e){
-                e.printStackTrace();
                 System.out.println("@");
             }
 
