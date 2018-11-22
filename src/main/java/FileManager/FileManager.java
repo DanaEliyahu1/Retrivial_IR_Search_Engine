@@ -145,17 +145,16 @@ public class FileManager {
             Cache.put(key,new TreePointerToQ(newpc, "|" + docID + "," + value.toString()));
             Q.add(newpc);
         }
-        if(Cache.size()>30000){
+        if(Cache.size()>500000){
             System.out.println("====DELETING");
             TreeMap<String ,TreePointerToQ> TermToFile=new TreeMap<String,  TreePointerToQ>();
-            for (int j = 0; j <20000 ; j++) {
+            for (int j = 0; j <499000 ; j++) {
                 TreePointerToQ Value=Cache.remove(Q.poll().pointerterm);
                 TermToFile.put(Value.pc.pointerterm,Value);
             }
             char currletter = '*';
-            String [] currentfile=null;
+            StringBuilder [] currentfile=null;
             for (Map.Entry<String, TreePointerToQ> entry : TermToFile.entrySet()) {
-                if(Character.isLowerCase(entry.getKey().charAt(0))){
                     if(entry.getKey().charAt(0)!=currletter){
                         if(currentfile!=null){
                             StringJoiner sj=new StringJoiner("\n");
@@ -174,15 +173,15 @@ public class FileManager {
                         try {
                             String[] arrFromFile=new String(Files.readAllBytes(Paths.get(postingpath +"\\Indexing\\"+ currletter+".txt")), Charset.defaultCharset()).split("\n");
                             if(Character.isLetter(currletter)){
-                                currentfile=new String[Indexer.linenumber[currletter-97]];
+                                currentfile=new StringBuilder[Indexer.linenumber[currletter-97]];
                             }else{
-                                currentfile=new String[Indexer.linenumber[0]];
+                                currentfile=new StringBuilder[Indexer.linenumber[0]];
                             }
                             for (int j = 0; j < arrFromFile.length; j++) {
-                                currentfile[j]=arrFromFile[j];
+                                currentfile[j]=new StringBuilder(arrFromFile[j]);
                             }
                             for (int j = arrFromFile.length; j <currentfile.length ; j++) {
-                                currentfile[j]="";
+                                currentfile[j]=new StringBuilder("");
                             }
                             arrFromFile=null;
                         } catch (IOException e) {
@@ -190,8 +189,8 @@ public class FileManager {
                         }
 
                     }
-                    currentfile[entry.getValue().lineNumber]+=entry.getValue().value;
-                }
+                    currentfile[entry.getValue().lineNumber].append(entry.getValue().value);
+
 
             }
             System.out.println("====STOP- DELETING");
@@ -208,10 +207,10 @@ public class FileManager {
             Cache.put(key,new TreePointerToQ(newpc, value));
             Q.add(newpc);
         }
-        if(Cache.size()>100000){
+        if(Cache.size()>500000){
             System.out.println("====DELETING");
             TreeMap<String ,TreePointerToQ> TermToFile=new TreeMap<String,  TreePointerToQ>();
-            for (int j = 0; j <99000 ; j++) {
+            for (int j = 0; j <499000 ; j++) {
                 TreePointerToQ Value=Cache.remove(Q.poll().pointerterm);
                 TermToFile.put(Value.pc.pointerterm,Value);
             }

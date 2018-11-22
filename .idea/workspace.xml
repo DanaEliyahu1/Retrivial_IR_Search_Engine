@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0f921457-46cd-4350-bc0e-a504e616ee8d" name="Default Changelist" comment="finish show dictionary">
+    <list default="true" id="0f921457-46cd-4350-bc0e-a504e616ee8d" name="Default Changelist" comment="capslock&#10;end indexing function&#10;capital letter to disk in file manager&#10;get url&#10;number file\capital letter file&#10;&#10;BEFORE RUN">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/FileManager/FileManager.class" afterPath="$PROJECT_DIR$/target/classes/FileManager/FileManager.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/FileManager/PointerCache.class" afterPath="$PROJECT_DIR$/target/classes/FileManager/PointerCache.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/Parser/Document.class" afterPath="$PROJECT_DIR$/target/classes/Parser/Document.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/Parser/Parse.class" afterPath="$PROJECT_DIR$/target/classes/Parser/Parse.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/Parser/ReadFile.class" afterPath="$PROJECT_DIR$/target/classes/Parser/ReadFile.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/FileManager/FileManager.java" afterPath="$PROJECT_DIR$/src/main/java/FileManager/FileManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/GUI/Controller.java" afterPath="$PROJECT_DIR$/src/main/java/GUI/Controller.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/GUI/GetPathController.java" afterPath="$PROJECT_DIR$/src/main/java/GUI/GetPathController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Indexer/Indexer.java" afterPath="$PROJECT_DIR$/src/main/java/Indexer/Indexer.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Parser/Document.java" afterPath="$PROJECT_DIR$/src/main/java/Parser/Document.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Parser/Parse.java" afterPath="$PROJECT_DIR$/src/main/java/Parser/Parse.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/main.fxml" afterPath="$PROJECT_DIR$/src/main/resources/main.fxml" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -91,7 +91,7 @@
       <file leaf-file-name="main.fxml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/main.fxml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="157">
+            <state relative-caret-position="0">
               <caret line="17" column="45" lean-forward="false" selection-start-line="17" selection-start-column="45" selection-end-line="17" selection-end-column="45" />
               <folding />
             </state>
@@ -104,8 +104,8 @@
       <file leaf-file-name="Parse.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Parser/Parse.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="400">
-              <caret line="55" column="90" lean-forward="false" selection-start-line="55" selection-start-column="90" selection-end-line="55" selection-end-column="90" />
+            <state relative-caret-position="-7">
+              <caret line="51" column="33" lean-forward="false" selection-start-line="51" selection-start-column="33" selection-end-line="51" selection-end-column="33" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#NumberToTerm#0;class#Parse#0" expanded="false" />
@@ -138,8 +138,8 @@
       <file leaf-file-name="Controller.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/GUI/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="226">
-              <caret line="27" column="40" lean-forward="false" selection-start-line="27" selection-start-column="40" selection-end-line="27" selection-end-column="40" />
+            <state relative-caret-position="276">
+              <caret line="88" column="30" lean-forward="true" selection-start-line="88" selection-start-column="30" selection-end-line="88" selection-end-column="30" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -147,62 +147,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Document.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/Parser/Document.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-235">
-              <caret line="38" column="99" lean-forward="false" selection-start-line="38" selection-start-column="99" selection-end-line="38" selection-end-column="99" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GetPathController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/GUI/GetPathController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="194">
-              <caret line="90" column="13" lean-forward="false" selection-start-line="90" selection-start-column="13" selection-end-line="90" selection-end-column="13" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FileManager.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/FileManager/FileManager.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="411">
-              <caret line="51" column="13" lean-forward="true" selection-start-line="46" selection-start-column="11" selection-end-line="51" selection-end-column="13" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="method#geturl#0;class#FileManager#0" expanded="false" />
-                <element signature="method#AllTermToDisk#0;class#FileManager#0" expanded="false" />
-                <element signature="method#DocPosting#0;class#FileManager#0" expanded="false" />
-                <element signature="method#AddDocToCityIndex#0;class#FileManager#0" expanded="false" />
-                <element signature="method#CitiesToDisk#0;class#FileManager#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Indexer.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Indexer.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Indexer/Indexer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="175">
-              <caret line="25" column="13" lean-forward="false" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
+            <state relative-caret-position="1618">
+              <caret line="199" column="56" lean-forward="true" selection-start-line="199" selection-start-column="56" selection-end-line="199" selection-end-column="56" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ReadFile.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/Parser/ReadFile.java">
+      <file leaf-file-name="FileManager.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/FileManager/FileManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1250">
-              <caret line="52" column="0" lean-forward="false" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
+            <state relative-caret-position="89">
+              <caret line="173" column="0" lean-forward="false" selection-start-line="173" selection-start-column="0" selection-end-line="173" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="method#AllDocumentsToDisk#0;class#FileManager#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -230,6 +192,8 @@
       <find>TokenT</find>
       <find>PriceT</find>
       <find>syst</find>
+      <find>dele</find>
+      <find>deleti</find>
     </findStrings>
   </component>
   <component name="Git.Rebase.Settings">
@@ -257,17 +221,17 @@
         <option value="$PROJECT_DIR$/src/main/java/GUI/main.java" />
         <option value="$PROJECT_DIR$/src/main/java/Parser/Tester.java" />
         <option value="$PROJECT_DIR$/src/main/resources/GetPath.fxml" />
-        <option value="$PROJECT_DIR$/src/main/java/Parser/ReadFile.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/GUI/ShowDictionary.java" />
         <option value="$PROJECT_DIR$/src/main/resources/ShowDictionary.fxml" />
         <option value="$PROJECT_DIR$/src/main/java/GUI/Controller.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Parser/Document.java" />
         <option value="$PROJECT_DIR$/src/main/resources/main.fxml" />
         <option value="$PROJECT_DIR$/src/main/java/Parser/Parse.java" />
-        <option value="$PROJECT_DIR$/src/main/java/FileManager/FileManager.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Parser/ReadFile.java" />
         <option value="$PROJECT_DIR$/src/main/java/GUI/GetPathController.java" />
         <option value="$PROJECT_DIR$/src/main/java/Indexer/Indexer.java" />
+        <option value="$PROJECT_DIR$/src/main/java/FileManager/FileManager.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Parser/Document.java" />
       </list>
     </option>
   </component>
@@ -306,7 +270,7 @@
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
-    <navigator currentView="PackagesPane" proportions="" version="1">
+    <navigator currentView="ProjectPane" proportions="" version="1">
       <flattenPackages />
       <showMembers />
       <showModules />
@@ -320,6 +284,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="AndroidView" />
+      <pane id="Scratches" />
       <pane id="PackagesPane">
         <subPane>
           <expand>
@@ -331,12 +297,6 @@
               <item name="urban-guacamole" type="58d84e3e:PackageViewProjectNode" />
               <item name="IR" type="616d4139:PackageViewModuleNode" />
               <item name="FileManager" type="1f31426a:PackageElementNode" />
-            </path>
-            <path>
-              <item name="urban-guacamole" type="58d84e3e:PackageViewProjectNode" />
-              <item name="IR" type="616d4139:PackageViewModuleNode" />
-              <item name="FileManager" type="1f31426a:PackageElementNode" />
-              <item name="FileManager.java" type="529ef68f:ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
             </path>
             <path>
               <item name="urban-guacamole" type="58d84e3e:PackageViewProjectNode" />
@@ -357,8 +317,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -382,13 +340,45 @@
               <item name="urban-guacamole" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="urban-guacamole" type="b2602c69:ProjectViewProjectNode" />
+              <item name="urban-guacamole" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="FileManager" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="urban-guacamole" type="b2602c69:ProjectViewProjectNode" />
+              <item name="urban-guacamole" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="FileManager" type="462c0819:PsiDirectoryNode" />
+              <item name="FileManager.java" type="529ef68f:ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
+            </path>
+            <path>
+              <item name="urban-guacamole" type="b2602c69:ProjectViewProjectNode" />
+              <item name="urban-guacamole" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="Indexer" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="urban-guacamole" type="b2602c69:ProjectViewProjectNode" />
+              <item name="urban-guacamole" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="AndroidView" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -679,7 +669,14 @@
       <option name="project" value="LOCAL" />
       <updated>1542649326936</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="capslock&#10;end indexing function&#10;capital letter to disk in file manager&#10;get url&#10;number file\capital letter file&#10;&#10;BEFORE RUN">
+      <created>1542908084443</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1542908084443</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -687,7 +684,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -697,13 +693,12 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26004228" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.43234673" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1875" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980973" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.146875" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -715,7 +710,36 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980973" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
+    <layout-to-restore>
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4027484" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980973" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4989429" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.146875" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980973" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -745,7 +769,8 @@
     <MESSAGE value="BEGINNIG GUI" />
     <MESSAGE value="show dictionary, and path controller gui" />
     <MESSAGE value="finish show dictionary" />
-    <option name="LAST_COMMIT_MESSAGE" value="finish show dictionary" />
+    <MESSAGE value="capslock&#10;end indexing function&#10;capital letter to disk in file manager&#10;get url&#10;number file\capital letter file&#10;&#10;BEFORE RUN" />
+    <option name="LAST_COMMIT_MESSAGE" value="capslock&#10;end indexing function&#10;capital letter to disk in file manager&#10;get url&#10;number file\capital letter file&#10;&#10;BEFORE RUN" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -753,7 +778,7 @@
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/Parser/Parse.java</url>
           <line>28</line>
-          <properties class="Parser.Parse" method="&lt;init&gt;">
+          <properties class="Parser.Parse">
             <option name="EMULATED" value="true" />
           </properties>
           <option name="timeStamp" value="29" />
@@ -782,10 +807,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-          <folding>
-            <element signature="e#224#225#0" expanded="false" />
-            <element signature="e#259#260#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -811,11 +833,7 @@
           <caret line="14" column="23" lean-forward="true" selection-start-line="14" selection-start-column="23" selection-end-line="14" selection-end-column="23" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#geturl#0;class#FileManager#0" expanded="false" />
-            <element signature="method#AllTermToDisk#0;class#FileManager#0" expanded="false" />
-            <element signature="method#DocPosting#0;class#FileManager#0" expanded="false" />
-            <element signature="method#AddDocToCityIndex#0;class#FileManager#0" expanded="false" />
-            <element signature="method#CitiesToDisk#0;class#FileManager#0" expanded="false" />
+            <element signature="method#AllDocumentsToDisk#0;class#FileManager#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -846,9 +864,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="816">
           <caret line="48" column="5" lean-forward="false" selection-start-line="48" selection-start-column="5" selection-end-line="48" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -856,10 +872,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
           <caret line="14" column="8" lean-forward="false" selection-start-line="14" selection-start-column="8" selection-end-line="14" selection-end-column="8" />
-          <folding>
-            <element signature="e#224#225#0" expanded="false" />
-            <element signature="e#259#260#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -905,11 +918,7 @@
           <caret line="31" column="30" lean-forward="false" selection-start-line="31" selection-start-column="30" selection-end-line="31" selection-end-column="30" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#geturl#0;class#FileManager#0" expanded="false" />
-            <element signature="method#AllTermToDisk#0;class#FileManager#0" expanded="false" />
-            <element signature="method#DocPosting#0;class#FileManager#0" expanded="false" />
-            <element signature="method#AddDocToCityIndex#0;class#FileManager#0" expanded="false" />
-            <element signature="method#CitiesToDisk#0;class#FileManager#0" expanded="false" />
+            <element signature="method#AllDocumentsToDisk#0;class#FileManager#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -918,9 +927,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="561">
           <caret line="33" column="22" lean-forward="false" selection-start-line="33" selection-start-column="22" selection-end-line="33" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -989,11 +996,7 @@
           <caret line="117" column="13" lean-forward="true" selection-start-line="117" selection-start-column="13" selection-end-line="117" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#geturl#0;class#FileManager#0" expanded="false" />
-            <element signature="method#AllTermToDisk#0;class#FileManager#0" expanded="false" />
-            <element signature="method#DocPosting#0;class#FileManager#0" expanded="false" />
-            <element signature="method#AddDocToCityIndex#0;class#FileManager#0" expanded="false" />
-            <element signature="method#CitiesToDisk#0;class#FileManager#0" expanded="false" />
+            <element signature="method#AllDocumentsToDisk#0;class#FileManager#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1027,9 +1030,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
           <caret line="16" column="40" lean-forward="false" selection-start-line="16" selection-start-column="40" selection-end-line="16" selection-end-column="40" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1048,7 +1049,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="201">
           <caret line="747" column="0" lean-forward="false" selection-start-line="747" selection-start-column="0" selection-end-line="747" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1122,6 +1122,55 @@
         <state relative-caret-position="575">
           <caret line="23" column="5" lean-forward="true" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
           <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/main.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="17" column="45" lean-forward="false" selection-start-line="17" selection-start-column="45" selection-end-line="17" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/GUI/GetPathController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="55" column="38" lean-forward="false" selection-start-line="55" selection-start-column="38" selection-end-line="55" selection-end-column="38" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Parser/ReadFile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1895">
+          <caret line="78" column="36" lean-forward="false" selection-start-line="78" selection-start-column="36" selection-end-line="78" selection-end-column="36" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Parser/Document.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="675">
+          <caret line="52" column="61" lean-forward="true" selection-start-line="52" selection-start-column="61" selection-end-line="52" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/GUI/Controller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="276">
+          <caret line="88" column="30" lean-forward="true" selection-start-line="88" selection-start-column="30" selection-end-line="88" selection-end-column="30" />
+          <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
@@ -1135,45 +1184,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/GUI/Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="226">
-          <caret line="27" column="40" lean-forward="false" selection-start-line="27" selection-start-column="40" selection-end-line="27" selection-end-column="40" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Parser/Document.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-235">
-          <caret line="38" column="99" lean-forward="false" selection-start-line="38" selection-start-column="99" selection-end-line="38" selection-end-column="99" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Parser/ReadFile.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1250">
-          <caret line="52" column="0" lean-forward="false" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/main.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="157">
-          <caret line="17" column="45" lean-forward="false" selection-start-line="17" selection-start-column="45" selection-end-line="17" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Parser/TermInfo.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="175">
@@ -1184,8 +1194,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Parser/Parse.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="55" column="90" lean-forward="false" selection-start-line="55" selection-start-column="90" selection-end-line="55" selection-end-column="90" />
+        <state relative-caret-position="-7">
+          <caret line="51" column="33" lean-forward="false" selection-start-line="51" selection-start-column="33" selection-end-line="51" selection-end-column="33" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#NumberToTerm#0;class#Parse#0" expanded="false" />
@@ -1194,36 +1204,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/FileManager/FileManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="411">
-          <caret line="51" column="13" lean-forward="true" selection-start-line="46" selection-start-column="11" selection-end-line="51" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#geturl#0;class#FileManager#0" expanded="false" />
-            <element signature="method#AllTermToDisk#0;class#FileManager#0" expanded="false" />
-            <element signature="method#DocPosting#0;class#FileManager#0" expanded="false" />
-            <element signature="method#AddDocToCityIndex#0;class#FileManager#0" expanded="false" />
-            <element signature="method#CitiesToDisk#0;class#FileManager#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/GUI/GetPathController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="90" column="13" lean-forward="false" selection-start-line="90" selection-start-column="13" selection-end-line="90" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Indexer/Indexer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="25" column="13" lean-forward="false" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
+        <state relative-caret-position="1618">
+          <caret line="199" column="56" lean-forward="true" selection-start-line="199" selection-start-column="56" selection-end-line="199" selection-end-column="56" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/FileManager/FileManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="89">
+          <caret line="173" column="0" lean-forward="false" selection-start-line="173" selection-start-column="0" selection-end-line="173" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#AllDocumentsToDisk#0;class#FileManager#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
