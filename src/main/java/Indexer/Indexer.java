@@ -1,6 +1,7 @@
 package Indexer;
 
 import FileManager.FileManager;
+import GUI.Controller;
 import Parser.TermInfo;
 
 import java.io.*;
@@ -8,6 +9,7 @@ import java.util.*;
 import java.util.TreeMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 public class Indexer {
     public static TreeMap<String,int []> AllCapitalLetterWords;
@@ -213,6 +215,15 @@ public class Indexer {
     }
 
     public void FinishIndexing() {
+        System.out.println("wait for shutdown");
+        threadpool.shutdown();
+
+        try {
+            threadpool.awaitTermination(1, TimeUnit.HOURS);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println("finished");
         fileManager.CitiesToDisk();
         for (Map.Entry<String, int[]> entry : AllCapitalLetterWords.entrySet()) {
             if(Index.containsKey(entry.getKey().toLowerCase())){
@@ -230,6 +241,19 @@ public class Indexer {
             e.printStackTrace();
         }
         fileManager.AllDocumentsToDisk();
+        Controller.Termunique=Index.size();
+        File filedic = new File(fileManager.postingpath + "\\Dictionary.txt");
+        String term = "";
+        for (Map.Entry<String, int[]> entry : Index.entrySet()) {
+            term+=(entry.getKey()+","+entry.getValue()[0]+"\n");
+        }
+        try (FileWriter fw = new FileWriter(filedic,false);
+             BufferedWriter bw = new BufferedWriter(fw);
+             PrintWriter out = new PrintWriter(bw)) {
+            out.print(term);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     // Java program for implementation of QuickSort

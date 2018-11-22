@@ -12,6 +12,9 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Dictionary;
 import java.util.HashSet;
 import java.util.TreeSet;
@@ -21,6 +24,7 @@ public class GetPathController {
     public Stage stage;
     public File postingselected;
     public boolean IsStem;
+    public File stopwordsselected;
 
     public void choosecorpus(){
        DirectoryChooser dc=new DirectoryChooser();
@@ -93,6 +97,14 @@ public class GetPathController {
             for (int i = 0; i < stopwordsarr.length; i++) {
                 StopWord.add(stopwordsarr[i]);
             }
+            if(stopwordsselected!=null){
+                String content = new String(Files.readAllBytes(Paths.get(stopwordsselected.getPath())), Charset.defaultCharset());
+                String [] contentsw= content.split("\n");
+                for (int i = 0; i <contentsw.length; i++) {
+                    StopWord.add(contentsw[i]);
+                }
+            }
+
             String[] Monthsarr = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Sept", "Oct", "Nov", "Dec", "january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December", "JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNE", "JULY", "AUGUST", "SEPTEMBER", "OCTOBER", "NOVEMBER", "DECEMBER"};
             HashSet Months = new HashSet();
             for (int i = 0; i < Monthsarr.length; i++) {
@@ -127,6 +139,12 @@ public class GetPathController {
 
 
     }
+    public void choosestopwords(){
+        DirectoryChooser dc=new DirectoryChooser();
+        stopwordsselected = dc.showDialog(stage);
+    }
+
+
 
 
     public void setStage(Stage stage) {

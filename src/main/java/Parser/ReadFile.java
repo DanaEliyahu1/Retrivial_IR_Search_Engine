@@ -47,10 +47,17 @@ public class ReadFile {
                 }
             }
         }
-        String Text = City1[1].split("</TEXT>")[0];
-        if (Text.contains("[Text]")) {
-            Text = Text.split("[Text]")[1];
+        String Text="";
+        try{
+           Text = City1[1].split("</TEXT>")[0];
+            if (Text.contains("[Text]")) {
+                Text = Text.split("[Text]")[1];
+                return new Document(corpuspath + File.separator + FileName, City, Id, Text);
+            }
+        }catch (Exception e){
+          //  e.printStackTrace();
         }
+
         return new Document(corpuspath + File.separator + FileName, City, Id, Text);
     }
 

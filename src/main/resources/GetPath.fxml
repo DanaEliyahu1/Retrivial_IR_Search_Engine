@@ -10,9 +10,10 @@
       <BorderPane prefHeight="400.0" prefWidth="600.0" />
        <VBox prefHeight="300.0" prefWidth="154.0" BorderPane.alignment="CENTER">
            <children>
-               <Button mnemonicParsing="false" prefHeight="53.0" prefWidth="154.0" text="Choose corpus" onAction="#choosecorpus" />
-               <Button mnemonicParsing="false" prefHeight="55.0" prefWidth="154.0" text="Choose Posting Target" onAction="#chooseposting"/>
-               <Button mnemonicParsing="false" prefHeight="57.0" prefWidth="153.0" text="Start" onAction="#StartDictinory"/>
+               <Button mnemonicParsing="false" onAction="#choosecorpus" prefHeight="53.0" prefWidth="154.0" text="Choose corpus" />
+               <Button mnemonicParsing="false" onAction="#chooseposting" prefHeight="55.0" prefWidth="154.0" text="Choose Posting Target" />
+            <Button mnemonicParsing="false" prefHeight="53.0" prefWidth="154.0" text="Choose Stop Words" onAction="#choosestopwords" />
+               <Button mnemonicParsing="false" onAction="#StartDictinory" prefHeight="57.0" prefWidth="153.0" text="Start" />
            </children>
        </VBox>
    </children>

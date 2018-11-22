@@ -45,13 +45,13 @@ public class FileManager {
     }
 
     public void AllTermToDisk() throws InterruptedException {
-       PushTermsToDisk(Cache.size());
+       PushTermsToDisk(Cache.size()-1); //because of error (last element)
      }
     public void DocPosting(String ID, String City, int maxtf, int uniqueterms, String mostTf){
         DocNum++;
         AddDocToCityIndex(ID,City);
         DocInfo+=("|"+ ID+","+ City + "," + maxtf+ ","+ uniqueterms+ ","+ mostTf+"\n");
-        if(DocInfo.length()>300000){
+        if(DocInfo.length()>1000000){
             AllDocumentsToDisk();
         }
 
@@ -74,19 +74,18 @@ public class FileManager {
             try {
                 file.createNewFile();
             } catch (IOException e) {
-                e.printStackTrace();
+               e.printStackTrace();
             }
             try (FileWriter fw = new FileWriter(postingpath+"\\Cities\\"+currCity.getKey()+".txt", true);
                  BufferedWriter bw = new BufferedWriter(fw);
                  PrintWriter out = new PrintWriter(bw)) {
                 out.print(currCity.getValue());
             } catch (IOException e) {
-                e.printStackTrace();
+             //   e.printStackTrace();
             }
         }
 
     }
-
 
     public void AddToPosting(String key, TermInfo value, String docID, int i) {
         if (Cache.containsKey(key)) {
@@ -98,8 +97,8 @@ public class FileManager {
             Cache.put(key,new TreePointerToQ(newpc, "|" + docID + "," + value.toString()));
             Q.add(newpc);
         }
-        if(Cache.size()>500000){
-            PushTermsToDisk(499000);
+        if(Cache.size()>3000){
+            PushTermsToDisk(2000);
         }
     }
 

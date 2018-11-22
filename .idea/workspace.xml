@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0f921457-46cd-4350-bc0e-a504e616ee8d" name="Default Changelist" comment="capslock&#10;end indexing function&#10;capital letter to disk in file manager&#10;get url&#10;number file\capital letter file&#10;&#10;BEFORE RUN">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/Parser/Document.class" afterPath="$PROJECT_DIR$/target/classes/Parser/Document.class" />
+    <list default="true" id="0f921457-46cd-4350-bc0e-a504e616ee8d" name="Default Changelist" comment="fix abc filies">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/FileManager/FileManager.class" afterPath="$PROJECT_DIR$/target/classes/FileManager/FileManager.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/FileManager/PointerCache.class" afterPath="$PROJECT_DIR$/target/classes/FileManager/PointerCache.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/Parser/Parse.class" afterPath="$PROJECT_DIR$/target/classes/Parser/Parse.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/Parser/ReadFile.class" afterPath="$PROJECT_DIR$/target/classes/Parser/ReadFile.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/FileManager/FileManager.java" afterPath="$PROJECT_DIR$/src/main/java/FileManager/FileManager.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/GUI/GetPathController.java" afterPath="$PROJECT_DIR$/src/main/java/GUI/GetPathController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Indexer/Indexer.java" afterPath="$PROJECT_DIR$/src/main/java/Indexer/Indexer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Parser/Document.java" afterPath="$PROJECT_DIR$/src/main/java/Parser/Document.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Parser/Parse.java" afterPath="$PROJECT_DIR$/src/main/java/Parser/Parse.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Parser/ReadFile.java" afterPath="$PROJECT_DIR$/src/main/java/Parser/ReadFile.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/main.fxml" afterPath="$PROJECT_DIR$/src/main/resources/main.fxml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/GetPath.fxml" afterPath="$PROJECT_DIR$/src/main/resources/GetPath.fxml" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -89,26 +90,29 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="main.fxml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/main.fxml">
+          <provider editor-type-id="text-editor">
+            <state relative-caret-position="25">
+              <caret line="17" column="45" lean-forward="false" selection-start-line="17" selection-start-column="45" selection-end-line="17" selection-end-column="45" />
+              <folding />
+            </state>
+          </provider>
+          <provider selected="true" editor-type-id="JavaFX-Scene-Builder">
+            <state />
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="Parse.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Parser/Parse.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="200">
+            <state relative-caret-position="950">
               <caret line="71" column="59" lean-forward="false" selection-start-line="71" selection-start-column="59" selection-end-line="71" selection-end-column="59" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#NumberToTerm#0;class#Parse#0" expanded="false" />
                 <element signature="method#TranslateMonths#0;class#Parse#0" expanded="false" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TermInfo.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/Parser/TermInfo.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="175">
-              <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -126,8 +130,8 @@
       <file leaf-file-name="Controller.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/GUI/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="276">
-              <caret line="88" column="30" lean-forward="true" selection-start-line="88" selection-start-column="30" selection-end-line="88" selection-end-column="30" />
+            <state relative-caret-position="426">
+              <caret line="28" column="32" lean-forward="false" selection-start-line="28" selection-start-column="22" selection-end-line="28" selection-end-column="32" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -148,8 +152,8 @@
       <file leaf-file-name="Indexer.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Indexer/Indexer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
-              <caret line="146" column="3" lean-forward="false" selection-start-line="146" selection-start-column="3" selection-end-line="146" selection-end-column="3" />
+            <state relative-caret-position="149">
+              <caret line="143" column="0" lean-forward="false" selection-start-line="143" selection-start-column="0" selection-end-line="143" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -158,24 +162,28 @@
       <file leaf-file-name="GetPathController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/GUI/GetPathController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="200">
-              <caret line="53" column="61" lean-forward="false" selection-start-line="53" selection-start-column="61" selection-end-line="53" selection-end-column="61" />
+            <state relative-caret-position="149">
+              <caret line="133" column="0" lean-forward="false" selection-start-line="133" selection-start-column="0" selection-end-line="133" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FileManager.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="FileManager.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/FileManager/FileManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="92">
-              <caret line="74" column="0" lean-forward="false" selection-start-line="74" selection-start-column="0" selection-end-line="74" selection-end-column="0" />
+            <state relative-caret-position="311">
+              <caret line="106" column="0" lean-forward="false" selection-start-line="106" selection-start-column="0" selection-end-line="106" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#3765#3790#0" expanded="true" />
+                <element signature="method#FileManager#0;class#FileManager#0" expanded="false" />
+                <element signature="method#geturl#0;class#FileManager#0" expanded="false" />
+                <element signature="method#AllTermToDisk#0;class#FileManager#0" expanded="false" />
+                <element signature="method#DocPosting#0;class#FileManager#0" expanded="false" />
+                <element signature="method#AddDocToCityIndex#0;class#FileManager#0" expanded="false" />
+                <element signature="method#CitiesToDisk#0;class#FileManager#0" expanded="false" />
+                <element signature="e#3798#3823#0" expanded="true" />
                 <element signature="method#SetCapitalToLoweCasePosting#0;class#FileManager#0" expanded="false" />
-                <element signature="method#AddCapitalLettersToDisk#0;class#FileManager#0" expanded="false" />
-                <element signature="method#AllDocumentsToDisk#0;class#FileManager#0" expanded="false" />
                 <element signature="class#PointerCache#0" expanded="false" />
                 <element signature="class#TreePointerToQ#0" expanded="false" />
               </folding>
@@ -183,11 +191,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ReadFile.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="GetPath.fxml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/GetPath.fxml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="500">
+              <caret line="20" column="0" lean-forward="true" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+          <provider editor-type-id="JavaFX-Scene-Builder">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ReadFile.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/Parser/ReadFile.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="50">
-              <caret line="41" column="50" lean-forward="false" selection-start-line="41" selection-start-column="50" selection-end-line="41" selection-end-column="50" />
+            <state relative-caret-position="284">
+              <caret line="57" column="12" lean-forward="false" selection-start-line="57" selection-start-column="12" selection-end-line="57" selection-end-column="12" />
               <folding />
             </state>
           </provider>
@@ -243,17 +264,17 @@
         <option value="$PROJECT_DIR$/src/main/java/GUI/Main.fxml" />
         <option value="$PROJECT_DIR$/src/main/java/GUI/main.java" />
         <option value="$PROJECT_DIR$/src/main/java/Parser/Tester.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/GetPath.fxml" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/GUI/ShowDictionary.java" />
         <option value="$PROJECT_DIR$/src/main/resources/ShowDictionary.fxml" />
         <option value="$PROJECT_DIR$/src/main/java/GUI/Controller.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Indexer/Indexer.java" />
         <option value="$PROJECT_DIR$/src/main/java/Parser/Document.java" />
         <option value="$PROJECT_DIR$/src/main/resources/main.fxml" />
-        <option value="$PROJECT_DIR$/src/main/java/FileManager/FileManager.java" />
-        <option value="$PROJECT_DIR$/src/main/java/GUI/GetPathController.java" />
         <option value="$PROJECT_DIR$/src/main/java/Parser/Parse.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/GetPath.fxml" />
+        <option value="$PROJECT_DIR$/src/main/java/GUI/GetPathController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/FileManager/FileManager.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Indexer/Indexer.java" />
         <option value="$PROJECT_DIR$/src/main/java/Parser/ReadFile.java" />
       </list>
     </option>
@@ -697,7 +718,14 @@
       <option name="project" value="LOCAL" />
       <updated>1542911518580</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="fix abc filies">
+      <created>1542919695225</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1542919695226</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -705,6 +733,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -714,7 +743,7 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.47780126" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.52114165" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -791,7 +820,8 @@
     <MESSAGE value="show dictionary, and path controller gui" />
     <MESSAGE value="finish show dictionary" />
     <MESSAGE value="capslock&#10;end indexing function&#10;capital letter to disk in file manager&#10;get url&#10;number file\capital letter file&#10;&#10;BEFORE RUN" />
-    <option name="LAST_COMMIT_MESSAGE" value="capslock&#10;end indexing function&#10;capital letter to disk in file manager&#10;get url&#10;number file\capital letter file&#10;&#10;BEFORE RUN" />
+    <MESSAGE value="fix abc filies" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix abc filies" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -806,60 +836,36 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/FileManager/FileManager.java</url>
-          <line>141</line>
+          <line>106</line>
           <properties />
-          <option name="timeStamp" value="149" />
+          <option name="timeStamp" value="160" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/FileManager/FileManager.java</url>
-          <line>131</line>
+          <url>file://$PROJECT_DIR$/src/main/java/Indexer/Indexer.java</url>
+          <line>226</line>
           <properties />
-          <option name="timeStamp" value="150" />
+          <option name="timeStamp" value="169" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/FileManager/FileManager.java</url>
-          <line>132</line>
+          <url>file://$PROJECT_DIR$/src/main/java/Indexer/Indexer.java</url>
+          <line>228</line>
           <properties />
-          <option name="timeStamp" value="153" />
+          <option name="timeStamp" value="170" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/FileManager/FileManager.java</url>
-          <line>133</line>
+          <url>file://$PROJECT_DIR$/src/main/java/Parser/Parse.java</url>
+          <line>42</line>
           <properties />
-          <option name="timeStamp" value="154" />
+          <option name="timeStamp" value="181" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/FileManager/FileManager.java</url>
-          <line>134</line>
+          <url>file://$PROJECT_DIR$/src/main/java/Parser/ReadFile.java</url>
+          <line>39</line>
           <properties />
-          <option name="timeStamp" value="155" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/FileManager/FileManager.java</url>
-          <line>135</line>
-          <properties />
-          <option name="timeStamp" value="156" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/FileManager/FileManager.java</url>
-          <line>137</line>
-          <properties />
-          <option name="timeStamp" value="157" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/FileManager/FileManager.java</url>
-          <line>138</line>
-          <properties />
-          <option name="timeStamp" value="158" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/FileManager/FileManager.java</url>
-          <line>136</line>
-          <properties />
-          <option name="timeStamp" value="159" />
+          <option name="timeStamp" value="188" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="160" />
+      <option name="time" value="190" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -908,10 +914,14 @@
           <caret line="14" column="23" lean-forward="true" selection-start-line="14" selection-start-column="23" selection-end-line="14" selection-end-column="23" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#3765#3790#0" expanded="true" />
+            <element signature="method#FileManager#0;class#FileManager#0" expanded="false" />
+            <element signature="method#geturl#0;class#FileManager#0" expanded="false" />
+            <element signature="method#AllTermToDisk#0;class#FileManager#0" expanded="false" />
+            <element signature="method#DocPosting#0;class#FileManager#0" expanded="false" />
+            <element signature="method#AddDocToCityIndex#0;class#FileManager#0" expanded="false" />
+            <element signature="method#CitiesToDisk#0;class#FileManager#0" expanded="false" />
+            <element signature="e#3798#3823#0" expanded="true" />
             <element signature="method#SetCapitalToLoweCasePosting#0;class#FileManager#0" expanded="false" />
-            <element signature="method#AddCapitalLettersToDisk#0;class#FileManager#0" expanded="false" />
-            <element signature="method#AllDocumentsToDisk#0;class#FileManager#0" expanded="false" />
             <element signature="class#PointerCache#0" expanded="false" />
             <element signature="class#TreePointerToQ#0" expanded="false" />
           </folding>
@@ -998,10 +1008,14 @@
           <caret line="31" column="30" lean-forward="false" selection-start-line="31" selection-start-column="30" selection-end-line="31" selection-end-column="30" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#3765#3790#0" expanded="true" />
+            <element signature="method#FileManager#0;class#FileManager#0" expanded="false" />
+            <element signature="method#geturl#0;class#FileManager#0" expanded="false" />
+            <element signature="method#AllTermToDisk#0;class#FileManager#0" expanded="false" />
+            <element signature="method#DocPosting#0;class#FileManager#0" expanded="false" />
+            <element signature="method#AddDocToCityIndex#0;class#FileManager#0" expanded="false" />
+            <element signature="method#CitiesToDisk#0;class#FileManager#0" expanded="false" />
+            <element signature="e#3798#3823#0" expanded="true" />
             <element signature="method#SetCapitalToLoweCasePosting#0;class#FileManager#0" expanded="false" />
-            <element signature="method#AddCapitalLettersToDisk#0;class#FileManager#0" expanded="false" />
-            <element signature="method#AllDocumentsToDisk#0;class#FileManager#0" expanded="false" />
             <element signature="class#PointerCache#0" expanded="false" />
             <element signature="class#TreePointerToQ#0" expanded="false" />
           </folding>
@@ -1081,10 +1095,14 @@
           <caret line="117" column="13" lean-forward="true" selection-start-line="117" selection-start-column="13" selection-end-line="117" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#3765#3790#0" expanded="true" />
+            <element signature="method#FileManager#0;class#FileManager#0" expanded="false" />
+            <element signature="method#geturl#0;class#FileManager#0" expanded="false" />
+            <element signature="method#AllTermToDisk#0;class#FileManager#0" expanded="false" />
+            <element signature="method#DocPosting#0;class#FileManager#0" expanded="false" />
+            <element signature="method#AddDocToCityIndex#0;class#FileManager#0" expanded="false" />
+            <element signature="method#CitiesToDisk#0;class#FileManager#0" expanded="false" />
+            <element signature="e#3798#3823#0" expanded="true" />
             <element signature="method#SetCapitalToLoweCasePosting#0;class#FileManager#0" expanded="false" />
-            <element signature="method#AddCapitalLettersToDisk#0;class#FileManager#0" expanded="false" />
-            <element signature="method#AllDocumentsToDisk#0;class#FileManager#0" expanded="false" />
             <element signature="class#PointerCache#0" expanded="false" />
             <element signature="class#TreePointerToQ#0" expanded="false" />
           </folding>
@@ -1154,17 +1172,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/GetPath.fxml">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="10" column="74" lean-forward="false" selection-start-line="10" selection-start-column="74" selection-end-line="10" selection-end-column="74" />
-          <folding />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_131/src.zip!/java/nio/file/Files.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
@@ -1218,20 +1225,58 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Parser/TermInfo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/main.fxml">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="25">
+          <caret line="17" column="45" lean-forward="false" selection-start-line="17" selection-start-column="45" selection-end-line="17" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/GetPath.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="500">
+          <caret line="20" column="0" lean-forward="true" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/GUI/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="88" column="30" lean-forward="true" selection-start-line="88" selection-start-column="30" selection-end-line="88" selection-end-column="30" />
+        <state relative-caret-position="426">
+          <caret line="28" column="32" lean-forward="false" selection-start-line="28" selection-start-column="22" selection-end-line="28" selection-end-column="32" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Parser/TermInfo.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/GUI/ShowDictionary.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+        <state relative-caret-position="150">
+          <caret line="6" column="20" lean-forward="false" selection-start-line="6" selection-start-column="20" selection-end-line="6" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/GUI/GetPathController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="149">
+          <caret line="133" column="0" lean-forward="false" selection-start-line="133" selection-start-column="0" selection-end-line="133" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1244,44 +1289,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/main.fxml">
+    <entry file="file://$PROJECT_DIR$/src/main/java/FileManager/FileManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="17" column="45" lean-forward="false" selection-start-line="17" selection-start-column="45" selection-end-line="17" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Indexer/Indexer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="146" column="3" lean-forward="false" selection-start-line="146" selection-start-column="3" selection-end-line="146" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/GUI/GetPathController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="53" column="61" lean-forward="false" selection-start-line="53" selection-start-column="61" selection-end-line="53" selection-end-column="61" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/GUI/ShowDictionary.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="6" column="20" lean-forward="false" selection-start-line="6" selection-start-column="20" selection-end-line="6" selection-end-column="20" />
-          <folding />
+        <state relative-caret-position="311">
+          <caret line="106" column="0" lean-forward="false" selection-start-line="106" selection-start-column="0" selection-end-line="106" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#FileManager#0;class#FileManager#0" expanded="false" />
+            <element signature="method#geturl#0;class#FileManager#0" expanded="false" />
+            <element signature="method#AllTermToDisk#0;class#FileManager#0" expanded="false" />
+            <element signature="method#DocPosting#0;class#FileManager#0" expanded="false" />
+            <element signature="method#AddDocToCityIndex#0;class#FileManager#0" expanded="false" />
+            <element signature="method#CitiesToDisk#0;class#FileManager#0" expanded="false" />
+            <element signature="e#3798#3823#0" expanded="true" />
+            <element signature="method#SetCapitalToLoweCasePosting#0;class#FileManager#0" expanded="false" />
+            <element signature="class#PointerCache#0" expanded="false" />
+            <element signature="class#TreePointerToQ#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Parser/Parse.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
+        <state relative-caret-position="950">
           <caret line="71" column="59" lean-forward="false" selection-start-line="71" selection-start-column="59" selection-end-line="71" selection-end-column="59" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -1291,27 +1321,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Parser/ReadFile.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/Indexer/Indexer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="50">
-          <caret line="41" column="50" lean-forward="false" selection-start-line="41" selection-start-column="50" selection-end-line="41" selection-end-column="50" />
+        <state relative-caret-position="149">
+          <caret line="143" column="0" lean-forward="false" selection-start-line="143" selection-start-column="0" selection-end-line="143" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/FileManager/FileManager.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/Parser/ReadFile.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="92">
-          <caret line="74" column="0" lean-forward="false" selection-start-line="74" selection-start-column="0" selection-end-line="74" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#3765#3790#0" expanded="true" />
-            <element signature="method#SetCapitalToLoweCasePosting#0;class#FileManager#0" expanded="false" />
-            <element signature="method#AddCapitalLettersToDisk#0;class#FileManager#0" expanded="false" />
-            <element signature="method#AllDocumentsToDisk#0;class#FileManager#0" expanded="false" />
-            <element signature="class#PointerCache#0" expanded="false" />
-            <element signature="class#TreePointerToQ#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="284">
+          <caret line="57" column="12" lean-forward="false" selection-start-line="57" selection-start-column="12" selection-end-line="57" selection-end-column="12" />
+          <folding />
         </state>
       </provider>
     </entry>
