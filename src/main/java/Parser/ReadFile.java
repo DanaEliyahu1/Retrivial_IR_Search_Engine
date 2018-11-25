@@ -5,13 +5,17 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class ReadFile {
 
     String corpuspath;
     private String FileName;
+    private ExecutorService threadpool;
     public ReadFile(String corpuspath) {
         this.corpuspath = corpuspath;
+        this.threadpool= Executors.newFixedThreadPool(1);
     }
 
     public Document[] GetDoc(String filename) {
@@ -73,9 +77,9 @@ public class ReadFile {
                 for (int j = 0; j < CurrFolder.length; j++) {
                     CurrDoc = GetDoc(FileList[i].getName() + "\\" + CurrFolder[j].getName());
                     for (int k = 0; k < CurrDoc.length; k++) {
-                        Parse parse = new Parse();
-                        parse.parse(CurrDoc[k]);
+                        threadpool.execute(new Parse(CurrDoc[k]));
                     }
+                    CurrDoc=null;
                 }
             } catch (Exception e) {
                 e.printStackTrace();

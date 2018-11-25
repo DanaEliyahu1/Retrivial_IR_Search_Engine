@@ -6,13 +6,21 @@ import Indexer.Indexer;
 import java.io.File;
 import java.util.*;
 
-public class Parse {
-    public Parse() {
+public class Parse extends Thread {
+    public Parse(Document d) {
         TermsMap=new TreeMap<String, TermInfo>() ;
          SpecialTermsMap=new TreeMap<String, TermInfo>();
         CapitalLetterWords=new TreeMap<String,TermInfo>();
+        this.d=d;
     }
+
+    @Override
+    public void run() {
+        parse(d);
+    }
+
     String City;
+    Document d;
     public static Indexer indexer;
     public static HashSet StopWord;
     TreeMap<String, TermInfo> TermsMap;
@@ -27,18 +35,7 @@ public class Parse {
     ArrayList<String> Tokens;
     int i;
     String DocID;
-/*
-    public Parse(HashSet stopWord, HashSet months, HashSet numberHash, HashSet dollarHash,File postingselected) {
-        this.StopWord = stopWord;
-        this.Months = months;
-        this.NumberHash = numberHash;
-        this.DollarHash = dollarHash;
-        stemmer = new Stemmer();
-        CapitalLetterWords=new TreeMap<>();
-        TermsMap = new TreeMap();
-        SpecialTermsMap = new TreeMap();
-    }
-    */
+
     public void parse(Document Doc) {
         this.DocID=Doc.ID;
         this.City=Doc.City;
@@ -54,6 +51,7 @@ public class Parse {
             }
 
         }
+       // System.out.println("indexer");
     indexer.ResultToFile( DocID,SpecialTermsMap, TermsMap, City,CapitalLetterWords);
 /*
         for (Map.Entry<String, TermInfo> entry : SpecialTermsMap.entrySet()) {

@@ -22,6 +22,7 @@ public class FileManager {
     public String DocInfo;
 
 
+
     public FileManager(String docId, String path) {
         Cache=new TreeMap<String,TreePointerToQ>();
         Q=new PriorityQueue<PointerCache>((x,y)->{ return (int)(x.priority-y.priority);});
@@ -87,7 +88,7 @@ public class FileManager {
 
     }
 
-    public void AddToPosting(String key, TermInfo value, String docID, int i) {
+    public void AddToPosting(String key, TermInfo value, String docID,int line) {
         if (Cache.containsKey(key)) {
             Cache.get(key).value=Cache.get(key).value + "|" + docID + "," + value.toString();
             Cache.get(key).pc.priority++;
@@ -97,8 +98,8 @@ public class FileManager {
             Cache.put(key,new TreePointerToQ(newpc, "|" + docID + "," + value.toString()));
             Q.add(newpc);
         }
-        if(Cache.size()>3000){
-            PushTermsToDisk(2000);
+        if(Cache.size()>100000){
+            PushTermsToDisk(99900);
         }
     }
 
