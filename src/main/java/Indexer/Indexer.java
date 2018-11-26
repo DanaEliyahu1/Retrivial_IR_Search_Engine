@@ -3,6 +3,12 @@ package Indexer;
 import FileManager.FileManager;
 import GUI.Controller;
 import Parser.TermInfo;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 import java.io.*;
 import java.util.*;
@@ -37,6 +43,32 @@ public class Indexer {
             String key= ListOfFile[i].getName();
             key=key.substring(0,key.length()-3);
             CityIndex.put(key,null);
+        }
+        OkHttpClient client = new OkHttpClient();// currencies???
+        Request request = new Request.Builder().url("https://restcountries.eu/rest/v2/all?fields=capital;name;currencies;population").build();
+        String data="";
+        try {
+            data= client.newCall(request).execute().body().string();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        JSONParser jsonParser=new JSONParser();
+        try {
+            JSONArray jsonArray =(JSONArray) jsonParser.parse(data);
+            for (int i = 0; i <jsonArray.size() ; i++) {
+                JSONObject curr = (JSONObject) jsonArray.get(i);
+                System.out.println((String)curr.get("capital"));
+                if(CityIndex.containsKey((String)curr.get("capital"))){
+                    String currency =((JSONArray)curr.get("currencies")).get(0).toString();
+                    long population = ((long)curr.get("population"))/1000000;
+                    String populations= "M"+Math.round(population*100)/100;
+                    String[] CityInfo = {(String)curr.get("name"),currency,populations};
+                    CityIndex.put((String)curr.get("capital"),CityInfo);
+                }
+            }
+
+        } catch (ParseException e) {
+            e.printStackTrace();
         }
     }
 
@@ -127,6 +159,7 @@ public class Indexer {
         }
         System.out.println("finish & start finish to disk");
         fileManager.CitiesToDisk();
+        IndexCities();
         System.out.println(" start capital letters to disk");
         for (Map.Entry<String, int[]> entry : AllCapitalLetterWords.entrySet()) {
             if(Index.containsKey(entry.getKey().toLowerCase())){

@@ -130,6 +130,7 @@ public class GetPathController {
            // Parse.CapitalLetterWords= new TreeSet<>();
            // Parse.fileManager=new FileManager("",postingselected.getPath());
             ReadFile readFile = new ReadFile(corpusselected.getPath());
+            stage.close();
             long start=System.nanoTime();
             readFile.GetFile();
             long end=System.nanoTime();
