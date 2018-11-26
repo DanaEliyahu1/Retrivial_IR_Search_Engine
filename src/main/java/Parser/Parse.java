@@ -37,6 +37,7 @@ public class Parse extends Thread {
     String DocID;
 
     public void parse(Document Doc) {
+        System.out.println("Parse");
         this.DocID=Doc.ID;
         this.City=Doc.City;
         Tokens = Doc.GetTokens();

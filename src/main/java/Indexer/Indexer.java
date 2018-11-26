@@ -27,7 +27,7 @@ public class Indexer {
         this.fileManager=fileManager;
          linenumber=new  int[28];
          CapitalLetterPosting=new TreeMap<>();
-        this.threadpool= Executors.newFixedThreadPool(1);
+        this.threadpool= Executors.newSingleThreadExecutor();
     }
 
     public void IndexCities(){
@@ -58,8 +58,8 @@ public class Indexer {
                     }
                 }
                 int uniqueterms=SpecialTermsMap.size() + TermsMap.size();
-                fileManager.DocPosting(DocID,City,counter,uniqueterms,mostTf);
 
+                fileManager.DocPosting(DocID,City,counter,uniqueterms,mostTf);
         for (Map.Entry<String, TermInfo> entry : capitalLetterWords.entrySet()) {
             if(!Index.containsKey(entry.getKey().toLowerCase())){
                AddTermToCapital(entry.getKey(),entry.getValue(),DocID);
@@ -68,7 +68,6 @@ public class Indexer {
                 AddTermToDic(entry.getKey().toLowerCase(), entry.getValue(),DocID);
             }
         }
-        System.out.println("end index");
     }
 
     private void AddTermToCapital(String key, TermInfo value, String DocID) {
@@ -119,8 +118,16 @@ public class Indexer {
     }
 
     public void FinishIndexing() {
-
+        System.out.println("waiting for finish");
+        try {
+            threadpool.shutdown();
+            threadpool.awaitTermination(40,TimeUnit.MINUTES);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println("finish & start finish to disk");
         fileManager.CitiesToDisk();
+        System.out.println(" start capital letters to disk");
         for (Map.Entry<String, int[]> entry : AllCapitalLetterWords.entrySet()) {
             if(Index.containsKey(entry.getKey().toLowerCase())){
                 int[] value=Index.get(entry.getKey().toLowerCase());
@@ -138,10 +145,11 @@ public class Indexer {
         }
         fileManager.AllDocumentsToDisk();
         Controller.Termunique=Index.size();
+        System.out.println("create Dictionary");
         File filedic = new File(fileManager.postingpath + "\\Dictionary.txt");
-        String term = "";
+        StringBuilder term =new StringBuilder("");
         for (Map.Entry<String, int[]> entry : Index.entrySet()) {
-            term+=(entry.getKey()+","+entry.getValue()[0]+"\n");
+            term.append(entry.getKey()+","+entry.getValue()[0]+"\n");
         }
         try (FileWriter fw = new FileWriter(filedic,false);
              BufferedWriter bw = new BufferedWriter(fw);

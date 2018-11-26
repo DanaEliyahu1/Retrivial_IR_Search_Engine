@@ -71,7 +71,7 @@ public class ReadFile {
         File[] FileList = new File(corpuspath).listFiles();
         File[] CurrFolder=null;
         Document[] CurrDoc=null;
-        for (int i = 1; i < FileList.length; i++) {
+        for (int i = 0; i < FileList.length; i++) {
             System.out.println("*********************************" + i);
             try {
                 CurrFolder=FileList[i].listFiles();
@@ -90,6 +90,7 @@ public class ReadFile {
         }
         System.out.println("waiting for finishing");
         try {
+            threadpool.shutdown();
             threadpool.awaitTermination(40, TimeUnit.MINUTES);
             System.out.println("finished");
         } catch (InterruptedException e) {

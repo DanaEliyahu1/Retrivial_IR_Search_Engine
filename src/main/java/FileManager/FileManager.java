@@ -51,7 +51,7 @@ public class FileManager {
         if(DocInfo.length()>1000000){
             AllDocumentsToDisk();
         }
-
+        System.out.println(DocNum);
     }
     void AddDocToCityIndex(String DocId,String City){
         if(City.equals(""))return;
