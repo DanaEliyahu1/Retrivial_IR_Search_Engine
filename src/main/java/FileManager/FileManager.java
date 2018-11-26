@@ -21,14 +21,12 @@ public class FileManager {
     public String DocInfo;
 
 
-
     public FileManager(String docId, String path) {
         Cache=new TreeMap<String,TreePointerToQ>();
         cities=new HashMap<String,String>();
         PriorityAll=0;
         DocInfo="";
         postingpath=path;
-
     }
 
     public static String geturl(String pointer){
@@ -156,7 +154,7 @@ public class FileManager {
         } else {
             Cache.put(key,new TreePointerToQ(null, value));
         }
-        if(Cache.size()>500000){
+        if(Cache.size()>50000){
             PushTermsToDisk();
         }
     }

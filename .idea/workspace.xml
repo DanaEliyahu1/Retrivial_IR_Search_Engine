@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0f921457-46cd-4350-bc0e-a504e616ee8d" name="Default Changelist" comment="started indexing&#10;fixed1 in readfile&#10;fixed1 in indexer">
+    <list default="true" id="0f921457-46cd-4350-bc0e-a504e616ee8d" name="Default Changelist" comment="added await termantaion">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/FileManager/FileManager.class" afterPath="$PROJECT_DIR$/target/classes/FileManager/FileManager.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/Parser/Parse.class" afterPath="$PROJECT_DIR$/target/classes/Parser/Parse.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/FileManager/PointerCache.class" afterPath="$PROJECT_DIR$/target/classes/FileManager/PointerCache.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/Parser/ReadFile.class" afterPath="$PROJECT_DIR$/target/classes/Parser/ReadFile.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/FileManager/FileManager.java" afterPath="$PROJECT_DIR$/src/main/java/FileManager/FileManager.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Indexer/Indexer.java" afterPath="$PROJECT_DIR$/src/main/java/Indexer/Indexer.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Parser/ReadFile.java" afterPath="$PROJECT_DIR$/src/main/java/Parser/ReadFile.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -87,7 +90,7 @@
       <file leaf-file-name="Parse.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Parser/Parse.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1175">
+            <state relative-caret-position="0">
               <caret line="53" column="9" lean-forward="false" selection-start-line="53" selection-start-column="9" selection-end-line="53" selection-end-column="9" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -100,10 +103,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Document.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Document.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/Parser/Document.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="725">
+            <state relative-caret-position="493">
               <caret line="38" column="113" lean-forward="false" selection-start-line="38" selection-start-column="113" selection-end-line="38" selection-end-column="113" />
               <folding />
             </state>
@@ -113,7 +116,7 @@
       <file leaf-file-name="main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/GUI/main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="350">
+            <state relative-caret-position="238">
               <caret line="23" column="5" lean-forward="false" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
               <folding />
             </state>
@@ -123,7 +126,7 @@
       <file leaf-file-name="GetPathController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/GUI/GetPathController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2900">
+            <state relative-caret-position="138">
               <caret line="133" column="0" lean-forward="false" selection-start-line="133" selection-start-column="0" selection-end-line="133" selection-end-column="0" />
               <folding />
             </state>
@@ -133,16 +136,12 @@
       <file leaf-file-name="FileManager.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/FileManager/FileManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1025">
-              <caret line="89" column="0" lean-forward="false" selection-start-line="89" selection-start-column="0" selection-end-line="89" selection-end-column="0" />
+            <state relative-caret-position="374">
+              <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="method#FileManager#0;class#FileManager#0" expanded="false" />
-                <element signature="method#geturl#0;class#FileManager#0" expanded="false" />
-                <element signature="method#AllTermToDisk#0;class#FileManager#0" expanded="false" />
                 <element signature="method#DocPosting#0;class#FileManager#0" expanded="false" />
                 <element signature="method#CitiesToDisk#0;class#FileManager#0" expanded="false" />
-                <element signature="method#SetCapitalToLoweCasePosting#0;class#FileManager#0" expanded="false" />
                 <element signature="class#PointerCache#0" expanded="false" />
                 <element signature="class#TreePointerToQ#0" expanded="false" />
               </folding>
@@ -153,18 +152,18 @@
       <file leaf-file-name="ReadFile.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Parser/ReadFile.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1800">
-              <caret line="78" column="62" lean-forward="false" selection-start-line="78" selection-start-column="62" selection-end-line="78" selection-end-column="62" />
+            <state relative-caret-position="1378">
+              <caret line="97" column="0" lean-forward="true" selection-start-line="97" selection-start-column="0" selection-end-line="97" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Indexer.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Indexer.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Indexer/Indexer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="32" column="30" lean-forward="false" selection-start-line="32" selection-start-column="30" selection-end-line="32" selection-end-column="30" />
+            <state relative-caret-position="697">
+              <caret line="50" column="21" lean-forward="false" selection-start-line="50" selection-start-column="21" selection-end-line="50" selection-end-column="21" />
               <folding />
             </state>
           </provider>
@@ -192,9 +191,9 @@
       <find>TokenT</find>
       <find>PriceT</find>
       <find>syst</find>
-      <find>dele</find>
       <find>deleti</find>
       <find>*</find>
+      <find>dele</find>
     </findStrings>
   </component>
   <component name="Git.Rebase.Settings">
@@ -230,9 +229,9 @@
         <option value="$PROJECT_DIR$/src/main/resources/GetPath.fxml" />
         <option value="$PROJECT_DIR$/src/main/java/GUI/GetPathController.java" />
         <option value="$PROJECT_DIR$/src/main/java/Parser/Parse.java" />
-        <option value="$PROJECT_DIR$/src/main/java/FileManager/FileManager.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Indexer/Indexer.java" />
         <option value="$PROJECT_DIR$/src/main/java/Parser/ReadFile.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Indexer/Indexer.java" />
+        <option value="$PROJECT_DIR$/src/main/java/FileManager/FileManager.java" />
       </list>
     </option>
   </component>
@@ -285,8 +284,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="AndroidView" />
       <pane id="PackagesPane">
         <subPane>
@@ -325,6 +322,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -394,6 +392,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -406,7 +405,7 @@
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
-    <property name="SearchEverywhereHistoryKey" value="font&#9;ACTION&#9;EditorIncreaseFontSize" />
+    <property name="SearchEverywhereHistoryKey" value="font&#9;PSI&#9;JAVA://java.awt.MenuComponent#font" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RunDashboard">
@@ -713,7 +712,14 @@
       <option name="project" value="LOCAL" />
       <updated>1543186052481</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="deleted priority queue">
+      <created>1543234910627</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1543234910627</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -730,6 +736,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -739,7 +746,7 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.46934462" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22832981" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -818,24 +825,11 @@
     <MESSAGE value="capslock&#10;end indexing function&#10;capital letter to disk in file manager&#10;get url&#10;number file\capital letter file&#10;&#10;BEFORE RUN" />
     <MESSAGE value="fix abc filies" />
     <MESSAGE value="started indexing&#10;fixed1 in readfile&#10;fixed1 in indexer" />
-    <option name="LAST_COMMIT_MESSAGE" value="started indexing&#10;fixed1 in readfile&#10;fixed1 in indexer" />
+    <MESSAGE value="deleted priority queue" />
+    <option name="LAST_COMMIT_MESSAGE" value="deleted priority queue" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/Indexer/Indexer.java</url>
-          <line>124</line>
-          <properties />
-          <option name="timeStamp" value="169" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/Indexer/Indexer.java</url>
-          <line>126</line>
-          <properties />
-          <option name="timeStamp" value="170" />
-        </line-breakpoint>
-      </breakpoints>
       <option name="time" value="195" />
     </breakpoint-manager>
     <watches-manager />
@@ -845,14 +839,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/Parser/ReadFile.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="38" column="0" lean-forward="false" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Parser/TermInfo.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
@@ -883,12 +869,8 @@
           <caret line="14" column="23" lean-forward="true" selection-start-line="14" selection-start-column="23" selection-end-line="14" selection-end-column="23" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#FileManager#0;class#FileManager#0" expanded="false" />
-            <element signature="method#geturl#0;class#FileManager#0" expanded="false" />
-            <element signature="method#AllTermToDisk#0;class#FileManager#0" expanded="false" />
             <element signature="method#DocPosting#0;class#FileManager#0" expanded="false" />
             <element signature="method#CitiesToDisk#0;class#FileManager#0" expanded="false" />
-            <element signature="method#SetCapitalToLoweCasePosting#0;class#FileManager#0" expanded="false" />
             <element signature="class#PointerCache#0" expanded="false" />
             <element signature="class#TreePointerToQ#0" expanded="false" />
           </folding>
@@ -975,12 +957,8 @@
           <caret line="31" column="30" lean-forward="false" selection-start-line="31" selection-start-column="30" selection-end-line="31" selection-end-column="30" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#FileManager#0;class#FileManager#0" expanded="false" />
-            <element signature="method#geturl#0;class#FileManager#0" expanded="false" />
-            <element signature="method#AllTermToDisk#0;class#FileManager#0" expanded="false" />
             <element signature="method#DocPosting#0;class#FileManager#0" expanded="false" />
             <element signature="method#CitiesToDisk#0;class#FileManager#0" expanded="false" />
-            <element signature="method#SetCapitalToLoweCasePosting#0;class#FileManager#0" expanded="false" />
             <element signature="class#PointerCache#0" expanded="false" />
             <element signature="class#TreePointerToQ#0" expanded="false" />
           </folding>
@@ -1062,12 +1040,8 @@
           <caret line="117" column="13" lean-forward="true" selection-start-line="117" selection-start-column="13" selection-end-line="117" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#FileManager#0;class#FileManager#0" expanded="false" />
-            <element signature="method#geturl#0;class#FileManager#0" expanded="false" />
-            <element signature="method#AllTermToDisk#0;class#FileManager#0" expanded="false" />
             <element signature="method#DocPosting#0;class#FileManager#0" expanded="false" />
             <element signature="method#CitiesToDisk#0;class#FileManager#0" expanded="false" />
-            <element signature="method#SetCapitalToLoweCasePosting#0;class#FileManager#0" expanded="false" />
             <element signature="class#PointerCache#0" expanded="false" />
             <element signature="class#TreePointerToQ#0" expanded="false" />
           </folding>
@@ -1190,7 +1164,6 @@
       <provider editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="17" column="45" lean-forward="false" selection-start-line="17" selection-start-column="45" selection-end-line="17" selection-end-column="45" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1217,30 +1190,14 @@
         <state relative-caret-position="2045">
           <caret line="110" column="0" lean-forward="true" selection-start-line="110" selection-start-column="0" selection-end-line="110" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Parser/Document.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="725">
-          <caret line="38" column="113" lean-forward="false" selection-start-line="38" selection-start-column="113" selection-end-line="38" selection-end-column="113" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/GUI/main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="23" column="5" lean-forward="false" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Parser/Parse.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1175">
+        <state relative-caret-position="0">
           <caret line="53" column="9" lean-forward="false" selection-start-line="53" selection-start-column="9" selection-end-line="53" selection-end-column="9" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -1252,18 +1209,38 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_131/src.zip!/java/awt/MenuComponent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="243">
+          <caret line="82" column="22" lean-forward="true" selection-start-line="82" selection-start-column="22" selection-end-line="82" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Indexer/Indexer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="697">
+          <caret line="50" column="21" lean-forward="false" selection-start-line="50" selection-start-column="21" selection-end-line="50" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Parser/ReadFile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1378">
+          <caret line="97" column="0" lean-forward="true" selection-start-line="97" selection-start-column="0" selection-end-line="97" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/FileManager/FileManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1025">
-          <caret line="89" column="0" lean-forward="false" selection-start-line="89" selection-start-column="0" selection-end-line="89" selection-end-column="0" />
+        <state relative-caret-position="374">
+          <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#FileManager#0;class#FileManager#0" expanded="false" />
-            <element signature="method#geturl#0;class#FileManager#0" expanded="false" />
-            <element signature="method#AllTermToDisk#0;class#FileManager#0" expanded="false" />
             <element signature="method#DocPosting#0;class#FileManager#0" expanded="false" />
             <element signature="method#CitiesToDisk#0;class#FileManager#0" expanded="false" />
-            <element signature="method#SetCapitalToLoweCasePosting#0;class#FileManager#0" expanded="false" />
             <element signature="class#PointerCache#0" expanded="false" />
             <element signature="class#TreePointerToQ#0" expanded="false" />
           </folding>
@@ -1272,24 +1249,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/GUI/GetPathController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2900">
+        <state relative-caret-position="138">
           <caret line="133" column="0" lean-forward="false" selection-start-line="133" selection-start-column="0" selection-end-line="133" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Parser/ReadFile.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/GUI/main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1800">
-          <caret line="78" column="62" lean-forward="false" selection-start-line="78" selection-start-column="62" selection-end-line="78" selection-end-column="62" />
+        <state relative-caret-position="238">
+          <caret line="23" column="5" lean-forward="false" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Indexer/Indexer.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/Parser/Document.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="32" column="30" lean-forward="false" selection-start-line="32" selection-start-column="30" selection-end-line="32" selection-end-column="30" />
+        <state relative-caret-position="493">
+          <caret line="38" column="113" lean-forward="false" selection-start-line="38" selection-start-column="113" selection-end-line="38" selection-end-column="113" />
           <folding />
         </state>
       </provider>

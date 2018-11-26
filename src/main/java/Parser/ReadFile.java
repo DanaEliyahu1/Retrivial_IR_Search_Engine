@@ -7,6 +7,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 public class ReadFile {
 
@@ -87,6 +88,14 @@ public class ReadFile {
             }
 
         }
+        System.out.println("waiting for finishing");
+        try {
+            threadpool.awaitTermination(40, TimeUnit.MINUTES);
+            System.out.println("finished");
+        } catch (InterruptedException e) {
+            System.out.println("time out~~");
+        }
+
         Parse.indexer.FinishIndexing();
 
 

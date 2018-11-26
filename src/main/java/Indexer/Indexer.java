@@ -49,7 +49,6 @@ public class Indexer {
                         counter=entry.getValue().TermCount;
                         mostTf=entry.getKey();
                     }
-
                 }
                 for (Map.Entry<String, TermInfo> entry : TermsMap.entrySet()) {
                     AddTermToDic(entry.getKey(), entry.getValue(),DocID);
@@ -70,7 +69,6 @@ public class Indexer {
             }
         }
         System.out.println("end index");
-
     }
 
     private void AddTermToCapital(String key, TermInfo value, String DocID) {
@@ -154,55 +152,4 @@ public class Indexer {
         }
     }
 
-    // Java program for implementation of QuickSort
-        /* This function takes last element as pivot,
-        places the pivot element at its correct
-        position in sorted array, and places all
-        smaller (smaller than pivot) to left of
-        pivot and all greater elements to right
-        of pivot *//*
-         int partition(String arr[], int low, int high)
-        {
-            int pivot =Integer.parseInt(arr[high].split(",")[1]);
-            int i = (low-1); // index of smaller element
-            for (int j=low; j<=high-1; j++)
-            {
-                // If current element is smaller than or
-                // equal to pivot
-                if (Integer.parseInt(arr[j].split(",")[1]) <= pivot)
-                {
-                    i++;
-
-                    // swap arr[i] and arr[j]
-                    String temp = arr[i];
-                    arr[i] = arr[j];
-                    arr[j] = temp;
-                }
-            }
-
-            // swap arr[i+1] and arr[high] (or pivot)
-            String temp = arr[i+1];
-            arr[i+1] = arr[high];
-            arr[high] = temp;
-
-            return i+1;
-        }*/
-
-        /* The main function that implements QuickSort()
-        arr[] --> Array to be sorted,
-        low --> Starting index,
-        high --> Ending index */
-     /*   void qSort(String arr[], int low, int high)
-        {
-            if (low < high)
-            {
-
-                int pi = partition(arr, low, high);
-
-                // Recursively sort elements before
-                // partition and after partition
-                qSort(arr, low, pi-1);
-                qSort(arr, pi+1, high);
-            }
-        }*/
     }
