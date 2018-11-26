@@ -137,7 +137,7 @@ public class GetPathController {
             long duratation=end-start;
             double minutes= (duratation/60000000000.0);
             showAlert("Total Documents indexed "+FileManager.DocNum+". Total Unique terms indexed "+Controller.Termunique+". "+" runtime "+minutes+"minutes.");
-
+            FileManager.DocNum=0;
 
     }
     public void choosestopwords(){

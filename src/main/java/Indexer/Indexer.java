@@ -41,7 +41,7 @@ public class Indexer {
         File[] ListOfFile= folder.listFiles();
         for (int i = 0; i <ListOfFile.length ; i++) {
             String key= ListOfFile[i].getName();
-            key=key.substring(0,key.length()-3);
+            key=key.substring(0,key.length()-4);
             CityIndex.put(key,null);
         }
         OkHttpClient client = new OkHttpClient();// currencies???
@@ -57,13 +57,16 @@ public class Indexer {
             JSONArray jsonArray =(JSONArray) jsonParser.parse(data);
             for (int i = 0; i <jsonArray.size() ; i++) {
                 JSONObject curr = (JSONObject) jsonArray.get(i);
-                System.out.println((String)curr.get("capital"));
-                if(CityIndex.containsKey((String)curr.get("capital"))){
-                    String currency =((JSONArray)curr.get("currencies")).get(0).toString();
-                    long population = ((long)curr.get("population"))/1000000;
+                String Cityname = ((String) curr.get("capital")).split(" ")[0];
+                System.out.println(Cityname);
+                if(CityIndex.containsKey(Cityname)){
+                    JSONArray curr1= (JSONArray) curr.get("currencies");
+                 JSONObject currency = (JSONObject) curr1.get(0);
+                  //  String currency =((JSONObject)((JSONArray)curr.get("currencies")).get("code")).toString();
+                    double population = ((long)curr.get("population"))/1000000.0;
                     String populations= "M"+Math.round(population*100)/100;
-                    String[] CityInfo = {(String)curr.get("name"),currency,populations};
-                    CityIndex.put((String)curr.get("capital"),CityInfo);
+                    String[] CityInfo = {(String)curr.get("name"),(String)currency.get("code"),populations};
+                    CityIndex.put(Cityname,CityInfo);
                 }
             }
 
@@ -72,7 +75,7 @@ public class Indexer {
         }
     }
 
-    public void ResultToFile(String DocID, TreeMap<String, TermInfo> SpecialTermsMap, TreeMap<String, TermInfo> TermsMap, String City, TreeMap<String, TermInfo> capitalLetterWords){
+    public void ResultToFile(String DocID, TreeMap<String, TermInfo> SpecialTermsMap, TreeMap<String, TermInfo> TermsMap, String City, TreeMap<String, TermInfo> capitalLetterWords, String cityplaces){
                 int counter=0;
                 String mostTf="";
                 for (Map.Entry<String, TermInfo> entry : SpecialTermsMap.entrySet()) {
@@ -91,7 +94,7 @@ public class Indexer {
                 }
                 int uniqueterms=SpecialTermsMap.size() + TermsMap.size();
 
-                fileManager.DocPosting(DocID,City,counter,uniqueterms,mostTf);
+                fileManager.DocPosting(DocID,City,counter,uniqueterms,mostTf,cityplaces);
         for (Map.Entry<String, TermInfo> entry : capitalLetterWords.entrySet()) {
             if(!Index.containsKey(entry.getKey().toLowerCase())){
                AddTermToCapital(entry.getKey(),entry.getValue(),DocID);

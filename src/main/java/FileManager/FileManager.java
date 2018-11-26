@@ -44,10 +44,10 @@ public class FileManager {
     public void AllTermToDisk() throws InterruptedException {
        PushTermsToDisk(); //because of error (last element)
      }
-    public void DocPosting(String ID, String City, int maxtf, int uniqueterms, String mostTf){
+    public void DocPosting(String ID, String City, int maxtf, int uniqueterms, String mostTf, String cityplaces){
         DocNum++;
         AddDocToCityIndex(ID,City);
-        DocInfo+=("|"+ ID+","+ City + "," + maxtf+ ","+ uniqueterms+ ","+ mostTf+"\n");
+        DocInfo+=("|"+ ID+","+ City + "," + maxtf+ ","+ uniqueterms+ ","+ mostTf+","+cityplaces);
         if(DocInfo.length()>1000000){
             AllDocumentsToDisk();
         }

@@ -35,10 +35,12 @@ public class Parse extends Thread {
     ArrayList<String> Tokens;
     int i;
     String DocID;
+    String Cityplaces;
 
     public void parse(Document Doc) {
         this.DocID=Doc.ID;
         this.City=Doc.City;
+        Cityplaces = "";
         Tokens = Doc.GetTokens();
         int size=Tokens.size()-1;
         for (i = 0; i <size ; i++) {
@@ -52,7 +54,7 @@ public class Parse extends Thread {
 
         }
        // System.out.println("indexer");
-    indexer.ResultToFile( DocID,SpecialTermsMap, TermsMap, City,CapitalLetterWords);
+    indexer.ResultToFile( DocID,SpecialTermsMap, TermsMap, City,CapitalLetterWords,Cityplaces);
 /*
         for (Map.Entry<String, TermInfo> entry : SpecialTermsMap.entrySet()) {
             System.out.println("Key: " + entry.getKey() + ". Value: " + entry.getValue());
@@ -65,6 +67,9 @@ public class Parse extends Thread {
     private boolean ParseRules() {
         if (StopWord.contains(Tokens.get(i))) {
             return false;
+        }
+        if(Tokens.get(i).equals(this.City)){
+            Cityplaces+=("-"+i);
         }
         if (Tokens.get(i).contains("-")) {
             AddTermToTree(false,Tokens.get(i).toLowerCase());
