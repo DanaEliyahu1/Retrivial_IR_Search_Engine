@@ -14,7 +14,6 @@ import java.util.concurrent.TimeUnit;
 public class FileManager {
 
     TreeMap<String, TreePointerToQ> Cache;
-    PriorityQueue<PointerCache> Q;
     int PriorityAll;
     HashMap<String,String> cities;
     public static int DocNum;
@@ -25,7 +24,6 @@ public class FileManager {
 
     public FileManager(String docId, String path) {
         Cache=new TreeMap<String,TreePointerToQ>();
-        Q=new PriorityQueue<PointerCache>((x,y)->{ return (int)(x.priority-y.priority);});
         cities=new HashMap<String,String>();
         PriorityAll=0;
         DocInfo="";
@@ -46,7 +44,7 @@ public class FileManager {
     }
 
     public void AllTermToDisk() throws InterruptedException {
-       PushTermsToDisk(Cache.size()-1); //because of error (last element)
+       PushTermsToDisk(); //because of error (last element)
      }
     public void DocPosting(String ID, String City, int maxtf, int uniqueterms, String mostTf){
         DocNum++;
@@ -90,26 +88,19 @@ public class FileManager {
 
     public void AddToPosting(String key, TermInfo value, String docID,int line) {
         if (Cache.containsKey(key)) {
-            Cache.get(key).value=Cache.get(key).value + "|" + docID + "," + value.toString();
-            Cache.get(key).pc.priority++;
-            Cache.put(key, Cache.get(key));
+            Cache.put(key,new TreePointerToQ(null,Cache.get(key).value + "|" + docID + "," + value.toString()));
         } else {
-            PointerCache newpc=new PointerCache(key, PriorityAll);
-            Cache.put(key,new TreePointerToQ(newpc, "|" + docID + "," + value.toString()));
-            Q.add(newpc);
+            Cache.put(key,new TreePointerToQ(null, "|" + docID + "," + value.toString()));
         }
         if(Cache.size()>100000){
-            PushTermsToDisk(99900);
+            PushTermsToDisk();
         }
     }
 
-    private void PushTermsToDisk(int numOfTerms) {
+    private void PushTermsToDisk() {
         System.out.println("====DELETING");
-        TreeMap<String ,TreePointerToQ> TermToFile=new TreeMap<String,  TreePointerToQ>();
-        for (int j = 0; j <numOfTerms ; j++) {
-            TreePointerToQ Value=Cache.remove(Q.poll().pointerterm);
-            TermToFile.put(Value.pc.pointerterm,Value);
-        }
+        TreeMap<String ,TreePointerToQ> TermToFile=Cache;
+        Cache=new TreeMap<String, TreePointerToQ>();
         char currletter = '*';
         StringBuilder [] currentfile=null;
         for (Map.Entry<String, TreePointerToQ> entry : TermToFile.entrySet()) {
@@ -163,20 +154,16 @@ public class FileManager {
             Cache.get(key).pc.priority++;
             Cache.put(key, Cache.get(key));
         } else {
-            PointerCache newpc=new PointerCache(key, PriorityAll);
-            Cache.put(key,new TreePointerToQ(newpc, value));
-            Q.add(newpc);
+            Cache.put(key,new TreePointerToQ(null, value));
         }
         if(Cache.size()>500000){
-            PushTermsToDisk(499000);
+            PushTermsToDisk();
         }
     }
 
     public void AddCapitalLettersToDisk(TreeMap<String, String> capitalLetterPosting) {
         for (Map.Entry<String, String> entry : capitalLetterPosting.entrySet()) {
-            PointerCache newpc=new PointerCache(entry.getKey(), PriorityAll);
-            Cache.put(entry.getKey(),new TreePointerToQ(newpc, entry.getValue()));
-            Q.add(newpc);
+            Cache.put(entry.getKey(),new TreePointerToQ(null, entry.getValue()));
         }
 
     }

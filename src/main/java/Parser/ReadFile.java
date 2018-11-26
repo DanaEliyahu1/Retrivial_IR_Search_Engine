@@ -15,7 +15,7 @@ public class ReadFile {
     private ExecutorService threadpool;
     public ReadFile(String corpuspath) {
         this.corpuspath = corpuspath;
-        this.threadpool= Executors.newFixedThreadPool(1);
+        this.threadpool= Executors.newSingleThreadExecutor();
     }
 
     public Document[] GetDoc(String filename) {
