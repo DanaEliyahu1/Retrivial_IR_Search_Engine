@@ -8,9 +8,9 @@ import java.util.*;
 
 public class Parse extends Thread {
     public Parse(Document d) {
-        TermsMap=new TreeMap<String, TermInfo>() ;
-         SpecialTermsMap=new TreeMap<String, TermInfo>();
-        CapitalLetterWords=new TreeMap<String,TermInfo>();
+        TermsMap=new TreeMap<String, Integer>() ;
+         SpecialTermsMap=new TreeMap<String, Integer>();
+        CapitalLetterWords=new TreeMap<String,Integer>();
         this.d=d;
     }
 
@@ -23,14 +23,14 @@ public class Parse extends Thread {
     Document d;
     public static Indexer indexer;
     public static HashSet StopWord;
-    TreeMap<String, TermInfo> TermsMap;
-    TreeMap<String, TermInfo> SpecialTermsMap;
+    TreeMap<String,Integer> TermsMap;
+    TreeMap<String, Integer> SpecialTermsMap;
     public static Stemmer stemmer;
     public static HashSet Months;
     public static HashSet NumberHash;
     public static HashSet DollarHash;
     public static boolean isStemmig;
-    public TreeMap<String,TermInfo> CapitalLetterWords;
+    public TreeMap<String,Integer> CapitalLetterWords;
     static TreeSet<String> TermCollection ;
     ArrayList<String> Tokens;
     int i;
@@ -91,20 +91,24 @@ public class Parse extends Thread {
             } else if (Tokens.get(i + 1).equals("percent") || Tokens.get(i + 1).equals("percentage") || Tokens.get(i + 1).equals("%")) {
                 AddTermToTree(false,Tokens.get(i) + "%");
                 return true;
+            }else if (Tokens.get(i + 1).equals("feet") || Tokens.get(i + 1).equals("Feet") || Tokens.get(i + 1).equals("FEET")|| Tokens.get(i + 1).equals("FOOT")|| Tokens.get(i + 1).equals("foot")) {
+                AddTermToTree(false,Tokens.get(i) + " feet");
+                return true;
             }
             AddTermToTree(false,TokenToNum());
+            return false;
         } else if (Months.contains(Tokens.get(i)) && Character.isDigit(Tokens.get(i + 1).charAt(0))) {
             AddTermToTree(false,Tokens.get(i + 1) + "-" + TranslateMonths(i));
         } else if (Character.isUpperCase(Tokens.get(i).charAt(0))) {
             if(CapitalLetterWords.containsKey(Tokens.get(i))){
-                CapitalLetterWords.get(Tokens.get(i)).TermCount++;
+                CapitalLetterWords.put(Tokens.get(i),CapitalLetterWords.get(Tokens.get(i))+1);
             }
             else if(Tokens.get(i).contains("'s")){
                 AddTermToTree(false,Tokens.get(i).substring(0,Tokens.get(i).length()-1));
                 return false;
             }
             else {
-                CapitalLetterWords.put(Tokens.get(i),new TermInfo());
+                CapitalLetterWords.put(Tokens.get(i),0);
             }
         }
         else if(Tokens.get(i).charAt(0)=='$'){
@@ -289,18 +293,18 @@ public class Parse extends Thread {
         if(newtoken.equals("")) return;
         if(TreeMap){
         if(TermsMap.containsKey(newtoken)){
-            TermsMap.get(newtoken).TermCount++;
+            TermsMap.put(newtoken,TermsMap.get(newtoken)+1);
         }
         else {
-            TermsMap.put(newtoken,new TermInfo());
+            TermsMap.put(newtoken,0);
         }
         }
         else {
             if(SpecialTermsMap.containsKey(Token)){
-                SpecialTermsMap.get(Token).TermCount++;
+                SpecialTermsMap.put(Token,SpecialTermsMap.get(Token)+1);
             }
             else {
-                SpecialTermsMap.put(Token,new TermInfo());
+                SpecialTermsMap.put(Token,0);
             }
 
         }

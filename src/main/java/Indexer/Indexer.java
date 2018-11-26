@@ -2,7 +2,6 @@ package Indexer;
 
 import FileManager.FileManager;
 import GUI.Controller;
-import Parser.TermInfo;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import org.json.simple.JSONArray;
@@ -75,27 +74,27 @@ public class Indexer {
         }
     }
 
-    public void ResultToFile(String DocID, TreeMap<String, TermInfo> SpecialTermsMap, TreeMap<String, TermInfo> TermsMap, String City, TreeMap<String, TermInfo> capitalLetterWords, String cityplaces){
+    public void ResultToFile(String DocID, TreeMap<String, Integer> SpecialTermsMap, TreeMap<String, Integer> TermsMap, String City, TreeMap<String, Integer> capitalLetterWords, String cityplaces){
                 int counter=0;
                 String mostTf="";
-                for (Map.Entry<String, TermInfo> entry : SpecialTermsMap.entrySet()) {
+                for (Map.Entry<String, Integer> entry : SpecialTermsMap.entrySet()) {
                     AddTermToDic(entry.getKey(),entry.getValue(),DocID);
-                    if(counter<entry.getValue().TermCount){
-                        counter=entry.getValue().TermCount;
+                    if(counter<entry.getValue()){
+                        counter=entry.getValue();
                         mostTf=entry.getKey();
                     }
                 }
-                for (Map.Entry<String, TermInfo> entry : TermsMap.entrySet()) {
+                for (Map.Entry<String, Integer> entry : TermsMap.entrySet()) {
                     AddTermToDic(entry.getKey(), entry.getValue(),DocID);
-                    if (counter < entry.getValue().TermCount) {
-                        counter = entry.getValue().TermCount;
+                    if (counter < entry.getValue()) {
+                        counter = entry.getValue();
                         mostTf=entry.getKey();
                     }
                 }
                 int uniqueterms=SpecialTermsMap.size() + TermsMap.size();
 
                 fileManager.DocPosting(DocID,City,counter,uniqueterms,mostTf,cityplaces);
-        for (Map.Entry<String, TermInfo> entry : capitalLetterWords.entrySet()) {
+        for (Map.Entry<String, Integer> entry : capitalLetterWords.entrySet()) {
             if(!Index.containsKey(entry.getKey().toLowerCase())){
                AddTermToCapital(entry.getKey(),entry.getValue(),DocID);
             }
@@ -105,29 +104,29 @@ public class Indexer {
         }
     }
 
-    private void AddTermToCapital(String key, TermInfo value, String DocID) {
+    private void AddTermToCapital(String key, Integer value, String DocID) {
         if(Index.containsKey(key)){
             int [] setvalue=Index.get(key);
             setvalue[0]++;
-            setvalue[2]+=value.TermCount;
+            setvalue[2]+=value;
             CapitalLetterPosting.put(key,CapitalLetterPosting.get(key)+"|" + DocID + "," + value.toString());
         }
         else {
-            int [] setnewvalue={1,linenumber[27],value.TermCount};
+            int [] setnewvalue={1,linenumber[27],value};
             Index.put(key,setnewvalue);
             CapitalLetterPosting.put(key,"|" + DocID + "," + value.toString());
             linenumber[27]++;
         }
     }
 
-    private void AddTermToDic(String key, TermInfo value,String DocID) {
+    private void AddTermToDic(String key, Integer value,String DocID) {
         threadpool.execute(new Runnable() {
             @Override
             public void run() {
                 if(Index.containsKey(key)){
                     int [] setvalue=Index.get(key);
                     setvalue[0]++;
-                    setvalue[2]+=value.TermCount;
+                    setvalue[2]+=value;
                     fileManager.AddToPosting(key,value,DocID,setvalue[1]);
                 }
                 else {
@@ -137,7 +136,7 @@ public class Indexer {
                     }else{
                         line=linenumber[26];
                     }
-                    int [] setnewvalue={1,line,value.TermCount};
+                    int [] setnewvalue={1,line,value};
                     Index.put(key,setnewvalue);
                     fileManager.AddToPosting(key,value,DocID,line);
                     if(Character.isLetter(key.charAt(0))){

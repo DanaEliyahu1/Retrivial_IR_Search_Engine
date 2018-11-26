@@ -1,15 +1,12 @@
 package FileManager;
 
 import Indexer.Indexer;
-import Parser.TermInfo;
+
 import java.io.*;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
 
 public class FileManager {
 
@@ -84,11 +81,11 @@ public class FileManager {
 
     }
 
-    public void AddToPosting(String key, TermInfo value, String docID,int line) {
+    public void AddToPosting(String key, Integer value, String docID,int line) {
         if (Cache.containsKey(key)) {
-            Cache.put(key,new TreePointerToQ(null,Cache.get(key).value + "|" + docID + "," + value.toString()));
+            Cache.put(key,new TreePointerToQ(null,Cache.get(key).value + "|" + docID + "," + value));
         } else {
-            Cache.put(key,new TreePointerToQ(null, "|" + docID + "," + value.toString()));
+            Cache.put(key,new TreePointerToQ(null, "|" + docID + "," + value));
         }
         if(Cache.size()>100000){
             PushTermsToDisk();
