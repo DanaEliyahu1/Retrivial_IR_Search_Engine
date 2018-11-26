@@ -78,10 +78,10 @@ public class Indexer {
             CapitalLetterPosting.put(key,CapitalLetterPosting.get(key)+"|" + DocID + "," + value.toString());
         }
         else {
-            int [] setnewvalue={1,linenumber[28],value.TermCount};
+            int [] setnewvalue={1,linenumber[27],value.TermCount};
             Index.put(key,setnewvalue);
             CapitalLetterPosting.put(key,"|" + DocID + "," + value.toString());
-            linenumber[28]++;
+            linenumber[27]++;
         }
     }
 

@@ -37,7 +37,6 @@ public class Parse extends Thread {
     String DocID;
 
     public void parse(Document Doc) {
-        System.out.println("Parse");
         this.DocID=Doc.ID;
         this.City=Doc.City;
         Tokens = Doc.GetTokens();
@@ -94,6 +93,13 @@ public class Parse extends Thread {
         } else if (Character.isUpperCase(Tokens.get(i).charAt(0))) {
             if(CapitalLetterWords.containsKey(Tokens.get(i))){
                 CapitalLetterWords.get(Tokens.get(i)).TermCount++;
+            }
+            else if(Tokens.get(i).contains("'s")){
+                AddTermToTree(false,Tokens.get(i).substring(0,Tokens.get(i).length()-1));
+                return false;
+            }
+            else {
+                CapitalLetterWords.put(Tokens.get(i),new TermInfo());
             }
         }
         else if(Tokens.get(i).charAt(0)=='$'){

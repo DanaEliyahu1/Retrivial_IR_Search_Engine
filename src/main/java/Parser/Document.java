@@ -29,39 +29,39 @@ public class Document {
         //String content = new String(Files.readAllBytes(Paths.get(path)), Charset.defaultCharset());
         //String[] text = content.split("<TEXT>");
         //String cutend=text[1].split("</TEXT>")[0];
-        String[] Tokens = Text.split(" |\\--");
+        String[] Tokens = Text.split("--|\\s+");
         return eliminate(Tokens);
     }
 
     public ArrayList<String> eliminate(String[] token) {
         ArrayList<String> TokenArr = new ArrayList<>();
         for (int i = 0; i < token.length; i++) {
-            token[i] = token[i].replaceAll("\\?|\\*|\\`|\\;|\\?|\\:|\\||\\>|\\<|\\^|\\\"|\\\\||\\\n|\\,|\\+","");
+            token[i] = token[i].replaceAll("\\?|\\*|\\`|\\;|\\?|\\:|\\||\\>|\\<|\\^|\\\"|\\\\||\\|\\,|\\+|\\(|\\[|\\)|\\]","");
             if (!(token[i].equals(""))) {
 
-                while (!token[i].equals("") && (token[i].charAt(0) == '\n' || token[i].charAt(0) == '[' || token[i].charAt(0) == '(' || token[i].charAt(0) == '\"'  || token[i].charAt(0) == '\'' )) {
+                while (!token[i].equals("") &&  (  token[i].charAt(0) == '\"'  || token[i].charAt(0) == '\'' )) {
                     token[i] = token[i].substring(1);
                 }
-                while (!token[i].equals("") && (token[i].charAt(token[i].length() - 1) == '\n' || token[i].charAt(token[i].length() - 1) == ']' || token[i].charAt(token[i].length() - 1) == ')' || token[i].charAt(token[i].length() - 1) == ',' || token[i].charAt(token[i].length() - 1) == '.'   || token[i].charAt(token[i].length() - 1) == '\"' || token[i].charAt(token[i].length() - 1) == '\''  || token[i].charAt(token[i].length() - 1) == '-')) {
+                while (!token[i].equals("") &&  (  token[i].charAt(token[i].length() - 1) == ',' || token[i].charAt(token[i].length() - 1) == '.'   || token[i].charAt(token[i].length() - 1) == '\"' || token[i].charAt(token[i].length() - 1) == '\''  || token[i].charAt(token[i].length() - 1) == '-')) {
                     token[i] = token[i].substring(0, token[i].length() - 1);
                 }
                 if (token[i].contains("/") && Character.isLetter(token[i].charAt(0))) {
                     String[] words = token[i].split("/");
                     for (int j = 0; j < words.length; j++) {
-                        token[i] = words[j].replaceAll("\\?|\\*|\\`|\\;|\\?|\\:|\\||\\>|\\<|\\^|\\\"|\\\\||\\\n|\\,|\\+","");
-                        while (!token[i].equals("") && (token[i].charAt(0) == '\n' || token[i].charAt(0) == '[' || token[i].charAt(0) == '(' || token[i].charAt(0) == '\"' || token[i].charAt(0) == '\'' || token[i].charAt(0) == '.')) {
+                        token[i] = words[j].replaceAll("\\?|\\*|\\`|\\;|\\?|\\:|\\||\\>|\\<|\\^|\\\"|\\\\||\\|\\,|\\+|\\(|\\[|\\)|\\]|\\=","");
+                        while (!token[i].equals("") && ( token[i].charAt(0) == '\"' || token[i].charAt(0) == '\'' || token[i].charAt(0) == '.')) {
                             token[i] = token[i].substring(1);
                         }
-                        while (!token[i].equals("") && (token[i].charAt(token[i].length() - 1) == '\n' || token[i].charAt(token[i].length() - 1) == ']' || token[i].charAt(token[i].length() - 1) == ')' || token[i].charAt(token[i].length() - 1) == ',' || token[i].charAt(token[i].length() - 1) == '.'  || token[i].charAt(token[i].length() - 1) == '\"' || token[i].charAt(token[i].length() - 1) == '\'' || token[i].charAt(token[i].length() - 1) == '-')) {
+                        while (!token[i].equals("") && (  token[i].charAt(token[i].length() - 1) == ',' || token[i].charAt(token[i].length() - 1) == '.'  || token[i].charAt(token[i].length() - 1) == '\"' || token[i].charAt(token[i].length() - 1) == '\'' || token[i].charAt(token[i].length() - 1) == '-')) {
                             token[i] = token[i].substring(0, token[i].length() - 1);
                         }
-                        if (!token[i].equals("")) {
+                        if (token[i].length()>1) {
                             TokenArr.add(token[i]);
                         }
                     }
 
                 }
-                else if (!token[i].equals("")){
+                else if (token[i].length()>1){
                     TokenArr.add(token[i]);
                 }
             }
