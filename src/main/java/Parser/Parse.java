@@ -1,9 +1,7 @@
 package Parser;
 
-import FileManager.FileManager;
 import Indexer.Indexer;
 
-import java.io.File;
 import java.util.*;
 
 public class Parse extends Thread {
@@ -41,7 +39,7 @@ public class Parse extends Thread {
         this.DocID=Doc.ID;
         this.City=Doc.City;
         Cityplaces = "";
-        Tokens = Doc.GetTokens();
+        Tokens = Doc.TextToToken();
         int size=Tokens.size()-1;
         for (i = 0; i <size ; i++) {
             try {
@@ -296,7 +294,7 @@ public class Parse extends Thread {
             TermsMap.put(newtoken,TermsMap.get(newtoken)+1);
         }
         else {
-            TermsMap.put(newtoken,0);
+            TermsMap.put(newtoken,1);
         }
         }
         else {
@@ -304,7 +302,7 @@ public class Parse extends Thread {
                 SpecialTermsMap.put(Token,SpecialTermsMap.get(Token)+1);
             }
             else {
-                SpecialTermsMap.put(Token,0);
+                SpecialTermsMap.put(Token,1);
             }
 
         }

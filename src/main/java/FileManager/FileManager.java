@@ -10,8 +10,7 @@ import java.util.*;
 
 public class FileManager {
 
-    TreeMap<String, TreePointerToQ> Cache;
-    int PriorityAll;
+    TreeMap<String, TreeObject> Cache;
     HashMap<String,String> cities;
     public static int DocNum;
     public static String postingpath;
@@ -19,15 +18,14 @@ public class FileManager {
 
 
     public FileManager(String docId, String path) {
-        Cache=new TreeMap<String,TreePointerToQ>();
+        Cache=new TreeMap<String, TreeObject>();
         cities=new HashMap<String,String>();
-        PriorityAll=0;
         DocInfo="";
         postingpath=path;
     }
 
-    public static String geturl(String pointer){
-        char firstLetter=pointer.charAt(0);
+    public static String geturl(String Term){
+        char firstLetter=Term.charAt(0);
         if(Character.isLetter(firstLetter)&&Character.isLowerCase(firstLetter)){
             return postingpath+"\\Indexing\\"+firstLetter+".txt";
         }else if(Character.isDigit(firstLetter)||firstLetter=='$'||firstLetter=='%'){
@@ -39,7 +37,7 @@ public class FileManager {
     }
 
     public void AllTermToDisk() throws InterruptedException {
-       PushTermsToDisk(); //because of error (last element)
+       PushTermsToDisk();
      }
     public void DocPosting(String ID, String City, int maxtf, int uniqueterms, String mostTf, String cityplaces){
         DocNum++;
@@ -83,9 +81,9 @@ public class FileManager {
 
     public void AddToPosting(String key, Integer value, String docID,int line) {
         if (Cache.containsKey(key)) {
-            Cache.put(key,new TreePointerToQ(null,Cache.get(key).value + "|" + docID + "," + value));
+            Cache.put(key,new TreeObject(Cache.get(key).value + "|" + docID + "," + value,line));
         } else {
-            Cache.put(key,new TreePointerToQ(null, "|" + docID + "," + value));
+            Cache.put(key,new TreeObject("|" + docID + "," + value,line));
         }
         if(Cache.size()>100000){
             PushTermsToDisk();
@@ -94,11 +92,11 @@ public class FileManager {
 
     private void PushTermsToDisk() {
         System.out.println("====DELETING");
-        TreeMap<String ,TreePointerToQ> TermToFile=Cache;
-        Cache=new TreeMap<String, TreePointerToQ>();
+        TreeMap<String , TreeObject> TermToFile=Cache;
+        Cache=new TreeMap<String,TreeObject>();
         char currletter = '*';
         StringBuilder [] currentfile=null;
-        for (Map.Entry<String, TreePointerToQ> entry : TermToFile.entrySet()) {
+        for (Map.Entry<String, TreeObject> entry : TermToFile.entrySet()) {
             if(entry.getKey().charAt(0)!=currletter){
                 if(currentfile!=null){
                     StringJoiner sj=new StringJoiner("\n");
@@ -117,12 +115,12 @@ public class FileManager {
                 try {
                     String[] arrFromFile=new String(Files.readAllBytes(Paths.get(geturl(""+currletter))), Charset.defaultCharset()).split("\n");
                     if(Character.isLetter(currletter)&&Character.isLowerCase(currletter)){
-                        currentfile=new StringBuilder[Indexer.linenumber[currletter-97]];
+                        currentfile=new StringBuilder[Indexer.linenumber[currletter-97]+1];
                     }else if(Character.isLetter(currletter)&&Character.isUpperCase(currletter)){
-                        currentfile=new StringBuilder[Indexer.linenumber[27]];
+                        currentfile=new StringBuilder[Indexer.linenumber[27]+1];
                     }
                     else{
-                        currentfile=new StringBuilder[Indexer.linenumber[26]];
+                        currentfile=new StringBuilder[Indexer.linenumber[26]+1];
                     }
                     for (int j = 0; j < arrFromFile.length; j++) {
                         currentfile[j]=new StringBuilder(arrFromFile[j]);
@@ -136,6 +134,8 @@ public class FileManager {
                 }
 
             }
+            System.out.println(""+currletter + currentfile.length);
+
             currentfile[entry.getValue().lineNumber].append(entry.getValue().value);
 
 
@@ -146,19 +146,18 @@ public class FileManager {
     public void SetCapitalToLoweCasePosting(String key, String value) {
         if (Cache.containsKey(key)) {
             Cache.get(key).value=Cache.get(key).value +value;
-            Cache.get(key).pc.priority++;
             Cache.put(key, Cache.get(key));
         } else {
-            Cache.put(key,new TreePointerToQ(null, value));
+            Cache.put(key,new TreeObject(value,0));
         }
         if(Cache.size()>50000){
             PushTermsToDisk();
         }
     }
 
-    public void AddCapitalLettersToDisk(TreeMap<String, String> capitalLetterPosting) {
+    public void AddCapitalLettersToCache(TreeMap<String, String> capitalLetterPosting) {
         for (Map.Entry<String, String> entry : capitalLetterPosting.entrySet()) {
-            Cache.put(entry.getKey(),new TreePointerToQ(null, entry.getValue()));
+            Cache.put(entry.getKey(),new TreeObject(entry.getValue(),0));
         }
 
     }
@@ -181,22 +180,12 @@ public class FileManager {
     }
 }
 
-class PointerCache {
-    int priority;
-    String pointerterm;
-
-    public PointerCache(String pointerterm, int priority) {
-        this.pointerterm = pointerterm;
-        this.priority = priority;
-    }
-}
-class TreePointerToQ{
-    public PointerCache pc;
+class TreeObject {
     public String value;
     public int lineNumber;
 
-    public TreePointerToQ(PointerCache pc, String value) {
-        this.pc = pc;
+    public TreeObject(String value, int lineNumber) {
+        this.lineNumber=lineNumber;
         this.value = value;
     }
 }

@@ -2,11 +2,8 @@ package GUI;
 
 import javafx.scene.text.Text;
 
-public class ShowDictionary {
+public class ShowDictionaryController {
 
     public Text text;
-
-
-
 
 }

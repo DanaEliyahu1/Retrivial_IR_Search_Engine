@@ -1,15 +1,6 @@
 package Parser;
 
-import javax.print.Doc;
-import javax.xml.soap.Text;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.nio.charset.Charset;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Document {
     String City;
@@ -25,15 +16,12 @@ public class Document {
 
     }
 
-    public ArrayList<String> GetTokens() {
-        //String content = new String(Files.readAllBytes(Paths.get(path)), Charset.defaultCharset());
-        //String[] text = content.split("<TEXT>");
-        //String cutend=text[1].split("</TEXT>")[0];
+    public ArrayList<String> TextToToken() {
         String[] Tokens = Text.split("--|\\s+");
-        return eliminate(Tokens);
+        return ClearTokens(Tokens);
     }
 
-    public ArrayList<String> eliminate(String[] token) {
+    public ArrayList<String> ClearTokens(String[] token) {
         ArrayList<String> TokenArr = new ArrayList<>();
         for (int i = 0; i < token.length; i++) {
             token[i] = token[i].replaceAll("\\?|\\*|\\`|\\;|\\?|\\:|\\||\\>|\\<|\\^|\\\"|\\\\||\\|\\,|\\(|\\[|\\)|\\]|\\!|\\+","");

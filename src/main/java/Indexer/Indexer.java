@@ -172,7 +172,7 @@ public class Indexer {
                 AllCapitalLetterWords.remove(entry);
             }
         }
-        fileManager.AddCapitalLettersToDisk(CapitalLetterPosting);
+        fileManager.AddCapitalLettersToCache(CapitalLetterPosting);
         try {
             fileManager.AllTermToDisk();
         } catch (InterruptedException e) {

@@ -4,7 +4,7 @@
 <?import javafx.scene.text.Text?>
 
 
-<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" fx:controller="GUI.ShowDictionary" xmlns:fx="http://javafx.com/fxml/1">
+<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" fx:controller="GUI.ShowDictionaryController" xmlns:fx="http://javafx.com/fxml/1">
    <content>
       <Text fx:id="text" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
    </content>

@@ -1,19 +1,15 @@
 package GUI;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.CheckBox;
-import javafx.scene.image.Image;
-import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
@@ -81,7 +77,7 @@ public class Controller {
         Scene scene = new Scene(root, 290, 300);
         newStage.setScene(scene);
 
-        ShowDictionary showd = fxmlLoader.getController();
+        ShowDictionaryController showd = fxmlLoader.getController();
         String content = null;
         try {
             content = new String(Files.readAllBytes(Paths.get(NewGetPath.postingselected.getPath()+"\\Dictionary.txt")), Charset.defaultCharset());
