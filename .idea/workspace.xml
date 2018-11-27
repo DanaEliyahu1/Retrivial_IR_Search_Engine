@@ -2,20 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0f921457-46cd-4350-bc0e-a504e616ee8d" name="Default Changelist" comment="FIX LINE&#10;DELETE POINTER CASH&#10;DOTO STOP WORDS&#10;FIX FUNC NAME">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/Parser/Tester.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/FileManager/PointerCache.class" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/GUI/ShowDictionary.java" afterPath="$PROJECT_DIR$/src/main/java/GUI/ShowDictionaryController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/FileManager/FileManager.class" afterPath="$PROJECT_DIR$/target/classes/FileManager/FileManager.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/Parser/ReadFile.class" afterPath="$PROJECT_DIR$/target/classes/Parser/ReadFile.class" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/Parser/Tester.class" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/Parser/Document.class" afterPath="$PROJECT_DIR$/target/classes/Parser/Document.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/Parser/Parse.class" afterPath="$PROJECT_DIR$/target/classes/Parser/Parse.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/IR.iml" afterPath="$PROJECT_DIR$/IR.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/FileManager/FileManager.java" afterPath="$PROJECT_DIR$/src/main/java/FileManager/FileManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/GUI/Controller.java" afterPath="$PROJECT_DIR$/src/main/java/GUI/Controller.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/GUI/GetPathController.java" afterPath="$PROJECT_DIR$/src/main/java/GUI/GetPathController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Indexer/Indexer.java" afterPath="$PROJECT_DIR$/src/main/java/Indexer/Indexer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Parser/Document.java" afterPath="$PROJECT_DIR$/src/main/java/Parser/Document.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Parser/Parse.java" afterPath="$PROJECT_DIR$/src/main/java/Parser/Parse.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/ShowDictionary.fxml" afterPath="$PROJECT_DIR$/src/main/resources/ShowDictionary.fxml" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -781,7 +771,14 @@
       <option name="project" value="LOCAL" />
       <updated>1543260453988</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="FIX LINE&#10;DELETE POINTER CASH&#10;DOTO STOP WORDS&#10;FIX FUNC NAME">
+      <created>1543350049067</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1543350049068</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
