@@ -90,16 +90,28 @@ public class Parse extends Thread {
         } else if (Months.contains(Tokens.get(i)) && Character.isDigit(Tokens.get(i + 1).charAt(0))) {
             AddTermToTree(false,Tokens.get(i + 1) + "-" + TranslateMonths(i));
             return true;
-        } else if (Character.isUpperCase(Tokens.get(i).charAt(0))) {
+        } else if(Tokens.get(i).contains("'s")){
+                String newToken=Tokens.get(i).substring(0,Tokens.get(i).length()-2);
+            if (Character.isUpperCase(newToken.charAt(0))) {
+                if (CapitalLetterWords.containsKey(newToken)) {
+                    CapitalLetterWords.put(newToken, CapitalLetterWords.get(newToken) + 1);
+                    return false;
+                } else {
+                    CapitalLetterWords.put(newToken, 1);
+                    return false;
+                }
+            }
+            AddTermToTree(false,newToken);
+            return false;
+            }
+
+         else if (Character.isUpperCase(Tokens.get(i).charAt(0))) {
             if(CapitalLetterWords.containsKey(Tokens.get(i))){
                 CapitalLetterWords.put(Tokens.get(i),CapitalLetterWords.get(Tokens.get(i))+1);
             }
-            else if(Tokens.get(i).contains("'s")){
-                AddTermToTree(false,Tokens.get(i).substring(0,Tokens.get(i).length()-1));
-                return false;
-            }
+
             else {
-                CapitalLetterWords.put(Tokens.get(i),0);
+                CapitalLetterWords.put(Tokens.get(i),1);
             }
             return false;
         }

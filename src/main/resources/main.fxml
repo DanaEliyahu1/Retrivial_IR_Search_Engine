@@ -2,33 +2,23 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
-<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controller">
    <children>
-      <BorderPane prefHeight="400.0" prefWidth="600.0">
-         <top>
-            <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-               <children>
-                  <ComboBox prefWidth="150.0" />
-                  <CheckBox fx:id="checkBox" mnemonicParsing="false" prefHeight="49.0" prefWidth="186.0" selected="true" text="Stemming" />
-               </children>
-            </HBox>
-         </top>
-         <left>
-            <VBox prefHeight="300.0" prefWidth="154.0" BorderPane.alignment="CENTER">
-               <children>
-                  <Button mnemonicParsing="false" onAction="#StartButton" prefHeight="53.0" prefWidth="154.0" text="Start" />
-                  <Button mnemonicParsing="false" onAction="#Reset" prefHeight="55.0" prefWidth="154.0" text="Reset" />
-                  <Button mnemonicParsing="false" onAction="#ShowDic" prefHeight="57.0" prefWidth="153.0" text="Show Dictionary" />
-                  <Button mnemonicParsing="false" onAction="#LoadDic" prefHeight="56.0" prefWidth="157.0" text="Load Dictionary" />
-               </children>
-            </VBox>
-         </left>
-      </BorderPane>
+      <ChoiceBox layoutX="436.0" layoutY="14.0" prefWidth="150.0" />
+      <CheckBox layoutX="436.0" layoutY="39.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="150.0" text="Steming" />
+      <Button layoutX="18.0" layoutY="77.0" mnemonicParsing="false" onAction="#choosecorpus" prefHeight="45.0" prefWidth="143.0" text="Choose Corpos" />
+      <TextField layoutX="169.0" layoutY="82.0" prefHeight="36.0" prefWidth="221.0" />
+      <Button layoutX="15.0" layoutY="136.0" mnemonicParsing="false" onAction="#chooseposting" prefHeight="45.0" prefWidth="150.0" text="choose Posting Target" />
+      <TextField layoutX="178.0" layoutY="146.0" prefHeight="26.0" prefWidth="215.0" />
+      <Button layoutX="13.0" layoutY="200.0" mnemonicParsing="false" onAction="#choosestopwords" prefHeight="36.0" prefWidth="158.0" text="Choose Stop Words" />
+      <TextField layoutX="185.0" layoutY="206.0" prefHeight="26.0" prefWidth="215.0" />
+      <Button layoutX="206.0" layoutY="265.0" mnemonicParsing="false" onAction="#StartDictinory" prefHeight="32.0" prefWidth="166.0" text="START" />
+      <Button layoutX="204.0" layoutY="316.0" mnemonicParsing="false" onAction="#LoadDic" prefHeight="32.0" prefWidth="166.0" text="Load Dictionary" />
+      <Button layoutX="401.0" layoutY="285.0" mnemonicParsing="false" onAction="#Reset" prefHeight="45.0" prefWidth="105.0" text="RESET" />
+      <Button layoutX="207.0" layoutY="361.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="166.0" text="Show Dictionary" onAction="#ShowDic"/>
    </children>
 </AnchorPane>

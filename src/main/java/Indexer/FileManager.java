@@ -1,6 +1,4 @@
-package FileManager;
-
-import Indexer.Indexer;
+package Indexer;
 
 import java.io.*;
 import java.nio.charset.Charset;
@@ -85,7 +83,7 @@ public class FileManager {
         } else {
             Cache.put(key,new TreeObject("|" + docID + "," + value,line));
         }
-        if(Cache.size()>50000){
+        if(Cache.size()>75000){
             PushTermsToDisk();
         }
     }
@@ -134,7 +132,6 @@ public class FileManager {
                 }
 
             }
-            if(Character.isUpperCase(currletter)) System.out.println(entry.getKey());
             currentfile[entry.getValue().lineNumber].append(entry.getValue().value);
 
 

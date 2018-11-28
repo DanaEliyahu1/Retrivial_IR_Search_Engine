@@ -1,6 +1,5 @@
 package Indexer;
 
-import FileManager.FileManager;
 import GUI.Controller;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -131,7 +130,7 @@ public class Indexer {
                 else {
                     int line=-1;
                     if(Character.isLetter(key.charAt(0))){
-                        line=linenumber[key.toLowerCase().charAt(0)-97];
+                        line=linenumber[key.charAt(0)-97];
                     }else{
                         line=linenumber[26];
                     }
@@ -139,7 +138,7 @@ public class Indexer {
                     Index.put(key,setnewvalue);
                     fileManager.AddToPosting(key,value,DocID,line);
                     if(Character.isLetter(key.charAt(0))){
-                        linenumber[key.toLowerCase().charAt(0)-97]++;
+                        linenumber[key.charAt(0)-97]++;
                     }else{
                         linenumber[26]++;
                     }
