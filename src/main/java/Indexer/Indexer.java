@@ -19,7 +19,7 @@ public class Indexer {
     public static TreeMap<String,int []> AllCapitalLetterWords;
     private ExecutorService threadpool;
     FileManager fileManager;
-    TreeMap <String,int []> Index;
+    public TreeMap <String,int []> Index;
     TreeMap <String,String[]> CityIndex;
     TreeMap<String,String> CapitalLetterPosting;
     public static int [] linenumber; //27-numbers 28-capitalLetters
@@ -86,7 +86,6 @@ public class Indexer {
             for (int i = 0; i <jsonArray.size() ; i++) {
                 JSONObject curr = (JSONObject) jsonArray.get(i);
                 String Cityname = ((String) curr.get("capital")).split(" ")[0];
-                System.out.println(Cityname);
                 if(CityIndex.containsKey(Cityname)){
                     JSONArray curr1= (JSONArray) curr.get("currencies");
                     JSONObject currency = (JSONObject) curr1.get(0);
@@ -104,14 +103,14 @@ public class Indexer {
     }
     private void AddTermToCapital(String key, Integer value, String DocID) {
         if(Index.containsKey(key)){
-            int [] setvalue=Index.get(key);
+            int [] setvalue=AllCapitalLetterWords.get(key);
             setvalue[0]++;
             setvalue[2]+=value;
             CapitalLetterPosting.put(key,CapitalLetterPosting.get(key)+"|" + DocID + "," + value.toString());
         }
         else {
             int [] setnewvalue={1,linenumber[27],value};
-            Index.put(key,setnewvalue);
+            AllCapitalLetterWords.put(key,setnewvalue);
             CapitalLetterPosting.put(key,"|" + DocID + "," + value.toString());
             linenumber[27]++;
         }
@@ -166,8 +165,12 @@ public class Indexer {
                 int[] value=Index.get(entry.getKey().toLowerCase());
                 value[0]+=AllCapitalLetterWords.get(entry.getKey())[0];
                 value[2]+=AllCapitalLetterWords.get(entry.getKey())[2];
-                fileManager.SetCapitalToLoweCasePosting(entry.getKey().toLowerCase(),CapitalLetterPosting.get(entry.getKey()));
-                AllCapitalLetterWords.remove(entry);
+                fileManager.SetCapitalToLoweCasePosting(entry.getKey().toLowerCase(),CapitalLetterPosting.get(entry.getKey()),Index.get(entry.getKey().toLowerCase())[1]);
+              //  AllCapitalLetterWords.remove(entry.getKey());
+                CapitalLetterPosting.remove(entry.getKey());
+            }
+            else{
+                Index.put(entry.getKey(),entry.getValue());
             }
         }
         fileManager.AddCapitalLettersToCache(CapitalLetterPosting);
@@ -182,7 +185,7 @@ public class Indexer {
         File filedic = new File(fileManager.postingpath + "\\Dictionary.txt");
         StringBuilder term =new StringBuilder("");
         for (Map.Entry<String, int[]> entry : Index.entrySet()) {
-            term.append(entry.getKey()+","+entry.getValue()[0]+"\n");
+            term.append(entry.getKey()+","+entry.getValue()[0]+","+entry.getValue()[1]+","+entry.getValue()[2]+"\n");
         }
         try (FileWriter fw = new FileWriter(filedic,false);
              BufferedWriter bw = new BufferedWriter(fw);

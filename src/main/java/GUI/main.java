@@ -1,9 +1,13 @@
 package GUI;
 
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.ChoiceBox;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -23,6 +27,17 @@ public class main extends Application {
         Scene scene = new Scene(root, 1024, 600);
         primaryStage.setScene(scene);
         controller.setStage(primaryStage);
+        ObservableList<String> options =
+                FXCollections.observableArrayList(
+                        "English",
+                        "עברית",
+                        "Русский",
+                        "Русский",
+                        "हिन्दी",
+                        "Español",
+                        "Português"
+                );
+        controller.choiceBox=new ChoiceBox(options);
         primaryStage.show();
 
     }

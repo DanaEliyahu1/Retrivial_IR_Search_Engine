@@ -78,8 +78,14 @@ public class ReadFile {
                 for (int j = 0; j < CurrFolder.length; j++) {
                     CurrDoc = GetDoc(FileList[i].getName() + "\\" + CurrFolder[j].getName(),CurrFolder[j].getName());
                     for (int k = 0; k < CurrDoc.length; k++) {
-                       if(CurrDoc[k].Text.length()>50)
-                        threadpool.execute(new Parse(CurrDoc[k]));
+                       if(CurrDoc[k].Text.length()>75) {
+                           threadpool.execute(new Parse(CurrDoc[k]));
+                       }
+                       else{
+                           if(CurrDoc[k].Text.split("s+").length>3){
+                               threadpool.execute(new Parse(CurrDoc[k]));
+                           }
+                       }
                     }
                     CurrDoc=null;
                 }

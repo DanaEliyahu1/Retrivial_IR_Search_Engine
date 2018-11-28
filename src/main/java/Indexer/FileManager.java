@@ -22,61 +22,6 @@ public class FileManager {
         postingpath=path;
     }
 
-    public static String geturl(String Term){
-        char firstLetter=Term.charAt(0);
-        if(Character.isLetter(firstLetter)&&Character.isLowerCase(firstLetter)){
-            return postingpath+"\\Indexing\\"+firstLetter+".txt";
-        }else if(Character.isDigit(firstLetter)||firstLetter=='$'||firstLetter=='%'){
-            return postingpath+"\\Indexing\\Numbers.txt";
-        }else if(Character.isUpperCase(firstLetter)){
-            return postingpath+"\\Indexing\\CapitalLetters.txt";
-        }
-        return postingpath+"\\Indexing\\Else.txt";
-    }
-
-    public void AllTermToDisk() throws InterruptedException {
-       PushTermsToDisk();
-     }
-    public void DocPosting(String ID, String City, int maxtf, int uniqueterms, String mostTf, String cityplaces, String filename){
-        DocNum++;
-        AddDocToCityIndex(ID,City);
-        DocInfo+=("|"+ ID+","+ City + "," + maxtf+ ","+ uniqueterms+ ","+ mostTf+","+cityplaces+","+filename);
-        if(DocInfo.length()>1000000){
-            AllDocumentsToDisk();
-        }
-      //  System.out.println(DocNum);
-    }
-    void AddDocToCityIndex(String DocId,String City){
-        if(City.equals(""))return;
-        if (cities.containsKey(City)) {
-            cities.put(City,cities.get(City)+ "," + DocId);
-        } else {
-            cities.put(City, DocId);
-        }
-    }
-
-    public void CitiesToDisk(){
-        System.out.println("cities to disk");
-        Iterator<Map.Entry<String,String>> it= cities.entrySet().iterator();
-        while (it.hasNext()){
-            Map.Entry<String,String> currCity=it.next();
-            File file =new File(postingpath+"\\Cities\\"+currCity.getKey()+".txt");
-            try {
-                file.createNewFile();
-            } catch (IOException e) {
-               e.printStackTrace();
-            }
-            try (FileWriter fw = new FileWriter(postingpath+"\\Cities\\"+currCity.getKey()+".txt", true);
-                 BufferedWriter bw = new BufferedWriter(fw);
-                 PrintWriter out = new PrintWriter(bw)) {
-                out.print(currCity.getValue());
-            } catch (IOException e) {
-             //   e.printStackTrace();
-            }
-        }
-
-    }
-
     public void AddToPosting(String key, Integer value, String docID,int line) {
         if (Cache.containsKey(key)) {
             Cache.put(key,new TreeObject(Cache.get(key).value + "|" + docID + "," + value,line));
@@ -139,12 +84,67 @@ public class FileManager {
         System.out.println("====STOP- DELETING");
     }
 
-    public void SetCapitalToLoweCasePosting(String key, String value) {
+    public static String geturl(String Term){
+        char firstLetter=Term.charAt(0);
+        if(Character.isLetter(firstLetter)&&Character.isLowerCase(firstLetter)){
+            return postingpath+"\\Indexing\\"+firstLetter+".txt";
+        }else if(Character.isDigit(firstLetter)||firstLetter=='$'||firstLetter=='%'){
+            return postingpath+"\\Indexing\\Numbers.txt";
+        }else if(Character.isUpperCase(firstLetter)){
+            return postingpath+"\\Indexing\\CapitalLetters.txt";
+        }
+        return postingpath+"\\Indexing\\Else.txt";
+    }
+
+    public void AllTermToDisk() throws InterruptedException {
+       PushTermsToDisk();
+     }
+    public void DocPosting(String ID, String City, int maxtf, int uniqueterms, String mostTf, String cityplaces, String filename){
+        DocNum++;
+        AddDocToCityIndex(ID,City);
+        DocInfo+=("|"+ ID+","+ City + "," + maxtf+ ","+ uniqueterms+ ","+ mostTf+","+cityplaces+","+filename);
+        if(DocInfo.length()>50000){
+            AllDocumentsToDisk();
+        }
+      //  System.out.println(DocNum);
+    }
+    void AddDocToCityIndex(String DocId,String City){
+        if(City.equals(""))return;
+        if (cities.containsKey(City)) {
+            cities.put(City,cities.get(City)+ "," + DocId);
+        } else {
+            cities.put(City, DocId);
+        }
+    }
+
+    public void CitiesToDisk(){
+        System.out.println("cities to disk");
+        Iterator<Map.Entry<String,String>> it= cities.entrySet().iterator();
+        while (it.hasNext()){
+            Map.Entry<String,String> currCity=it.next();
+            File file =new File(postingpath+"\\Cities\\"+currCity.getKey()+".txt");
+            try {
+                file.createNewFile();
+            } catch (IOException e) {
+              // e.printStackTrace();
+            }
+            try (FileWriter fw = new FileWriter(postingpath+"\\Cities\\"+currCity.getKey()+".txt", true);
+                 BufferedWriter bw = new BufferedWriter(fw);
+                 PrintWriter out = new PrintWriter(bw)) {
+                out.print(currCity.getValue());
+            } catch (IOException e) {
+             //   e.printStackTrace();
+            }
+        }
+
+    }
+
+    public void SetCapitalToLoweCasePosting(String key, String value,int line) {
         if (Cache.containsKey(key)) {
             Cache.get(key).value=Cache.get(key).value +value;
             Cache.put(key, Cache.get(key));
         } else {
-            Cache.put(key,new TreeObject(value,0));
+            Cache.put(key,new TreeObject(value,line));
         }
         if(Cache.size()>50000){
             PushTermsToDisk();
