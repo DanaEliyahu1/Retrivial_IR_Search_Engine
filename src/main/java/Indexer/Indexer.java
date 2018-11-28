@@ -35,6 +35,36 @@ public class Indexer {
         this.threadpool= Executors.newSingleThreadExecutor();
     }
 
+
+    public void ResultToFile(String DocID, TreeMap<String, Integer> SpecialTermsMap, TreeMap<String, Integer> TermsMap, String City, TreeMap<String, Integer> capitalLetterWords, String cityplaces, String filename){
+                int counter=0;
+                String mostTf="";
+                for (Map.Entry<String, Integer> entry : SpecialTermsMap.entrySet()) {
+                    AddTermToDic(entry.getKey(),entry.getValue(),DocID);
+                    if(counter<entry.getValue()){
+                        counter=entry.getValue();
+                        mostTf=entry.getKey();
+                    }
+                }
+                for (Map.Entry<String, Integer> entry : TermsMap.entrySet()) {
+                    AddTermToDic(entry.getKey(), entry.getValue(),DocID);
+                    if (counter < entry.getValue()) {
+                        counter = entry.getValue();
+                        mostTf=entry.getKey();
+                    }
+                }
+                int uniqueterms=SpecialTermsMap.size() + TermsMap.size();
+
+                fileManager.DocPosting(DocID,City,counter,uniqueterms,mostTf,cityplaces,filename);
+        for (Map.Entry<String, Integer> entry : capitalLetterWords.entrySet()) {
+            if(!Index.containsKey(entry.getKey().toLowerCase())){
+               AddTermToCapital(entry.getKey(),entry.getValue(),DocID);
+            }
+            else{
+                AddTermToDic(entry.getKey().toLowerCase(), entry.getValue(),DocID);
+            }
+        }
+    }
     public void IndexCities(){
         File folder = new File(fileManager.postingpath+"\\Cities");
         File[] ListOfFile= folder.listFiles();
@@ -60,8 +90,8 @@ public class Indexer {
                 System.out.println(Cityname);
                 if(CityIndex.containsKey(Cityname)){
                     JSONArray curr1= (JSONArray) curr.get("currencies");
-                 JSONObject currency = (JSONObject) curr1.get(0);
-                  //  String currency =((JSONObject)((JSONArray)curr.get("currencies")).get("code")).toString();
+                    JSONObject currency = (JSONObject) curr1.get(0);
+                    //  String currency =((JSONObject)((JSONArray)curr.get("currencies")).get("code")).toString();
                     double population = ((long)curr.get("population"))/1000000.0;
                     String populations= "M"+Math.round(population*100)/100;
                     String[] CityInfo = {(String)curr.get("name"),(String)currency.get("code"),populations};
@@ -73,37 +103,6 @@ public class Indexer {
             e.printStackTrace();
         }
     }
-
-    public void ResultToFile(String DocID, TreeMap<String, Integer> SpecialTermsMap, TreeMap<String, Integer> TermsMap, String City, TreeMap<String, Integer> capitalLetterWords, String cityplaces){
-                int counter=0;
-                String mostTf="";
-                for (Map.Entry<String, Integer> entry : SpecialTermsMap.entrySet()) {
-                    AddTermToDic(entry.getKey(),entry.getValue(),DocID);
-                    if(counter<entry.getValue()){
-                        counter=entry.getValue();
-                        mostTf=entry.getKey();
-                    }
-                }
-                for (Map.Entry<String, Integer> entry : TermsMap.entrySet()) {
-                    AddTermToDic(entry.getKey(), entry.getValue(),DocID);
-                    if (counter < entry.getValue()) {
-                        counter = entry.getValue();
-                        mostTf=entry.getKey();
-                    }
-                }
-                int uniqueterms=SpecialTermsMap.size() + TermsMap.size();
-
-                fileManager.DocPosting(DocID,City,counter,uniqueterms,mostTf,cityplaces);
-        for (Map.Entry<String, Integer> entry : capitalLetterWords.entrySet()) {
-            if(!Index.containsKey(entry.getKey().toLowerCase())){
-               AddTermToCapital(entry.getKey(),entry.getValue(),DocID);
-            }
-            else{
-                AddTermToDic(entry.getKey().toLowerCase(), entry.getValue(),DocID);
-            }
-        }
-    }
-
     private void AddTermToCapital(String key, Integer value, String DocID) {
         if(Index.containsKey(key)){
             int [] setvalue=Index.get(key);

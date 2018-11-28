@@ -7,12 +7,14 @@ public class Document {
     String ID;
     String path;
     String Text;
+    String filename;
 
-    public Document(String path, String city, String id, String text) {
+    public Document(String path, String city, String id, String text, String filename) {
         this.City = city;
         this.path = path;
         this.ID = id;
         this.Text = text;
+        this.filename=filename;
 
     }
 

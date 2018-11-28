@@ -19,14 +19,14 @@ public class ReadFile {
         this.threadpool= Executors.newSingleThreadExecutor();
     }
 
-    public Document[] GetDoc(String filename) {
-        FileName = filename;
+    public Document[] GetDoc(String path,String filename) {
+        FileName = path;
         try {
-            String content = new String(Files.readAllBytes(Paths.get(corpuspath + "\\" + filename)), Charset.defaultCharset());
+            String content = new String(Files.readAllBytes(Paths.get(corpuspath + "\\" + path)), Charset.defaultCharset());
             String[] document = content.split("<DOC>");
             Document[] Doc = new Document[document.length - 1];
             for (int i = 0; i < Doc.length; i++) {
-                Doc[i] = initdoc(document[i + 1]);
+                Doc[i] = initdoc(document[i + 1],filename);
             }
             return Doc;
         } catch (IOException e) {
@@ -35,7 +35,7 @@ public class ReadFile {
         return null;
     }
 
-    private Document initdoc(String s) {
+    private Document initdoc(String s,String filename) {
         String City = "";
         //cheak the format
         String[] IdArr = s.split("</DOCNO>");
@@ -57,13 +57,13 @@ public class ReadFile {
            Text = City1[1].split("</TEXT>")[0];
             if (Text.contains("[Text]")) {
                 Text = Text.split("[Text]")[1];
-                return new Document(corpuspath + File.separator + FileName, City, Id, Text);
+                return new Document(corpuspath + File.separator + FileName, City, Id, Text, filename);
             }
         }catch (Exception e){
           //  e.printStackTrace();
         }
 
-        return new Document(corpuspath + File.separator + FileName, City, Id, Text);
+        return new Document(corpuspath + File.separator + FileName, City, Id, Text,filename);
     }
 
     public void GetFile() {
@@ -76,7 +76,7 @@ public class ReadFile {
             try {
                 CurrFolder=FileList[i].listFiles();
                 for (int j = 0; j < CurrFolder.length; j++) {
-                    CurrDoc = GetDoc(FileList[i].getName() + "\\" + CurrFolder[j].getName());
+                    CurrDoc = GetDoc(FileList[i].getName() + "\\" + CurrFolder[j].getName(),CurrFolder[j].getName());
                     for (int k = 0; k < CurrDoc.length; k++) {
                        if(CurrDoc[k].Text.length()>50)
                         threadpool.execute(new Parse(CurrDoc[k]));

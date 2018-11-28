@@ -39,10 +39,10 @@ public class FileManager {
     public void AllTermToDisk() throws InterruptedException {
        PushTermsToDisk();
      }
-    public void DocPosting(String ID, String City, int maxtf, int uniqueterms, String mostTf, String cityplaces){
+    public void DocPosting(String ID, String City, int maxtf, int uniqueterms, String mostTf, String cityplaces, String filename){
         DocNum++;
         AddDocToCityIndex(ID,City);
-        DocInfo+=("|"+ ID+","+ City + "," + maxtf+ ","+ uniqueterms+ ","+ mostTf+","+cityplaces);
+        DocInfo+=("|"+ ID+","+ City + "," + maxtf+ ","+ uniqueterms+ ","+ mostTf+","+cityplaces+","+filename);
         if(DocInfo.length()>1000000){
             AllDocumentsToDisk();
         }
@@ -85,7 +85,7 @@ public class FileManager {
         } else {
             Cache.put(key,new TreeObject("|" + docID + "," + value,line));
         }
-        if(Cache.size()>100000){
+        if(Cache.size()>50000){
             PushTermsToDisk();
         }
     }
@@ -134,8 +134,7 @@ public class FileManager {
                 }
 
             }
-            System.out.println(""+currletter + currentfile.length);
-
+            if(Character.isUpperCase(currletter)) System.out.println(entry.getKey());
             currentfile[entry.getValue().lineNumber].append(entry.getValue().value);
 
 

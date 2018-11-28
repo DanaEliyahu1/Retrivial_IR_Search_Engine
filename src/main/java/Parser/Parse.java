@@ -4,19 +4,8 @@ import Indexer.Indexer;
 
 import java.util.*;
 
+
 public class Parse extends Thread {
-    public Parse(Document d) {
-        TermsMap=new TreeMap<String, Integer>() ;
-         SpecialTermsMap=new TreeMap<String, Integer>();
-        CapitalLetterWords=new TreeMap<String,Integer>();
-        this.d=d;
-    }
-
-    @Override
-    public void run() {
-        parse(d);
-    }
-
     String City;
     Document d;
     public static Indexer indexer;
@@ -29,12 +18,22 @@ public class Parse extends Thread {
     public static HashSet DollarHash;
     public static boolean isStemmig;
     public TreeMap<String,Integer> CapitalLetterWords;
-    static TreeSet<String> TermCollection ;
     ArrayList<String> Tokens;
     int i;
     String DocID;
     String Cityplaces;
 
+    public Parse(Document d) {
+        TermsMap=new TreeMap<String, Integer>() ;
+        SpecialTermsMap=new TreeMap<String, Integer>();
+        CapitalLetterWords=new TreeMap<String,Integer>();
+        this.d=d;
+    }
+
+    @Override
+    public void run() {
+        parse(d);
+    }
     public void parse(Document Doc) {
         this.DocID=Doc.ID;
         this.City=Doc.City;
@@ -51,15 +50,8 @@ public class Parse extends Thread {
             }
 
         }
-       // System.out.println("indexer");
-    indexer.ResultToFile( DocID,SpecialTermsMap, TermsMap, City,CapitalLetterWords,Cityplaces);
-/*
-        for (Map.Entry<String, TermInfo> entry : SpecialTermsMap.entrySet()) {
-            System.out.println("Key: " + entry.getKey() + ". Value: " + entry.getValue());
-        }
-        for (Map.Entry<String, TermInfo> entry : TermsMap.entrySet()) {
-            System.out.println("Key: " + entry.getKey() + ". Value: " + entry.getValue());
-        }*/
+    indexer.ResultToFile( DocID,SpecialTermsMap, TermsMap, City,CapitalLetterWords,Cityplaces,d.filename);
+
     }
 
     private boolean ParseRules() {
@@ -97,6 +89,7 @@ public class Parse extends Thread {
             return false;
         } else if (Months.contains(Tokens.get(i)) && Character.isDigit(Tokens.get(i + 1).charAt(0))) {
             AddTermToTree(false,Tokens.get(i + 1) + "-" + TranslateMonths(i));
+            return true;
         } else if (Character.isUpperCase(Tokens.get(i).charAt(0))) {
             if(CapitalLetterWords.containsKey(Tokens.get(i))){
                 CapitalLetterWords.put(Tokens.get(i),CapitalLetterWords.get(Tokens.get(i))+1);
@@ -108,6 +101,7 @@ public class Parse extends Thread {
             else {
                 CapitalLetterWords.put(Tokens.get(i),0);
             }
+            return false;
         }
         else if(Tokens.get(i).charAt(0)=='$'){
             AddTermToTree(false,PriceToTerm());
@@ -123,7 +117,6 @@ public class Parse extends Thread {
                 return false;
             }
         }
-        return false;
     }
 
     private String TokenToNum() {
