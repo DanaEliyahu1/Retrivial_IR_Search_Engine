@@ -14,6 +14,7 @@ import java.io.File;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.TreeMap;
 
 public class main extends Application {
 
@@ -38,6 +39,7 @@ public class main extends Application {
                         "Português"
                 );
         controller.choiceBox=new ChoiceBox(options);
+        controller.Index =new TreeMap<>();
         primaryStage.show();
 
     }

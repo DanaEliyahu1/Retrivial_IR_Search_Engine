@@ -46,7 +46,7 @@ public class Parse extends Thread {
                     i++;
                 }
             }catch (Exception e){
-                System.out.println("@");
+               // System.out.println("@");
             }
 
         }

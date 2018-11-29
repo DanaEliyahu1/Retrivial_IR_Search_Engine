@@ -34,7 +34,7 @@ public class FileManager {
     }
 
     private void PushTermsToDisk() {
-        System.out.println("====DELETING");
+       // System.out.println("====DELETING");
         TreeMap<String , TreeObject> TermToFile=Cache;
         Cache=new TreeMap<String,TreeObject>();
         char currletter = '*';
@@ -81,7 +81,7 @@ public class FileManager {
 
 
         }
-        System.out.println("====STOP- DELETING");
+       // System.out.println("====STOP- DELETING");
     }
 
     public static String geturl(String Term){

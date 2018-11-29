@@ -92,18 +92,7 @@ public class Controller {
             content=contentindex.toString();
         }
             else {
-
-
-
-        try {
-            if(!new File(postingselected).exists()){
-                showAlert("cannot find dictionary. make sure the posting path is right");
-                return;
-            }
-            content = new String(Files.readAllBytes(Paths.get(postingselected + "\\Dictionary.txt")), Charset.defaultCharset());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    LoadDic();
         }
         showd.text.setText(content);
         newStage.initModality(Modality.APPLICATION_MODAL);
@@ -123,12 +112,13 @@ public class Controller {
         try {
             if(new File(postingselected+"\\Stemming" + "\\Dictionary.txt").exists()){
                 content = new String(Files.readAllBytes(Paths.get(postingselected + "\\Stemming\\Dictionary.txt")), Charset.defaultCharset());
+
+
             }
             else if((new File(postingselected+"\\NotStemming" + "\\Dictionary.txt").exists())){
                 content = new String(Files.readAllBytes(Paths.get(postingselected + "\\NotStemming\\Dictionary.txt")), Charset.defaultCharset());
 
             }
-            content = new String(Files.readAllBytes(Paths.get(postingselected + "\\Dictionary.txt")), Charset.defaultCharset());
            String [] Terms=content.split("\n");
            Index= new TreeMap<>();
             for (int i = 0; i <Terms.length ; i++) {

@@ -26,7 +26,7 @@ public class Document {
     public ArrayList<String> ClearTokens(String[] token) {
         ArrayList<String> TokenArr = new ArrayList<>();
         for (int i = 0; i < token.length; i++) {
-            token[i] = token[i].replaceAll("\\?|\\*|\\`|\\;|\\?|\\:|\\||\\>|\\<|\\^|\\\"|\\\\||\\|\\,|\\(|\\[|\\)|\\]|\\!|\\+","");
+            token[i] = token[i].replaceAll("\\?|\\*|\\,|\\`|\\;|\\?|\\:|\\||\\>|\\<|\\^|\\\"|\\\\||\\|\\,|\\(|\\[|\\)|\\]|\\!|\\+","");
             if (!(token[i].equals(""))) {
 
                 while (!token[i].equals("") &&  (  token[i].charAt(0) == '\"'  || token[i].charAt(0) == '\'' )) {

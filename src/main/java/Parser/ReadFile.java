@@ -95,13 +95,13 @@ public class ReadFile {
             }
 
         }
-        System.out.println("waiting for finishing");
+        //System.out.println("waiting for finishing");
         try {
             threadpool.shutdown();
             threadpool.awaitTermination(40, TimeUnit.MINUTES);
-            System.out.println("finished");
+           // System.out.println("finished");
         } catch (InterruptedException e) {
-            System.out.println("time out~~");
+          //  System.out.println("time out~~");
         }
 
         Parse.indexer.FinishIndexing();
