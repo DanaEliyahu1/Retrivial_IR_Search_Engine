@@ -1,6 +1,8 @@
 package Parser;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Document {
     String City;
@@ -8,6 +10,7 @@ public class Document {
     String path;
     String Text;
     String filename;
+
 
     public Document(String path, String city, String id, String text, String filename) {
         this.City = city;
@@ -26,7 +29,7 @@ public class Document {
     public ArrayList<String> ClearTokens(String[] token) {
         ArrayList<String> TokenArr = new ArrayList<>();
         for (int i = 0; i < token.length; i++) {
-            token[i] = token[i].replaceAll("\\?|\\*|\\,|\\`|\\;|\\?|\\:|\\||\\>|\\<|\\^|\\\"|\\\\||\\|\\,|\\(|\\[|\\)|\\]|\\!|\\+","");
+            token[i] = token[i].replaceAll("\\?|\\*|\\,|\\`|\\;|\\?|\\:|\\||\\>|\\<|\\^|\\\"|\\,|\\(|\\[|\\)|\\]|\\!|\\+","");
             if (!(token[i].equals(""))) {
 
                 while (!token[i].equals("") &&  (  token[i].charAt(0) == '\"'  || token[i].charAt(0) == '\'' )) {

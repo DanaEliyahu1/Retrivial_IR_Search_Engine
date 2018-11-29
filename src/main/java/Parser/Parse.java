@@ -94,10 +94,10 @@ public class Parse extends Thread {
                 String newToken=Tokens.get(i).substring(0,Tokens.get(i).length()-2);
             if (Character.isUpperCase(newToken.charAt(0))) {
                 if (CapitalLetterWords.containsKey(newToken)) {
-                    CapitalLetterWords.put(newToken, CapitalLetterWords.get(newToken) + 1);
+                    CapitalLetterWords.put(newToken.toUpperCase(), CapitalLetterWords.get(newToken) + 1);
                     return false;
                 } else {
-                    CapitalLetterWords.put(newToken, 1);
+                    CapitalLetterWords.put(newToken.toUpperCase(), 1);
                     return false;
                 }
             }
@@ -106,12 +106,12 @@ public class Parse extends Thread {
             }
 
          else if (Character.isUpperCase(Tokens.get(i).charAt(0))) {
-            if(CapitalLetterWords.containsKey(Tokens.get(i))){
-                CapitalLetterWords.put(Tokens.get(i),CapitalLetterWords.get(Tokens.get(i))+1);
+            if(CapitalLetterWords.containsKey(Tokens.get(i).toUpperCase())){
+                CapitalLetterWords.put(Tokens.get(i).toUpperCase(),CapitalLetterWords.get(Tokens.get(i))+1);
             }
 
             else {
-                CapitalLetterWords.put(Tokens.get(i),1);
+                CapitalLetterWords.put(Tokens.get(i).toUpperCase(),1);
             }
             return false;
         }

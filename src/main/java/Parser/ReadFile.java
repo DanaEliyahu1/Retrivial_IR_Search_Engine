@@ -36,10 +36,11 @@ public class ReadFile {
     }
 
     private Document initdoc(String s,String filename) {
+
         String City = "";
         //cheak the format
         String[] IdArr = s.split("</DOCNO>");
-        String Id = IdArr[0].substring(9);
+        String Id = IdArr[0].split("<DOCNO>")[1].replaceAll(" ","");
         String[] City1 = IdArr[1].split("<TEXT>");
         String[] City2 = City1[0].split("<F P=104>");
         if (City2.length != 1) {
@@ -56,7 +57,8 @@ public class ReadFile {
         try{
            Text = City1[1].split("</TEXT>")[0];
             if (Text.contains("[Text]")) {
-                Text = Text.split("[Text]")[1];
+                String[] aftersdplit=Text.split("\\[Text\\]");
+                Text = aftersdplit[1];
                 return new Document(corpuspath + File.separator + FileName, City, Id, Text, filename);
             }
         }catch (Exception e){
@@ -82,7 +84,7 @@ public class ReadFile {
                            threadpool.execute(new Parse(CurrDoc[k]));
                        }
                        else{
-                           if(CurrDoc[k].Text.split("s+").length>3){
+                           if(CurrDoc[k].Text.split("\\s+").length>3){
                                threadpool.execute(new Parse(CurrDoc[k]));
                            }
                        }
