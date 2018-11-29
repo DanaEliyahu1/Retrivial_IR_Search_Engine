@@ -36,7 +36,7 @@ public class FileManager {
                 TreeMap<String , TreeObject> TermToFile=Cache;
                 PushTermsToDisk(TermToFile);
                 Cache=new TreeMap<String,TreeObject>();
-                chunksize+=1000;
+                chunksize+=500;
             }
     }
 

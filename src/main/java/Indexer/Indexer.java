@@ -187,7 +187,13 @@ public class Indexer {
             else{
                 Index.put(entry.getKey(),entry.getValue());
             }
+        }fileManager.threadpool.shutdown();
+        try {
+            fileManager.threadpool.awaitTermination(40,TimeUnit.MINUTES);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
+        fileManager.threadpool=Executors.newSingleThreadExecutor();
         fileManager.AddCapitalLettersToCache(CapitalLetterPosting);
         fileManager.threadpool.shutdown();
         try {
