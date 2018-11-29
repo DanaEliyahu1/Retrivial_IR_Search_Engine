@@ -179,7 +179,10 @@ public class Controller {
         }
         String[] Letter = {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"};
         if (IsStem) {
+            if(new File(postingselected+"/Stemming").exists()){
+                FileUtils.deleteDirectory((new File(new File(postingselected).getParent() + "/Stemming")));
 
+            }
             new File(postingselected + "/Stemming").mkdir();
             new File(postingselected + "/Stemming/Indexing").mkdir();
             for (int i = 0; i < Letter.length; i++) {
@@ -204,6 +207,9 @@ public class Controller {
             }
             postingselected = postingselected + "/Stemming";
         } else {
+            if(new File(postingselected+"/NotStemming").exists()) {
+                FileUtils.deleteDirectory((new File(new File(postingselected).getParent() + "/NotStemming")));
+            }
             new File(postingselected + "/NotStemming").mkdir();
             new File(postingselected + "/NotStemming/Indexing").mkdir();
             for (int i = 0; i < Letter.length; i++) {

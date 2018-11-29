@@ -81,14 +81,15 @@ public class Indexer {
             e.printStackTrace();
         }
         JSONParser jsonParser=new JSONParser();
-        try {  TreeSet <String>State=new TreeSet();
-            int contercity=0;
+        try {
+            //TreeSet <String>State=new TreeSet();
+    //        int contercity=0;
             JSONArray jsonArray =(JSONArray) jsonParser.parse(data);
             for (int i = 0; i <jsonArray.size() ; i++) {
                 JSONObject curr = (JSONObject) jsonArray.get(i);
                 String Cityname = ((String) curr.get("capital")).split(" ")[0];
                 if(CityIndex.containsKey(Cityname)){
-                    contercity++;
+                  //  contercity++;
                     JSONArray curr1= (JSONArray) curr.get("currencies");
                     JSONObject currency = (JSONObject) curr1.get(0);
                     //  String currency =((JSONObject)((JSONArray)curr.get("currencies")).get("code")).toString();
@@ -98,11 +99,11 @@ public class Indexer {
                     CityIndex.put(Cityname,CityInfo);
 
 
-                    State.add(CityInfo[0]);
+       //             State.add(CityInfo[0]);
 
                 }}
-                System.out.println("ALL STATE"+State.size());
-                System.out.println("all capitalcitiy"+contercity );
+              //  System.out.println("ALL STATE"+State.size());
+               // System.out.println("all capitalcitiy"+contercity );
 
 
 

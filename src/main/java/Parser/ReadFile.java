@@ -74,20 +74,20 @@ public class ReadFile {
         File[] CurrFolder=null;
         Document[] CurrDoc=null;
         for (int i = 0; i < FileList.length; i++) {
-           // System.out.println("*********************************" + i);
+            System.out.println("*********************************" + i);
             try {
                 CurrFolder=FileList[i].listFiles();
                 for (int j = 0; j < CurrFolder.length; j++) {
                     CurrDoc = GetDoc(FileList[i].getName() + "\\" + CurrFolder[j].getName(),CurrFolder[j].getName());
                     for (int k = 0; k < CurrDoc.length; k++) {
-                       if(CurrDoc[k].Text.length()>75) {
+                      // if(CurrDoc[k].Text.length()>75) {
                            threadpool.execute(new Parse(CurrDoc[k]));
-                       }
-                       else{
-                           if(CurrDoc[k].Text.split("\\s+").length>3){
-                               threadpool.execute(new Parse(CurrDoc[k]));
-                           }
-                       }
+                      // }
+                       //else{
+                       //    if(CurrDoc[k].Text.split("\\s+").length>3){
+                       //        threadpool.execute(new Parse(CurrDoc[k]));
+                       //    }
+                     //  }
                     }
                     CurrDoc=null;
                 }
@@ -97,7 +97,7 @@ public class ReadFile {
             }
 
         }
-        //System.out.println("waiting for finishing");
+        System.out.println("waiting for finishing");
         try {
             threadpool.shutdown();
             threadpool.awaitTermination(40, TimeUnit.MINUTES);
