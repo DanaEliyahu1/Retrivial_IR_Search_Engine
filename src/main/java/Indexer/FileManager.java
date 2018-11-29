@@ -5,6 +5,8 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class FileManager {
 
@@ -13,6 +15,7 @@ public class FileManager {
     public static int DocNum;
     public static String postingpath;
     public String DocInfo;
+    public ExecutorService threadpool;
 
 
     public FileManager(String docId, String path) {
@@ -20,68 +23,75 @@ public class FileManager {
         cities=new HashMap<String,String>();
         DocInfo="";
         postingpath=path;
+        threadpool= Executors.newSingleThreadExecutor();
     }
 
-    public void AddToPosting(String key, Integer value, String docID,int line) {
+    public synchronized void AddToPosting(String key, Integer value, String docID,int line) {
         if (Cache.containsKey(key)) {
             Cache.put(key,new TreeObject(Cache.get(key).value + "|" + docID + "," + value,line));
         } else {
             Cache.put(key,new TreeObject("|" + docID + "," + value,line));
         }
-        if(Cache.size()>75000){
-            PushTermsToDisk();
-        }
+            if(Cache.size()>75000){
+                TreeMap<String , TreeObject> TermToFile=Cache;
+                PushTermsToDisk(TermToFile);
+                Cache=new TreeMap<String,TreeObject>();
+            }
     }
 
-    private void PushTermsToDisk() {
-        System.out.println("====DELETING");
-        TreeMap<String , TreeObject> TermToFile=Cache;
-        Cache=new TreeMap<String,TreeObject>();
-        char currletter = '*';
-        StringBuilder [] currentfile=null;
-        for (Map.Entry<String, TreeObject> entry : TermToFile.entrySet()) {
-            if(entry.getKey().charAt(0)!=currletter){
-                if(currentfile!=null){
-                    StringJoiner sj=new StringJoiner("\n");
-                    for (int k = 0; k <currentfile.length ;k++) {
-                        sj.add(currentfile[k]);
-                    }
-                    try (FileWriter fw = new FileWriter(geturl(""+currletter), false);
-                         BufferedWriter bw = new BufferedWriter(fw);
-                         PrintWriter out = new PrintWriter(bw)) {
-                        out.print(sj);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-                currletter=entry.getKey().charAt(0);
-                try {
-                    String[] arrFromFile=new String(Files.readAllBytes(Paths.get(geturl(""+currletter))), Charset.defaultCharset()).split("\n");
-                    if(Character.isLetter(currletter)&&Character.isLowerCase(currletter)){
-                        currentfile=new StringBuilder[Indexer.linenumber[currletter-97]+1];
-                    }else if(Character.isLetter(currletter)&&Character.isUpperCase(currletter)){
-                        currentfile=new StringBuilder[Indexer.linenumber[27]+1];
-                    }
-                    else{
-                        currentfile=new StringBuilder[Indexer.linenumber[26]+1];
-                    }
-                    for (int j = 0; j < arrFromFile.length; j++) {
-                        currentfile[j]=new StringBuilder(arrFromFile[j]);
-                    }
-                    for (int j = arrFromFile.length; j <currentfile.length ; j++) {
-                        currentfile[j]=new StringBuilder("");
-                    }
-                    arrFromFile=null;
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+    private void PushTermsToDisk(TreeMap<String , TreeObject> TermToFile) {
+        threadpool.execute(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("====DELETING");
+                char currletter = '*';
+                StringBuilder [] currentfile=null;
+                for (Map.Entry<String, TreeObject> entry : TermToFile.entrySet()) {
+                    if(entry.getKey().charAt(0)!=currletter){
+                        if(currentfile!=null){
+                            StringJoiner sj=new StringJoiner("\n");
+                            for (int k = 0; k <currentfile.length ;k++) {
+                                sj.add(currentfile[k]);
+                            }
+                            try (FileWriter fw = new FileWriter(geturl(""+currletter), false);
+                                 BufferedWriter bw = new BufferedWriter(fw);
+                                 PrintWriter out = new PrintWriter(bw)) {
+                                out.print(sj);
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        currletter=entry.getKey().charAt(0);
+                        try {
+                            String[] arrFromFile=new String(Files.readAllBytes(Paths.get(geturl(""+currletter))), Charset.defaultCharset()).split("\n");
+                            if(Character.isLetter(currletter)&&Character.isLowerCase(currletter)){
+                                currentfile=new StringBuilder[Indexer.linenumber[currletter-97]+1];
+                            }else if(Character.isLetter(currletter)&&Character.isUpperCase(currletter)){
+                                currentfile=new StringBuilder[Indexer.linenumber[27]+1];
+                            }
+                            else{
+                                currentfile=new StringBuilder[Indexer.linenumber[26]+1];
+                            }
+                            for (int j = 0; j < arrFromFile.length; j++) {
+                                currentfile[j]=new StringBuilder(arrFromFile[j]);
+                            }
+                            for (int j = arrFromFile.length; j <currentfile.length ; j++) {
+                                currentfile[j]=new StringBuilder("");
+                            }
+                            arrFromFile=null;
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
 
+                    }
+                    currentfile[entry.getValue().lineNumber].append(entry.getValue().value);
+
+
+                }
+                System.out.println("====STOP- DELETING");
             }
-            currentfile[entry.getValue().lineNumber].append(entry.getValue().value);
+        });
 
-
-        }
-       System.out.println("====STOP- DELETING");
     }
 
     public static String geturl(String Term){
@@ -97,7 +107,7 @@ public class FileManager {
     }
 
     public void AllTermToDisk() throws InterruptedException {
-       PushTermsToDisk();
+       PushTermsToDisk(Cache);
      }
     public void DocPosting(String ID, String City, int maxtf, int uniqueterms, String mostTf, String cityplaces, String filename){
         DocNum++;
@@ -106,7 +116,7 @@ public class FileManager {
         if(DocInfo.length()>50000){
             AllDocumentsToDisk();
         }
-        System.out.println(DocNum);
+       // System.out.println(DocNum);
     }
     void AddDocToCityIndex(String DocId,String City){
         if(City.equals(""))return;
@@ -147,7 +157,7 @@ public class FileManager {
             Cache.put(key,new TreeObject(value,line));
         }
         if(Cache.size()>50000){
-            PushTermsToDisk();
+            PushTermsToDisk(Cache);
         }
     }
 

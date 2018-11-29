@@ -55,7 +55,7 @@ public class Parse extends Thread {
     }
 
     private boolean ParseRules() {
-        if (StopWord.contains(Tokens.get(i))) {
+        if (StopWord.contains(Tokens.get(i).toLowerCase())) {
             return false;
         }
         if(Tokens.get(i).equals(this.City)){
@@ -92,6 +92,9 @@ public class Parse extends Thread {
             return true;
         } else if(Tokens.get(i).contains("'s")){
                 String newToken=Tokens.get(i).substring(0,Tokens.get(i).length()-2);
+                if(StopWord.contains(newToken)){
+                    return false;
+                }
             if (Character.isUpperCase(newToken.charAt(0))) {
                 if (CapitalLetterWords.containsKey(newToken)) {
                     CapitalLetterWords.put(newToken.toUpperCase(), CapitalLetterWords.get(newToken) + 1);
