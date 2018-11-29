@@ -18,12 +18,11 @@ import java.util.concurrent.TimeUnit;
 public class Indexer {
     public static TreeMap<String,int []> AllCapitalLetterWords;
     private ExecutorService threadpool;
-    FileManager fileManager;
+    public FileManager fileManager;
     public TreeMap <String,int []> Index;
     TreeMap <String,String[]> CityIndex;
     TreeMap<String,String> CapitalLetterPosting;
     public static int [] linenumber; //27-numbers 28-capitalLetters
-
     public Indexer(FileManager fileManager) {
         AllCapitalLetterWords =new TreeMap<>();
         Index = new TreeMap<> ();
@@ -36,9 +35,7 @@ public class Indexer {
 
 
     public void ResultToFile(String DocID, TreeMap<String, Integer> SpecialTermsMap, TreeMap<String, Integer> TermsMap, String City, TreeMap<String, Integer> capitalLetterWords, String cityplaces, String filename){
-        if(DocID.equals("FBIS3-1424")){
-            System.out.println(Index.containsKey("the"));
-        }
+
                 int counter=0;
                 String mostTf="";
                 for (Map.Entry<String, Integer> entry : SpecialTermsMap.entrySet()) {
@@ -56,9 +53,7 @@ public class Indexer {
                     }
                 }
                 int uniqueterms=SpecialTermsMap.size() + TermsMap.size();
-        if(Index.containsKey("the")){
-            System.out.println(Index.containsKey("the"));
-        }
+
                 fileManager.DocPosting(DocID,City,counter,uniqueterms,mostTf,cityplaces,filename);
         for (Map.Entry<String, Integer> entry : capitalLetterWords.entrySet()) {
             if(!Index.containsKey(entry.getKey().toLowerCase())){
@@ -194,6 +189,13 @@ public class Indexer {
             }
         }
         fileManager.AddCapitalLettersToCache(CapitalLetterPosting);
+        fileManager.threadpool.shutdown();
+        try {
+            fileManager.threadpool.awaitTermination(40,TimeUnit.MINUTES);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        fileManager.threadpool=Executors.newSingleThreadExecutor();
         try {
             fileManager.AllTermToDisk();
         } catch (InterruptedException e) {

@@ -273,6 +273,7 @@ public class Controller {
         Parse.stemmer = new Stemmer();
         Parse.isStemmig = IsStem;
         Parse.indexer = new Indexer(new FileManager("", postingselected));
+        Parse.indexer.fileManager.chunksize=30000;
 
         ReadFile readFile = new ReadFile(corpusselected);
         long start = System.nanoTime();

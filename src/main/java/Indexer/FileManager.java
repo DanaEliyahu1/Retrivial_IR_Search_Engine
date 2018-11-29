@@ -16,7 +16,7 @@ public class FileManager {
     public static String postingpath;
     public String DocInfo;
     public ExecutorService threadpool;
-
+    public int chunksize;
 
     public FileManager(String docId, String path) {
         Cache=new TreeMap<String, TreeObject>();
@@ -32,10 +32,11 @@ public class FileManager {
         } else {
             Cache.put(key,new TreeObject("|" + docID + "," + value,line));
         }
-            if(Cache.size()>75000){
+            if(Cache.size()>chunksize){
                 TreeMap<String , TreeObject> TermToFile=Cache;
                 PushTermsToDisk(TermToFile);
                 Cache=new TreeMap<String,TreeObject>();
+                chunksize+=1000;
             }
     }
 
