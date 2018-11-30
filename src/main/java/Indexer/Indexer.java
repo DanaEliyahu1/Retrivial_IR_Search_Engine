@@ -161,6 +161,9 @@ public class Indexer {
     }
 
     public void FinishIndexing() {
+
+
+
         System.out.println("waiting for finish");
         try {
             fileManager.threadpool.shutdown();
@@ -171,42 +174,27 @@ public class Indexer {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        System.out.println("finish & start finish to disk");
-        fileManager.CitiesToDisk();
-        IndexCities();
-        System.out.println(" start capital letters to disk");
+
         for (Map.Entry<String, int[]> entry : AllCapitalLetterWords.entrySet()) {
             if(Index.containsKey(entry.getKey().toLowerCase())){
                 int[] value=Index.get(entry.getKey().toLowerCase());
                 value[0]+=AllCapitalLetterWords.get(entry.getKey())[0];
                 value[2]+=AllCapitalLetterWords.get(entry.getKey())[2];
                 fileManager.SetCapitalToLoweCasePosting(entry.getKey().toLowerCase(),CapitalLetterPosting.get(entry.getKey()),Index.get(entry.getKey().toLowerCase())[1]);
-              //  AllCapitalLetterWords.remove(entry.getKey());
                 CapitalLetterPosting.remove(entry.getKey());
             }
             else{
                 Index.put(entry.getKey(),entry.getValue());
             }
-        }fileManager.threadpool.shutdown();
-        try {
-            fileManager.threadpool.awaitTermination(40,TimeUnit.MINUTES);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
         }
-        fileManager.threadpool=Executors.newSingleThreadExecutor();
         fileManager.AddCapitalLettersToCache(CapitalLetterPosting);
-        fileManager.threadpool.shutdown();
-        try {
-            fileManager.threadpool.awaitTermination(40,TimeUnit.MINUTES);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        fileManager.threadpool=Executors.newSingleThreadExecutor();
         try {
             fileManager.AllTermToDisk();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        fileManager.CitiesToDisk();
+        IndexCities();
         fileManager.AllDocumentsToDisk();
         Controller.Termunique=Index.size();
         System.out.println("create Dictionary");
@@ -219,6 +207,8 @@ public class Indexer {
              BufferedWriter bw = new BufferedWriter(fw);
              PrintWriter out = new PrintWriter(bw)) {
             out.print(term);
+            bw.close();
+            fw.close();
         } catch (IOException e) {
             e.printStackTrace();
         }

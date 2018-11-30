@@ -14,14 +14,14 @@ public class FileManager {
     HashMap<String,String> cities;
     public static int DocNum;
     public static String postingpath;
-    public String DocInfo;
+    public StringBuilder DocInfo;
     public ExecutorService threadpool;
     public int chunksize;
 
     public FileManager(String docId, String path) {
         Cache=new TreeMap<String, TreeObject>();
         cities=new HashMap<String,String>();
-        DocInfo="";
+        DocInfo=new StringBuilder("");
         postingpath=path;
         threadpool= Executors.newSingleThreadExecutor();
     }
@@ -58,6 +58,8 @@ public class FileManager {
                                  BufferedWriter bw = new BufferedWriter(fw);
                                  PrintWriter out = new PrintWriter(bw)) {
                                 out.print(sj);
+                                bw.close();
+                                fw.close();
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
@@ -75,6 +77,7 @@ public class FileManager {
                             }
                             for (int j = 0; j < arrFromFile.length; j++) {
                                 currentfile[j]=new StringBuilder(arrFromFile[j]);
+
                             }
                             for (int j = arrFromFile.length; j <currentfile.length ; j++) {
                                 currentfile[j]=new StringBuilder("");
@@ -107,14 +110,16 @@ public class FileManager {
         return postingpath+"\\Indexing\\Else.txt";
     }
 
-    public void AllTermToDisk() throws InterruptedException {
-       PushTermsToDisk(Cache);
+    public synchronized void AllTermToDisk() throws InterruptedException {
+        TreeMap<String , TreeObject> TermToFile=Cache;
+        PushTermsToDisk(TermToFile);
+        Cache=new TreeMap<String,TreeObject>();
      }
     public void DocPosting(String ID, String City, int maxtf, int uniqueterms, String mostTf, String cityplaces, String filename){
         DocNum++;
         AddDocToCityIndex(ID,City);
-        DocInfo+=("|"+ ID+","+ City + "," + maxtf+ ","+ uniqueterms+ ","+ mostTf+","+cityplaces+","+filename);
-        if(DocInfo.length()>50000){
+        DocInfo.append("|"+ ID+","+ City + "," + maxtf+ ","+ uniqueterms+ ","+ mostTf+","+cityplaces+","+filename);
+        if(DocInfo.length()>200000){
             AllDocumentsToDisk();
         }
        // System.out.println(DocNum);
@@ -143,6 +148,8 @@ public class FileManager {
                  BufferedWriter bw = new BufferedWriter(fw);
                  PrintWriter out = new PrintWriter(bw)) {
                 out.print(currCity.getValue());
+                fw.close();
+                bw.close();
             } catch (IOException e) {
              //   e.printStackTrace();
             }
@@ -150,7 +157,7 @@ public class FileManager {
 
     }
 
-    public void SetCapitalToLoweCasePosting(String key, String value,int line) {
+    public synchronized void SetCapitalToLoweCasePosting(String key, String value,int line) {
         if (Cache.containsKey(key)) {
             Cache.get(key).value=Cache.get(key).value +value;
             Cache.put(key, Cache.get(key));
@@ -158,7 +165,9 @@ public class FileManager {
             Cache.put(key,new TreeObject(value,line));
         }
         if(Cache.size()>50000){
-            PushTermsToDisk(Cache);
+            TreeMap<String , TreeObject> TermToFile=Cache;
+            PushTermsToDisk(TermToFile);
+            Cache=new TreeMap<String,TreeObject>();
         }
     }
 
@@ -180,10 +189,12 @@ public class FileManager {
              BufferedWriter bw = new BufferedWriter(fw);
              PrintWriter out = new PrintWriter(bw)) {
             out.print( DocInfo);
+            bw.close();
+            fw.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        DocInfo="";
+        DocInfo=new StringBuilder("");
     }
 }
 
