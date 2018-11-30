@@ -148,8 +148,9 @@ public class FileManager {
                  BufferedWriter bw = new BufferedWriter(fw);
                  PrintWriter out = new PrintWriter(bw)) {
                 out.print(currCity.getValue());
-                fw.close();
                 bw.close();
+                fw.close();
+
             } catch (IOException e) {
              //   e.printStackTrace();
             }

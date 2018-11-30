@@ -105,6 +105,7 @@ public class Controller {
 
     public void LoadDic() {
         postingselected=ChoosePosting.getText();
+        IsStem=checkBox.isSelected();
         TreeMap<String, String[]> Dic = new TreeMap<>();
         String content = null;
         if(!new File(postingselected).exists()){
@@ -112,12 +113,12 @@ public class Controller {
             return;
         }
         try {
-            if(new File(postingselected+"\\Stemming" + "\\Dictionary.txt").exists()){
+            if(new File(postingselected+"\\Stemming" + "\\Dictionary.txt").exists() && IsStem){
                 content = new String(Files.readAllBytes(Paths.get(postingselected + "\\Stemming\\Dictionary.txt")), Charset.defaultCharset());
 
 
             }
-            else if((new File(postingselected+"\\NotStemming" + "\\Dictionary.txt").exists())){
+            else if((new File(postingselected+"\\NotStemming" + "\\Dictionary.txt").exists())&& !IsStem){
                 content = new String(Files.readAllBytes(Paths.get(postingselected + "\\NotStemming\\Dictionary.txt")), Charset.defaultCharset());
 
             }
@@ -180,7 +181,7 @@ public class Controller {
         String[] Letter = {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"};
         if (IsStem) {
             if(new File(postingselected+"/Stemming").exists()){
-                FileUtils.deleteDirectory((new File(new File(postingselected).getParent() + "/Stemming")));
+                FileUtils.deleteDirectory((new File(postingselected + "/Stemming")));
 
             }
             new File(postingselected + "/Stemming").mkdir();
@@ -208,7 +209,7 @@ public class Controller {
             postingselected = postingselected + "/Stemming";
         } else {
             if(new File(postingselected+"/NotStemming").exists()) {
-                FileUtils.deleteDirectory((new File(new File(postingselected).getParent() + "/NotStemming")));
+                FileUtils.deleteDirectory((new File(postingselected + "/NotStemming")));
             }
             new File(postingselected + "/NotStemming").mkdir();
             new File(postingselected + "/NotStemming/Indexing").mkdir();
@@ -280,11 +281,11 @@ public class Controller {
         readFile.GetFile();
         long end = System.nanoTime();
         long duratation = end - start;
-        double minutes = (duratation / 60000000000.0);
-        showAlert("Total Documents indexed " + FileManager.DocNum + ". Total Unique terms indexed " + Controller.Termunique + ". " + " runtime " + minutes + "minutes.");
+        double minutes = (duratation / 60000000000.0); //change to second
+        showAlert("Total Documents indexed " + FileManager.DocNum + ". Total Unique terms indexed " + Controller.Termunique + ". " + " runtime " + minutes + "seconds.");
         FileManager.DocNum = 0;
         Index=Parse.indexer.Index;
-
+        Parse.indexer=null;
     }
 
 

@@ -65,7 +65,7 @@ public class ReadFile {
           //  e.printStackTrace();
         }
 
-        return new Document(corpuspath + File.separator + FileName, City, Id, Text,filename);
+        return new Document(corpuspath + File.separator + FileName, City.toUpperCase(), Id, Text,filename);
     }
 
     public void GetFile() {

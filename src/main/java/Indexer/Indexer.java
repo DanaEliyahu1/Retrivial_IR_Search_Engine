@@ -62,55 +62,49 @@ public class Indexer {
             else{
                 AddTermToDic(entry.getKey().toLowerCase(), entry.getValue(),DocID);
             }
+            System.out.println(fileManager.Cache.size());
         }
 
 
     }
     public void IndexCities(){
+        TreeSet<String> State=new TreeSet<>();
+
         File folder = new File(fileManager.postingpath+"\\Cities");
         File[] ListOfFile= folder.listFiles();
         for (int i = 0; i <ListOfFile.length ; i++) {
             String key= ListOfFile[i].getName();
             key=key.substring(0,key.length()-4);
-            CityIndex.put(key,null);
+            OkHttpClient client = new OkHttpClient();
+            Request request = new Request.Builder().url("http://getcitydetails.geobytes.com/GetCityDetails?fqcn="+key).build();
+            String data="";
+            try {
+                data= client.newCall(request).execute().body().string();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            JSONParser jsonParser=new JSONParser();
+            String []value=new String[3];
+            try {
+                JSONObject jsonObject = (JSONObject) jsonParser.parse(data);
+                if(jsonObject.get("geobytescountry").equals("")){
+                    continue;
+                }
+                value[0]=(String) jsonObject.get("geobytescountry");
+                value[1]=(String) jsonObject.get("geobytescurrency");
+                value[2]=(String)"M"+ Math.round((Double.parseDouble((String)jsonObject.get("geobytespopulation")))/10000.0)/100;
+                State.add(value[0]);
+
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+            CityIndex.put(key,value);
         }
-        OkHttpClient client = new OkHttpClient();// currencies???
-        Request request = new Request.Builder().url("https://restcountries.eu/rest/v2/all?fields=capital;name;currencies;population").build();
-        String data="";
-        try {
-            data= client.newCall(request).execute().body().string();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        JSONParser jsonParser=new JSONParser();
-        try {
-            //TreeSet <String>State=new TreeSet();
-    //        int contercity=0;
-            JSONArray jsonArray =(JSONArray) jsonParser.parse(data);
-            for (int i = 0; i <jsonArray.size() ; i++) {
-                JSONObject curr = (JSONObject) jsonArray.get(i);
-                String Cityname = ((String) curr.get("capital")).split(" ")[0];
-                if(CityIndex.containsKey(Cityname)){
-                  //  contercity++;
-                    JSONArray curr1= (JSONArray) curr.get("currencies");
-                    JSONObject currency = (JSONObject) curr1.get(0);
-                    //  String currency =((JSONObject)((JSONArray)curr.get("currencies")).get("code")).toString();
-                    double population = ((long)curr.get("population"))/1000000.0;
-                    String populations= "M"+Math.round(population*100)/100;
-                    String[] CityInfo = {(String)curr.get("name"),(String)currency.get("code"),populations};
-                    CityIndex.put(Cityname,CityInfo);
-
-
-       //             State.add(CityInfo[0]);
-
-                }}
-              //  System.out.println("ALL STATE"+State.size());
-               // System.out.println("all capitalcitiy"+contercity );
-
-
-
-        } catch (ParseException e) {
-            e.printStackTrace();
+        System.out.println(State.size());
+        Iterator it = State.iterator();
+        while ( it.hasNext()){
+            System.out.println(it.next());
         }
     }
     private void AddTermToCapital(String key, Integer value, String DocID) {

@@ -49,7 +49,7 @@ public class Parse extends Thread {
                // System.out.println("@");
             }
         }
-        if(DocID.equals("FBIS3-1658")){
+   /*     if(DocID.equals("FBIS3-1658")){
             TreeMap<String,Integer> alltermsdoc=new TreeMap<>();
             alltermsdoc.putAll(TermsMap);
             alltermsdoc.putAll(SpecialTermsMap);
@@ -58,7 +58,7 @@ public class Parse extends Thread {
             System.out.println("Term: "+entry.getKey()+",Tf:"+entry.getValue());
         }
         }
-    indexer.ResultToFile( DocID,SpecialTermsMap, TermsMap, City,CapitalLetterWords,Cityplaces,d.filename);
+    */indexer.ResultToFile( DocID,SpecialTermsMap, TermsMap, City,CapitalLetterWords,Cityplaces,d.filename);
 
     }
 
@@ -66,7 +66,7 @@ public class Parse extends Thread {
         if (StopWord.contains(Tokens.get(i).toLowerCase())) {
             return false;
         }
-        if(Tokens.get(i).equals(this.City)){
+        if(Tokens.get(i).toLowerCase().equals(this.City.toLowerCase())){
             Cityplaces+=("-"+i);
         }
         if (Tokens.get(i).contains("-")) {
