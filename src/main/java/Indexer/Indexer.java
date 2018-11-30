@@ -212,6 +212,15 @@ public class Indexer {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        try {
+            fileManager.threadpool.shutdown();
+            fileManager.threadpool.awaitTermination(40,TimeUnit.MINUTES);
+            fileManager.threadpool=Executors.newSingleThreadExecutor();
+            threadpool.shutdown();
+            threadpool.awaitTermination(40,TimeUnit.MINUTES);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     }

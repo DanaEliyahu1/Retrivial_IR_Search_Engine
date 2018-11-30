@@ -48,7 +48,15 @@ public class Parse extends Thread {
             }catch (Exception e){
                // System.out.println("@");
             }
-
+        }
+        if(DocID.equals("FBIS3-1658")){
+            TreeMap<String,Integer> alltermsdoc=new TreeMap<>();
+            alltermsdoc.putAll(TermsMap);
+            alltermsdoc.putAll(SpecialTermsMap);
+            alltermsdoc.putAll(CapitalLetterWords);
+        for (Map.Entry<String, Integer> entry : alltermsdoc.entrySet()) {
+            System.out.println("Term: "+entry.getKey()+",Tf:"+entry.getValue());
+        }
         }
     indexer.ResultToFile( DocID,SpecialTermsMap, TermsMap, City,CapitalLetterWords,Cityplaces,d.filename);
 
