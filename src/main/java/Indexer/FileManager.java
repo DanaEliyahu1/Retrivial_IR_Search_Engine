@@ -23,7 +23,7 @@ public class FileManager {
         cities=new HashMap<String,String>();
         DocInfo=new StringBuilder("");
         postingpath=path;
-        threadpool= Executors.newSingleThreadExecutor();
+       // threadpool= Executors.newSingleThreadExecutor();
     }
 
     public synchronized void AddToPosting(String key, Integer value, String docID,int line) {
@@ -41,9 +41,7 @@ public class FileManager {
     }
 
     private void PushTermsToDisk(TreeMap<String , TreeObject> TermToFile) {
-        threadpool.execute(new Runnable() {
-            @Override
-            public void run() {
+
                 System.out.println("====DELETING");
                 char currletter = '*';
                 StringBuilder [] currentfile=null;
@@ -93,10 +91,8 @@ public class FileManager {
 
                 }
                 System.out.println("====STOP- DELETING");
-            }
-        });
 
-    }
+               }
 
     public static String geturl(String Term){
         char firstLetter=Term.charAt(0);

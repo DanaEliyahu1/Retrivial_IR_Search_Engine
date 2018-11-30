@@ -124,9 +124,6 @@ public class Indexer {
     }
 
     private void AddTermToDic(String key, Integer value,String DocID) {
-        threadpool.execute(new Runnable() {
-            @Override
-            public void run() {
                 if(Index.containsKey(key)){
                     int [] setvalue=Index.get(key);
                     setvalue[0]++;
@@ -149,9 +146,6 @@ public class Indexer {
                         linenumber[26]++;
                     }
                 }
-
-            }
-        });
 
     }
 

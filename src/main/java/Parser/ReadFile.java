@@ -81,7 +81,7 @@ public class ReadFile {
                     CurrDoc = GetDoc(FileList[i].getName() + "\\" + CurrFolder[j].getName(),CurrFolder[j].getName());
                     for (int k = 0; k < CurrDoc.length; k++) {
                       // if(CurrDoc[k].Text.length()>75) {
-                           threadpool.execute(new Parse(CurrDoc[k]));
+                           new Parse(CurrDoc[k]).run();
                       // }
                        //else{
                        //    if(CurrDoc[k].Text.split("\\s+").length>3){
