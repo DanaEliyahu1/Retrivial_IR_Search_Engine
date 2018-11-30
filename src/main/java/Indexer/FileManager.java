@@ -119,7 +119,7 @@ public class FileManager {
         DocNum++;
         AddDocToCityIndex(ID,City);
         DocInfo.append("|"+ ID+","+ City + "," + maxtf+ ","+ uniqueterms+ ","+ mostTf+","+cityplaces+","+filename);
-        if(DocInfo.length()>200000){
+        if(DocInfo.length()>1500000){
             AllDocumentsToDisk();
         }
        // System.out.println(DocNum);

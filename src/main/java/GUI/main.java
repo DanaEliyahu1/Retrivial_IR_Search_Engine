@@ -27,6 +27,7 @@ public class main extends Application {
         primaryStage.setTitle("Google Demo");
         Scene scene = new Scene(root, 1024, 600);
         primaryStage.setScene(scene);
+        controller=fxmlLoader.getController();
         controller.setStage(primaryStage);
         ObservableList<String> options =
                 FXCollections.observableArrayList(

@@ -66,6 +66,7 @@ public class Indexer {
         }
 
 
+
     }
     public void IndexCities(){
         TreeSet<String> State=new TreeSet<>();
