@@ -22,14 +22,13 @@ public class Document {
     }
 
     public ArrayList<String> TextToToken() {
-        String[] Tokens = Text.split("--|\\s+");
+        String[] Tokens = Text.replaceAll("\\?|\\*|\\,|\\`|\\;|\\?|\\:|\\||\\>|\\<|\\^|\\\"|\\,|\\(|\\[|\\)|\\]|\\!|\\+","").split("--|\\s+");
         return ClearTokens(Tokens);
     }
 
     public ArrayList<String> ClearTokens(String[] token) {
         ArrayList<String> TokenArr = new ArrayList<>();
         for (int i = 0; i < token.length; i++) {
-            token[i] = token[i].replaceAll("\\?|\\*|\\,|\\`|\\;|\\?|\\:|\\||\\>|\\<|\\^|\\\"|\\,|\\(|\\[|\\)|\\]|\\!|\\+","");
             if (!(token[i].equals(""))) {
 
                 while (!token[i].equals("") &&  ( token[i].charAt(0) == '/'  ||token[i].charAt(0) == '\\'  || token[i].charAt(0) == '\"'  || token[i].charAt(0) == '\'' )) {
@@ -41,7 +40,7 @@ public class Document {
                 if (token[i].contains("/") && Character.isLetter(token[i].charAt(0))) {
                     String[] words = token[i].split("/");
                     for (int j = 0; j < words.length; j++) {
-                        token[i] = words[j].replaceAll("\\?|\\*|\\`|\\;|\\?|\\:|\\||\\>|\\<|\\^|\\\"|\\\\||\\|\\,|\\+|\\(|\\[|\\)|\\]|\\=","");
+                        token[i] = words[j];
                         while (!token[i].equals("") && (token[i].charAt(0) == '/'  ||token[i].charAt(0) == '\\'  || token[i].charAt(0) == '\"' || token[i].charAt(0) == '\'' || token[i].charAt(0) == '.')) {
                             token[i] = token[i].substring(1);
                         }

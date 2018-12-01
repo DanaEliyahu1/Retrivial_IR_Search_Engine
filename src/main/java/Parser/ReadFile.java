@@ -13,10 +13,8 @@ public class ReadFile {
 
     String corpuspath;
     private String FileName;
-    private ExecutorService threadpool;
     public ReadFile(String corpuspath) {
         this.corpuspath = corpuspath;
-        this.threadpool= Executors.newSingleThreadExecutor();
     }
 
     public Document[] GetDoc(String path,String filename) {
@@ -80,14 +78,7 @@ public class ReadFile {
                 for (int j = 0; j < CurrFolder.length; j++) {
                     CurrDoc = GetDoc(FileList[i].getName() + "\\" + CurrFolder[j].getName(),CurrFolder[j].getName());
                     for (int k = 0; k < CurrDoc.length; k++) {
-                      // if(CurrDoc[k].Text.length()>75) {
-                           new Parse(CurrDoc[k]).run();
-                      // }
-                       //else{
-                       //    if(CurrDoc[k].Text.split("\\s+").length>3){
-                       //        threadpool.execute(new Parse(CurrDoc[k]));
-                       //    }
-                     //  }
+                           new Parse().parse(CurrDoc[k]);
                     }
                     CurrDoc=null;
                 }
@@ -98,14 +89,6 @@ public class ReadFile {
 
         }
         System.out.println("waiting for finishing");
-        try {
-            threadpool.shutdown();
-            threadpool.awaitTermination(40, TimeUnit.MINUTES);
-           // System.out.println("finished");
-        } catch (InterruptedException e) {
-          //  System.out.println("time out~~");
-        }
-
         Parse.indexer.FinishIndexing();
 
 

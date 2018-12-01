@@ -15,7 +15,6 @@ public class FileManager {
     public static int DocNum;
     public static String postingpath;
     public StringBuilder DocInfo;
-    public ExecutorService threadpool;
     public int chunksize;
 
     public FileManager(String docId, String path) {
@@ -23,10 +22,9 @@ public class FileManager {
         cities=new HashMap<String,String>();
         DocInfo=new StringBuilder("");
         postingpath=path;
-       // threadpool= Executors.newSingleThreadExecutor();
     }
 
-    public synchronized void AddToPosting(String key, Integer value, String docID,int line) {
+    public void AddToPosting(String key, Integer value, String docID,int line) {
         if (Cache.containsKey(key)) {
             Cache.put(key,new TreeObject(Cache.get(key).value + "|" + docID + "," + value,line));
         } else {
@@ -106,7 +104,7 @@ public class FileManager {
         return postingpath+"\\Indexing\\Else.txt";
     }
 
-    public synchronized void AllTermToDisk() throws InterruptedException {
+    public void AllTermToDisk() throws InterruptedException {
         TreeMap<String , TreeObject> TermToFile=Cache;
         PushTermsToDisk(TermToFile);
         Cache=new TreeMap<String,TreeObject>();
@@ -154,7 +152,7 @@ public class FileManager {
 
     }
 
-    public synchronized void SetCapitalToLoweCasePosting(String key, String value,int line) {
+    public  void SetCapitalToLoweCasePosting(String key, String value,int line) {
         if (Cache.containsKey(key)) {
             Cache.get(key).value=Cache.get(key).value +value;
             Cache.put(key, Cache.get(key));

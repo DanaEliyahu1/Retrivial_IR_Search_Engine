@@ -17,7 +17,6 @@ import java.util.concurrent.TimeUnit;
 
 public class Indexer {
     public static TreeMap<String,int []> AllCapitalLetterWords;
-    private ExecutorService threadpool;
     public FileManager fileManager;
     public TreeMap <String,int []> Index;
     TreeMap <String,String[]> CityIndex;
@@ -30,7 +29,6 @@ public class Indexer {
         this.fileManager=fileManager;
          linenumber=new  int[28];
          CapitalLetterPosting=new TreeMap<>();
-        this.threadpool= Executors.newSingleThreadExecutor();
     }
 
 
@@ -69,7 +67,7 @@ public class Indexer {
 
     }
     public void IndexCities(){
-        TreeSet<String> State=new TreeSet<>();
+       // TreeSet<String> State=new TreeSet<>();
 
         File folder = new File(fileManager.postingpath+"\\Cities");
         File[] ListOfFile= folder.listFiles();
@@ -94,7 +92,7 @@ public class Indexer {
                 value[0]=(String) jsonObject.get("geobytescountry");
                 value[1]=(String) jsonObject.get("geobytescurrency");
                 value[2]=(String)"M"+ Math.round((Double.parseDouble((String)jsonObject.get("geobytespopulation")))/10000.0)/100;
-                State.add(value[0]);
+              //  State.add(value[0]);
 
             } catch (ParseException e) {
                 e.printStackTrace();
@@ -102,12 +100,12 @@ public class Indexer {
 
             CityIndex.put(key,value);
         }
-        System.out.println(State.size());
-        Iterator it = State.iterator();
-        while ( it.hasNext()){
-            System.out.println(it.next());
+    //    System.out.println(State.size());
+    //    Iterator it = State.iterator();
+     //   while ( it.hasNext()){
+      //      System.out.println(it.next());
         }
-    }
+   // }
     private void AddTermToCapital(String key, Integer value, String DocID) {
         if(Index.containsKey(key)){
             int [] setvalue=AllCapitalLetterWords.get(key);
@@ -151,19 +149,6 @@ public class Indexer {
 
     public void FinishIndexing() {
 
-
-
-        System.out.println("waiting for finish");
-        try {
-            fileManager.threadpool.shutdown();
-            fileManager.threadpool.awaitTermination(40,TimeUnit.MINUTES);
-            fileManager.threadpool=Executors.newSingleThreadExecutor();
-            threadpool.shutdown();
-            threadpool.awaitTermination(40,TimeUnit.MINUTES);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
         for (Map.Entry<String, int[]> entry : AllCapitalLetterWords.entrySet()) {
             if(Index.containsKey(entry.getKey().toLowerCase())){
                 int[] value=Index.get(entry.getKey().toLowerCase());
@@ -199,15 +184,6 @@ public class Indexer {
             bw.close();
             fw.close();
         } catch (IOException e) {
-            e.printStackTrace();
-        }
-        try {
-            fileManager.threadpool.shutdown();
-            fileManager.threadpool.awaitTermination(40,TimeUnit.MINUTES);
-            fileManager.threadpool=Executors.newSingleThreadExecutor();
-            threadpool.shutdown();
-            threadpool.awaitTermination(40,TimeUnit.MINUTES);
-        } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }

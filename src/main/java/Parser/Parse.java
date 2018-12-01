@@ -5,7 +5,7 @@ import Indexer.Indexer;
 import java.util.*;
 
 
-public class Parse extends Thread {
+public class Parse {
     String City;
     Document d;
     public static Indexer indexer;
@@ -23,20 +23,17 @@ public class Parse extends Thread {
     String DocID;
     String Cityplaces;
 
-    public Parse(Document d) {
+    public Parse() {
         TermsMap=new TreeMap<String, Integer>() ;
         SpecialTermsMap=new TreeMap<String, Integer>();
         CapitalLetterWords=new TreeMap<String,Integer>();
-        this.d=d;
     }
 
-    @Override
-    public void run() {
-        parse(d);
-    }
+
     public void parse(Document Doc) {
         this.DocID=Doc.ID;
         this.City=Doc.City;
+        this.d=Doc;
         Cityplaces = "";
         Tokens = Doc.TextToToken();
         int size=Tokens.size()-1;
