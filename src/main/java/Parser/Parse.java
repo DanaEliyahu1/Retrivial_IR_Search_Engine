@@ -60,6 +60,10 @@ public class Parse {
     }
 
     private boolean ParseRules() {
+        if(Tokens.get(i).toLowerCase().equals("between")&&Tokens.get(i+2).toLowerCase().equals("and")){
+            AddTermToTree(false,Tokens.get(i).toLowerCase()+" "+ Tokens.get(i+1)+" and "+Tokens.get(i+3));
+        }
+
         if (StopWord.contains(Tokens.get(i).toLowerCase())) {
             return false;
         }
@@ -143,7 +147,7 @@ public class Parse {
         if (Tokens.get(i).contains("/")) {
             return Tokens.get(i);
         }
-        String tokenWithoutCommas = Tokens.get(i).replaceAll(",", "");
+        String tokenWithoutCommas = Tokens.get(i);
         double number = -1;
         if (tokenWithoutCommas.contains(".")||tokenWithoutCommas.length()>9) {
             number = Double.parseDouble(tokenWithoutCommas);
@@ -168,9 +172,7 @@ public class Parse {
     }
 
     private String PriceToTerm() {
-        String tokenWithoutCommas = Tokens.get(i).replaceAll(",", "");
-        tokenWithoutCommas=tokenWithoutCommas.replaceAll("O","0");
-        tokenWithoutCommas=tokenWithoutCommas.replaceAll("\\$","");
+        String tokenWithoutCommas = Tokens.get(i).replaceAll("\\$","");
         double number = -1;
         if(Tokens.get(i).contains("/")){
             return Tokens.get(i);

@@ -29,6 +29,7 @@ public class main extends Application {
         primaryStage.setScene(scene);
         controller=fxmlLoader.getController();
         controller.setStage(primaryStage);
+
         ObservableList<String> options =
                 FXCollections.observableArrayList(
                         "English",
@@ -39,7 +40,7 @@ public class main extends Application {
                         "Español",
                         "Português"
                 );
-        controller.choiceBox=new ChoiceBox(options);
+        controller.choiceBox.setItems(options);
         controller.Index =new TreeMap<>();
         primaryStage.show();
 
