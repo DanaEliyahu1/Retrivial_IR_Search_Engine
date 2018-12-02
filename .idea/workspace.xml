@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0f921457-46cd-4350-bc0e-a504e616ee8d" name="Default Changelist" comment="22 MIN !!!! WITH API RON VERSION 3&#10;WITHOUT THREA">
+    <list default="true" id="0f921457-46cd-4350-bc0e-a504e616ee8d" name="Default Changelist" comment="added regex">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Indexer/Indexer.java" afterPath="$PROJECT_DIR$/src/main/java/Indexer/Indexer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Parser/Document.java" afterPath="$PROJECT_DIR$/src/main/java/Parser/Document.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Parser/Parse.java" afterPath="$PROJECT_DIR$/src/main/java/Parser/Parse.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -149,24 +147,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Parse.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Parse.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/Parser/Parse.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="317">
-              <caret line="75" column="102" lean-forward="false" selection-start-line="75" selection-start-column="102" selection-end-line="75" selection-end-column="102" />
+              <caret line="75" column="97" lean-forward="false" selection-start-line="75" selection-start-column="97" selection-end-line="75" selection-end-column="97" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Document.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/Parser/Document.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="486">
-              <caret line="24" column="59" lean-forward="false" selection-start-line="24" selection-start-column="59" selection-end-line="24" selection-end-column="59" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -259,9 +245,9 @@
         <option value="$PROJECT_DIR$/src/main/java/Parser/ReadFile.java" />
         <option value="$PROJECT_DIR$/src/main/java/Indexer/FileManager.java" />
         <option value="$PROJECT_DIR$/src/main/java/GUI/main.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Parser/Parse.java" />
         <option value="$PROJECT_DIR$/src/main/java/Indexer/Indexer.java" />
         <option value="$PROJECT_DIR$/src/main/java/Parser/Document.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Parser/Parse.java" />
       </list>
     </option>
   </component>
@@ -529,13 +515,6 @@
       <workItem from="1541864475152" duration="6950000" />
       <workItem from="1542101767573" duration="7284000" />
       <workItem from="1542132904878" duration="9747000" />
-    </task>
-    <task id="LOCAL-00003" summary="1">
-      <created>1541241103757</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1541241103757</updated>
     </task>
     <task id="LOCAL-00004" summary="DATEANDMOHNTS">
       <created>1541243074778</created>
@@ -873,7 +852,14 @@
       <option name="project" value="LOCAL" />
       <updated>1543677747331</updated>
     </task>
-    <option name="localTasksCounter" value="52" />
+    <task id="LOCAL-00052" summary="added regex">
+      <created>1543738845867</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1543738845867</updated>
+    </task>
+    <option name="localTasksCounter" value="53" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -954,7 +940,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="BEGINNIG GUI" />
     <MESSAGE value="show dictionary, and path controller gui" />
     <MESSAGE value="finish show dictionary" />
     <MESSAGE value="capslock&#10;end indexing function&#10;capital letter to disk in file manager&#10;get url&#10;number file\capital letter file&#10;&#10;BEFORE RUN" />
@@ -979,7 +964,8 @@
     <MESSAGE value="24 MIN !!!! WITH API RON VERSION 2" />
     <MESSAGE value="24 MIN !!!! WITH API RON VERSION 3&#10;WITHOUT THREA" />
     <MESSAGE value="22 MIN !!!! WITH API RON VERSION 3&#10;WITHOUT THREA" />
-    <option name="LAST_COMMIT_MESSAGE" value="22 MIN !!!! WITH API RON VERSION 3&#10;WITHOUT THREA" />
+    <MESSAGE value="added regex" />
+    <option name="LAST_COMMIT_MESSAGE" value="added regex" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1331,14 +1317,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Parser/Parse.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="317">
-          <caret line="75" column="102" lean-forward="false" selection-start-line="75" selection-start-column="102" selection-end-line="75" selection-end-column="102" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Parser/ReadFile.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1458">
@@ -1354,6 +1332,14 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Parser/Parse.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="317">
+          <caret line="75" column="97" lean-forward="false" selection-start-line="75" selection-start-column="97" selection-end-line="75" selection-end-column="97" />
+          <folding />
         </state>
       </provider>
     </entry>
