@@ -91,7 +91,8 @@ public class Indexer {
                 }
                 value[0]=(String) jsonObject.get("geobytescountry");
                 value[1]=(String) jsonObject.get("geobytescurrency");
-                value[2]=(String)"M"+ Math.round((Double.parseDouble((String)jsonObject.get("geobytespopulation")))/10000.0)/100;
+                value[2]=GetPopulationSize((Double.parseDouble((String)jsonObject.get("geobytespopulation"))));
+               //(String)"M"+ Math.round((Double.parseDouble((String)jsonObject.get("geobytespopulation")))/10000.0)/100;
               //  State.add(value[0]);
 
             } catch (ParseException e) {
@@ -105,7 +106,25 @@ public class Indexer {
      //   while ( it.hasNext()){
       //      System.out.println(it.next());
         }
-   // }
+
+    private String GetPopulationSize(double number)  {
+
+     if (number < 1000) {
+        return ""+((Math.round(number*100))/100);
+    }else if ((number >= 1000) && (number < 1000000)) {
+        double newnum = number / 1000;
+        return "" + ((Math.round(newnum*100))/100)+ "K";
+    } else if (number >= 1000000 && number < 1000000000) {
+        double newnum = number / 1000000;
+        return "" + ((Math.round(newnum*100))/100)+ "M";
+    } else if (number <= 1000000000) {
+        double newnum = number / 1000000000;
+        return "" + ((Math.round(newnum*100))/100) + "B";
+    }
+        return null;
+}
+
+    // }
     private void AddTermToCapital(String key, Integer value, String DocID) {
         if(Index.containsKey(key)){
             int [] setvalue=AllCapitalLetterWords.get(key);
