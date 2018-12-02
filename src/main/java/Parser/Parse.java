@@ -22,7 +22,7 @@ public class Parse {
     int i;
     String DocID;
     String Cityplaces;
-    
+
 
 
     public Parse() {
@@ -73,40 +73,15 @@ public class Parse {
         if(Tokens.get(i).toLowerCase().equals(this.City.toLowerCase())){
             Cityplaces+=("-"+i);
         }
-        if (Tokens.get(i).contains("-")) {
-            AddTermToTree(false,Tokens.get(i).toLowerCase());
-            return false;
-        } else if (Character.isDigit(Tokens.get(i).charAt(0))&&Tokens.get(i).matches("[0-9.$%\\\\]")) {
-            //Special
-            if (Months.contains(Tokens.get(i + 1))) {
-                AddTermToTree(false,TranslateMonths(i + 1) + "-" + Tokens.get(i));
-                return true;
-            } else if (NumberHash.contains(Tokens.get(i + 1))) {
-                AddTermToTree(false,NumberToTerm());
-                return true;
-            } else if (DollarHash.contains(Tokens.get(i + 1))) {
-                AddTermToTree(false,PriceToTerm());
-                return true;
-            } else if (Tokens.get(i).charAt(Tokens.get(i).length() - 1) == '%') {
-                AddTermToTree(false,Tokens.get(i));
-                return true;
-            } else if (Tokens.get(i + 1).equals("percent") || Tokens.get(i + 1).equals("percentage") || Tokens.get(i + 1).equals("%")) {
-                AddTermToTree(false,Tokens.get(i) + "%");
-                return true;
-            }else if (Tokens.get(i + 1).equals("feet") || Tokens.get(i + 1).equals("Feet") || Tokens.get(i + 1).equals("FEET")|| Tokens.get(i + 1).equals("FOOT")|| Tokens.get(i + 1).equals("foot")) {
-                AddTermToTree(false,Tokens.get(i) + " feet");
-                return true;
-            }
-            AddTermToTree(false,TokenToNum());
-            return false;
-        } else if (Months.contains(Tokens.get(i)) && Character.isDigit(Tokens.get(i + 1).charAt(0))) {
+        if (Months.contains(Tokens.get(i)) && Character.isDigit(Tokens.get(i + 1).charAt(0))) {
+
             AddTermToTree(false,Tokens.get(i + 1) + "-" + TranslateMonths(i));
             return true;
         } else if(Tokens.get(i).contains("'s")){
-                String newToken=Tokens.get(i).substring(0,Tokens.get(i).length()-2);
-                if(StopWord.contains(newToken)){
-                    return false;
-                }
+            String newToken=Tokens.get(i).substring(0,Tokens.get(i).length()-2);
+            if(StopWord.contains(newToken)){
+                return false;
+            }
             if (Character.isUpperCase(newToken.charAt(0))) {
                 if (CapitalLetterWords.containsKey(newToken)) {
                     CapitalLetterWords.put(newToken.toUpperCase(), CapitalLetterWords.get(newToken) + 1);
@@ -118,9 +93,10 @@ public class Parse {
             }
             AddTermToTree(false,newToken);
             return false;
-            }
+        }
 
-         else if (Character.isUpperCase(Tokens.get(i).charAt(0))) {
+        else if (Character.isUpperCase(Tokens.get(i).charAt(0))) {
+
             if(CapitalLetterWords.containsKey(Tokens.get(i).toUpperCase())){
                 CapitalLetterWords.put(Tokens.get(i).toUpperCase(),CapitalLetterWords.get(Tokens.get(i))+1);
             }
@@ -130,11 +106,46 @@ public class Parse {
             }
             return false;
         }
-        else if(Tokens.get(i).charAt(0)=='$'){
+        if (Tokens.get(i).contains("-")) {
+
+            AddTermToTree(false,Tokens.get(i).toLowerCase());
+            return false;
+        } else if (Character.isDigit(Tokens.get(i).charAt(0))&&Tokens.get(i).matches("[0-9.$%\\\\]+")) {
+            //Special
+            if (Tokens.get(i).charAt(Tokens.get(i).length() - 1) == '%') {
+
+                AddTermToTree(false,Tokens.get(i));
+
+                return true;
+            } else if (Tokens.get(i + 1).equals("percent") || Tokens.get(i + 1).equals("percentage") || Tokens.get(i + 1).equals("%")) {
+
+                AddTermToTree(false,Tokens.get(i) + "%");
+                return true;
+            }else if (Months.contains(Tokens.get(i + 1))) {
+              ;
+                AddTermToTree(false,TranslateMonths(i + 1) + "-" + Tokens.get(i));
+                return true;
+            } else if (NumberHash.contains(Tokens.get(i + 1))) {
+
+                AddTermToTree(false,NumberToTerm());
+                return true;
+            } else if (DollarHash.contains(Tokens.get(i + 1))) {
+
+                AddTermToTree(false,PriceToTerm());
+                return true;
+            } else if (Tokens.get(i + 1).equals("feet") || Tokens.get(i + 1).equals("Feet") || Tokens.get(i + 1).equals("FEET")|| Tokens.get(i + 1).equals("FOOT")|| Tokens.get(i + 1).equals("foot")) {
+                AddTermToTree(false,Tokens.get(i) + " feet");
+                return true;
+            }
+            AddTermToTree(false,TokenToNum());
+            return false;
+        } else if(Tokens.get(i).charAt(0)=='$'){
+
             AddTermToTree(false,PriceToTerm());
             return false;
         }
         else{
+
             if(isStemmig){
                 AddTermToTree(true,stemmer.StemToken(Tokens.get(i).toLowerCase()));
                 return false;

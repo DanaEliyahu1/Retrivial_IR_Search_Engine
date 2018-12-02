@@ -311,6 +311,8 @@ public class Controller {
         FileManager.DocNum = 0;
         Index=Parse.indexer.Index;
         Parse.indexer=null;
+
+
     }
 
 
@@ -323,6 +325,7 @@ public class Controller {
         alert.setContentText(alertMessage);
         alert.show();
     }
+
 
 }
 
