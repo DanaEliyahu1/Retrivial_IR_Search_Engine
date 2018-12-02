@@ -13,7 +13,7 @@ public class Document {
 
 
     public Document(String path, String city, String id, String text, String filename) {
-        this.City = city;
+        this.City = city.toUpperCase();
         this.path = path;
         this.ID = id;
         this.Text = text;
@@ -48,20 +48,20 @@ public class Document {
         for (int i = 0; i < token.length; i++) {
             if (!(token[i].equals(""))) {
 
-                while (!token[i].equals("") &&  ( token[i].charAt(0) == '/'  ||token[i].charAt(0) == '\\'  || token[i].charAt(0) == '\"'  || token[i].charAt(0) == '\'' )) {
+                while (!token[i].equals("") &&  ( token[i].charAt(0) == '/'  ||token[i].charAt(0) == '\\'  )) {
                     token[i] = token[i].substring(1);
                 }
-                while (!token[i].equals("") &&  ( token[i].charAt(token[i].length() - 1) == '/'||  token[i].charAt(token[i].length() - 1) == '\\'|| token[i].charAt(token[i].length() - 1) == ',' || token[i].charAt(token[i].length() - 1) == '.'   || token[i].charAt(token[i].length() - 1) == '\"' || token[i].charAt(token[i].length() - 1) == '\''  || token[i].charAt(token[i].length() - 1) == '-')) {
+                while (!token[i].equals("") &&  ( token[i].charAt(token[i].length() - 1) == '/'||  token[i].charAt(token[i].length() - 1) == '\\' || token[i].charAt(token[i].length() - 1) == '.'   || token[i].charAt(token[i].length() - 1) == '-')) {
                     token[i] = token[i].substring(0, token[i].length() - 1);
                 }
                 if (token[i].contains("/") && Character.isLetter(token[i].charAt(0))) {
                     String[] words = token[i].split("/");
                     for (int j = 0; j < words.length; j++) {
                         token[i] = words[j];
-                        while (!token[i].equals("") && (token[i].charAt(0) == '/'  ||token[i].charAt(0) == '\\'  || token[i].charAt(0) == '\"' || token[i].charAt(0) == '\'' || token[i].charAt(0) == '.')) {
+                        while (!token[i].equals("") && (token[i].charAt(0) == '/'  ||token[i].charAt(0) == '\\' || token[i].charAt(0) == '.')) {
                             token[i] = token[i].substring(1);
                         }
-                        while (!token[i].equals("") && ( token[i].charAt(token[i].length() - 1) == '/'||  token[i].charAt(token[i].length() - 1) == '\\'|| token[i].charAt(token[i].length() - 1) == ',' || token[i].charAt(token[i].length() - 1) == '.'  || token[i].charAt(token[i].length() - 1) == '\"' || token[i].charAt(token[i].length() - 1) == '\'' || token[i].charAt(token[i].length() - 1) == '-')) {
+                        while (!token[i].equals("") && ( token[i].charAt(token[i].length() - 1) == '/'||  token[i].charAt(token[i].length() - 1) == '\\' || token[i].charAt(token[i].length() - 1) == '.'  || token[i].charAt(token[i].length() - 1) == '-')) {
                             token[i] = token[i].substring(0, token[i].length() - 1);
                         }
                         if (token[i].length()>1) {

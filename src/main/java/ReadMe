@@ -20,6 +20,7 @@ Inside the folder there is:
 -Dictionary file
 -Document posting file
 
+***If you want to re index or reset, you need to close all files in the folder stemming(or not stemming)***
 
 
 

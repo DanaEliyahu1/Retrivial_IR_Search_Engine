@@ -3,8 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="0f921457-46cd-4350-bc0e-a504e616ee8d" name="Default Changelist" comment="VARSION 2 TO AGASA&#10;20 stem&#10;17 not stem">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/GUI/Controller.java" afterPath="$PROJECT_DIR$/src/main/java/GUI/Controller.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Parser/Parse.java" afterPath="$PROJECT_DIR$/src/main/java/Parser/Parse.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Indexer/Indexer.java" afterPath="$PROJECT_DIR$/src/main/java/Indexer/Indexer.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Parser/Document.java" afterPath="$PROJECT_DIR$/src/main/java/Parser/Document.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ReadMe" afterPath="$PROJECT_DIR$/src/main/java/ReadMe" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -564,13 +565,6 @@
       <workItem from="1542101767573" duration="7284000" />
       <workItem from="1542132904878" duration="9747000" />
     </task>
-    <task id="LOCAL-00005" summary="fixed eliminate, parse before Capital first letters">
-      <created>1541257635779</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1541257635779</updated>
-    </task>
     <task id="LOCAL-00006" summary="after stemmer">
       <created>1541260875656</created>
       <option name="number" value="00006" />
@@ -907,7 +901,14 @@
       <option name="project" value="LOCAL" />
       <updated>1543770728520</updated>
     </task>
-    <option name="localTasksCounter" value="54" />
+    <task id="LOCAL-00054" summary="VARSION 2 TO AGASA&#10;20 stem&#10;17 not stem">
+      <created>1543786953832</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1543786953832</updated>
+    </task>
+    <option name="localTasksCounter" value="55" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
