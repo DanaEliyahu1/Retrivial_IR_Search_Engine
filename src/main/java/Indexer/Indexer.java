@@ -60,7 +60,6 @@ public class Indexer {
             else{
                 AddTermToDic(entry.getKey().toLowerCase(), entry.getValue(),DocID);
             }
-            System.out.println(fileManager.Cache.size());
         }
 
 
