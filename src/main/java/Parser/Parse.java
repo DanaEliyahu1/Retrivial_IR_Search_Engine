@@ -22,6 +22,8 @@ public class Parse {
     int i;
     String DocID;
     String Cityplaces;
+    
+
 
     public Parse() {
         TermsMap=new TreeMap<String, Integer>() ;
@@ -62,6 +64,7 @@ public class Parse {
     private boolean ParseRules() {
         if(Tokens.get(i).toLowerCase().equals("between")&&Tokens.get(i+2).toLowerCase().equals("and")){
             AddTermToTree(false,Tokens.get(i).toLowerCase()+" "+ Tokens.get(i+1)+" and "+Tokens.get(i+3));
+
         }
 
         if (StopWord.contains(Tokens.get(i).toLowerCase())) {
@@ -133,7 +136,7 @@ public class Parse {
         }
         else{
             if(isStemmig){
-                AddTermToTree(true,stemmer.StemToken(Tokens.get(i)));
+                AddTermToTree(true,stemmer.StemToken(Tokens.get(i).toLowerCase()));
                 return false;
             }
             else{

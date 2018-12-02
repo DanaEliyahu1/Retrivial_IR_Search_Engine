@@ -251,6 +251,9 @@ public class Controller {
                     StopWord.add(contentsw[i].toLowerCase());
                 }
             }
+            if(StopWord.contains("may")){
+                StopWord.remove("may");
+            }
         }
         String[] Monthsarr = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Sept", "Oct", "Nov", "Dec", "january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December", "JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNE", "JULY", "AUGUST", "SEPTEMBER", "OCTOBER", "NOVEMBER", "DECEMBER"};
         HashSet Months = new HashSet();
