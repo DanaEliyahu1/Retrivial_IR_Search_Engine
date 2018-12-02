@@ -73,7 +73,7 @@ public class Parse {
         if (Tokens.get(i).contains("-")) {
             AddTermToTree(false,Tokens.get(i).toLowerCase());
             return false;
-        } else if (Character.isDigit(Tokens.get(i).charAt(0))&&Tokens.get(i).matches("^([0-9]{1,3}(,[0-9]{3})*(\\.[0-9]+)?|\\.[0-9]+)$")) {
+        } else if (Character.isDigit(Tokens.get(i).charAt(0))&&Tokens.get(i).matches("[0-9.$%\\\\]")) {
             //Special
             if (Months.contains(Tokens.get(i + 1))) {
                 AddTermToTree(false,TranslateMonths(i + 1) + "-" + Tokens.get(i));

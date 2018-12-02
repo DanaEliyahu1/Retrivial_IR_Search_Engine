@@ -22,7 +22,7 @@ public class Document {
     }
 
     public ArrayList<String> TextToToken() {
-        String[] Tokens = Text.replaceAll("\\?|\\*|\\,|\\`|\\;|\\?|\\:|\\||\\>|\\<|\\^|\\\"|\\,|\\(|\\[|\\)|\\]|\\!|\\+","").split("--|\\s+");
+        String[] Tokens = Text.replaceAll("[^A-Za-z0-9$%\\s.\\-\\\\]+","").split("--|\\s+");
         return ClearTokens(Tokens);
     }
 
