@@ -267,6 +267,28 @@ public class Controller {
         for (int i = 0; i < dollararr.length; i++) {
             DollarHash.add(dollararr[i]);
         }
+        HashMap <String,String> replace=new HashMap<>();
+        replace.put("?","");
+        replace.put("*","");
+        replace.put(",","");
+        replace.put(";","");
+        replace.put(":","");
+        replace.put("<","");
+        replace.put(">","");
+        replace.put("|","");
+        replace.put("^","");
+        replace.put("\"","");
+        replace.put("\'","");
+        replace.put("(","");
+        replace.put(")","");
+        replace.put("[","");
+        replace.put("]","");
+        replace.put("{","");
+        replace.put("}","");
+        replace.put("!","");
+        replace.put("+","");
+        //replace.put("",""); ?
+        ReadFile.replace=replace;
         Parse.DollarHash = DollarHash;
         Parse.NumberHash = NumberHash;
         Parse.Months = Months;

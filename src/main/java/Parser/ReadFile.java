@@ -5,12 +5,13 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.HashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 public class ReadFile {
-
+    public static HashMap<String,String> replace;
     String corpuspath;
     private String FileName;
     public ReadFile(String corpuspath) {
