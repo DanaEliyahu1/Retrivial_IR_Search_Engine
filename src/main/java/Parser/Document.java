@@ -1,7 +1,6 @@
 package Parser;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
 
 public class Document {
@@ -26,6 +25,7 @@ public class Document {
         String[] Tokens = replaceFromMap(Text,ReadFile.replace).split("--|\\s+");
         return ClearTokens(Tokens);
     }
+    //function we took which runs faster the java's replace all
     public static String replaceFromMap(String string, Map<String, String> replacements) {
         StringBuilder sb = new StringBuilder(string);
         for (Map.Entry<String, String> entry : replacements.entrySet()) {
@@ -42,7 +42,7 @@ public class Document {
         }
         return sb.toString();
     }
-
+//cleaning tokens for easier stemming use
     public ArrayList<String> ClearTokens(String[] token) {
         ArrayList<String> TokenArr = new ArrayList<>();
         for (int i = 0; i < token.length; i++) {

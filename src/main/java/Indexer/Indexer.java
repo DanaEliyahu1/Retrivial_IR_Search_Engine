@@ -16,12 +16,15 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 public class Indexer {
-    public static TreeMap<String, int[]> AllCapitalLetterWords;
+    /*
+    gets parsing terms and building the dictionary dynamicly (while writing to disk every now and then)
+     */
+    public static TreeMap<String, int[]> AllCapitalLetterWords; //capital letter words that might be changed to lowercase
     public FileManager fileManager;
-    public TreeMap<String, int[]> Index;
-    TreeMap<String, String[]> CityIndex;
-    TreeMap<String, String> CapitalLetterPosting;
-    public static int[] linenumber; //27-numbers 28-capitalLetters
+    public TreeMap<String, int[]> Index; //the main dictionary
+    TreeMap<String, String[]> CityIndex; //city inverted index
+    TreeMap<String, StringBuilder> CapitalLetterPosting; //posting kept in order put in the right term(lower or upper case)
+    public static int[] linenumber; //line numbers for file for each letter + 27-numbers 28-capitalLetters
 
     public Indexer(FileManager fileManager) {
         AllCapitalLetterWords = new TreeMap<>();
@@ -32,11 +35,10 @@ public class Indexer {
         CapitalLetterPosting = new TreeMap<>();
     }
 
-
+//called from the parse and analyzing the info +inserting to indexes
     public void ResultToFile(String DocID, TreeMap<String, Integer> SpecialTermsMap, TreeMap<String, Integer> TermsMap, String City, TreeMap<String, Integer> capitalLetterWords, String cityplaces, String filename) {
-
-        int counter = 0;
-        String mostTf = "";
+        int counter = 0; //looking for maxtf
+        String mostTf = ""; //looking for maxtf term string
         for (Map.Entry<String, Integer> entry : SpecialTermsMap.entrySet()) {
             AddTermToDic(entry.getKey(), entry.getValue(), DocID);
             if (counter < entry.getValue()) {
@@ -54,6 +56,7 @@ public class Indexer {
         int uniqueterms = SpecialTermsMap.size() + TermsMap.size();
 
         fileManager.DocPosting(DocID, City, counter, uniqueterms, mostTf, cityplaces, filename);
+        //looking if capital letter words should be lowered to lowercase
         for (Map.Entry<String, Integer> entry : capitalLetterWords.entrySet()) {
             if (!Index.containsKey(entry.getKey().toLowerCase())) {
                 AddTermToCapital(entry.getKey(), entry.getValue(), DocID);
@@ -64,10 +67,9 @@ public class Indexer {
 
 
     }
-
+//in the end of indexing finding the info asked for using API. going through all cities
     public void IndexCities() {
         // TreeSet<String> State=new TreeSet<>();
-
         File folder = new File(fileManager.postingpath + "\\Cities");
         File[] ListOfFile = folder.listFiles();
         for (int i = 0; i < ListOfFile.length; i++) {
@@ -105,7 +107,7 @@ public class Indexer {
         //   while ( it.hasNext()){
         //      System.out.println(it.next());
     }
-
+//changing the numbers according to parse rules (also rounding to 2 numbers)
     private String GetPopulationSize(double number) {
 
         if (number < 1000) {
@@ -123,21 +125,21 @@ public class Indexer {
         return null;
     }
 
-    // }
+   //adding the posting and line numbers to the 2 maps which handle capital letters(one for tf/icf and one for posting)
     private void AddTermToCapital(String key, Integer value, String DocID) {
         if (Index.containsKey(key)) {
             int[] setvalue = AllCapitalLetterWords.get(key);
             setvalue[0]++;
             setvalue[2] += value;
-            CapitalLetterPosting.put(key, CapitalLetterPosting.get(key) + "|" + DocID + "," + value.toString());
+            CapitalLetterPosting.put(key, CapitalLetterPosting.get(key).append("|" + DocID + "," + value.toString()));
         } else {
             int[] setnewvalue = {1, linenumber[27], value};
             AllCapitalLetterWords.put(key, setnewvalue);
-            CapitalLetterPosting.put(key, "|" + DocID + "," + value.toString());
+            CapitalLetterPosting.put(key, new StringBuilder("|" + DocID + "," + value.toString()));
             linenumber[27]++;
         }
     }
-
+//a main function. the term is located in the dictionary and if new it gets a new line-number for its posting file
     private void AddTermToDic(String key, Integer value, String DocID) {
         if (Index.containsKey(key)) {
             int[] setvalue = Index.get(key);
@@ -162,7 +164,8 @@ public class Indexer {
         }
 
     }
-
+//some function can be called only when we have all terms and know all we need
+//to know which terms should stay uppercase, which cities we have and we clean final cache values
     public void FinishIndexing() {
 
         for (Map.Entry<String, int[]> entry : AllCapitalLetterWords.entrySet()) {
@@ -170,13 +173,13 @@ public class Indexer {
                 int[] value = Index.get(entry.getKey().toLowerCase());
                 value[0] += AllCapitalLetterWords.get(entry.getKey())[0];
                 value[2] += AllCapitalLetterWords.get(entry.getKey())[2];
-                fileManager.SetCapitalToLoweCasePosting(entry.getKey().toLowerCase(), CapitalLetterPosting.get(entry.getKey()), Index.get(entry.getKey().toLowerCase())[1]);
+                fileManager.SetCapitalToLoweCasePosting(entry.getKey().toLowerCase(), CapitalLetterPosting.get(entry.getKey()).toString(), Index.get(entry.getKey().toLowerCase())[1]);
                 CapitalLetterPosting.remove(entry.getKey());
             } else {
                 Index.put(entry.getKey(), entry.getValue());
             }
         }
-        fileManager.AddCapitalLettersToCache(CapitalLetterPosting);
+        fileManager.AddCapitalLettersToCache(CapitalLetterPosting,AllCapitalLetterWords);
         try {
             fileManager.AllTermToDisk();
         } catch (InterruptedException e) {
@@ -186,7 +189,7 @@ public class Indexer {
         IndexCities();
         fileManager.AllDocumentsToDisk();
         Controller.Termunique = Index.size();
-      //  System.out.println("create Dictionary");
+      //  creating dictionary so the user doesnt need to recreate the indexing on the corpus
         File filedic = new File(fileManager.postingpath + "\\Dictionary.txt");
         StringBuilder term = new StringBuilder("");
         for (Map.Entry<String, int[]> entry : Index.entrySet()) {

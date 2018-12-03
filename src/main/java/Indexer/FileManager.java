@@ -9,42 +9,48 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class FileManager {
-
-    TreeMap<String, TreeObject> Cache;
-    HashMap<String,String> cities;
-    public static int DocNum;
-    public static String postingpath;
-    public StringBuilder DocInfo;
-    public int chunksize;
-
+/*
+A class we added to work with files so the logic can be kept in the indexer
+ */
+    TreeMap<String, TreeObject> Cache; //new terms are added here
+    HashMap<String,StringBuilder> cities; //new cities and their documents
+    public static int DocNum; //counter for later use
+    public static String postingpath; //where to read and write
+    public StringBuilder DocInfo; //info of all documents is stored here
+    public int chunksize; //can be dynamic
     public FileManager(String docId, String path) {
         Cache=new TreeMap<String, TreeObject>();
-        cities=new HashMap<String,String>();
+        cities=new HashMap<String,StringBuilder>();
         DocInfo=new StringBuilder("");
         postingpath=path;
     }
-
+//adding new term with its posting information or adding it to an existing key
     public void AddToPosting(String key, Integer value, String docID,int line) {
         if (Cache.containsKey(key)) {
             Cache.put(key,new TreeObject(Cache.get(key).value + "|" + docID + "," + value,line));
         } else {
             Cache.put(key,new TreeObject("|" + docID + "," + value,line));
         }
+        //if the cache is too big we empty it
             if(Cache.size()>chunksize){
                 TreeMap<String , TreeObject> TermToFile=Cache;
                 PushTermsToDisk(TermToFile);
                 Cache=new TreeMap<String,TreeObject>();
-                chunksize+=500;
+                chunksize+=0; //zeros? can be changed to 500
             }
     }
-
+//the actual writing to disk.
+    /*
+    because treemap is ordered we write each file in the alphabet in order
+    and we get to a new letter we change file
+     */
     private void PushTermsToDisk(TreeMap<String , TreeObject> TermToFile) {
-
                // System.out.println("====DELETING");
                 char currletter = '*';
                 StringBuilder [] currentfile=null;
                 for (Map.Entry<String, TreeObject> entry : TermToFile.entrySet()) {
                     if(entry.getKey().charAt(0)!=currletter){
+                        //writing when finished with letter
                         if(currentfile!=null){
                             StringJoiner sj=new StringJoiner("\n");
                             for (int k = 0; k <currentfile.length ;k++) {
@@ -61,6 +67,7 @@ public class FileManager {
                             }
                         }
                         currletter=entry.getKey().charAt(0);
+                        //reading the file of new letter
                         try {
                             String[] arrFromFile=new String(Files.readAllBytes(Paths.get(geturl(""+currletter))), Charset.defaultCharset()).split("\n");
                             if(Character.isLetter(currletter)&&Character.isLowerCase(currletter)){
@@ -84,6 +91,7 @@ public class FileManager {
                         }
 
                     }
+                    //actually appending each term
                     currentfile[entry.getValue().lineNumber].append(entry.getValue().value);
 
 
@@ -91,7 +99,7 @@ public class FileManager {
              //   System.out.println("====STOP- DELETING");
 
                }
-
+//classifies each term to file
     public static String geturl(String Term){
         char firstLetter=Term.charAt(0);
         if(Character.isLetter(firstLetter)&&Character.isLowerCase(firstLetter)){
@@ -103,12 +111,13 @@ public class FileManager {
         }
         return postingpath+"\\Indexing\\Else.txt";
     }
-
+//getting cache values that we didnt get to
     public void AllTermToDisk() throws InterruptedException {
         TreeMap<String , TreeObject> TermToFile=Cache;
         PushTermsToDisk(TermToFile);
         Cache=new TreeMap<String,TreeObject>();
      }
+     //adding information of new documents;
     public void DocPosting(String ID, String City, int maxtf, int uniqueterms, String mostTf, String cityplaces, String filename){
         DocNum++;
         AddDocToCityIndex(ID,City);
@@ -118,20 +127,21 @@ public class FileManager {
         }
        // System.out.println(DocNum);
     }
+    //information on each city is updated when finished every document
     void AddDocToCityIndex(String DocId,String City){
         if(City.equals(""))return;
         if (cities.containsKey(City)) {
-            cities.put(City,cities.get(City)+ "," + DocId);
+            cities.put(City,cities.get(City).append("," + DocId) );
         } else {
-            cities.put(City, DocId);
+            cities.put(City, new StringBuilder(DocId));
         }
     }
-
+//writing all cities we got Disk
     public void CitiesToDisk(){
        // System.out.println("cities to disk");
-        Iterator<Map.Entry<String,String>> it= cities.entrySet().iterator();
+        Iterator<Map.Entry<String,StringBuilder>> it= cities.entrySet().iterator();
         while (it.hasNext()){
-            Map.Entry<String,String> currCity=it.next();
+            Map.Entry<String,StringBuilder> currCity=it.next();
             File file =new File(postingpath+"\\Cities\\"+currCity.getKey()+".txt");
             try {
                 file.createNewFile();
@@ -141,7 +151,7 @@ public class FileManager {
             try (FileWriter fw = new FileWriter(postingpath+"\\Cities\\"+currCity.getKey()+".txt", true);
                  BufferedWriter bw = new BufferedWriter(fw);
                  PrintWriter out = new PrintWriter(bw)) {
-                out.print(currCity.getValue());
+                out.print(currCity.getValue().toString());
                 bw.close();
                 fw.close();
 
@@ -149,9 +159,10 @@ public class FileManager {
              //   e.printStackTrace();
             }
         }
+        cities=new HashMap<>();
 
     }
-
+//adding terms they started as capital letters but are saved lowercase in lowercase format
     public  void SetCapitalToLoweCasePosting(String key, String value,int line) {
         if (Cache.containsKey(key)) {
             Cache.get(key).value=Cache.get(key).value +value;
@@ -165,14 +176,13 @@ public class FileManager {
             Cache=new TreeMap<String,TreeObject>();
         }
     }
-
-    public void AddCapitalLettersToCache(TreeMap<String, String> capitalLetterPosting) {
-        for (Map.Entry<String, String> entry : capitalLetterPosting.entrySet()) {
-            Cache.put(entry.getKey(),new TreeObject(entry.getValue(),0));
+//adding capital letters to the cache and files
+    public void AddCapitalLettersToCache(TreeMap<String, StringBuilder> capitalLetterPosting, TreeMap<String, int[]> allCapitalLetterWords) {
+        for (Map.Entry<String, StringBuilder> entry : capitalLetterPosting.entrySet()) {
+            Cache.put(entry.getKey(),new TreeObject(entry.getValue().toString(),allCapitalLetterWords.get(entry.getKey())[1]));
         }
-
     }
-
+//documents left are now written to disk with their posting info
     public void AllDocumentsToDisk() {
         File file =new File(postingpath+"\\Documents.txt");
         try {
@@ -196,7 +206,6 @@ public class FileManager {
 class TreeObject {
     public String value;
     public int lineNumber;
-
     public TreeObject(String value, int lineNumber) {
         this.lineNumber=lineNumber;
         this.value = value;
