@@ -6,6 +6,8 @@ import Parser.Document;
 import Parser.Parse;
 import Parser.ReadFile;
 import Parser.Stemmer;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -42,6 +44,7 @@ public class Controller {
     public TextField Choosecorpus;
     public TextField ChooseStopWords;
     public TextField ChoosePosting;
+    public static ObservableList<String> options;
 
 
     public void StartButton() {
@@ -325,6 +328,12 @@ public class Controller {
         alert.setContentText(alertMessage);
         alert.show();
     }
+
+   public static void SetLanguages(String languages){
+        options.add(languages);
+
+   }
+
 
 
 }

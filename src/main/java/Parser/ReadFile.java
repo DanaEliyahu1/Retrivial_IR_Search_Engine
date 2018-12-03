@@ -1,5 +1,7 @@
 package Parser;
 
+import GUI.Controller;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
@@ -42,6 +44,7 @@ public class ReadFile {
         String Id = IdArr[0].split("<DOCNO>")[1].replaceAll(" ","");
         String[] City1 = IdArr[1].split("<TEXT>");
         String[] City2 = City1[0].split("<F P=104>");
+
         if (City2.length != 1) {
             String[] City3 = City2[1].split("</F>");
             String[] City4 = City3[0].split("\n|\\ ");
@@ -55,9 +58,14 @@ public class ReadFile {
         String Text="";
         try{
            Text = City1[1].split("</TEXT>")[0];
+
             if (Text.contains("[Text]")) {
                 String[] aftersdplit=Text.split("\\[Text\\]");
                 Text = aftersdplit[1];
+                String [] language=aftersdplit[0].split("<F P=105>" )[1].split("</F>");
+                String Language=language[0].replaceAll(" ","");
+                Controller.SetLanguages(Language);
+
                 return new Document(corpuspath + File.separator + FileName, City, Id, Text, filename);
             }
         }catch (Exception e){

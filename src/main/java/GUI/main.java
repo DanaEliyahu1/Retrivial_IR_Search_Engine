@@ -30,19 +30,8 @@ public class main extends Application {
         controller=fxmlLoader.getController();
         controller.setStage(primaryStage);
 
-        ObservableList<String> options =
-                FXCollections.observableArrayList(
-                        "English",
-                        "עברית",
-                        "Русский",
-                        "Русский",
-                        "हिन्दी",
-                        "Español",
-                        "Português"
-                );
-
-
-        controller.choiceBox.setItems(options);
+       Controller.options=FXCollections.observableArrayList();
+        controller.choiceBox.setItems(Controller.options);
         controller.Index =new TreeMap<>();
         primaryStage.show();
 
