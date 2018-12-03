@@ -330,8 +330,9 @@ public class Controller {
     }
 
    public static void SetLanguages(String languages){
-        options.add(languages);
-
+        if(!options.contains(languages)){
+            options.add(languages);
+        }
    }
 
 
