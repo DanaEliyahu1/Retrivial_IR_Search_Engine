@@ -186,7 +186,7 @@ public class Indexer {
         IndexCities();
         fileManager.AllDocumentsToDisk();
         Controller.Termunique = Index.size();
-        System.out.println("create Dictionary");
+      //  System.out.println("create Dictionary");
         File filedic = new File(fileManager.postingpath + "\\Dictionary.txt");
         StringBuilder term = new StringBuilder("");
         for (Map.Entry<String, int[]> entry : Index.entrySet()) {

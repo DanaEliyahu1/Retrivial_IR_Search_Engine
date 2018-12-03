@@ -306,7 +306,7 @@ public class Controller {
         readFile.GetFile();
         long end = System.nanoTime();
         long duratation = end - start;
-        double minutes = (duratation / 60000000000.0); //change to second
+        double minutes = (duratation / 1000000000.0); //change to second
         showAlert("Total Documents indexed " + FileManager.DocNum + ". Total Unique terms indexed " + Controller.Termunique + ". " + " runtime " + minutes + "seconds.");
         FileManager.DocNum = 0;
         Index=Parse.indexer.Index;

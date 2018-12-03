@@ -40,6 +40,8 @@ public class main extends Application {
                         "Español",
                         "Português"
                 );
+
+
         controller.choiceBox.setItems(options);
         controller.Index =new TreeMap<>();
         primaryStage.show();

@@ -40,7 +40,7 @@ public class FileManager {
 
     private void PushTermsToDisk(TreeMap<String , TreeObject> TermToFile) {
 
-                System.out.println("====DELETING");
+               // System.out.println("====DELETING");
                 char currletter = '*';
                 StringBuilder [] currentfile=null;
                 for (Map.Entry<String, TreeObject> entry : TermToFile.entrySet()) {
@@ -88,7 +88,7 @@ public class FileManager {
 
 
                 }
-                System.out.println("====STOP- DELETING");
+             //   System.out.println("====STOP- DELETING");
 
                }
 
@@ -128,7 +128,7 @@ public class FileManager {
     }
 
     public void CitiesToDisk(){
-        System.out.println("cities to disk");
+       // System.out.println("cities to disk");
         Iterator<Map.Entry<String,String>> it= cities.entrySet().iterator();
         while (it.hasNext()){
             Map.Entry<String,String> currCity=it.next();

@@ -73,7 +73,7 @@ public class ReadFile {
         File[] CurrFolder=null;
         Document[] CurrDoc=null;
         for (int i = 0; i < FileList.length; i++) {
-            System.out.println("*********************************" + i);
+    //        System.out.println("*********************************" + i);
             try {
                 CurrFolder=FileList[i].listFiles();
                 for (int j = 0; j < CurrFolder.length; j++) {
@@ -85,11 +85,11 @@ public class ReadFile {
                 }
             } catch (Exception e) {
                 e.printStackTrace();
-                System.out.println("#");
+   //             System.out.println("#");
             }
 
         }
-        System.out.println("waiting for finishing");
+     //   System.out.println("waiting for finishing");
         Parse.indexer.FinishIndexing();
 
 
