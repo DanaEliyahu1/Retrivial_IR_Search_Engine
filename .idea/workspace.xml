@@ -6,15 +6,9 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0f921457-46cd-4350-bc0e-a504e616ee8d" name="Default Changelist" comment="VARSION 3 TO AGASA&#10;20 stem&#10;17 not stem">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+    <list default="true" id="0f921457-46cd-4350-bc0e-a504e616ee8d" name="Default Changelist" comment="VARSION 3 TO AGASA&#10;***added string builders//fixed capital letter posting// added documentation&#10;20 stem&#10;17 not stem">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GUI/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GUI/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GUI/ShowDictionaryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GUI/ShowDictionaryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GUI/main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GUI/main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Indexer/FileManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Indexer/FileManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Indexer/Indexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Indexer/Indexer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Parser/Document.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Parser/Document.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Parser/Parse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Parser/Parse.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -126,8 +120,8 @@
       <file leaf-file-name="Parse.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/Parser/Parse.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-450">
-              <caret line="26" selection-start-line="26" selection-end-line="26" />
+            <state relative-caret-position="128">
+              <caret line="8" column="12" selection-start-line="8" selection-start-column="12" selection-end-line="8" selection-end-column="12" />
             </state>
           </provider>
         </entry>
@@ -233,7 +227,6 @@
         <option value="$PROJECT_DIR$/src/main/java/GUI/GetPathController.java" />
         <option value="$PROJECT_DIR$/src/main/resources/main.fxml" />
         <option value="$PROJECT_DIR$/src/main/java/ReadMe" />
-        <option value="$PROJECT_DIR$/src/main/java/Parser/Parse.java" />
         <option value="$PROJECT_DIR$/src/main/java/Parser/ReadFile.java" />
         <option value="$PROJECT_DIR$/src/main/java/GUI/Controller.java" />
         <option value="$PROJECT_DIR$/src/main/java/GUI/main.java" />
@@ -241,6 +234,7 @@
         <option value="$PROJECT_DIR$/src/main/java/Indexer/Indexer.java" />
         <option value="$PROJECT_DIR$/src/main/java/Indexer/FileManager.java" />
         <option value="$PROJECT_DIR$/src/main/java/Parser/Document.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Parser/Parse.java" />
       </list>
     </option>
   </component>
@@ -500,14 +494,7 @@
       <workItem from="1541864475152" duration="6950000" />
       <workItem from="1542101767573" duration="7284000" />
       <workItem from="1542132904878" duration="9747000" />
-      <workItem from="1543876453396" duration="3089000" />
-    </task>
-    <task id="LOCAL-00007" summary="after stemmer V">
-      <created>1541261461444</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1541261461444</updated>
+      <workItem from="1543876453396" duration="3343000" />
     </task>
     <task id="LOCAL-00008" summary="started readfile and document">
       <created>1541267074647</created>
@@ -845,11 +832,18 @@
       <option name="project" value="LOCAL" />
       <updated>1543845139308</updated>
     </task>
-    <option name="localTasksCounter" value="56" />
+    <task id="LOCAL-00056" summary="VARSION 3 TO AGASA&#10;***added string builders//fixed capital letter posting// added documentation&#10;20 stem&#10;17 not stem">
+      <created>1543879614080</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1543879614081</updated>
+    </task>
+    <option name="localTasksCounter" value="57" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="118226000" />
+    <option name="totallyTimeSpent" value="118480000" />
   </component>
   <component name="TodoView" selected-index="3">
     <todo-panel id="selected-file">
@@ -866,10 +860,11 @@
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32936078" />
+      <window_info active="true" anchor="bottom" id="Messages" order="10" sideWeight="0.48865354" visible="true" weight="0.28874388" />
       <window_info anchor="right" id="Palette&#9;" order="8" />
       <window_info id="Image Layers" order="6" />
       <window_info anchor="right" id="Capture Analysis" order="5" />
-      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.0921875" side_tool="true" visible="true" weight="0.19249593" />
+      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.51134646" side_tool="true" visible="true" weight="0.28874388" />
       <window_info anchor="right" id="Maven Projects" order="4" weight="0.06202723" />
       <window_info anchor="bottom" id="Database Changes" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.5996802" weight="0.13542795" />
@@ -877,7 +872,7 @@
       <window_info anchor="bottom" id="Terminal" order="9" weight="0.32936078" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="3" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16263238" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16263238" />
       <window_info anchor="right" id="Database" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -892,7 +887,6 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32936078" />
-      <window_info anchor="bottom" id="Messages" order="10" sideWeight="0.48958334" weight="0.2896406" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -928,7 +922,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fix abc filies" />
     <MESSAGE value="started indexing&#10;fixed1 in readfile&#10;fixed1 in indexer" />
     <MESSAGE value="deleted priority queue" />
     <MESSAGE value="added await termantaion" />
@@ -953,7 +946,8 @@
     <MESSAGE value="VARSION 1 TO AGASA" />
     <MESSAGE value="VARSION 2 TO AGASA&#10;20 stem&#10;17 not stem" />
     <MESSAGE value="VARSION 3 TO AGASA&#10;20 stem&#10;17 not stem" />
-    <option name="LAST_COMMIT_MESSAGE" value="VARSION 3 TO AGASA&#10;20 stem&#10;17 not stem" />
+    <MESSAGE value="VARSION 3 TO AGASA&#10;***added string builders//fixed capital letter posting// added documentation&#10;20 stem&#10;17 not stem" />
+    <option name="LAST_COMMIT_MESSAGE" value="VARSION 3 TO AGASA&#10;***added string builders//fixed capital letter posting// added documentation&#10;20 stem&#10;17 not stem" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1226,8 +1220,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Parser/Parse.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-450">
-          <caret line="26" selection-start-line="26" selection-end-line="26" />
+        <state relative-caret-position="128">
+          <caret line="8" column="12" selection-start-line="8" selection-start-column="12" selection-end-line="8" selection-end-column="12" />
         </state>
       </provider>
     </entry>

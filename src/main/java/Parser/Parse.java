@@ -6,29 +6,29 @@ import java.util.*;
 
 
 public class Parse {
-    String City;
-    Document d;
+    private String City;
+    private Document d;
     public static Indexer indexer;
     public static HashSet StopWord;
-    TreeMap<String,Integer> TermsMap;
-    TreeMap<String, Integer> SpecialTermsMap;
+    private TreeMap<String,Integer> TermsMap;
+    private TreeMap<String, Integer> SpecialTermsMap;
     public static Stemmer stemmer;
     public static HashSet Months;
     public static HashSet NumberHash;
     public static HashSet DollarHash;
     public static boolean isStemmig;
-    public TreeMap<String,Integer> CapitalLetterWords;
-    ArrayList<String> Tokens;
-    int i;
-    String DocID;
-    String Cityplaces;
+    private TreeMap<String,Integer> CapitalLetterWords;
+    private ArrayList<String> Tokens;
+    private int i;
+    private String DocID;
+    private String Cityplaces;
 
 
 
     public Parse() {
         TermsMap=new TreeMap<String, Integer>() ;
-        SpecialTermsMap=new TreeMap<String, Integer>();
-        CapitalLetterWords=new TreeMap<String,Integer>();
+        SpecialTermsMap=new TreeMap<>();
+        CapitalLetterWords=new TreeMap<>();
     }
 
 
@@ -46,7 +46,7 @@ public class Parse {
                 }
             }catch (Exception e){
                // System.out.println("@");
-            }
+               }
         }
    /*     if(DocID.equals("FBIS3-1658")){
             TreeMap<String,Integer> alltermsdoc=new TreeMap<>();
@@ -122,7 +122,6 @@ public class Parse {
                 AddTermToTree(false,Tokens.get(i) + "%");
                 return true;
             }else if (Months.contains(Tokens.get(i + 1))) {
-              ;
                 AddTermToTree(false,TranslateMonths(i + 1) + "-" + Tokens.get(i));
                 return true;
             } else if (NumberHash.contains(Tokens.get(i + 1))) {
@@ -316,7 +315,7 @@ public class Parse {
     public void AddTermToTree(boolean TreeMap, String Token){
     //true = termtree
     // false= specialtreemap
-        String newtoken=Token.toLowerCase().replaceAll("[^a-z0-9\\.\\-]","");
+        String newtoken=Token.toLowerCase().replaceAll("[^a-z0-9.-]","");
         if(newtoken.equals("")) return;
         if(TreeMap){
         if(TermsMap.containsKey(newtoken)){
