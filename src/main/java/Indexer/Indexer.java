@@ -3,7 +3,6 @@ package Indexer;
 import GUI.Controller;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -103,7 +102,7 @@ public class Indexer {
 
             CityIndex.put(key, value);
         }
-        
+
            }
 //changing the numbers according to parse rules (also rounding to 2 numbers)
     private String GetPopulationSize(double number) {
