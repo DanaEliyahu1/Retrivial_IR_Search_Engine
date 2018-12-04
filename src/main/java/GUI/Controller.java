@@ -179,7 +179,7 @@ public class Controller {
                     e.printStackTrace();
                 }
             }
-            new File(postingselected + "/Stemming/Cities").mkdir();
+
             File file = new File(postingselected + "/Stemming/Indexing/Numbers.txt");
             File file1 = new File(postingselected + "/Stemming/Indexing/CapitalLetters.txt");
             File file2 = new File(postingselected + "/Stemming/Indexing/Else.txt");
@@ -207,8 +207,7 @@ public class Controller {
                 }
 
             }
-            new File(postingselected + "/NotStemming/Cities").mkdir();
-            File file = new File(postingselected + "/NotStemming/Indexing/Numbers.txt");
+             File file = new File(postingselected + "/NotStemming/Indexing/Numbers.txt");
             File file1 = new File(postingselected + "/NotStemming/Indexing/CapitalLetters.txt");
             File file2 = new File(postingselected + "/NotStemming/Indexing/Else.txt");
             try {

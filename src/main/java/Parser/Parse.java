@@ -48,7 +48,7 @@ public class Parse {
                // System.out.println("@");
                }
         }
-        if(DocID.equals("FBIS3-3366")){
+       /* if(DocID.equals("FBIS3-3366")){
             TreeMap<String,Integer> alltermsdoc=new TreeMap<>();
             alltermsdoc.putAll(TermsMap);
             alltermsdoc.putAll(SpecialTermsMap);
@@ -56,7 +56,7 @@ public class Parse {
         for (Map.Entry<String, Integer> entry : alltermsdoc.entrySet()) {
             System.out.println("Term: "+entry.getKey()+",Tf:"+entry.getValue());
         }
-        }
+        }*/
    indexer.ResultToFile( DocID,SpecialTermsMap, TermsMap, City,CapitalLetterWords,Cityplaces,d.filename);
 
     }

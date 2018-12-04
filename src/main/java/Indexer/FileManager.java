@@ -13,7 +13,7 @@ public class FileManager {
 A class we added to work with files so the logic can be kept in the indexer
  */
     TreeMap<String, TreeObject> Cache; //new terms are added here
-    HashMap<String,StringBuilder> cities; //new cities and their documents
+     public HashMap<String,StringBuilder> cities; //new cities and their documents
     public static int DocNum; //counter for later use
     public static String postingpath; //where to read and write
     public StringBuilder DocInfo; //info of all documents is stored here
@@ -137,27 +137,29 @@ A class we added to work with files so the logic can be kept in the indexer
         }
     }
 //writing all cities we got Disk
-    public void CitiesToDisk(){
-       // System.out.println("cities to disk");
-        Iterator<Map.Entry<String,StringBuilder>> it= cities.entrySet().iterator();
+    public void CitiesToDisk(TreeMap<String, String[]> cityIndex){
+        File file =new File(postingpath+"\\Cities.txt");
+        try {
+            file.createNewFile();
+        } catch (IOException e) {
+            // e.printStackTrace();
+        }
+        StringBuilder content=new StringBuilder("");
+           Iterator<Map.Entry<String,StringBuilder>> it= cities.entrySet().iterator();
         while (it.hasNext()){
             Map.Entry<String,StringBuilder> currCity=it.next();
-            File file =new File(postingpath+"\\Cities\\"+currCity.getKey()+".txt");
-            try {
-                file.createNewFile();
-            } catch (IOException e) {
-              // e.printStackTrace();
-            }
-            try (FileWriter fw = new FileWriter(postingpath+"\\Cities\\"+currCity.getKey()+".txt", true);
-                 BufferedWriter bw = new BufferedWriter(fw);
-                 PrintWriter out = new PrintWriter(bw)) {
-                out.print(currCity.getValue().toString());
-                bw.close();
-                fw.close();
+            content.append(currCity.getKey()+"|"+cityIndex.get(currCity.getKey())[0]+"|"+cityIndex.get(currCity.getKey())[1]+"|"+cityIndex.get(currCity.getKey())[2]+"|"+currCity.getValue().toString()+"\n");
 
-            } catch (IOException e) {
-             //   e.printStackTrace();
-            }
+        }
+        try (FileWriter fw = new FileWriter(postingpath+"\\Cities.txt", false);
+               BufferedWriter bw = new BufferedWriter(fw);
+               PrintWriter out = new PrintWriter(bw)) {
+            out.print(content.toString());
+            bw.close();
+            fw.close();
+
+        } catch (IOException e) {
+            //   e.printStackTrace();
         }
         cities=new HashMap<>();
 

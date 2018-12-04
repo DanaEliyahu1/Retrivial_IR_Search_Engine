@@ -68,13 +68,10 @@ public class Indexer {
 
     }
 //in the end of indexing finding the info asked for using API. going through all cities
-    public void IndexCities() {
-        // TreeSet<String> State=new TreeSet<>();
-        File folder = new File(fileManager.postingpath + "\\Cities");
-        File[] ListOfFile = folder.listFiles();
-        for (int i = 0; i < ListOfFile.length; i++) {
-            String key = ListOfFile[i].getName();
-            key = key.substring(0, key.length() - 4);
+    public void IndexCities(Set<String> cities) {
+                 Iterator<String> iterator = cities.iterator();
+        while (iterator.hasNext()) {
+            String key = iterator.next();
             OkHttpClient client = new OkHttpClient();
             Request request = new Request.Builder().url("http://getcitydetails.geobytes.com/GetCityDetails?fqcn=" + key).build();
             String data = "";
@@ -85,16 +82,20 @@ public class Indexer {
             }
             JSONParser jsonParser = new JSONParser();
             String[] value = new String[3];
+            value[0]="";
+            value[1]="";
+            value[2]="";
             try {
                 JSONObject jsonObject = (JSONObject) jsonParser.parse(data);
                 if (jsonObject.get("geobytescountry").equals("")) {
+                    CityIndex.put(key, value);
                     continue;
                 }
                 value[0] = (String) jsonObject.get("geobytescountry");
                 value[1] = (String) jsonObject.get("geobytescurrency");
                 value[2] = GetPopulationSize((Double.parseDouble((String) jsonObject.get("geobytespopulation"))));
                 //(String)"M"+ Math.round((Double.parseDouble((String)jsonObject.get("geobytespopulation")))/10000.0)/100;
-                //  State.add(value[0]);
+
 
             } catch (ParseException e) {
                 e.printStackTrace();
@@ -102,11 +103,8 @@ public class Indexer {
 
             CityIndex.put(key, value);
         }
-        //    System.out.println(State.size());
-        //    Iterator it = State.iterator();
-        //   while ( it.hasNext()){
-        //      System.out.println(it.next());
-    }
+        
+           }
 //changing the numbers according to parse rules (also rounding to 2 numbers)
     private String GetPopulationSize(double number) {
 
@@ -185,8 +183,9 @@ public class Indexer {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        fileManager.CitiesToDisk();
-        IndexCities();
+        IndexCities(fileManager.cities.keySet());
+        fileManager.CitiesToDisk(CityIndex);
+
         fileManager.AllDocumentsToDisk();
         Controller.Termunique = Index.size();
       //  creating dictionary so the user doesnt need to recreate the indexing on the corpus
