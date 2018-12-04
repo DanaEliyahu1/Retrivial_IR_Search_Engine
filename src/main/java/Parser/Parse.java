@@ -48,7 +48,7 @@ public class Parse {
                // System.out.println("@");
                }
         }
-   /*     if(DocID.equals("FBIS3-1658")){
+        if(DocID.equals("FBIS3-3366")){
             TreeMap<String,Integer> alltermsdoc=new TreeMap<>();
             alltermsdoc.putAll(TermsMap);
             alltermsdoc.putAll(SpecialTermsMap);
@@ -57,7 +57,7 @@ public class Parse {
             System.out.println("Term: "+entry.getKey()+",Tf:"+entry.getValue());
         }
         }
-    */indexer.ResultToFile( DocID,SpecialTermsMap, TermsMap, City,CapitalLetterWords,Cityplaces,d.filename);
+   indexer.ResultToFile( DocID,SpecialTermsMap, TermsMap, City,CapitalLetterWords,Cityplaces,d.filename);
 
     }
 
@@ -84,7 +84,7 @@ public class Parse {
             }
             if (Character.isUpperCase(newToken.charAt(0))) {
                 if (CapitalLetterWords.containsKey(newToken)) {
-                    CapitalLetterWords.put(newToken.toUpperCase(), CapitalLetterWords.get(newToken) + 1);
+                    CapitalLetterWords.put(newToken.toUpperCase(), CapitalLetterWords.get(newToken.toUpperCase()) + 1);
                     return false;
                 } else {
                     CapitalLetterWords.put(newToken.toUpperCase(), 1);
@@ -98,7 +98,7 @@ public class Parse {
         else if (Character.isUpperCase(Tokens.get(i).charAt(0))) {
 
             if(CapitalLetterWords.containsKey(Tokens.get(i).toUpperCase())){
-                CapitalLetterWords.put(Tokens.get(i).toUpperCase(),CapitalLetterWords.get(Tokens.get(i))+1);
+                CapitalLetterWords.put(Tokens.get(i).toUpperCase(),CapitalLetterWords.get(Tokens.get(i).toUpperCase())+1);
             }
 
             else {
