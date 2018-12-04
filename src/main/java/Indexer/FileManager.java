@@ -204,7 +204,7 @@ A class we added to work with files so the logic can be kept in the indexer
         DocInfo=new StringBuilder("");
     }
 }
-
+// a SubClass which is juat a container for the tree
 class TreeObject {
     public String value;
     public int lineNumber;

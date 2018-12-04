@@ -16,10 +16,11 @@ public class ReadFile {
     public static HashMap<String,String> replace;
     String corpuspath;
     private String FileName;
+    //gets the path to the corpus
     public ReadFile(String corpuspath) {
         this.corpuspath = corpuspath;
     }
-
+//getting the docs from the file in the input
     public Document[] GetDoc(String path,String filename) {
         FileName = path;
         try {
@@ -35,7 +36,7 @@ public class ReadFile {
         }
         return null;
     }
-
+//getting doc and cutting it and only returning the relevant info and tags in an Document Object
     private Document initdoc(String s,String filename) {
 
         String City = "";
@@ -74,7 +75,8 @@ public class ReadFile {
 
         return new Document(corpuspath + File.separator + FileName, City.toUpperCase(), Id, Text,filename);
     }
-
+//after getting in constructor the path it starts here and it calls the parser and
+// indexer so everything starts and ends here
     public void GetFile() {
 
         File[] FileList = new File(corpuspath).listFiles();

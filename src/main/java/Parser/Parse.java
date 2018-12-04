@@ -10,45 +10,47 @@ public class Parse {
     private Document d;
     public static Indexer indexer;
     public static HashSet StopWord;
-    private TreeMap<String,Integer> TermsMap;
+    private TreeMap<String, Integer> TermsMap;
     private TreeMap<String, Integer> SpecialTermsMap;
     public static Stemmer stemmer;
     public static HashSet Months;
     public static HashSet NumberHash;
     public static HashSet DollarHash;
     public static boolean isStemmig;
-    private TreeMap<String,Integer> CapitalLetterWords;
+    private TreeMap<String, Integer> CapitalLetterWords;
     private ArrayList<String> Tokens;
     private int i;
     private String DocID;
     private String Cityplaces;
 
 
-
+    //each document needs its own tree map of terms
     public Parse() {
-        TermsMap=new TreeMap<String, Integer>() ;
-        SpecialTermsMap=new TreeMap<>();
-        CapitalLetterWords=new TreeMap<>();
+        TermsMap = new TreeMap<String, Integer>();
+        SpecialTermsMap = new TreeMap<>();
+        CapitalLetterWords = new TreeMap<>();
     }
 
-
+    //getting the doc and its tokens. iterating i (a field)
+// and it is possible to skips a term but if it is merged in parsing
     public void parse(Document Doc) {
-        this.DocID=Doc.ID;
-        this.City=Doc.City;
-        this.d=Doc;
+        this.DocID = Doc.ID;
+        this.City = Doc.City;
+        this.d = Doc;
         Cityplaces = "";
         Tokens = Doc.TextToToken();
-        int size=Tokens.size()-1;
-        for (i = 0; i <size ; i++) {
+        int size = Tokens.size() - 1;
+        for (i = 0; i < size; i++) {
             try {
+                //in case of skipping:
                 if (ParseRules()) {
                     i++;
                 }
-            }catch (Exception e){
-               // System.out.println("@");
-               }
+            } catch (Exception e) {
+                // System.out.println("@");
+            }
         }
-       /* if(DocID.equals("FBIS3-3366")){
+       /* if(DocID.equals("FBIS3-3366")){       //for the report
             TreeMap<String,Integer> alltermsdoc=new TreeMap<>();
             alltermsdoc.putAll(TermsMap);
             alltermsdoc.putAll(SpecialTermsMap);
@@ -57,29 +59,34 @@ public class Parse {
             System.out.println("Term: "+entry.getKey()+",Tf:"+entry.getValue());
         }
         }*/
-   indexer.ResultToFile( DocID,SpecialTermsMap, TermsMap, City,CapitalLetterWords,Cityplaces,d.filename);
+        indexer.ResultToFile(DocID, SpecialTermsMap, TermsMap, City, CapitalLetterWords, Cityplaces, d.filename);
 
     }
 
+    // the actual parse rule each term goes through
     private boolean ParseRules() {
-        if(Tokens.get(i).toLowerCase().equals("between")&&Tokens.get(i+2).toLowerCase().equals("and")){
-            AddTermToTree(false,Tokens.get(i).toLowerCase()+" "+ Tokens.get(i+1)+" and "+Tokens.get(i+3));
+        //is it "between X and Y"  ?
+        if (Tokens.get(i).toLowerCase().equals("between") && Tokens.get(i + 2).toLowerCase().equals("and")) {
+            AddTermToTree(false, Tokens.get(i).toLowerCase() + " " + Tokens.get(i + 1) + " and " + Tokens.get(i + 3));
 
         }
-
+        //is it a stop word?
         if (StopWord.contains(Tokens.get(i).toLowerCase())) {
             return false;
         }
-        if(Tokens.get(i).toLowerCase().equals(this.City.toLowerCase())){
-            Cityplaces+=("-"+i);
+        //is it the city the document tagged? if so gets its place index
+        if (Tokens.get(i).toLowerCase().equals(this.City.toLowerCase())) {
+            Cityplaces += ("-" + i);
         }
+        //is it a day in a month?
         if (Months.contains(Tokens.get(i)) && Character.isDigit(Tokens.get(i + 1).charAt(0))) {
 
-            AddTermToTree(false,Tokens.get(i + 1) + "-" + TranslateMonths(i));
+            AddTermToTree(false, Tokens.get(i + 1) + "-" + TranslateMonths(i));
             return true;
-        } else if(Tokens.get(i).contains("'s")){
-            String newToken=Tokens.get(i).substring(0,Tokens.get(i).length()-2);
-            if(StopWord.contains(newToken)){
+            //our parse rule: does it end with 's?
+        } else if (Tokens.get(i).contains("'s")) {
+            String newToken = Tokens.get(i).substring(0, Tokens.get(i).length() - 2);
+            if (StopWord.contains(newToken)) {
                 return false;
             }
             if (Character.isUpperCase(newToken.charAt(0))) {
@@ -91,78 +98,79 @@ public class Parse {
                     return false;
                 }
             }
-            AddTermToTree(false,newToken);
+            AddTermToTree(false, newToken);
             return false;
         }
-
+        //is it uppercase or a name which starts with capital letter?
         else if (Character.isUpperCase(Tokens.get(i).charAt(0))) {
 
-            if(CapitalLetterWords.containsKey(Tokens.get(i).toUpperCase())){
-                CapitalLetterWords.put(Tokens.get(i).toUpperCase(),CapitalLetterWords.get(Tokens.get(i).toUpperCase())+1);
-            }
-
-            else {
-                CapitalLetterWords.put(Tokens.get(i).toUpperCase(),1);
+            if (CapitalLetterWords.containsKey(Tokens.get(i).toUpperCase())) {
+                CapitalLetterWords.put(Tokens.get(i).toUpperCase(), CapitalLetterWords.get(Tokens.get(i).toUpperCase()) + 1);
+            } else {
+                CapitalLetterWords.put(Tokens.get(i).toUpperCase(), 1);
             }
             return false;
         }
+        //is it uppercase or a name which starts with capital letter?
         if (Tokens.get(i).contains("-")) {
 
-            AddTermToTree(false,Tokens.get(i).toLowerCase());
+            AddTermToTree(false, Tokens.get(i).toLowerCase());
             return false;
-        } else if (Character.isDigit(Tokens.get(i).charAt(0))&&Tokens.get(i).matches("[0-9.$%\\\\]+")) {
-            //Special
+            //is it a number
+        } else if (Character.isDigit(Tokens.get(i).charAt(0)) && Tokens.get(i).matches("[0-9.$%\\\\]+")) {
+            //is the number percent?
             if (Tokens.get(i).charAt(Tokens.get(i).length() - 1) == '%') {
 
-                AddTermToTree(false,Tokens.get(i));
+                AddTermToTree(false, Tokens.get(i));
 
                 return true;
             } else if (Tokens.get(i + 1).equals("percent") || Tokens.get(i + 1).equals("percentage") || Tokens.get(i + 1).equals("%")) {
 
-                AddTermToTree(false,Tokens.get(i) + "%");
+                AddTermToTree(false, Tokens.get(i) + "%");
                 return true;
-            }else if (Months.contains(Tokens.get(i + 1))) {
-                AddTermToTree(false,TranslateMonths(i + 1) + "-" + Tokens.get(i));
+                //is the number of time ?
+            } else if (Months.contains(Tokens.get(i + 1))) {
+                AddTermToTree(false, TranslateMonths(i + 1) + "-" + Tokens.get(i));
                 return true;
+                //is the number counting hundreds, thausands ...
             } else if (NumberHash.contains(Tokens.get(i + 1))) {
-
-                AddTermToTree(false,NumberToTerm());
+                AddTermToTree(false, NumberToTerm());
                 return true;
+                //is the number counting dollars?
             } else if (DollarHash.contains(Tokens.get(i + 1))) {
 
-                AddTermToTree(false,PriceToTerm());
+                AddTermToTree(false, PriceToTerm());
                 return true;
-            } else if (Tokens.get(i + 1).equals("feet") || Tokens.get(i + 1).equals("Feet") || Tokens.get(i + 1).equals("FEET")|| Tokens.get(i + 1).equals("FOOT")|| Tokens.get(i + 1).equals("foot")) {
-                AddTermToTree(false,Tokens.get(i) + " feet");
+                //our 2nd parse rule: counting length in feet as a term?
+            } else if (Tokens.get(i + 1).equals("feet") || Tokens.get(i + 1).equals("Feet") || Tokens.get(i + 1).equals("FEET") || Tokens.get(i + 1).equals("FOOT") || Tokens.get(i + 1).equals("foot")) {
+                AddTermToTree(false, Tokens.get(i) + " feet");
                 return true;
             }
-            AddTermToTree(false,TokenToNum());
+            AddTermToTree(false, TokenToNum());
             return false;
-        } else if(Tokens.get(i).charAt(0)=='$'){
-
-            AddTermToTree(false,PriceToTerm());
+            //does it start with $ and might be a price
+        } else if (Tokens.get(i).charAt(0) == '$') {
+            AddTermToTree(false, PriceToTerm());
             return false;
-        }
-        else{
-
-            if(isStemmig){
-                AddTermToTree(true,stemmer.StemToken(Tokens.get(i).toLowerCase()));
+            //all others are reuglar and if needed its getting stemmed
+        } else {
+            if (isStemmig) {
+                AddTermToTree(true, stemmer.StemToken(Tokens.get(i).toLowerCase()));
                 return false;
-            }
-            else{
-                AddTermToTree(true,Tokens.get(i));
+            } else {
+                AddTermToTree(true, Tokens.get(i));
                 return false;
             }
         }
     }
-
+//getting words like million to a number
     private String TokenToNum() {
         if (Tokens.get(i).contains("/")) {
             return Tokens.get(i);
         }
         String tokenWithoutCommas = Tokens.get(i);
         double number = -1;
-        if (tokenWithoutCommas.contains(".")||tokenWithoutCommas.length()>9) {
+        if (tokenWithoutCommas.contains(".") || tokenWithoutCommas.length() > 9) {
             number = Double.parseDouble(tokenWithoutCommas);
         } else {
             number = (double) Integer.parseInt(tokenWithoutCommas);
@@ -171,7 +179,7 @@ public class Parse {
             return Tokens.get(i) + " " + Tokens.get(i + 1);
         } else if (number < 1000) {
             return Tokens.get(i);
-        }else if ((number >= 1000) && (number < 1000000)) {
+        } else if ((number >= 1000) && (number < 1000000)) {
             double newnum = number / 1000;
             return "" + newnum + "K";
         } else if (number >= 1000000 && number < 1000000000) {
@@ -183,55 +191,56 @@ public class Parse {
         }
         return null;
     }
-
+//getting a price into the right format asked
     private String PriceToTerm() {
-        String tokenWithoutCommas = Tokens.get(i).replaceAll("\\$","");
+        String tokenWithoutCommas = Tokens.get(i).replaceAll("\\$", "");
         double number = -1;
-        if(Tokens.get(i).contains("/")){
+        if (Tokens.get(i).contains("/")) {
             return Tokens.get(i);
         }
-        if(tokenWithoutCommas.contains("m")){
-            return  tokenWithoutCommas.substring(0,tokenWithoutCommas.length()-1)+" M Dollars";
+        if (tokenWithoutCommas.contains("m")) {
+            return tokenWithoutCommas.substring(0, tokenWithoutCommas.length() - 1) + " M Dollars";
 
         }
-        if(tokenWithoutCommas.equals("")){
+        if (tokenWithoutCommas.equals("")) {
             return "";
         }
-        if (tokenWithoutCommas.contains(".")||tokenWithoutCommas.length()>9) {
+        if (tokenWithoutCommas.contains(".") || tokenWithoutCommas.length() > 9) {
             number = Double.parseDouble(tokenWithoutCommas);
         } else {
             number = (double) Integer.parseInt(tokenWithoutCommas);
         }
-        double newnumber=number;
-        switch (Tokens.get(i+1)){
+        double newnumber = number;
+        switch (Tokens.get(i + 1)) {
             case "Dollars":
             case "dollars":
-                newnumber=number;
+                newnumber = number;
                 break;
             case "m":
             case "million":
-                newnumber=number*1000000;
+                newnumber = number * 1000000;
                 break;
             case "bn":
             case "billion":
-                newnumber=number*1000000000;
+                newnumber = number * 1000000000;
                 break;
             case "trillion":
-                newnumber=number*1000000000000.0;
+                newnumber = number * 1000000000000.0;
                 break;
-        } if(newnumber>=1000000){
-            newnumber=newnumber/1000000;
-            if( newnumber==Math.floor(newnumber)){
-                return ((int)newnumber)+" M Dollars";
+        }
+        if (newnumber >= 1000000) {
+            newnumber = newnumber / 1000000;
+            if (newnumber == Math.floor(newnumber)) {
+                return ((int) newnumber) + " M Dollars";
             }
-            return newnumber+" M Dollars";
+            return newnumber + " M Dollars";
         }
-        if( newnumber==Math.floor(newnumber)){
-            return ((int)newnumber)+" Dollars";
+        if (newnumber == Math.floor(newnumber)) {
+            return ((int) newnumber) + " Dollars";
         }
-        return newnumber+" Dollars";
+        return newnumber + " Dollars";
     }
-
+//getting a number with right letter to describe it. like K/M/B/T
     public String NumberToTerm() {
         switch (Tokens.get(i + 1)) {
             case "Thousand":
@@ -245,7 +254,7 @@ public class Parse {
         }
         return null;
     }
-
+//month translator
     private String TranslateMonths(int token) {
         switch (Tokens.get(token)) {
             case "Jan":
@@ -311,28 +320,24 @@ public class Parse {
         }
         return null;
     }
-
-    public void AddTermToTree(boolean TreeMap, String Token){
-    //true = termtree
-    // false= specialtreemap
-        String newtoken=Token.toLowerCase().replaceAll("[^a-z0-9.-]","");
-        if(newtoken.equals("")) return;
-        if(TreeMap){
-        if(TermsMap.containsKey(newtoken)){
-            TermsMap.put(newtoken,TermsMap.get(newtoken)+1);
-        }
-        else {
-            TermsMap.put(newtoken,1);
-        }
-        }
-        else {
-            if(SpecialTermsMap.containsKey(Token)){
-                SpecialTermsMap.put(Token,SpecialTermsMap.get(Token)+1);
+//adding term to the right tree is decided using boolean and its generic for all maps
+    public void AddTermToTree(boolean TreeMap, String Token) {
+        //true = termtree
+        // false= specialtreemap
+        String newtoken = Token.toLowerCase().replaceAll("[^a-z0-9.-]", "");
+        if (newtoken.equals("")) return;
+        if (TreeMap) {
+            if (TermsMap.containsKey(newtoken)) {
+                TermsMap.put(newtoken, TermsMap.get(newtoken) + 1);
+            } else {
+                TermsMap.put(newtoken, 1);
             }
-            else {
-                SpecialTermsMap.put(Token,1);
+        } else {
+            if (SpecialTermsMap.containsKey(Token)) {
+                SpecialTermsMap.put(Token, SpecialTermsMap.get(Token) + 1);
+            } else {
+                SpecialTermsMap.put(Token, 1);
             }
-
         }
     }
 }
