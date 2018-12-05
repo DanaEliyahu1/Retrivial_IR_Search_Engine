@@ -59,6 +59,8 @@ public class Parse {
             System.out.println("Term: "+entry.getKey()+",Tf:"+entry.getValue());
         }
         }*/
+
+
         indexer.ResultToFile(DocID, SpecialTermsMap, TermsMap, City, CapitalLetterWords, Cityplaces, d.filename);
 
     }

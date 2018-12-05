@@ -56,6 +56,19 @@ public class ReadFile {
                 }
             }
         }
+        else if(City1.length>=2 && City1[1].contains("F P=104>")){
+            String [] City5=City1[1].split("F P=104>");
+            String [] City6=City5[1].split("</F>");
+            String [] City7=City6[0].split("\n|\\ ");
+           // System.out.println(Id);
+            for (int i = 0; i <City7.length ; i++) {
+                if (!City7[i].equals("")) {
+                    City = City7[i];
+                    break;
+                }
+            }
+
+        }
         String Text="";
         try{
            Text = City1[1].split("</TEXT>")[0];
