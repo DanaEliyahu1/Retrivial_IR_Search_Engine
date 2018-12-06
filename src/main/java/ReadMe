@@ -1,5 +1,6 @@
 Read Me:
 
+0.Some computers in building 96 have a very small default memory in the heap. Therefore please run the jar on computers with higher memory. We checked on computer 7 in lab -107
 1.Click on the JAR APPLICATION
 2.You need to load path of the corpus.In the corpus in the moodle you need to load the inner corpus folder. For Example:
 d:\documents\users\haiatn\Downloads\corpus\corpus
@@ -7,7 +8,7 @@ d:\documents\users\haiatn\Downloads\corpus\corpus
 4.You need to load file that contains stop words.Keep the format from the moodle, each line contains one stop word.
 5.Before you click "Start" you can choose Stemming or Not Stemming, using the "Stemming" check box. The default is stemming.
 6.Click "Start" to start indexing
-7.You need to wait for a popup alert about 20 min, and click ok when indexing is finished
+7.You need to wait for a popup alert about 23 min, and click ok when indexing is finished
 8.You can show the dictionary without clicking on the button "Load Dictionary". Click on "Show Dictionary", it might take up to a min
 If you want to show again later, you can use the "Load Dictionary" but you need to enter posting path that you loaded in step 3.
 9.When finished you can delete all files, using the button "Reset"
