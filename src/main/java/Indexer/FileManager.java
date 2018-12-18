@@ -17,11 +17,13 @@ A class we added to work with files so the logic can be kept in the indexer
     public static int DocNum; //counter for later use
     public static String postingpath; //where to read and write
     public StringBuilder DocInfo; //info of all documents is stored here
+    public StringBuilder DocInfoUseful;
     public int chunksize; //can be dynamic
     public FileManager(String docId, String path) {
         Cache=new TreeMap<String, TreeObject>();
         cities=new HashMap<String,StringBuilder>();
         DocInfo=new StringBuilder("");
+        DocInfoUseful = new StringBuilder("");
         postingpath=path;
     }
 //adding new term with its posting information or adding it to an existing key
@@ -118,10 +120,11 @@ A class we added to work with files so the logic can be kept in the indexer
         Cache=new TreeMap<String,TreeObject>();
      }
      //adding information of new documents;
-    public void DocPosting(String ID, String City, int maxtf, int uniqueterms, String mostTf, String cityplaces, String filename){
+    public void DocPosting(String ID, String City, int maxtf, int uniqueterms, String mostTf, String cityplaces, String filename, String entities, int doclength){
         DocNum++;
         AddDocToCityIndex(ID,City);
         DocInfo.append("|"+ ID+","+ City + "," + maxtf+ ","+ uniqueterms+ ","+ mostTf+","+cityplaces+","+filename);
+        DocInfoUseful.append("|"+ ID+ ","+ doclength +","+entities);
         if(DocInfo.length()>1500000){
             AllDocumentsToDisk();
         }
@@ -202,6 +205,22 @@ A class we added to work with files so the logic can be kept in the indexer
             e.printStackTrace();
         }
         DocInfo=new StringBuilder("");
+        File file1 =new File(postingpath+"\\UsefulDocuments.txt");
+        try {
+            file.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try (FileWriter fw = new FileWriter(postingpath+"\\UsefulDocuments.txt", true);
+             BufferedWriter bw = new BufferedWriter(fw);
+             PrintWriter out = new PrintWriter(bw)) {
+            out.print( DocInfoUseful);
+            bw.close();
+            fw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        DocInfoUseful=new StringBuilder("");
     }
 }
 // a SubClass which is juat a container for the tree

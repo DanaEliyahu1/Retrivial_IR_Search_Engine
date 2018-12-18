@@ -43,8 +43,8 @@ public class Parse {
                     i++;
                 }
             } catch (Exception e) {
-                e.printStackTrace();
-                System.out.println("@");
+               // e.printStackTrace();
+             //  System.out.println("@");
             }
         }
        /* if(DocID.equals("FBIS3-3366")){       //for the report
@@ -58,7 +58,7 @@ public class Parse {
         }*/
 
 
-        d.SetDoc(TermsMap,CapitalLetterWords,Cityplaces);
+        d.SetDoc(TermsMap,CapitalLetterWords,Cityplaces,Tokens.size());
 
     }
 

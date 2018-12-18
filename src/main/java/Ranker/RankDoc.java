@@ -3,8 +3,8 @@ package Ranker;
 public class RankDoc implements Comparable {
 
 
-    double rank;
-    String docid;
+    public double rank;
+    public String docid;
 
     public RankDoc(String docid, double rank) {
         this.docid=docid;

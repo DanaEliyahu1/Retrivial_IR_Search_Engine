@@ -6,6 +6,8 @@ import Parser.Document;
 import Parser.Parse;
 import Parser.ReadFile;
 import Parser.Stemmer;
+import Ranker.Ranker;
+import Ranker.RankDoc;
 import Searcher.Searcher;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -27,10 +29,7 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
 public class Controller {
     public ChoiceBox choiceBox;
@@ -311,8 +310,33 @@ public class Controller {
             FileManager.postingpath=postingselected+ "/NotStemming";
         }
         Searcher searcher=new Searcher();
-        TreeMap<String,String> results = searcher.Searcher(Query.getText(),(String) City.getValue(),Index);
+        TreeMap<String,String> Searchresults = searcher.Searcher(Query.getText(),(String) City.getValue(),Index);
+        int[] avdl=new int[1];
+        TreeMap<String,Integer> docLengthTree=getDocLength(avdl);
+        Ranker ranker=new Ranker(0.75,2,avdl[0]);
+        TreeSet<RankDoc> Rankedresults=ranker.Rank(Searchresults,Index,docLengthTree);
+        Iterator<RankDoc> iterator=Rankedresults.iterator();
+        while (iterator.hasNext()){
+            RankDoc curr=iterator.next();
+            System.out.println("key: " + curr.docid + " ,value:" + curr.rank);
+        }
+    }
 
+    private TreeMap<String,Integer> getDocLength(int[] avdl) {
+        int sum=0;
+        TreeMap<String,Integer> DocsLength=new TreeMap<>();
+        try {
+            String[] arrFromFile = new String(Files.readAllBytes(Paths.get(FileManager.postingpath+"/UsefulDocuments.txt")), Charset.defaultCharset()).split("\\|");
+            for (int i = 1; i < arrFromFile.length; i++) {
+                String [] curr=arrFromFile[i].split(",");
+                sum+=Integer.parseInt(curr[1]);
+                DocsLength.put(curr[0],Integer.parseInt(curr[1]));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        avdl[0]=(sum/DocsLength.size());
+        return DocsLength;
     }
 
 }

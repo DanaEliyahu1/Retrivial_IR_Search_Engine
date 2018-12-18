@@ -13,6 +13,7 @@ public class Document {
     public TreeMap<String,Integer> TermsMap;
     public TreeMap<String,Integer> CapitalLetterWords;
     public String Cityplaces;
+    public  int doclength;
 
 
     public Document(String path, String city, String id, String text, String filename) {
@@ -24,10 +25,11 @@ public class Document {
 
     }
 
-    public void SetDoc( TreeMap<String,Integer> TermsMap,TreeMap<String,Integer> CapitalLetterWords,String Cityplaces){
+    public void SetDoc( TreeMap<String,Integer> TermsMap,TreeMap<String,Integer> CapitalLetterWords,String Cityplaces,int doclength){
         this.TermsMap=TermsMap;
         this.CapitalLetterWords =CapitalLetterWords;
         this.Cityplaces=Cityplaces;
+        this.doclength=doclength;
 
     }
 

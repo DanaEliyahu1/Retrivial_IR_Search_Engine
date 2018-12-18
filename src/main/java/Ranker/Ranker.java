@@ -7,20 +7,27 @@ import java.util.TreeMap;
 import java.util.TreeSet;
 
 public class Ranker {
-    public int b;
+    public double b;
     public int k;
     public int avdl;
     public TreeMap<String, Integer> DocLength;
     public TreeSet<RankDoc> SortedDocs;
 
+    public Ranker(double b, int k, int avdl) {
+        SortedDocs = new TreeSet<RankDoc>();
+        this.b=b;
+        this.k=k;
+        this.avdl=avdl;
+    }
 
-    public TreeSet<RankDoc> Rank(TreeMap<String, String> DocDictionary, TreeMap<String, int[]> Index) {
+    public TreeSet<RankDoc> Rank(TreeMap<String, String> DocDictionary, TreeMap<String, int[]> Index,TreeMap<String,Integer> docLength) {
+        DocLength = docLength;
         for (Map.Entry<String, String> entry : DocDictionary.entrySet()) {
             double rank = 0;
             String[] terms = entry.getValue().split("\\|");
             for (int i = 0; i < terms.length; i++) {
                 String[] termstf = terms[i].split("_");
-                rank += BM25(Integer.parseInt(termstf[1]), Index.get(termstf[0])[2], DocLength.get(entry.getKey()));
+                rank += BM25(Integer.parseInt(termstf[1]), Math.log(Index.get(termstf[0])[2]), DocLength.get(entry.getKey()));
 
             }
             SortedDocs.add(new RankDoc(entry.getKey(), rank));

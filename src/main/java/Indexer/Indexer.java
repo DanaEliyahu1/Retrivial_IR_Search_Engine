@@ -186,15 +186,30 @@ public class Indexer {
         }
         int uniqueterms =  document.TermsMap.size();
 
-        fileManager.DocPosting(document.ID, document.City, counter, uniqueterms, mostTf, document.Cityplaces, document.filename);
+
         //looking if capital letter words should be lowered to lowercase
+       PriorityQueue<Map.Entry<String, Integer>> Entities= new PriorityQueue<>(new Comparator<Map.Entry<String, Integer>>() {
+           @Override
+           public int compare(Map.Entry<String, Integer> o1, Map.Entry<String, Integer> o2) {
+               return o1.getValue()-o2.getValue();
+           }
+       });
         for (Map.Entry<String, Integer> entry : document.CapitalLetterWords.entrySet()) {
             if (!Index.containsKey(entry.getKey().toLowerCase())) {
+                Entities.add(entry);
                 AddTermToCapital(entry.getKey(), entry.getValue(), document.ID);
             } else {
+
                 AddTermToDic(entry.getKey().toLowerCase(), entry.getValue(), document.ID);
             }
         }
+        String entities="";
+        for (int i = 0; i <5 ; i++) {
+            if(!Entities.isEmpty()){
+                entities+=Entities.poll().getKey()+"*";
+            }
 
+        }
+        fileManager.DocPosting(document.ID, document.City, counter, uniqueterms, mostTf, document.Cityplaces, document.filename,entities,document.doclength);
     }
 }
