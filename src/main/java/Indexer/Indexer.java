@@ -1,6 +1,7 @@
 package Indexer;
 
 import GUI.Controller;
+import Parser.Document;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import org.json.simple.JSONObject;
@@ -34,38 +35,6 @@ public class Indexer {
         CapitalLetterPosting = new TreeMap<>();
     }
 
-//called from the parse and analyzing the info +inserting to indexes
-    public void ResultToFile(String DocID, TreeMap<String, Integer> SpecialTermsMap, TreeMap<String, Integer> TermsMap, String City, TreeMap<String, Integer> capitalLetterWords, String cityplaces, String filename) {
-        int counter = 0; //looking for maxtf
-        String mostTf = ""; //looking for maxtf term string
-        for (Map.Entry<String, Integer> entry : SpecialTermsMap.entrySet()) {
-            AddTermToDic(entry.getKey(), entry.getValue(), DocID);
-            if (counter < entry.getValue()) {
-                counter = entry.getValue();
-                mostTf = entry.getKey();
-            }
-        }
-        for (Map.Entry<String, Integer> entry : TermsMap.entrySet()) {
-            AddTermToDic(entry.getKey(), entry.getValue(), DocID);
-            if (counter < entry.getValue()) {
-                counter = entry.getValue();
-                mostTf = entry.getKey();
-            }
-        }
-        int uniqueterms = SpecialTermsMap.size() + TermsMap.size();
-
-        fileManager.DocPosting(DocID, City, counter, uniqueterms, mostTf, cityplaces, filename);
-        //looking if capital letter words should be lowered to lowercase
-        for (Map.Entry<String, Integer> entry : capitalLetterWords.entrySet()) {
-            if (!Index.containsKey(entry.getKey().toLowerCase())) {
-                AddTermToCapital(entry.getKey(), entry.getValue(), DocID);
-            } else {
-                AddTermToDic(entry.getKey().toLowerCase(), entry.getValue(), DocID);
-            }
-        }
-
-
-    }
 //in the end of indexing finding the info asked for using API. going through all cities
     public void IndexCities(Set<String> cities) {
                  Iterator<String> iterator = cities.iterator();
@@ -203,5 +172,29 @@ public class Indexer {
             e.printStackTrace();
         }
     }
+    //called from the parse and analyzing the info +inserting to indexes
+    public void AddDocTOIndex(Document document) {
+        int counter = 0; //looking for maxtf
+        String mostTf = ""; //looking for maxtf term strin
+        // g
+                for (Map.Entry<String, Integer> entry : document.TermsMap.entrySet()) {
+            AddTermToDic(entry.getKey(), entry.getValue(), document.ID);
+            if (counter < entry.getValue()) {
+                counter = entry.getValue();
+                mostTf = entry.getKey();
+            }
+        }
+        int uniqueterms =  document.TermsMap.size();
 
+        fileManager.DocPosting(document.ID, document.City, counter, uniqueterms, mostTf, document.Cityplaces, document.filename);
+        //looking if capital letter words should be lowered to lowercase
+        for (Map.Entry<String, Integer> entry : document.CapitalLetterWords.entrySet()) {
+            if (!Index.containsKey(entry.getKey().toLowerCase())) {
+                AddTermToCapital(entry.getKey(), entry.getValue(), document.ID);
+            } else {
+                AddTermToDic(entry.getKey().toLowerCase(), entry.getValue(), document.ID);
+            }
+        }
+
+    }
 }

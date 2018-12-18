@@ -1,10 +1,17 @@
 package GUI;
+import Indexer.Indexer;
+import Parser.Parse;
+import Parser.ReadFile;
+import Parser.Stemmer;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.TreeMap;
 
 public class main extends Application {
@@ -22,6 +29,52 @@ public class main extends Application {
         controller.choiceBox.setItems(Controller.options);
         controller.Index =new TreeMap<>();
         primaryStage.show();
+
+        InitStaticFunc();
+    }
+
+    private void InitStaticFunc() {
+        String[] Monthsarr = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Sept", "Oct", "Nov", "Dec", "january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December", "JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNE", "JULY", "AUGUST", "SEPTEMBER", "OCTOBER", "NOVEMBER", "DECEMBER"};
+        HashSet Months = new HashSet();
+        for (int i = 0; i < Monthsarr.length; i++) {
+            Months.add(Monthsarr[i]);
+        }
+        HashSet NumberHash = new HashSet();
+        NumberHash.add("Thousand");
+        NumberHash.add("Million");
+        NumberHash.add("Billion");
+        NumberHash.add("Trillion");
+        String[] dollararr = {"dollars", "Dollars", "$", "m", "bn", "U.S.", "million", "billion", "trillion"};
+        HashSet DollarHash = new HashSet();
+        for (int i = 0; i < dollararr.length; i++) {
+            DollarHash.add(dollararr[i]);
+        }
+        HashMap<String, String> replace = new HashMap<>();
+        replace.put("?", "");
+        replace.put("*", "");
+        replace.put(",", "");
+        replace.put(";", "");
+        replace.put(":", "");
+        replace.put("<", "");
+        replace.put(">", "");
+        replace.put("|", "");
+        replace.put("^", "");
+        replace.put("\"", "");
+        replace.put("\'", "");
+        replace.put("(", "");
+        replace.put(")", "");
+        replace.put("[", "");
+        replace.put("]", "");
+        replace.put("{", "");
+        replace.put("}", "");
+        replace.put("!", "");
+        replace.put("+", "");
+        //puting the lists in the right places:
+        ReadFile.replace = replace;
+        Parse.DollarHash = DollarHash;
+        Parse.NumberHash = NumberHash;
+        Parse.Months = Months;
+        Parse.stemmer = new Stemmer();
 
     }
 

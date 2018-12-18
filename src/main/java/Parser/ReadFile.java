@@ -103,6 +103,7 @@ public class ReadFile {
                     CurrDoc = GetDoc(FileList[i].getName() + "\\" + CurrFolder[j].getName(),CurrFolder[j].getName());
                     for (int k = 0; k < CurrDoc.length; k++) {
                            new Parse().parse(CurrDoc[k]);
+                           Parse.indexer.AddDocTOIndex(CurrDoc[k]);
                     }
                     CurrDoc=null;
                 }

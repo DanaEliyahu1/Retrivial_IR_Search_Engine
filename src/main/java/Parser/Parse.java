@@ -11,7 +11,6 @@ public class Parse {
     public static Indexer indexer;
     public static HashSet StopWord;
     private TreeMap<String, Integer> TermsMap;
-    private TreeMap<String, Integer> SpecialTermsMap;
     public static Stemmer stemmer;
     public static HashSet Months;
     public static HashSet NumberHash;
@@ -20,26 +19,23 @@ public class Parse {
     private TreeMap<String, Integer> CapitalLetterWords;
     private ArrayList<String> Tokens;
     private int i;
-    private String DocID;
     private String Cityplaces;
 
 
     //each document needs its own tree map of terms
     public Parse() {
         TermsMap = new TreeMap<String, Integer>();
-        SpecialTermsMap = new TreeMap<>();
         CapitalLetterWords = new TreeMap<>();
     }
 
     //getting the doc and its tokens. iterating i (a field)
 // and it is possible to skips a term but if it is merged in parsing
     public void parse(Document Doc) {
-        this.DocID = Doc.ID;
         this.City = Doc.City;
         this.d = Doc;
         Cityplaces = "";
         Tokens = Doc.TextToToken();
-        int size = Tokens.size() - 1;
+        int size = Tokens.size();
         for (i = 0; i < size; i++) {
             try {
                 //in case of skipping:
@@ -47,7 +43,8 @@ public class Parse {
                     i++;
                 }
             } catch (Exception e) {
-                // System.out.println("@");
+                e.printStackTrace();
+                System.out.println("@");
             }
         }
        /* if(DocID.equals("FBIS3-3366")){       //for the report
@@ -61,14 +58,14 @@ public class Parse {
         }*/
 
 
-        indexer.ResultToFile(DocID, SpecialTermsMap, TermsMap, City, CapitalLetterWords, Cityplaces, d.filename);
+        d.SetDoc(TermsMap,CapitalLetterWords,Cityplaces);
 
     }
 
     // the actual parse rule each term goes through
     private boolean ParseRules() {
         //is it "between X and Y"  ?
-        if (Tokens.get(i).toLowerCase().equals("between") && Tokens.get(i + 2).toLowerCase().equals("and")) {
+        if ((i+2)<Tokens.size() &&Tokens.get(i).toLowerCase().equals("between") && Tokens.get(i + 2).toLowerCase().equals("and")) {
             AddTermToTree(false, Tokens.get(i).toLowerCase() + " " + Tokens.get(i + 1) + " and " + Tokens.get(i + 3));
 
         }
@@ -81,7 +78,7 @@ public class Parse {
             Cityplaces += ("-" + i);
         }
         //is it a day in a month?
-        if (Months.contains(Tokens.get(i)) && Character.isDigit(Tokens.get(i + 1).charAt(0))) {
+        if ((i+1)<Tokens.size()&& Months.contains(Tokens.get(i)) && Character.isDigit(Tokens.get(i + 1).charAt(0))) {
 
             AddTermToTree(false, Tokens.get(i + 1) + "-" + TranslateMonths(i));
             return true;
@@ -126,25 +123,25 @@ public class Parse {
                 AddTermToTree(false, Tokens.get(i));
 
                 return true;
-            } else if (Tokens.get(i + 1).equals("percent") || Tokens.get(i + 1).equals("percentage") || Tokens.get(i + 1).equals("%")) {
+            } else if (Tokens.get(i + 1).equals("percent") || Tokens.get(i + 1).equals("percentage") ||((i+1)<Tokens.size()&&Tokens.get(i + 1).equals("%")) ) {
 
                 AddTermToTree(false, Tokens.get(i) + "%");
                 return true;
                 //is the number of time ?
-            } else if (Months.contains(Tokens.get(i + 1))) {
+            } else if ((i+1)<Tokens.size()&&Months.contains(Tokens.get(i + 1))) {
                 AddTermToTree(false, TranslateMonths(i + 1) + "-" + Tokens.get(i));
                 return true;
                 //is the number counting hundreds, thausands ...
-            } else if (NumberHash.contains(Tokens.get(i + 1))) {
+            } else if ((i+1)<Tokens.size()&&NumberHash.contains(Tokens.get(i + 1))) {
                 AddTermToTree(false, NumberToTerm());
                 return true;
                 //is the number counting dollars?
-            } else if (DollarHash.contains(Tokens.get(i + 1))) {
+            } else if ((i+1)<Tokens.size()&&DollarHash.contains(Tokens.get(i + 1))) {
 
                 AddTermToTree(false, PriceToTerm());
                 return true;
                 //our 2nd parse rule: counting length in feet as a term?
-            } else if (Tokens.get(i + 1).equals("feet") || Tokens.get(i + 1).equals("Feet") || Tokens.get(i + 1).equals("FEET") || Tokens.get(i + 1).equals("FOOT") || Tokens.get(i + 1).equals("foot")) {
+            } else if ((i+1)<Tokens.size()&&(Tokens.get(i + 1).equals("feet") || Tokens.get(i + 1).equals("Feet") || Tokens.get(i + 1).equals("FEET") || Tokens.get(i + 1).equals("FOOT") || Tokens.get(i + 1).equals("foot"))) {
                 AddTermToTree(false, Tokens.get(i) + " feet");
                 return true;
             }
@@ -323,23 +320,18 @@ public class Parse {
         return null;
     }
 //adding term to the right tree is decided using boolean and its generic for all maps
-    public void AddTermToTree(boolean TreeMap, String Token) {
+    public void AddTermToTree(boolean IsWord, String Token) {
         //true = termtree
         // false= specialtreemap
-        String newtoken = Token.toLowerCase().replaceAll("[^a-z0-9.-]", "");
+        String newtoken=Token;
+        if(IsWord){
+            newtoken = Token.toLowerCase().replaceAll("[^a-z0-9.-]", "");
+        }
         if (newtoken.equals("")) return;
-        if (TreeMap) {
             if (TermsMap.containsKey(newtoken)) {
                 TermsMap.put(newtoken, TermsMap.get(newtoken) + 1);
             } else {
                 TermsMap.put(newtoken, 1);
             }
-        } else {
-            if (SpecialTermsMap.containsKey(Token)) {
-                SpecialTermsMap.put(Token, SpecialTermsMap.get(Token) + 1);
-            } else {
-                SpecialTermsMap.put(Token, 1);
-            }
-        }
     }
 }

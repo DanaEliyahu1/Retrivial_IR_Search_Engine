@@ -2,13 +2,17 @@ package Parser;
 
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.TreeMap;
 
 public class Document {
-    String City;
-    String ID;
-    String path;
-    String Text;
-    String filename;
+    public String City;
+    public String ID;
+    public String path;
+    public String Text;
+    public String filename;
+    public TreeMap<String,Integer> TermsMap;
+    public TreeMap<String,Integer> CapitalLetterWords;
+    public String Cityplaces;
 
 
     public Document(String path, String city, String id, String text, String filename) {
@@ -17,6 +21,13 @@ public class Document {
         this.ID = id;
         this.Text = text;
         this.filename=filename;
+
+    }
+
+    public void SetDoc( TreeMap<String,Integer> TermsMap,TreeMap<String,Integer> CapitalLetterWords,String Cityplaces){
+        this.TermsMap=TermsMap;
+        this.CapitalLetterWords =CapitalLetterWords;
+        this.Cityplaces=Cityplaces;
 
     }
 

@@ -6,6 +6,7 @@ import Parser.Document;
 import Parser.Parse;
 import Parser.ReadFile;
 import Parser.Stemmer;
+import Searcher.Searcher;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
@@ -44,6 +45,9 @@ public class Controller {
     public TextField Choosecorpus;
     public TextField ChooseStopWords;
     public TextField ChoosePosting;
+    public TextField queryselected;
+    public TextField Query;
+    public ChoiceBox City;
     public static ObservableList<String> options;
 
 // deleting all files created while indexing
@@ -151,6 +155,15 @@ public class Controller {
             ChooseStopWords.setText(fstopwordsselected.getPath());
         }
     }
+
+    public void choosequerytarget(){
+            DirectoryChooser dc = new DirectoryChooser();
+            File fqueryselected = dc.showDialog(stage);
+            if (fqueryselected != null) {
+                queryselected.setText(fqueryselected.getPath());
+            }
+        }
+
 /*the main method- creating posting folders where needed, configuring stemming if needed
  getting the stop-words and starting the creation of the dictionary*/
     public void StartDictinory() throws Exception {
@@ -234,49 +247,9 @@ public class Controller {
                 StopWord.remove("may");
             }
         }
-        String[] Monthsarr = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Sept", "Oct", "Nov", "Dec", "january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December", "JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNE", "JULY", "AUGUST", "SEPTEMBER", "OCTOBER", "NOVEMBER", "DECEMBER"};
-        HashSet Months = new HashSet();
-        for (int i = 0; i < Monthsarr.length; i++) {
-            Months.add(Monthsarr[i]);
-        }
-        HashSet NumberHash = new HashSet();
-        NumberHash.add("Thousand");
-        NumberHash.add("Million");
-        NumberHash.add("Billion");
-        NumberHash.add("Trillion");
-        String[] dollararr = {"dollars", "Dollars", "$", "m", "bn", "U.S.", "million", "billion", "trillion"};
-        HashSet DollarHash = new HashSet();
-        for (int i = 0; i < dollararr.length; i++) {
-            DollarHash.add(dollararr[i]);
-        }
-        HashMap<String, String> replace = new HashMap<>();
-        replace.put("?", "");
-        replace.put("*", "");
-        replace.put(",", "");
-        replace.put(";", "");
-        replace.put(":", "");
-        replace.put("<", "");
-        replace.put(">", "");
-        replace.put("|", "");
-        replace.put("^", "");
-        replace.put("\"", "");
-        replace.put("\'", "");
-        replace.put("(", "");
-        replace.put(")", "");
-        replace.put("[", "");
-        replace.put("]", "");
-        replace.put("{", "");
-        replace.put("}", "");
-        replace.put("!", "");
-        replace.put("+", "");
-        //puting the lists in the right places:
-        ReadFile.replace = replace;
-        Parse.DollarHash = DollarHash;
-        Parse.NumberHash = NumberHash;
-        Parse.Months = Months;
         Parse.StopWord = StopWord;
-        Parse.stemmer = new Stemmer();
         Parse.isStemmig = IsStem;
+
         Parse.indexer = new Indexer(new FileManager("", postingselected));
         Parse.indexer.fileManager.chunksize = 60000;
         ReadFile readFile = new ReadFile(corpusselected);
@@ -311,6 +284,36 @@ public class Controller {
         }
     }
 
+    public void run(){
+        Parse.isStemmig =checkBox.isSelected();
+        HashSet StopWord = new HashSet();
+        if (stopwordsselected != null) {
+            String content = null;
+            try {
+                content = new String(Files.readAllBytes(Paths.get(stopwordsselected)), Charset.defaultCharset());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            String[] contentsw = content.split("\\s+");
+            for (int i = 0; i < contentsw.length; i++) {
+                if (!contentsw[i].equals("")) {
+                    StopWord.add(contentsw[i].toLowerCase());
+                }
+            }
+            if (StopWord.contains("may")) {
+                StopWord.remove("may");
+            }
+        }
+        Parse.StopWord = StopWord;
+        if(checkBox.isSelected()){
+            FileManager.postingpath=postingselected+ "/Stemming";
+        }else{
+            FileManager.postingpath=postingselected+ "/NotStemming";
+        }
+        Searcher searcher=new Searcher();
+        TreeMap<String,String> results = searcher.Searcher(Query.getText(),(String) City.getValue(),Index);
+
+    }
 
 }
 
