@@ -8,12 +8,12 @@ import java.util.TreeSet;
 
 public class Ranker {
     public double b;
-    public int k;
-    public int avdl;
+    public double k;
+    public double avdl;
     public TreeMap<String, Integer> DocLength;
     public TreeSet<RankDoc> SortedDocs;
 
-    public Ranker(double b, int k, int avdl) {
+    public Ranker(double b, double k, double avdl) {
         SortedDocs = new TreeSet<RankDoc>();
         this.b=b;
         this.k=k;

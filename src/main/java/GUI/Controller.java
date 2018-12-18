@@ -313,7 +313,7 @@ public class Controller {
         TreeMap<String,String> Searchresults = searcher.Searcher(Query.getText(),(String) City.getValue(),Index);
         int[] avdl=new int[1];
         TreeMap<String,Integer> docLengthTree=getDocLength(avdl);
-        Ranker ranker=new Ranker(0.75,2,avdl[0]);
+        Ranker ranker=new Ranker(0.5,10,avdl[0]);
         TreeSet<RankDoc> Rankedresults=ranker.Rank(Searchresults,Index,docLengthTree);
         Iterator<RankDoc> iterator=Rankedresults.iterator();
         while (iterator.hasNext()){
