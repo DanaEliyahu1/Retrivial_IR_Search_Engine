@@ -57,7 +57,12 @@ public class Parse {
         }
         }*/
 
-
+        for (Map.Entry<String, Integer> entry : new ArrayList<>(CapitalLetterWords.entrySet())) {
+            if(TermsMap.containsKey(entry.getKey().toLowerCase())){
+                TermsMap.put(entry.getKey().toLowerCase(), TermsMap.get(entry.getKey().toLowerCase()) + CapitalLetterWords.get(entry.getKey()));
+                CapitalLetterWords.remove(entry.getKey());
+            }
+        }
         d.SetDoc(TermsMap,CapitalLetterWords,Cityplaces,Tokens.size());
 
     }

@@ -1,5 +1,8 @@
 package Indexer;
 
+import GUI.Controller;
+import Parser.Parse;
+
 import java.io.*;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
@@ -151,7 +154,8 @@ A class we added to work with files so the logic can be kept in the indexer
            Iterator<Map.Entry<String,StringBuilder>> it= cities.entrySet().iterator();
         while (it.hasNext()){
             Map.Entry<String,StringBuilder> currCity=it.next();
-            content.append(currCity.getKey()+"|"+cityIndex.get(currCity.getKey())[0]+"|"+cityIndex.get(currCity.getKey())[1]+"|"+cityIndex.get(currCity.getKey())[2]+"|"+currCity.getValue().toString()+"\n");
+            content.append(currCity.getKey()+"|"+cityIndex.get(currCity.getKey())[0]+"|"+cityIndex.get(currCity.getKey())[1]+"|"+cityIndex.get(currCity.getKey())[2]+"|").append(TermFromIndex(currCity.getKey(),currCity.getValue().toString())+"\n");
+            Controller.SetCities(currCity.getKey());
 
         }
         try (FileWriter fw = new FileWriter(postingpath+"\\Cities.txt", false);
@@ -167,7 +171,36 @@ A class we added to work with files so the logic can be kept in the indexer
         cities=new HashMap<>();
 
     }
-//adding terms they started as capital letters but are saved lowercase in lowercase format
+
+    private String TermFromIndex(String key, String CityInfo) {
+        String[] arrFromFile = null;
+        try {
+            arrFromFile = new String(Files.readAllBytes(Paths.get(FileManager.geturl("" + key.charAt(0)))), Charset.defaultCharset()).split("\n");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        if(Parse.indexer.Index.get(key)==null){
+            return CityInfo;
+        }
+        int linenumber = Parse.indexer.Index.get(key)[1];
+        String currposting = arrFromFile[linenumber];
+        String[] doclist = currposting.split("\\|");
+        TreeSet<String> uniqueDocs=new TreeSet<>();
+        for (int i = 0; i <doclist.length ; i++) {
+            uniqueDocs.add(doclist[i]);
+        }
+        String[] CityIndexDocs=CityInfo.split(",");
+        for (int i = 0; i <CityIndexDocs.length ; i++) {
+            uniqueDocs.add(CityIndexDocs[i]);
+        }
+        StringJoiner sj=new StringJoiner(",");
+        for (int k = 0; k <uniqueDocs.size() ;k++) {
+            sj.add(uniqueDocs.pollFirst());
+        }
+        return sj.toString();
+    }
+
+    //adding terms they started as capital letters but are saved lowercase in lowercase format
     public  void SetCapitalToLoweCasePosting(String key, String value,int line) {
         if (Cache.containsKey(key)) {
             Cache.get(key).value=Cache.get(key).value +value;

@@ -18,13 +18,10 @@ import java.util.TreeMap;
 public class Searcher {
     public TreeMap<String, int[]> indexer;
 
-    public TreeMap<String, String> Searcher(String Query, String City, TreeMap<String, int[]> indexer) {
+    public TreeMap<String, String> Searcher(String Query, String[] City, TreeMap<String, int[]> indexer) {
         this.indexer = indexer;
         Parse parse = new Parse();
-        if (City == null) {
-            City = "";
-        }
-        Document doc = new Document(null, City, null, Query, null);
+        Document doc = new Document(null, "", null, Query, null);
         parse.parse(doc);
         doc.TermsMap.putAll(doc.CapitalLetterWords);// only for the query
         TreeMap<String, String> DocDictionary = GetDataFromPosting(doc.TermsMap);

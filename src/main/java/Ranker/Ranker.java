@@ -20,17 +20,24 @@ public class Ranker {
         this.avdl=avdl;
     }
 
-    public TreeSet<RankDoc> Rank(TreeMap<String, String> DocDictionary, TreeMap<String, int[]> Index,TreeMap<String,Integer> docLength) {
+    public TreeSet<RankDoc> Rank(int queryLength,TreeMap<String, String> DocDictionary, TreeMap<String, int[]> Index,TreeMap<String,Integer> docLength) {
         DocLength = docLength;
         for (Map.Entry<String, String> entry : DocDictionary.entrySet()) {
             double rank = 0;
+            double sum=0;
+            double squareSum=0;
             String[] terms = entry.getValue().split("\\|");
             for (int i = 0; i < terms.length; i++) {
                 String[] termstf = terms[i].split("_");
-                rank += BM25(Integer.parseInt(termstf[1]), Math.log(Index.get(termstf[0])[2]), DocLength.get(entry.getKey()));
 
+                double tfidf=((double)Integer.parseInt(termstf[1]))*Math.log(Index.get(termstf[0])[2]);
+                sum+=tfidf;
+                squareSum+=(tfidf*tfidf);
+                rank += BM25((double)Integer.parseInt(termstf[1]),tfidf, DocLength.get(entry.getKey()));
             }
-            SortedDocs.add(new RankDoc(entry.getKey(), rank));
+            double CosSim= sum/(Math.sqrt(queryLength)*Math.sqrt(squareSum));
+            System.out.println("Doc: " + entry.getKey() + " ,Rank:" + rank+ " ,Cossim:" + CosSim+ ", doc size"+ DocLength.get(entry.getKey()));
+            SortedDocs.add(new RankDoc(entry.getKey(), rank*CosSim));
         }
         TreeSet<RankDoc> FinalDocRank= new TreeSet();
         if(SortedDocs.size()>50){
@@ -44,11 +51,9 @@ public class Ranker {
     return FinalDocRank;
     }
 
-    public double BM25(int tf, double idf, int doclength) {
-            double numerator = (k + 1) * tf * idf;
+    public double BM25(double tf,double tfidf, int doclength) {
+            double numerator = (k + 1) * tfidf;
             double denominator = tf + k * (1 - b + b * (doclength / avdl));
             return numerator / denominator;
     }
-
-
 }

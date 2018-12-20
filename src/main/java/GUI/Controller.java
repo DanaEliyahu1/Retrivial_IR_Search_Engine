@@ -2,22 +2,16 @@ package GUI;
 
 import Indexer.FileManager;
 import Indexer.Indexer;
-import Parser.Document;
 import Parser.Parse;
 import Parser.ReadFile;
-import Parser.Stemmer;
 import Ranker.Ranker;
 import Ranker.RankDoc;
 import Searcher.Searcher;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
@@ -32,9 +26,9 @@ import java.nio.file.Paths;
 import java.util.*;
 
 public class Controller {
-    public ChoiceBox choiceBox;
+    public ChoiceBox choiceBoxlang;
     public TreeMap<String, int[]> Index;
-    public CheckBox checkBox;
+    public CheckBox checkBoxstem;
     public static int Termunique;
     public String corpusselected;
     public Stage stage;
@@ -44,10 +38,13 @@ public class Controller {
     public TextField Choosecorpus;
     public TextField ChooseStopWords;
     public TextField ChoosePosting;
+    public TextField resultpathselected;
     public TextField queryselected;
     public TextField Query;
-    public ChoiceBox City;
-    public static ObservableList<String> options;
+    public MenuButton City;
+    public CheckBox checkBoxcity;
+    public static ObservableList<String> langoptions;
+    public static ObservableList<MenuItem> cityoptions;
 
 // deleting all files created while indexing
     public void Reset() {
@@ -93,7 +90,7 @@ public class Controller {
 //by sending the same path used for indexing, the user can load the dictionary created
     public void LoadDic() {
         postingselected = ChoosePosting.getText();
-        IsStem = checkBox.isSelected();
+        IsStem = checkBoxstem.isSelected();
         TreeMap<String, String[]> Dic = new TreeMap<>();
         String content = null;
         if (!new File(postingselected).exists()) {
@@ -154,19 +151,26 @@ public class Controller {
             ChooseStopWords.setText(fstopwordsselected.getPath());
         }
     }
+    public void choosequery() {
+        FileChooser fc = new FileChooser();
+        File Qselected = fc.showOpenDialog(stage);
+        if (Qselected != null) {
+            queryselected.setText(Qselected.getPath());
+        }
+    }
 
-    public void choosequerytarget(){
+    public void choosersulttarget(){
             DirectoryChooser dc = new DirectoryChooser();
             File fqueryselected = dc.showDialog(stage);
             if (fqueryselected != null) {
-                queryselected.setText(fqueryselected.getPath());
+                resultpathselected.setText(fqueryselected.getPath());
             }
         }
 
 /*the main method- creating posting folders where needed, configuring stemming if needed
  getting the stop-words and starting the creation of the dictionary*/
     public void StartDictinory() throws Exception {
-        IsStem = checkBox.isSelected();
+        IsStem = checkBoxstem.isSelected();
         postingselected = ChoosePosting.getText();
         corpusselected = Choosecorpus.getText();
         stopwordsselected = ChooseStopWords.getText();
@@ -261,6 +265,7 @@ public class Controller {
         double minutes = (duratation / 1000000000.0); //change to second
         showAlert("Total Documents indexed " + FileManager.DocNum + ". Total Unique terms indexed " + Controller.Termunique + ". " + " runtime " + minutes + "seconds.");
         FileManager.DocNum = 0;
+        City.getItems().addAll(Controller.cityoptions);
         Index = Parse.indexer.Index;
         Parse.indexer = null;
 
@@ -278,13 +283,18 @@ public class Controller {
     }
 //can be called from the readFile to add languages
     public static void SetLanguages(String languages) {
-        if (!options.contains(languages)) {
-            options.add(languages);
+        if (!langoptions.contains(languages)) {
+            langoptions.add(languages);
         }
     }
-
+    public static void SetCities(String cities) {
+            CheckBox cb0 = new CheckBox(cities);
+            CustomMenuItem item0 = new CustomMenuItem(cb0);
+            item0.setHideOnClick(false);
+            cityoptions.addAll(item0);
+    }
     public void run(){
-        Parse.isStemmig =checkBox.isSelected();
+        Parse.isStemmig = checkBoxstem.isSelected();
         HashSet StopWord = new HashSet();
         if (stopwordsselected != null) {
             String content = null;
@@ -304,22 +314,37 @@ public class Controller {
             }
         }
         Parse.StopWord = StopWord;
-        if(checkBox.isSelected()){
+        if(checkBoxstem.isSelected()){
             FileManager.postingpath=postingselected+ "/Stemming";
         }else{
             FileManager.postingpath=postingselected+ "/NotStemming";
         }
         Searcher searcher=new Searcher();
-        TreeMap<String,String> Searchresults = searcher.Searcher(Query.getText(),(String) City.getValue(),Index);
+        TreeMap<String,String> Searchresults = searcher.Searcher(Query.getText(),getcitiesarr(City.getItems()),Index);
         int[] avdl=new int[1];
         TreeMap<String,Integer> docLengthTree=getDocLength(avdl);
-        Ranker ranker=new Ranker(0.5,10,avdl[0]);
-        TreeSet<RankDoc> Rankedresults=ranker.Rank(Searchresults,Index,docLengthTree);
+        if (checkBoxcity.isSelected()){
+
+        }
+        Ranker ranker=new Ranker(0.75,1.2,avdl[0]);
+        TreeSet<RankDoc> Rankedresults=ranker.Rank(Query.getText().split(" ").length,Searchresults,Index,docLengthTree);
         Iterator<RankDoc> iterator=Rankedresults.iterator();
         while (iterator.hasNext()){
             RankDoc curr=iterator.next();
             System.out.println("key: " + curr.docid + " ,value:" + curr.rank);
         }
+    }
+
+    private String[] getcitiesarr(ObservableList<MenuItem> items) {
+    String [] choosecity = new String[items.size()];
+    Iterator<MenuItem> it=items.iterator();
+    int i=0;
+       while (it.hasNext()){
+           CustomMenuItem curr=(CustomMenuItem)it.next();
+           choosecity[i]=curr.getText();
+           i++;
+       }
+       return choosecity;
     }
 
     private TreeMap<String,Integer> getDocLength(int[] avdl) {
@@ -339,6 +364,7 @@ public class Controller {
         return DocsLength;
     }
 
+   // public void
 }
 
 

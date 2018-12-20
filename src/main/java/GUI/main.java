@@ -1,5 +1,4 @@
 package GUI;
-import Indexer.Indexer;
 import Parser.Parse;
 import Parser.ReadFile;
 import Parser.Stemmer;
@@ -25,8 +24,10 @@ public class main extends Application {
         primaryStage.setScene(scene);
         Controller controller=fxmlLoader.getController();
         controller.setStage(primaryStage);
-       Controller.options=FXCollections.observableArrayList();
-        controller.choiceBox.setItems(Controller.options);
+       Controller.langoptions =FXCollections.observableArrayList();
+        controller.choiceBoxlang.setItems(Controller.langoptions);
+        Controller.cityoptions =FXCollections.observableArrayList();
+       controller.City.getItems().addAll(Controller.cityoptions);
         controller.Index =new TreeMap<>();
         primaryStage.show();
 
