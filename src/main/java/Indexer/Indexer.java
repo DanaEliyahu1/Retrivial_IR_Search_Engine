@@ -104,7 +104,7 @@ public class Indexer {
             CapitalLetterPosting.put(key, new StringBuilder("|" + DocID + "," + value.toString()));
             linenumber[27]++;
         }
-    }
+        }
 //a main function. the term is located in the dictionary and if new it gets a new line-number for its posting file
     private void AddTermToDic(String key, Integer value, String DocID) {
         if (Index.containsKey(key)) {
