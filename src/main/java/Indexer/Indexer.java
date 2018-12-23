@@ -93,7 +93,7 @@ public class Indexer {
 
    //adding the posting and line numbers to the 2 maps which handle capital letters(one for tf/icf and one for posting)
     private void AddTermToCapital(String key, Integer value, String DocID) {
-        if (Index.containsKey(key)) {
+        if (CapitalLetterPosting.containsKey(key)) {
             int[] setvalue = AllCapitalLetterWords.get(key);
             setvalue[0]++;
             setvalue[2] += value;
@@ -185,21 +185,18 @@ public class Indexer {
             }
         }
         int uniqueterms =  document.TermsMap.size();
-
-
-        //looking if capital letter words should be lowered to lowercase
        PriorityQueue<Map.Entry<String, Integer>> Entities= new PriorityQueue<>(new Comparator<Map.Entry<String, Integer>>() {
            @Override
            public int compare(Map.Entry<String, Integer> o1, Map.Entry<String, Integer> o2) {
                return o1.getValue()-o2.getValue();
            }
        });
+       //looking if capital letter words should be lowered to lowercase
         for (Map.Entry<String, Integer> entry : document.CapitalLetterWords.entrySet()) {
             if (!Index.containsKey(entry.getKey().toLowerCase())) {
                 Entities.add(entry);
                 AddTermToCapital(entry.getKey(), entry.getValue(), document.ID);
             } else {
-
                 AddTermToDic(entry.getKey().toLowerCase(), entry.getValue(), document.ID);
             }
         }
