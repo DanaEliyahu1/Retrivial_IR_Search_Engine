@@ -18,8 +18,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.apache.commons.io.FileUtils;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -43,6 +42,7 @@ public class Controller {
     public TextField Query;
     public MenuButton City;
     public CheckBox checkBoxcity;
+    public CheckBox checksemantica;
     public static ObservableList<String> langoptions;
     public static ObservableList<MenuItem> cityoptions;
 
@@ -294,45 +294,14 @@ public class Controller {
             cityoptions.addAll(item0);
     }
     public void run(){
-        Parse.isStemmig = checkBoxstem.isSelected();
-        HashSet StopWord = new HashSet();
-        if (stopwordsselected != null) {
-            String content = null;
-            try {
-                content = new String(Files.readAllBytes(Paths.get(stopwordsselected)), Charset.defaultCharset());
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            String[] contentsw = content.split("\\s+");
-            for (int i = 0; i < contentsw.length; i++) {
-                if (!contentsw[i].equals("")) {
-                    StopWord.add(contentsw[i].toLowerCase());
-                }
-            }
-            if (StopWord.contains("may")) {
-                StopWord.remove("may");
-            }
-        }
-        Parse.StopWord = StopWord;
-        if(checkBoxstem.isSelected()){
-            FileManager.postingpath=postingselected+ "/Stemming";
+        SendToParse();
+        if(Query.getText().equals("")){
+            QueryFromFile();
         }else{
-            FileManager.postingpath=postingselected+ "/NotStemming";
-        }
-        Searcher searcher=new Searcher();
-        TreeMap<String,String> Searchresults = searcher.Searcher(Query.getText(),getcitiesarr(City.getItems()),Index);
-        int[] avdl=new int[1];
-        TreeMap<String,Integer> docLengthTree=getDocLength(avdl);
-        if (checkBoxcity.isSelected()){
 
+            RunQuery(Query.getText(),"351");
         }
-        Ranker ranker=new Ranker(0.75,1.2,avdl[0]);
-        TreeSet<RankDoc> Rankedresults=ranker.Rank(Query.getText().split(" ").length,Searchresults,Index,docLengthTree);
-        Iterator<RankDoc> iterator=Rankedresults.iterator();
-        while (iterator.hasNext()){
-            RankDoc curr=iterator.next();
-            System.out.println("key: " + curr.docid + " ,value:" + curr.rank);
-        }
+
     }
 
     private String[] getcitiesarr(ObservableList<MenuItem> items) {
@@ -363,8 +332,80 @@ public class Controller {
         avdl[0]=(sum/DocsLength.size());
         return DocsLength;
     }
+    public void QueryFromFile(){
+        String path=queryselected.getText();
+        String content = null;
+        try {
+            content = new String(Files.readAllBytes(Paths.get(path)), Charset.defaultCharset());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        String[] query = content.split("<top>");
+        for (int i = 1; i <query.length ; i++) {
+            String number=query[i].split("Number: ")[1];
+            String QueryNum = number.split("\n")[0].replace(" ","");
+            String befortitle=number.split("<title>")[1];
+            String Query=befortitle.split("\n")[0];
+            RunQuery(Query,QueryNum);
 
-   // public void
+        }
+
+    }
+
+    public void SendToParse(){
+        Parse.isStemmig = checkBoxstem.isSelected();
+        HashSet StopWord = new HashSet();
+        if (stopwordsselected != null) {
+            String content = null;
+            try {
+                content = new String(Files.readAllBytes(Paths.get(stopwordsselected)), Charset.defaultCharset());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            String[] contentsw = content.split("\\s+");
+            for (int i = 0; i < contentsw.length; i++) {
+                if (!contentsw[i].equals("")) {
+                    StopWord.add(contentsw[i].toLowerCase());
+                }
+            }
+            if (StopWord.contains("may")) {
+                StopWord.remove("may");
+            }
+        }
+        Parse.StopWord = StopWord;
+        if(checkBoxstem.isSelected()){
+            FileManager.postingpath=postingselected+ "/Stemming";
+        }else{
+            FileManager.postingpath=postingselected+ "/NotStemming";
+        }
+    }
+    public void RunQuery(String Query,String Qnumber){
+        Searcher searcher=new Searcher();
+        TreeMap<String,String> Searchresults = searcher.Searcher(Query,getcitiesarr(City.getItems()),Index,checksemantica.isSelected());
+        int[] avdl=new int[1];
+        TreeMap<String,Integer> docLengthTree=getDocLength(avdl);
+        if (checkBoxcity.isSelected()){
+
+        }
+        Ranker ranker=new Ranker(0.75,2,avdl[0]);
+        TreeSet<RankDoc> Rankedresults=ranker.Rank(Query.split(" ").length,Searchresults,Index,docLengthTree);
+        Iterator<RankDoc> iterator=Rankedresults.iterator();
+        String s="";
+        while (iterator.hasNext()){
+            RankDoc curr=iterator.next();
+            System.out.println("key: " + curr.docid + " ,value:" + curr.rank);
+            s+=(Qnumber+" 0 "+curr.docid+" 1 42.38 mt\n");
+        }
+        try (FileWriter fw = new FileWriter(resultpathselected.getText()+"\\results.txt", true);
+                   BufferedWriter bw = new BufferedWriter(fw);
+                   PrintWriter out = new PrintWriter(bw)) {
+            out.print(s);
+            bw.close();
+            fw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
 
 

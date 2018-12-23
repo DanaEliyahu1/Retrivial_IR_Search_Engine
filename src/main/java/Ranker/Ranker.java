@@ -30,14 +30,14 @@ public class Ranker {
             for (int i = 0; i < terms.length; i++) {
                 String[] termstf = terms[i].split("_");
 
-                double tfidf=((double)Integer.parseInt(termstf[1]))*Math.log(Index.get(termstf[0])[2]);
+                double tfidf=((double)Integer.parseInt(termstf[1]))*Math.log10(DocLength.size()/(Index.get(termstf[0])[2]+1));
                 sum+=tfidf;
                 squareSum+=(tfidf*tfidf);
                 rank += BM25((double)Integer.parseInt(termstf[1]),tfidf, DocLength.get(entry.getKey()));
             }
             double CosSim= sum/(Math.sqrt(queryLength)*Math.sqrt(squareSum));
             System.out.println("Doc: " + entry.getKey() + " ,Rank:" + rank+ " ,Cossim:" + CosSim+ ", doc size"+ DocLength.get(entry.getKey()));
-            SortedDocs.add(new RankDoc(entry.getKey(), rank*CosSim));
+            SortedDocs.add(new RankDoc(entry.getKey(), rank /*CosSim*/));
         }
         TreeSet<RankDoc> FinalDocRank= new TreeSet();
         if(SortedDocs.size()>50){

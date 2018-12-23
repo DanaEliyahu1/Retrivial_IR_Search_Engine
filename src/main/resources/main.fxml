@@ -4,10 +4,10 @@
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<?import javafx.scene.control.MenuButton?>
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controller">
    <children>
       <ChoiceBox fx:id="choiceBoxlang" layoutX="436.0" layoutY="14.0" prefWidth="150.0" />
@@ -23,13 +23,15 @@
       <Button layoutX="422.0" layoutY="189.0" mnemonicParsing="false" onAction="#Reset" prefHeight="25.0" prefWidth="166.0" text="RESET" />
       <Button layoutX="421.0" layoutY="150.0" mnemonicParsing="false" onAction="#ShowDic" prefHeight="25.0" prefWidth="166.0" text="Show Dictionary" />
       <Label layoutX="14.0" layoutY="252.0" prefHeight="11.0" prefWidth="143.0" text="Enter Query" />
-      <TextField fx:id="Query" layoutX="119.0" layoutY="252.0" prefHeight="25.0" prefWidth="290.0" />
-      <Button layoutX="460.0" layoutY="248.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="99.0" text="Run" onAction="#run" />
-      <Button layoutX="9.0" layoutY="284.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="99.0" text="Choose Query" onAction="#choosequery"/>
-      <TextField fx:id="resultpathselected" layoutX="119.0" layoutY="285.0" prefHeight="25.0" prefWidth="290.0" />
-      <MenuButton fx:id="City" layoutX="133.0" layoutY="361.0" prefWidth="150.0" />
-      <CheckBox  fx:id="checkBoxcity" layoutX="13.0" layoutY="363.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="119.0" text="Filter By Citiy" />
-      <Button layoutX="10.0" layoutY="323.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="143.0"  onAction="#choosersulttarget" text="Choose Result Target" />
-      <TextField fx:id="queryselected" layoutX="167.0" layoutY="323.0" prefHeight="25.0" prefWidth="244.0"  />
+      <TextField fx:id="Query" layoutX="165.0" layoutY="252.0" prefHeight="25.0" prefWidth="244.0" text="Falkland petroleum exploration" />
+      <Button layoutX="446.0" layoutY="285.0" mnemonicParsing="false" onAction="#run" prefHeight="26.0" prefWidth="119.0" text="Run" />
+      <Button layoutX="9.0" layoutY="284.0" mnemonicParsing="false" onAction="#choosequery" prefHeight="25.0" prefWidth="143.0" text="Choose Query" />
+      <TextField fx:id="queryselected" layoutX="165.0" layoutY="285.0" prefHeight="25.0" prefWidth="244.0" />
+      <MenuButton fx:id="City" layoutX="433.0" layoutY="361.0" prefWidth="150.0" />
+      <CheckBox fx:id="checkBoxcity" layoutX="300.0" layoutY="363.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="119.0" text="Filter By Citiy" />
+      <Button layoutX="10.0" layoutY="323.0" mnemonicParsing="false" onAction="#choosersulttarget" prefHeight="25.0" prefWidth="143.0" text="Choose Result Target" />
+      <TextField fx:id="resultpathselected" layoutX="167.0" layoutY="323.0" prefHeight="25.0" prefWidth="244.0" />
+      <CheckBox fx:id="checksemantica" layoutX="450.0" layoutY="253.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="119.0" text="Semantic Search" />
+      <Button layoutX="9.0" layoutY="361.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="143.0" text="Show Results" />
    </children>
 </AnchorPane>
