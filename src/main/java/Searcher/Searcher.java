@@ -1,6 +1,5 @@
 package Searcher;
 
-import Indexer.Indexer;
 import Indexer.FileManager;
 import Parser.Document;
 import Parser.Parse;
@@ -10,11 +9,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-
-import java.io.BufferedWriter;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;

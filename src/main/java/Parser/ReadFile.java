@@ -38,11 +38,22 @@ public class ReadFile {
     }
 //getting doc and cutting it and only returning the relevant info and tags in an Document Object
     private Document initdoc(String s,String filename) {
-
+        String finalTitle="";
         String City = "";
         //cheak the format
         String[] IdArr = s.split("</DOCNO>");
         String Id = IdArr[0].split("<DOCNO>")[1].replaceAll(" ","");
+        if(IdArr[1].contains("<TI>")){
+            String title=IdArr[1].split("<TI>")[1];
+            String title2=title.split("</TI>")[0];
+            finalTitle=" "+title2;
+        }
+        else if(IdArr[1].contains("<HEADLINE>")){
+            String title=IdArr[1].split("<HEADLINE>")[1];
+            String title2=title.split("</HEADLINE>")[0];
+            finalTitle=" "+title2;
+        }
+
         String[] City1 = IdArr[1].split("<TEXT>");
         String[] City2 = City1[0].split("<F P=104>");
 
@@ -79,13 +90,17 @@ public class ReadFile {
                 String [] language=aftersdplit[0].split("<F P=105>" )[1].split("</F>");
                 String Language=language[0].replaceAll(" ","");
                 Controller.SetLanguages(Language);
-
+                for (int i = 0; i <10 ; i++) {
+                    Text+=finalTitle;
+                }
                 return new Document(corpuspath + File.separator + FileName, City, Id, Text, filename);
             }
         }catch (Exception e){
           //  e.printStackTrace();
         }
-
+        for (int i = 0; i <10 ; i++) {
+            Text+=finalTitle;
+        }
         return new Document(corpuspath + File.separator + FileName, City.toUpperCase(), Id, Text,filename);
     }
 //after getting in constructor the path it starts here and it calls the parser and
