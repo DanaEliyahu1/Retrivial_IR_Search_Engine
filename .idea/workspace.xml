@@ -6,10 +6,8 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0f921457-46cd-4350-bc0e-a504e616ee8d" name="Default Changelist" comment="SEMANTICA">
+    <list default="true" id="0f921457-46cd-4350-bc0e-a504e616ee8d" name="Default Changelist" comment="with title added">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Parser/ReadFile.java" afterPath="$PROJECT_DIR$/src/main/java/Parser/ReadFile.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Searcher/Searcher.java" afterPath="$PROJECT_DIR$/src/main/java/Searcher/Searcher.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -176,7 +174,7 @@
       <file leaf-file-name="ReadFile.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/Parser/ReadFile.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-475">
+            <state relative-caret-position="575">
               <caret line="56" column="0" lean-forward="false" selection-start-line="56" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
               <folding />
             </state>
@@ -541,13 +539,6 @@
       <workItem from="1542132904878" duration="9747000" />
       <workItem from="1543876453396" duration="3343000" />
     </task>
-    <task id="LOCAL-00014" summary="IN MIDELE OF FIX PARSE">
-      <created>1541519091445</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1541519091445</updated>
-    </task>
     <task id="LOCAL-00015" summary="started creating files">
       <created>1541532251212</created>
       <option name="number" value="00015" />
@@ -884,7 +875,14 @@
       <option name="project" value="LOCAL" />
       <updated>1545601061543</updated>
     </task>
-    <option name="localTasksCounter" value="63" />
+    <task id="LOCAL-00063" summary="with title added">
+      <created>1545602258510</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1545602258510</updated>
+    </task>
+    <option name="localTasksCounter" value="64" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -992,7 +990,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="VERSION 1" />
     <MESSAGE value="FIX LINE&#10;DELETE POINTER CASH&#10;DOTO STOP WORDS&#10;FIX FUNC NAME" />
     <MESSAGE value="FIX STOP WORD&#10;GUI&#10;'s PARSE ROL'" />
     <MESSAGE value="FIX LOAD" />
@@ -1017,7 +1014,8 @@
     <MESSAGE value="ADD ENTITIES" />
     <MESSAGE value="FIX CAPITAL (FALKLAND)" />
     <MESSAGE value="SEMANTICA" />
-    <option name="LAST_COMMIT_MESSAGE" value="SEMANTICA" />
+    <MESSAGE value="with title added" />
+    <option name="LAST_COMMIT_MESSAGE" value="with title added" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1027,18 +1025,6 @@
           <line>101</line>
           <properties />
           <option name="timeStamp" value="605" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/Parser/ReadFile.java</url>
-          <line>52</line>
-          <properties />
-          <option name="timeStamp" value="608" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/Parser/ReadFile.java</url>
-          <line>47</line>
-          <properties />
-          <option name="timeStamp" value="609" />
         </line-breakpoint>
       </breakpoints>
       <option name="time" value="610" />
@@ -1315,7 +1301,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Parser/ReadFile.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-475">
+        <state relative-caret-position="575">
           <caret line="56" column="0" lean-forward="false" selection-start-line="56" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
           <folding />
         </state>
