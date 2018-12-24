@@ -4,7 +4,7 @@ import Indexer.FileManager;
 import Indexer.Indexer;
 import Parser.Parse;
 import Parser.ReadFile;
-import Ranker.Ranker;
+import Ranker.*;
 import Ranker.RankDoc;
 import Searcher.Searcher;
 import javafx.collections.ObservableList;
@@ -16,6 +16,7 @@ import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.Pair;
 import org.apache.commons.io.FileUtils;
 import sun.reflect.generics.tree.Tree;
 
@@ -44,6 +45,7 @@ public class Controller {
     public MenuButton City;
     public CheckBox checkBoxcity;
     public CheckBox checksemantica;
+    public CheckBox checkBoxentities;
     public static ObservableList<String> langoptions;
     public static ObservableList<MenuItem> cityoptions;
 
@@ -354,19 +356,33 @@ public class Controller {
         return res;
     }
 
-    private TreeMap<String, Integer> getDocLength(int[] avdl) {
+    private TreeMap<String, DocInfo> getDocLength(int[] avdl) {
         int sum = 0;
-        TreeMap<String, Integer> DocsLength = new TreeMap<>();
+        TreeMap<String, DocInfo> DocsLength = new TreeMap<>();
+        //docLength
         try {
             String[] arrFromFile = new String(Files.readAllBytes(Paths.get(FileManager.postingpath + "/UsefulDocuments.txt")), Charset.defaultCharset()).split("\\|");
             for (int i = 1; i < arrFromFile.length; i++) {
                 String[] curr = arrFromFile[i].split(",");
                 sum += Integer.parseInt(curr[1]);
-                DocsLength.put(curr[0], Integer.parseInt(curr[1]));
+                DocsLength.put(curr[0], new DocInfo(Integer.parseInt(curr[1]),0,Integer.parseInt(curr[3])));
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
+        //TF-IDF
+        try {
+            String[] arrFromFile = new String(Files.readAllBytes(Paths.get(FileManager.postingpath + "/CosSimMechana")), Charset.defaultCharset()).split("\n");
+            for (int i = 1; i < arrFromFile.length; i++) {
+                String[] curr = arrFromFile[i].split(",");
+                int Doclanght=DocsLength.get(curr[0]).lengthdoc;
+                double tfidf=Double.parseDouble(curr[1]);
+                DocsLength.get(curr[0]).sigmatfidf=tfidf;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         avdl[0] = (sum / DocsLength.size());
         return DocsLength;
     }
@@ -423,28 +439,79 @@ public class Controller {
         Searcher searcher = new Searcher();
         TreeMap<String, String> Searchresults = searcher.Searcher(Query, Index, checksemantica.isSelected());
         int[] avdl = new int[1];
-        TreeMap<String, Integer> docLengthTree = getDocLength(avdl);
+        TreeMap<String, DocInfo> docLengthTree = getDocLength(avdl);
         if (checkBoxcity.isSelected()) {
             Searchresults = filterBycities(getcitiesarr(City.getItems()), Searchresults);
         }
-        Ranker ranker = new Ranker(0.75, 2, avdl[0]);
+        Ranker ranker = new Ranker(0.5, 2, avdl[0]);
         TreeSet<RankDoc> Rankedresults = ranker.Rank(Query.split(" ").length, Searchresults, Index, docLengthTree);
+        ResultToUser(Rankedresults, Qnumber);
+
+    }
+
+    private void ResultToUser(TreeSet <RankDoc> Rankedresults, String Qnumber) {
         Iterator<RankDoc> iterator = Rankedresults.iterator();
-        String s = "";
+        TreeMap<String,String> Entities=new TreeMap<>();
+        String trecevalresult = "";
+        String NoEntities = "";
+        String WithEntities="";
+        try {
+            String content = new String(Files.readAllBytes(Paths.get(FileManager.postingpath + "\\UsefulDocuments.txt")), Charset.defaultCharset());
+            String[] DocEntities = content.split("\\|");
+
+
+            for (int i = 1; i < DocEntities.length; i++) {
+                String [] Entiite=DocEntities[i].split(",");
+                if(Entiite.length==4){
+                    Entities.put(Entiite[0],Entiite[2]);
+                }else {
+                    Entities.put(Entiite[0],"");
+                }
+
+
+
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         while (iterator.hasNext()) {
             RankDoc curr = iterator.next();
             System.out.println("key: " + curr.docid + " ,value:" + curr.rank);
-            s += (Qnumber + " 0 " + curr.docid + " 1 42.38 mt\n");
+            trecevalresult += (Qnumber + " 0 " + curr.docid + " 1 42.38 mt\n");
+            NoEntities+=(curr.docid+"\n");
+            WithEntities+=(curr.docid+"\r\r"+Entities.get(curr.docid)+"\n");
         }
-        try (FileWriter fw = new FileWriter(resultpathselected.getText() + "\\results.txt", true);
+        try (FileWriter fw = new FileWriter(resultpathselected.getText() + "\\withentities.txt", true);
              BufferedWriter bw = new BufferedWriter(fw);
              PrintWriter out = new PrintWriter(bw)) {
-            out.print(s);
+            out.print(WithEntities);
             bw.close();
             fw.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
+        try (FileWriter fw = new FileWriter(resultpathselected.getText() + "\\results.txt", true);
+             BufferedWriter bw = new BufferedWriter(fw);
+             PrintWriter out = new PrintWriter(bw)) {
+            out.print(trecevalresult);
+            bw.close();
+            fw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try (FileWriter fw = new FileWriter(resultpathselected.getText() + "\\withoutentities.txt", true);
+             BufferedWriter bw = new BufferedWriter(fw);
+             PrintWriter out = new PrintWriter(bw)) {
+            out.print(NoEntities);
+            bw.close();
+            fw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+
     }
 
     private TreeMap<String, String> filterBycities(String[] getcitiesarr, TreeMap<String, String> searchResults) {
@@ -477,6 +544,35 @@ public class Controller {
             }
         }
         return filteredResults;
+    }
+    public void ShowResultToUser(){
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        Parent root = null;
+        try {
+            root = fxmlLoader.load(getClass().getClassLoader().getResource("ShowDictionary.fxml").openStream());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Stage newStage = new Stage();
+        Scene scene = new Scene(root, 290, 300);
+        newStage.setScene(scene);
+
+        ShowDictionaryController showd = fxmlLoader.getController();
+        String content = null;
+        try {
+            if(checkBoxentities.isSelected()){
+                content = new String(Files.readAllBytes(Paths.get(resultpathselected.getText() + "\\withentities.txt")), Charset.defaultCharset());
+        }
+        else {
+                content = new String(Files.readAllBytes(Paths.get(resultpathselected.getText() + "\\withoutentities.txt")), Charset.defaultCharset());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        showd.text.setText(content);
+        newStage.initModality(Modality.APPLICATION_MODAL);
+        newStage.show();
+
     }
 }
 

@@ -27,11 +27,13 @@
       <Button layoutX="446.0" layoutY="285.0" mnemonicParsing="false" onAction="#run" prefHeight="26.0" prefWidth="119.0" text="Run" />
       <Button layoutX="9.0" layoutY="284.0" mnemonicParsing="false" onAction="#choosequery" prefHeight="25.0" prefWidth="143.0" text="Choose Query" />
       <TextField fx:id="queryselected" layoutX="165.0" layoutY="285.0" prefHeight="25.0" prefWidth="244.0" />
-      <MenuButton fx:id="City" layoutX="433.0" layoutY="361.0" prefWidth="150.0" />
-      <CheckBox fx:id="checkBoxcity" layoutX="300.0" layoutY="363.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="119.0" text="Filter By Citiy" />
+      <MenuButton fx:id="City" layoutX="464.0" layoutY="361.0" prefHeight="25.0" prefWidth="119.0" />
+      <CheckBox fx:id="checkBoxcity" layoutX="334.0" layoutY="363.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="119.0" text="Filter By Citiy" />
       <Button layoutX="10.0" layoutY="323.0" mnemonicParsing="false" onAction="#choosersulttarget" prefHeight="25.0" prefWidth="143.0" text="Choose Result Target" />
       <TextField fx:id="resultpathselected" layoutX="167.0" layoutY="323.0" prefHeight="25.0" prefWidth="244.0" />
       <CheckBox fx:id="checksemantica" layoutX="450.0" layoutY="253.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="119.0" text="Semantic Search" />
-      <Button layoutX="9.0" layoutY="361.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="143.0" text="Show Results" />
+      <Button layoutX="9.0" layoutY="361.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="143.0" text="Show Results" onAction="#ShowResultToUser"/>
+      <CheckBox mnemonicParsing="false" text="CheckBox" />
+      <CheckBox fx:id="checkBoxentities" layoutX="165.0" layoutY="365.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="158.0" text="Show resultswith entities" />
    </children>
 </AnchorPane>

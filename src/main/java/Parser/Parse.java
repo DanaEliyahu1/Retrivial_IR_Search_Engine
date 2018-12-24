@@ -1,7 +1,14 @@
 package Parser;
 
-import Indexer.Indexer;
+import Indexer.*;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.*;
 
 
@@ -20,6 +27,7 @@ public class Parse {
     private ArrayList<String> Tokens;
     private int i;
     private String Cityplaces;
+    public static TreeMap<String,Double>  Idf;
 
 
     //each document needs its own tree map of terms
@@ -63,6 +71,7 @@ public class Parse {
                 CapitalLetterWords.remove(entry.getKey());
             }
         }
+       // AddDocumentCosSimMechana();
         d.SetDoc(TermsMap,CapitalLetterWords,Cityplaces,Tokens.size());
 
     }
@@ -339,4 +348,46 @@ public class Parse {
                 TermsMap.put(newtoken, 1);
             }
     }
+    public void AddDocumentCosSimMechana(){
+        TreeMap<String,Integer> alltermsdoc=new TreeMap<>();
+        alltermsdoc.putAll(TermsMap);
+        alltermsdoc.putAll(CapitalLetterWords);
+        double sum=0;
+        for (Map.Entry<String, Integer> entry : alltermsdoc.entrySet()) {
+         double a=-1;
+            if(Idf.get(entry.getKey())==null){
+                a=Idf.get(entry.getKey().toLowerCase());
+            }
+            else{
+                a=Idf.get(entry.getKey());
+            }
+         double b=((double) entry.getValue());
+          sum+=(Math.pow(b*a,2));
+        }
+        try (FileWriter fw = new FileWriter(FileManager.postingpath + "\\CosSimMechana", true);
+             BufferedWriter bw = new BufferedWriter(fw);
+             PrintWriter out = new PrintWriter(bw)) {
+            out.print(d.ID+","+sum+"\n");
+            bw.close();
+            fw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public void GetIdf(){
+        Idf=new TreeMap<String,Double>();
+        try {
+            String content = new String(Files.readAllBytes(Paths.get(FileManager.postingpath + "\\IDF")), Charset.defaultCharset());
+            String[] terms=content.split("\n");
+            for (int j = 0; j <terms.length ; j++) {
+                String[] KeyValues=terms[j].split(",");
+                Idf.put(KeyValues[0],Double.parseDouble(KeyValues[1]));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
 }

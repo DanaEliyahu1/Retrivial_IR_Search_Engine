@@ -171,6 +171,19 @@ public class Indexer {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        StringBuilder s=new StringBuilder("");
+        for (Map.Entry<String, int[]> entry : Index.entrySet()) {
+            s.append(entry.getKey()+","+Math.log10(472525.0/(Index.get(entry.getKey())[2]+1.0))+"\n");
+        }
+        try (FileWriter fw = new FileWriter(FileManager.postingpath + "\\IDF", true);
+             BufferedWriter bw = new BufferedWriter(fw);
+             PrintWriter out = new PrintWriter(bw)) {
+            out.print(s.toString());
+            bw.close();
+            fw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     //called from the parse and analyzing the info +inserting to indexes
     public void AddDocTOIndex(Document document) {

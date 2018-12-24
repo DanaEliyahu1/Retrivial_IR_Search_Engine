@@ -127,7 +127,7 @@ A class we added to work with files so the logic can be kept in the indexer
         DocNum++;
         AddDocToCityIndex(ID,City);
         DocInfo.append("|"+ ID+","+ City + "," + maxtf+ ","+ uniqueterms+ ","+ mostTf+","+cityplaces+","+filename);
-        DocInfoUseful.append("|"+ ID+ ","+ doclength +","+entities);
+        DocInfoUseful.append("|"+ ID+ ","+ doclength +","+entities+","+maxtf);
         if(DocInfo.length()>1500000){
             AllDocumentsToDisk();
         }
