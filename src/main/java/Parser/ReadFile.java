@@ -46,12 +46,18 @@ public class ReadFile {
         if(IdArr[1].contains("<TI>")){
             String title=IdArr[1].split("<TI>")[1];
             String title2=title.split("</TI>")[0];
-            finalTitle=" "+title2;
+            String Title1=" "+title2;
+            for (int i = 0; i <10 ; i++) {
+                finalTitle+=Title1;
+            }
         }
         else if(IdArr[1].contains("<HEADLINE>")){
             String title=IdArr[1].split("<HEADLINE>")[1];
             String title2=title.split("</HEADLINE>")[0];
-            finalTitle=" "+title2;
+            String Title1=" "+title2.split("/")[1];
+            for (int i = 0; i <10 ; i++) {
+                finalTitle+=Title1;
+            }
         }
 
         String[] City1 = IdArr[1].split("<TEXT>");
@@ -90,18 +96,14 @@ public class ReadFile {
                 String [] language=aftersdplit[0].split("<F P=105>" )[1].split("</F>");
                 String Language=language[0].replaceAll(" ","");
                 Controller.SetLanguages(Language);
-                for (int i = 0; i <10 ; i++) {
-                    Text+=finalTitle;
-                }
-                return new Document(corpuspath + File.separator + FileName, City, Id, Text, filename);
+
+                return new Document(corpuspath + File.separator + FileName, City, Id, Text+finalTitle, filename);
             }
         }catch (Exception e){
           //  e.printStackTrace();
         }
-        for (int i = 0; i <10 ; i++) {
-            Text+=finalTitle;
-        }
-        return new Document(corpuspath + File.separator + FileName, City.toUpperCase(), Id, Text,filename);
+
+        return new Document(corpuspath + File.separator + FileName, City.toUpperCase(), Id, Text+finalTitle,filename);
     }
 //after getting in constructor the path it starts here and it calls the parser and
 // indexer so everything starts and ends here

@@ -20,7 +20,7 @@ import java.util.TreeSet;
 public class Searcher {
     public TreeMap<String, int[]> indexer;
 
-    public TreeMap<String, String> Searcher(String Query, String[] City, TreeMap<String, int[]> indexer, boolean IsSemanticSelected) {
+    public TreeMap<String, String> Searcher(String Query, TreeMap<String, int[]> indexer, boolean IsSemanticSelected) {
         this.indexer = indexer;
         Parse parse = new Parse();
         Document doc = new Document(null, "", null, Query, null);

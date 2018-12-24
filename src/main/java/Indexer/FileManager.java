@@ -96,12 +96,6 @@ A class we added to work with files so the logic can be kept in the indexer
                         }
 
                     }
-                    if(entry.getKey().equals("FALKLAND")){
-                        System.out.println(entry.getValue().value);
-                        System.out.println(entry.getValue().lineNumber);
-                        System.out.println(currentfile[entry.getValue().lineNumber].toString());
-
-                    }
                     //actually appending each term
                     currentfile[entry.getValue().lineNumber].append(entry.getValue().value);
 
@@ -193,7 +187,7 @@ A class we added to work with files so the logic can be kept in the indexer
         String[] doclist = currposting.split("\\|");
         TreeSet<String> uniqueDocs=new TreeSet<>();
         for (int i = 0; i <doclist.length ; i++) {
-            uniqueDocs.add(doclist[i]);
+            uniqueDocs.add(doclist[i].split(",")[0]);
         }
         String[] CityIndexDocs=CityInfo.split(",");
         for (int i = 0; i <CityIndexDocs.length ; i++) {

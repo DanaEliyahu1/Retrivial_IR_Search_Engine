@@ -17,6 +17,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.apache.commons.io.FileUtils;
+import sun.reflect.generics.tree.Tree;
 
 import java.io.*;
 import java.nio.charset.Charset;
@@ -46,7 +47,7 @@ public class Controller {
     public static ObservableList<String> langoptions;
     public static ObservableList<MenuItem> cityoptions;
 
-// deleting all files created while indexing
+    // deleting all files created while indexing
     public void Reset() {
         new File(postingselected).renameTo(new File(new File(postingselected).getParent() + "\\" + "Deleted"));
         try {
@@ -56,6 +57,7 @@ public class Controller {
             e.printStackTrace();
         }
     }
+
     //showing the dictionary terms and frequencies
     public void ShowDic() {
         postingselected = ChoosePosting.getText();
@@ -87,7 +89,8 @@ public class Controller {
 
 
     }
-//by sending the same path used for indexing, the user can load the dictionary created
+
+    //by sending the same path used for indexing, the user can load the dictionary created
     public void LoadDic() {
         postingselected = ChoosePosting.getText();
         IsStem = checkBoxstem.isSelected();
@@ -124,8 +127,26 @@ public class Controller {
             String[] value = {keyvalue[1]};
             Dic.put(keyvalue[0], value);
         }
+        try {
+            String cities = "";
+            if (new File(postingselected + "\\Stemming" + "\\Cities.txt").exists() && IsStem) {
+                cities = new String(Files.readAllBytes(Paths.get(postingselected + "\\Stemming\\Cities.txt")), Charset.defaultCharset());
 
+
+            } else if ((new File(postingselected + "\\NotStemming" + "\\Cities.txt").exists()) && !IsStem) {
+                cities = new String(Files.readAllBytes(Paths.get(postingselected + "\\NotStemming\\Cities.txt")), Charset.defaultCharset());
+
+            }
+            String[] allCities=cities.split("\n");
+            for (int i = 0; i < allCities.length; i++) {
+                SetCities(allCities[i].split("\\|")[0]);
+            }
+            City.getItems().addAll(Controller.cityoptions);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
+
     //choose path of corpus
     public void choosecorpus() {
         DirectoryChooser dc = new DirectoryChooser();
@@ -135,7 +156,8 @@ public class Controller {
         }
 
     }
-//choose path of posting files
+
+    //choose path of posting files
     public void chooseposting() {
         DirectoryChooser dc = new DirectoryChooser();
         File fpostingselected = dc.showDialog(stage);
@@ -143,7 +165,8 @@ public class Controller {
             ChoosePosting.setText(fpostingselected.getPath());
         }
     }
-//choose the stop_words.txt file
+
+    //choose the stop_words.txt file
     public void choosestopwords() {
         FileChooser dc = new FileChooser();
         File fstopwordsselected = dc.showOpenDialog(stage);
@@ -151,6 +174,7 @@ public class Controller {
             ChooseStopWords.setText(fstopwordsselected.getPath());
         }
     }
+
     public void choosequery() {
         FileChooser fc = new FileChooser();
         File Qselected = fc.showOpenDialog(stage);
@@ -159,16 +183,16 @@ public class Controller {
         }
     }
 
-    public void choosersulttarget(){
-            DirectoryChooser dc = new DirectoryChooser();
-            File fqueryselected = dc.showDialog(stage);
-            if (fqueryselected != null) {
-                resultpathselected.setText(fqueryselected.getPath());
-            }
+    public void choosersulttarget() {
+        DirectoryChooser dc = new DirectoryChooser();
+        File fqueryselected = dc.showDialog(stage);
+        if (fqueryselected != null) {
+            resultpathselected.setText(fqueryselected.getPath());
         }
+    }
 
-/*the main method- creating posting folders where needed, configuring stemming if needed
- getting the stop-words and starting the creation of the dictionary*/
+    /*the main method- creating posting folders where needed, configuring stemming if needed
+     getting the stop-words and starting the creation of the dictionary*/
     public void StartDictinory() throws Exception {
         IsStem = checkBoxstem.isSelected();
         postingselected = ChoosePosting.getText();
@@ -223,7 +247,7 @@ public class Controller {
                 }
 
             }
-             File file = new File(postingselected + "/NotStemming/Indexing/Numbers.txt");
+            File file = new File(postingselected + "/NotStemming/Indexing/Numbers.txt");
             File file1 = new File(postingselected + "/NotStemming/Indexing/CapitalLetters.txt");
             File file2 = new File(postingselected + "/NotStemming/Indexing/Else.txt");
             try {
@@ -281,59 +305,74 @@ public class Controller {
         alert.setContentText(alertMessage);
         alert.show();
     }
-//can be called from the readFile to add languages
+
+    //can be called from the readFile to add languages
     public static void SetLanguages(String languages) {
         if (!langoptions.contains(languages)) {
             langoptions.add(languages);
         }
     }
-    public static void SetCities(String cities) {
-            CheckBox cb0 = new CheckBox(cities);
-            CustomMenuItem item0 = new CustomMenuItem(cb0);
-            item0.setHideOnClick(false);
-            cityoptions.addAll(item0);
-    }
-    public void run(){
-        SendToParse();
-        if(Query.getText().equals("")){
-            QueryFromFile();
-        }else{
 
-            RunQuery(Query.getText(),"351");
+    public static void SetCities(String cities) {
+        CheckBox cb0 = new CheckBox(cities);
+        CustomMenuItem item0 = new CustomMenuItem(cb0);
+        item0.setHideOnClick(false);
+        cityoptions.addAll(item0);
+    }
+
+    public void run() {
+        SendToParse();
+        if (Query.getText().equals("")) {
+            QueryFromFile();
+        } else {
+
+            RunQuery(Query.getText(), "351");
         }
 
     }
 
     private String[] getcitiesarr(ObservableList<MenuItem> items) {
-    String [] choosecity = new String[items.size()];
-    Iterator<MenuItem> it=items.iterator();
-    int i=0;
-       while (it.hasNext()){
-           CustomMenuItem curr=(CustomMenuItem)it.next();
-           choosecity[i]=curr.getText();
-           i++;
-       }
-       return choosecity;
+        ArrayList<String> CityByuser=new ArrayList<>();
+        Iterator<MenuItem> it = items.iterator();
+        int i = 0;
+         while (it.hasNext()) {
+            CustomMenuItem curr = (CustomMenuItem) it.next();
+            if(((CheckBox)curr.getContent()).isSelected()){
+                CityByuser.add(((CheckBox)curr.getContent()).getText());
+            }
+        }
+
+      /*  ObservableList<MenuItem> s= City.getItems();
+        for (int j = 0; j <s.size() ; j++) {
+            String curr=(String) s.get(j);
+            CityByuser.add( curr);
+        }*/
+            String[] res=new String[CityByuser.size()];
+        for (int j = 0; j <res.length ; j++) {
+            res[j]=CityByuser.get(j);
+        }
+        return res;
     }
 
-    private TreeMap<String,Integer> getDocLength(int[] avdl) {
-        int sum=0;
-        TreeMap<String,Integer> DocsLength=new TreeMap<>();
+    private TreeMap<String, Integer> getDocLength(int[] avdl) {
+        int sum = 0;
+        TreeMap<String, Integer> DocsLength = new TreeMap<>();
         try {
-            String[] arrFromFile = new String(Files.readAllBytes(Paths.get(FileManager.postingpath+"/UsefulDocuments.txt")), Charset.defaultCharset()).split("\\|");
+            String[] arrFromFile = new String(Files.readAllBytes(Paths.get(FileManager.postingpath + "/UsefulDocuments.txt")), Charset.defaultCharset()).split("\\|");
             for (int i = 1; i < arrFromFile.length; i++) {
-                String [] curr=arrFromFile[i].split(",");
-                sum+=Integer.parseInt(curr[1]);
-                DocsLength.put(curr[0],Integer.parseInt(curr[1]));
+                String[] curr = arrFromFile[i].split(",");
+                sum += Integer.parseInt(curr[1]);
+                DocsLength.put(curr[0], Integer.parseInt(curr[1]));
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        avdl[0]=(sum/DocsLength.size());
+        avdl[0] = (sum / DocsLength.size());
         return DocsLength;
     }
-    public void QueryFromFile(){
-        String path=queryselected.getText();
+
+    public void QueryFromFile() {
+        String path = queryselected.getText();
         String content = null;
         try {
             content = new String(Files.readAllBytes(Paths.get(path)), Charset.defaultCharset());
@@ -341,18 +380,18 @@ public class Controller {
             e.printStackTrace();
         }
         String[] query = content.split("<top>");
-        for (int i = 1; i <query.length ; i++) {
-            String number=query[i].split("Number: ")[1];
-            String QueryNum = number.split("\n")[0].replace(" ","");
-            String befortitle=number.split("<title>")[1];
-            String Query=befortitle.split("\n")[0];
-            RunQuery(Query,QueryNum);
+        for (int i = 1; i < query.length; i++) {
+            String number = query[i].split("Number: ")[1];
+            String QueryNum = number.split("\n")[0].replace(" ", "");
+            String befortitle = number.split("<title>")[1];
+            String Query = befortitle.split("\n")[0];
+            RunQuery(Query, QueryNum);
 
         }
 
     }
 
-    public void SendToParse(){
+    public void SendToParse() {
         Parse.isStemmig = checkBoxstem.isSelected();
         HashSet StopWord = new HashSet();
         if (stopwordsselected != null) {
@@ -373,38 +412,71 @@ public class Controller {
             }
         }
         Parse.StopWord = StopWord;
-        if(checkBoxstem.isSelected()){
-            FileManager.postingpath=postingselected+ "/Stemming";
-        }else{
-            FileManager.postingpath=postingselected+ "/NotStemming";
+        if (checkBoxstem.isSelected()) {
+            FileManager.postingpath = postingselected + "/Stemming";
+        } else {
+            FileManager.postingpath = postingselected + "/NotStemming";
         }
     }
-    public void RunQuery(String Query,String Qnumber){
-        Searcher searcher=new Searcher();
-        TreeMap<String,String> Searchresults = searcher.Searcher(Query,getcitiesarr(City.getItems()),Index,checksemantica.isSelected());
-        int[] avdl=new int[1];
-        TreeMap<String,Integer> docLengthTree=getDocLength(avdl);
-        if (checkBoxcity.isSelected()){
 
+    public void RunQuery(String Query, String Qnumber) {
+        Searcher searcher = new Searcher();
+        TreeMap<String, String> Searchresults = searcher.Searcher(Query, Index, checksemantica.isSelected());
+        int[] avdl = new int[1];
+        TreeMap<String, Integer> docLengthTree = getDocLength(avdl);
+        if (checkBoxcity.isSelected()) {
+            Searchresults = filterBycities(getcitiesarr(City.getItems()), Searchresults);
         }
-        Ranker ranker=new Ranker(0.75,2,avdl[0]);
-        TreeSet<RankDoc> Rankedresults=ranker.Rank(Query.split(" ").length,Searchresults,Index,docLengthTree);
-        Iterator<RankDoc> iterator=Rankedresults.iterator();
-        String s="";
-        while (iterator.hasNext()){
-            RankDoc curr=iterator.next();
+        Ranker ranker = new Ranker(0.75, 2, avdl[0]);
+        TreeSet<RankDoc> Rankedresults = ranker.Rank(Query.split(" ").length, Searchresults, Index, docLengthTree);
+        Iterator<RankDoc> iterator = Rankedresults.iterator();
+        String s = "";
+        while (iterator.hasNext()) {
+            RankDoc curr = iterator.next();
             System.out.println("key: " + curr.docid + " ,value:" + curr.rank);
-            s+=(Qnumber+" 0 "+curr.docid+" 1 42.38 mt\n");
+            s += (Qnumber + " 0 " + curr.docid + " 1 42.38 mt\n");
         }
-        try (FileWriter fw = new FileWriter(resultpathselected.getText()+"\\results.txt", true);
-                   BufferedWriter bw = new BufferedWriter(fw);
-                   PrintWriter out = new PrintWriter(bw)) {
+        try (FileWriter fw = new FileWriter(resultpathselected.getText() + "\\results.txt", true);
+             BufferedWriter bw = new BufferedWriter(fw);
+             PrintWriter out = new PrintWriter(bw)) {
             out.print(s);
             bw.close();
             fw.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private TreeMap<String, String> filterBycities(String[] getcitiesarr, TreeMap<String, String> searchResults) {
+        TreeMap<String, String> filteredResults = new TreeMap<>();  //docs to return
+        HashSet<String> docsFromCities = new HashSet<String>();     //docs from cities the user selecte4d
+        TreeMap<String, String> citiesFromPosting = new TreeMap<>(); // cities from posting
+
+        try {
+            String content = new String(Files.readAllBytes(Paths.get(FileManager.postingpath + "\\Cities.txt")), Charset.defaultCharset());
+            String[] cities = content.split("\n");
+
+            for (int i = 0; i < cities.length; i++) {
+                String[] cityInfo = cities[i].split("\\|");
+                citiesFromPosting.put(cityInfo[0], cityInfo[4]);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        //filter docs from city
+        for (int i = 0; i < getcitiesarr.length; i++) {
+            String postingFromCurrentCity = citiesFromPosting.get(getcitiesarr[i]);
+            String[] docsFromCurrentCity = postingFromCurrentCity.split(",");
+            for (int j = 0; j < docsFromCurrentCity.length; j++) {
+                docsFromCities.add(docsFromCurrentCity[j]);
+            }
+        }
+        for (Map.Entry<String, String> entry : searchResults.entrySet()) {
+            if (docsFromCities.contains(entry.getKey())) {
+                filteredResults.put(entry.getKey(), entry.getValue());
+            }
+        }
+        return filteredResults;
     }
 }
 
