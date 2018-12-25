@@ -323,6 +323,10 @@ public class Controller {
     }
 
     public void run() {
+        if(Index==null || Index.size()==0){
+            showAlert("Please load dictionary");
+            return;
+        }
         SendToParse();
         if (Query.getText().equals("")) {
             QueryFromFile();
@@ -479,7 +483,7 @@ public class Controller {
             System.out.println("key: " + curr.docid + " ,value:" + curr.rank);
             trecevalresult += (Qnumber + " 0 " + curr.docid + " 1 42.38 mt\n");
             NoEntities+=(curr.docid+"\n");
-            WithEntities+=(curr.docid+"\r\r"+Entities.get(curr.docid)+"\n");
+            WithEntities+=(curr.docid+"\t"+Entities.get(curr.docid)+"\n");
         }
         try (FileWriter fw = new FileWriter(resultpathselected.getText() + "\\withentities.txt", true);
              BufferedWriter bw = new BufferedWriter(fw);
@@ -567,7 +571,9 @@ public class Controller {
                 content = new String(Files.readAllBytes(Paths.get(resultpathselected.getText() + "\\withoutentities.txt")), Charset.defaultCharset());
             }
         } catch (IOException e) {
-            e.printStackTrace();
+          //  e.printStackTrace();
+            showAlert("Please Run Query ");
+            return;
         }
         showd.text.setText(content);
         newStage.initModality(Modality.APPLICATION_MODAL);

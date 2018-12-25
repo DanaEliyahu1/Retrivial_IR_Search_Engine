@@ -71,7 +71,7 @@ public class Parse {
                 CapitalLetterWords.remove(entry.getKey());
             }
         }
-       // AddDocumentCosSimMechana();
+     //AddDocumentCosSimMechana();
         d.SetDoc(TermsMap,CapitalLetterWords,Cityplaces,Tokens.size());
 
     }
@@ -103,11 +103,12 @@ public class Parse {
                 return false;
             }
             if (Character.isUpperCase(newToken.charAt(0))) {
-                if (CapitalLetterWords.containsKey(newToken)) {
-                    CapitalLetterWords.put(newToken.toUpperCase(), CapitalLetterWords.get(newToken.toUpperCase()) + 1);
+                String afterStem=stemmer.StemToken(newToken.toLowerCase()).toUpperCase();
+                if (CapitalLetterWords.containsKey(afterStem)) {
+                    CapitalLetterWords.put(afterStem, CapitalLetterWords.get(afterStem) + 1);
                     return false;
                 } else {
-                    CapitalLetterWords.put(newToken.toUpperCase(), 1);
+                    CapitalLetterWords.put(afterStem, 1);
                     return false;
                 }
             }
@@ -118,9 +119,9 @@ public class Parse {
         else if (Character.isUpperCase(Tokens.get(i).charAt(0))) {
 
             if (CapitalLetterWords.containsKey(Tokens.get(i).toUpperCase())) {
-                CapitalLetterWords.put(Tokens.get(i).toUpperCase(), CapitalLetterWords.get(Tokens.get(i).toUpperCase()) + 1);
+                CapitalLetterWords.put(stemmer.StemToken(Tokens.get(i).toLowerCase()).toUpperCase(), CapitalLetterWords.get(stemmer.StemToken(Tokens.get(i).toLowerCase()).toUpperCase()) + 1);
             } else {
-                CapitalLetterWords.put(Tokens.get(i).toUpperCase(), 1);
+                CapitalLetterWords.put(stemmer.StemToken(Tokens.get(i).toLowerCase()).toUpperCase(), 1);
             }
             return false;
         }

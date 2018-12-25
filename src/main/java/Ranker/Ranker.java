@@ -25,6 +25,9 @@ public class Ranker {
     public TreeSet<RankDoc> Rank(int queryLength,TreeMap<String, String> DocDictionary, TreeMap<String, int[]> Index,TreeMap<String,DocInfo> docLength) {
         DocLength = docLength;
         for (Map.Entry<String, String> entry : DocDictionary.entrySet()) {
+            if(entry.getKey().equals("FBIS3-33035")){
+                System.out.println(entry.getValue());
+            }
             double mechene= DocLength.get(entry.getKey()).maxtf;
             double rank = 0;
             double sum=0;
@@ -39,7 +42,7 @@ public class Ranker {
             }
             double sigmadoc=DocLength.get(entry.getKey()).sigmatfidf/(mechene)/(mechene);
             double CosSim= (sum)/(Math.sqrt(queryLength)*Math.sqrt(sigmadoc));
-            System.out.println("Doc: " + entry.getKey() + " ,Rank:" + rank+ " ,Cossim:" + CosSim+ ", doc size"+ DocLength.get(entry.getKey()).lengthdoc+" "+entry.getValue());
+           // System.out.println("Doc: " + entry.getKey() + " ,Rank:" + rank+ " ,Cossim:" + CosSim+ ", doc size"+ DocLength.get(entry.getKey()).lengthdoc+" "+entry.getValue());
             SortedDocs.add(new RankDoc(entry.getKey(), (rank+0.1*CosSim)/2));
         }
         TreeSet<RankDoc> FinalDocRank= new TreeSet();
