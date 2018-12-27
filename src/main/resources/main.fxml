@@ -8,10 +8,10 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controller">
+<AnchorPane prefHeight="540.0" prefWidth="671.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controller">
    <children>
-      <ChoiceBox fx:id="choiceBoxlang" layoutX="436.0" layoutY="14.0" prefWidth="150.0" />
-      <CheckBox fx:id="checkBoxstem" layoutX="436.0" layoutY="39.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="150.0" selected="true" text="Steming" />
+      <ChoiceBox fx:id="choiceBoxlang" layoutX="451.0" layoutY="20.0" prefHeight="25.0" prefWidth="135.0" />
+      <CheckBox fx:id="checkBoxstem" layoutX="450.0" layoutY="47.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="150.0" selected="true" text="Steming" />
       <Button layoutX="13.0" layoutY="73.0" mnemonicParsing="false" onAction="#choosecorpus" prefHeight="25.0" prefWidth="143.0" text="Choose Corpus" />
       <TextField fx:id="Choosecorpus" layoutX="181.0" layoutY="73.0" prefHeight="25.0" prefWidth="215.0" />
       <Button layoutX="13.0" layoutY="111.0" mnemonicParsing="false" onAction="#chooseposting" prefHeight="26.0" prefWidth="143.0" text="choose Posting Target" />
@@ -24,15 +24,20 @@
       <Button layoutX="421.0" layoutY="150.0" mnemonicParsing="false" onAction="#ShowDic" prefHeight="25.0" prefWidth="166.0" text="Show Dictionary" />
       <Label layoutX="14.0" layoutY="252.0" prefHeight="11.0" prefWidth="143.0" text="Enter Query" />
       <TextField fx:id="Query" layoutX="165.0" layoutY="252.0" prefHeight="25.0" prefWidth="244.0" text="Falkland petroleum exploration" />
-      <Button layoutX="446.0" layoutY="285.0" mnemonicParsing="false" onAction="#run" prefHeight="26.0" prefWidth="119.0" text="Run" />
+      <Button layoutX="439.0" layoutY="277.0" mnemonicParsing="false" onAction="#run" prefHeight="26.0" prefWidth="126.0" text="Run" />
       <Button layoutX="9.0" layoutY="284.0" mnemonicParsing="false" onAction="#choosequery" prefHeight="25.0" prefWidth="143.0" text="Choose Query" />
       <TextField fx:id="queryselected" layoutX="165.0" layoutY="285.0" prefHeight="25.0" prefWidth="244.0" text="d:\documents\users\danaeliy\Downloads\queries.txt" />
-      <MenuButton fx:id="City" layoutX="464.0" layoutY="361.0" prefHeight="25.0" prefWidth="119.0" />
-      <CheckBox fx:id="checkBoxcity" layoutX="334.0" layoutY="363.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="119.0" text="Filter By Citiy" />
+      <MenuButton fx:id="City" layoutX="140.0" layoutY="374.0" prefHeight="25.0" prefWidth="119.0" />
+      <CheckBox fx:id="checkBoxcity" layoutX="17.0" layoutY="376.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="119.0" text="Filter By Citiy" />
       <Button layoutX="10.0" layoutY="323.0" mnemonicParsing="false" onAction="#choosersulttarget" prefHeight="25.0" prefWidth="143.0" text="Choose Result Target" />
       <TextField fx:id="resultpathselected" layoutX="167.0" layoutY="323.0" prefHeight="25.0" prefWidth="244.0" text="d:\documents\users\danaeliy\Downloads\trec_eval" />
-      <CheckBox fx:id="checksemantica" layoutX="450.0" layoutY="253.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="119.0" text="Semantic Search" />
-      <Button layoutX="9.0" layoutY="361.0" mnemonicParsing="false" onAction="#ShowResultToUser" prefHeight="25.0" prefWidth="143.0" text="Show Results" />
-      <CheckBox fx:id="checkBoxentities" layoutX="165.0" layoutY="365.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="158.0" text="Show resultswith entities" />
+      <CheckBox fx:id="checksemantica" layoutX="443.0" layoutY="246.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="119.0" text="Semantic Search" />
+      <Button layoutX="438.0" layoutY="311.0" mnemonicParsing="false" onAction="#ShowResultToUser" prefHeight="25.0" prefWidth="126.0" text="Show Results" />
+      <CheckBox fx:id="checkBoxentities" layoutX="432.0" layoutY="338.0" mnemonicParsing="false" onAction="#OpenChoiseEntities" prefHeight="26.0" prefWidth="166.0" text="Show results with entities" />
+      <ChoiceBox fx:id="ChooseDocForEntities" disable="true" layoutX="432.0" layoutY="402.0" onAction="#ShowEntities" prefHeight="25.0" prefWidth="158.0" />
+      <Label fx:id="ShowEntities" layoutX="432.0" layoutY="433.0" prefHeight="96.0" prefWidth="158.0" wrapText="true" />
+      <Label layoutX="143.0" layoutY="356.0" text="City" />
+      <Label layoutX="439.0" layoutY="378.0" prefHeight="17.0" prefWidth="143.0" text="Doc For Entities" />
+      <Label layoutX="451.0" layoutY="2.0" prefHeight="17.0" prefWidth="75.0" text="Language" />
    </children>
 </AnchorPane>

@@ -8,6 +8,7 @@ import Ranker.*;
 import Ranker.RankDoc;
 import Searcher.Searcher;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -16,10 +17,7 @@ import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.util.Pair;
 import org.apache.commons.io.FileUtils;
-import sun.reflect.generics.tree.Tree;
-
 import java.io.*;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
@@ -46,8 +44,11 @@ public class Controller {
     public CheckBox checkBoxcity;
     public CheckBox checksemantica;
     public CheckBox checkBoxentities;
+    public Label ShowEntities;
+    public ChoiceBox ChooseDocForEntities;
     public static ObservableList<String> langoptions;
     public static ObservableList<MenuItem> cityoptions;
+    public static ObservableList<String> entities;
 
     // deleting all files created while indexing
     public void Reset() {
@@ -139,14 +140,19 @@ public class Controller {
                 cities = new String(Files.readAllBytes(Paths.get(postingselected + "\\NotStemming\\Cities.txt")), Charset.defaultCharset());
 
             }
+            if(City.getItems().size()==0){
             String[] allCities=cities.split("\n");
             for (int i = 0; i < allCities.length; i++) {
                 SetCities(allCities[i].split("\\|")[0]);
             }
-            City.getItems().addAll(Controller.cityoptions);
+
+                City.getItems().addAll(Controller.cityoptions);
+            }
+
         } catch (IOException e) {
             e.printStackTrace();
         }
+        showAlert("Load dictionary is finished");
     }
 
     //choose path of corpus
@@ -327,13 +333,29 @@ public class Controller {
             showAlert("Please load dictionary");
             return;
         }
+        else if(resultpathselected.getText().equals("")){
+            showAlert("Please insert result path");
+            return;
+        }
+        if(new File(resultpathselected.getText()+"\\results.txt").exists()&&
+                new File(resultpathselected.getText()+"\\withentities.txt").exists()&&
+                new File(resultpathselected.getText()+"\\withoutentities.txt").exists()
+                ){
+               new File(resultpathselected.getText()+"\\results.txt").delete();
+               new File(resultpathselected.getText()+"\\withentities.txt").delete();
+                new File(resultpathselected.getText()+"\\withoutentities.txt").delete();
+        }
         SendToParse();
         if (Query.getText().equals("")) {
             QueryFromFile();
         } else {
-
+            if(queryselected.getText().equals("")){
+                showAlert("Please choose query file");
+                return;
+            }
             RunQuery(Query.getText(), "351");
         }
+        showAlert("Retrieval finished");
 
     }
 
@@ -449,43 +471,26 @@ public class Controller {
         }
         Ranker ranker = new Ranker(0.5, 2, avdl[0]);
         TreeSet<RankDoc> Rankedresults = ranker.Rank(Query.split(" ").length, Searchresults, Index, docLengthTree);
-        ResultToUser(Rankedresults, Qnumber);
+        ResultToUser(Rankedresults, Qnumber,Query);
 
     }
 
-    private void ResultToUser(TreeSet <RankDoc> Rankedresults, String Qnumber) {
+    private void ResultToUser(TreeSet<RankDoc> Rankedresults, String Qnumber, String query) {
         Iterator<RankDoc> iterator = Rankedresults.iterator();
-        TreeMap<String,String> Entities=new TreeMap<>();
         String trecevalresult = "";
-        String NoEntities = "";
-        String WithEntities="";
-        try {
-            String content = new String(Files.readAllBytes(Paths.get(FileManager.postingpath + "\\UsefulDocuments.txt")), Charset.defaultCharset());
-            String[] DocEntities = content.split("\\|");
+        String NoEntities ="===="+ query+"====\n";
+       // String WithEntities="===="+query+"====\n";
 
-
-            for (int i = 1; i < DocEntities.length; i++) {
-                String [] Entiite=DocEntities[i].split(",");
-                if(Entiite.length==4){
-                    Entities.put(Entiite[0],Entiite[2]);
-                }else {
-                    Entities.put(Entiite[0],"");
-                }
-
-
-
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
         while (iterator.hasNext()) {
             RankDoc curr = iterator.next();
+            entities.add(curr.docid);
             System.out.println("key: " + curr.docid + " ,value:" + curr.rank);
             trecevalresult += (Qnumber + " 0 " + curr.docid + " 1 42.38 mt\n");
             NoEntities+=(curr.docid+"\n");
-            WithEntities+=(curr.docid+"\t"+Entities.get(curr.docid)+"\n");
+         //   WithEntities+=(curr.docid+"\t"+Entities.get(curr.docid)+"\n");
         }
-        try (FileWriter fw = new FileWriter(resultpathselected.getText() + "\\withentities.txt", true);
+        ChooseDocForEntities.setItems(entities);
+      /*  try (FileWriter fw = new FileWriter(resultpathselected.getText() + "\\withentities.txt", true);
              BufferedWriter bw = new BufferedWriter(fw);
              PrintWriter out = new PrintWriter(bw)) {
             out.print(WithEntities);
@@ -493,7 +498,7 @@ public class Controller {
             fw.close();
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }*/
         try (FileWriter fw = new FileWriter(resultpathselected.getText() + "\\results.txt", true);
              BufferedWriter bw = new BufferedWriter(fw);
              PrintWriter out = new PrintWriter(bw)) {
@@ -580,6 +585,41 @@ public class Controller {
         newStage.show();
 
     }
+
+    public void ShowEntities(ActionEvent actionEvent) {
+        String docId=(String) ((ChoiceBox)actionEvent.getSource()).getValue();
+        try {
+            String content = new String(Files.readAllBytes(Paths.get(FileManager.postingpath + "\\UsefulDocuments.txt")), Charset.defaultCharset());
+            String[] DocEntities = content.split("\\|");
+            for (int i = 1; i < DocEntities.length; i++) {
+                String [] Entiite=DocEntities[i].split(",");
+                if(docId.equals(Entiite[0])){
+                    if(Entiite.length==4){
+                        ShowEntities.setText(Entiite[2].replaceAll("\\*","\n"));
+                        //Entities.put(Entiite[0],Entiite[2]);
+                    }else {
+                        ShowEntities.setText("");
+                        //Entities.put(Entiite[0],"");
+                    }
+
+                }
+
+
+
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+   public void OpenChoiseEntities(){
+        if(checkBoxentities.isSelected()){
+            ChooseDocForEntities.setDisable(false);
+        }
+        else{
+            ChooseDocForEntities.setDisable(true);
+        }
+   }
 }
 
 

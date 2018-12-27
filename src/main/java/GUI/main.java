@@ -27,6 +27,7 @@ public class main extends Application {
        Controller.langoptions =FXCollections.observableArrayList();
         controller.choiceBoxlang.setItems(Controller.langoptions);
         Controller.cityoptions =FXCollections.observableArrayList();
+        Controller.entities =FXCollections.observableArrayList();
        controller.City.getItems().addAll(Controller.cityoptions);
         controller.Index =new TreeMap<>();
         primaryStage.show();
