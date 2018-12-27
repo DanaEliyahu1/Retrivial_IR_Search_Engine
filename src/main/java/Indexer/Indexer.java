@@ -201,7 +201,7 @@ public class Indexer {
        PriorityQueue<Map.Entry<String, Integer>> Entities= new PriorityQueue<>(new Comparator<Map.Entry<String, Integer>>() {
            @Override
            public int compare(Map.Entry<String, Integer> o1, Map.Entry<String, Integer> o2) {
-               return o1.getValue()-o2.getValue();
+               return o2.getValue()-o1.getValue();
            }
        });
        //looking if capital letter words should be lowered to lowercase
@@ -216,7 +216,8 @@ public class Indexer {
         String entities="";
         for (int i = 0; i <5 ; i++) {
             if(!Entities.isEmpty()){
-                entities+=Entities.poll().getKey()+"*";
+                Map.Entry<String, Integer> curr=Entities.poll();
+                entities+=curr.getKey()+"_"+curr.getValue()+"*";
             }
 
         }

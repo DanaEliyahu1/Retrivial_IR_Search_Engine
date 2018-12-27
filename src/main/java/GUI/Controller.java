@@ -595,6 +595,7 @@ public class Controller {
                 if(docId.equals(Entiite[0])){
                     if(Entiite.length==4){
                         ShowEntities.setText(Entiite[2].replaceAll("\\*","\n"));
+                        ShowEntities.setText(Entiite[2].replaceAll("\\_",","));
                         //Entities.put(Entiite[0],Entiite[2]);
                     }else {
                         ShowEntities.setText("");

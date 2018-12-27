@@ -103,12 +103,14 @@ public class Parse {
                 return false;
             }
             if (Character.isUpperCase(newToken.charAt(0))) {
-                String afterStem=stemmer.StemToken(newToken.toLowerCase()).toUpperCase();
-                if (CapitalLetterWords.containsKey(afterStem)) {
-                    CapitalLetterWords.put(afterStem, CapitalLetterWords.get(afterStem) + 1);
+                if(isStemmig){
+                    newToken=stemmer.StemToken(newToken.toLowerCase()).toUpperCase();
+                }
+                if (CapitalLetterWords.containsKey(newToken)) {
+                    CapitalLetterWords.put(newToken, CapitalLetterWords.get(newToken) + 1);
                     return false;
                 } else {
-                    CapitalLetterWords.put(afterStem, 1);
+                    CapitalLetterWords.put(newToken, 1);
                     return false;
                 }
             }
@@ -117,11 +119,14 @@ public class Parse {
         }
         //is it uppercase or a name which starts with capital letter?
         else if (Character.isUpperCase(Tokens.get(i).charAt(0))) {
-
+            String newToken=Tokens.get(i).toUpperCase();
+            if(isStemmig){
+            newToken=stemmer.StemToken(Tokens.get(i).toLowerCase()).toUpperCase();
+             }
             if (CapitalLetterWords.containsKey(Tokens.get(i).toUpperCase())) {
-                CapitalLetterWords.put(stemmer.StemToken(Tokens.get(i).toLowerCase()).toUpperCase(), CapitalLetterWords.get(stemmer.StemToken(Tokens.get(i).toLowerCase()).toUpperCase()) + 1);
+                CapitalLetterWords.put(newToken, CapitalLetterWords.get(newToken) + 1);
             } else {
-                CapitalLetterWords.put(stemmer.StemToken(Tokens.get(i).toLowerCase()).toUpperCase(), 1);
+                CapitalLetterWords.put(newToken, 1);
             }
             return false;
         }
