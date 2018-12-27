@@ -25,9 +25,6 @@ public class Ranker {
     public TreeSet<RankDoc> Rank(int queryLength,TreeMap<String, String> DocDictionary, TreeMap<String, int[]> Index,TreeMap<String,DocInfo> docLength) {
         DocLength = docLength;
         for (Map.Entry<String, String> entry : DocDictionary.entrySet()) {
-            if(entry.getKey().equals("FBIS3-33035")){
-                System.out.println(entry.getValue());
-            }
             double mechene= DocLength.get(entry.getKey()).maxtf;
             double rank = 0;
             double sum=0;

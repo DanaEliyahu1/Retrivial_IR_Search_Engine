@@ -79,7 +79,6 @@ public class Searcher {
 
     private TreeMap<String, String> GetDataFromPosting(TreeMap<String, Integer> termsMap) {
         TreeMap<String, String> result = new TreeMap<>();
-        TreeSet<String> ranked=GetRankedtreesettest();
         for (Map.Entry<String, Integer> entry : termsMap.entrySet()) {
             String[] arrFromFile = new String[0];
             try {
@@ -110,63 +109,5 @@ public class Searcher {
         }
         return result;
     }
-
-    private TreeSet<String> GetRankedtreesettest() {
-        TreeSet<String> tree=new TreeSet<>();
-        String s="FBIS3-10551\n" +
-                "FBIS3-10646\n" +
-                "FBIS3-10697\n" +
-                "FBIS3-11107\n" +
-                "FBIS3-19947\n" +
-                "FBIS3-33035\n" +
-                "FBIS3-33505\n" +
-                "FBIS3-50570\n" +
-                "FBIS3-59016\n" +
-                "FBIS4-10762\n" +
-                "FBIS4-11114\n" +
-                "FBIS4-34579\n" +
-                "FBIS4-34996\n" +
-                "FBIS4-35048\n" +
-                "FBIS4-56243\n" +
-                "FBIS4-56741\n" +
-                "FBIS4-57354\n" +
-                "FBIS4-64976\n" +
-                "FBIS4-9937\n" +
-                "FT921-2097\n" +
-                "FT921-6272\n" +
-                "FT921-6603\n" +
-                "FT921-8458\n" +
-                "FT922-14936\n" +
-                "FT922-15099\n" +
-                "FT922-3165\n" +
-                "FT922-8324\n" +
-                "FT923-11890\n" +
-                "FT923-1456\n" +
-                "FT924-1564\n" +
-                "FT931-10913\n" +
-                "FT931-16617\n" +
-                "FT931-932\n" +
-                "FT932-16710\n" +
-                "FT932-6577\n" +
-                "FT934-13429\n" +
-                "FT934-13954\n" +
-                "FT934-4629\n" +
-                "FT934-4848\n" +
-                "FT934-4856\n" +
-                "FT941-13429\n" +
-                "FT941-7250\n" +
-                "FT941-9999\n" +
-                "FT942-12805\n" +
-                "FT943-14758\n" +
-                "FT943-15117\n" +
-                "FT944-15849\n" +
-                "LA111290-0139";
-        String[] docs= s.split("\n");
-        for (int i = 0; i <docs.length ; i++) {
-            tree.add(docs[i]);
-        }
-        return tree;
-    }
-
 
 }

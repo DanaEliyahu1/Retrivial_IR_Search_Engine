@@ -6,10 +6,11 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0f921457-46cd-4350-bc0e-a504e616ee8d" name="Default Changelist" comment="added filter by cities">
+    <list default="true" id="0f921457-46cd-4350-bc0e-a504e616ee8d" name="Default Changelist" comment="GUI ENTITIES">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/GUI/Controller.java" afterPath="$PROJECT_DIR$/src/main/java/GUI/Controller.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/GUI/main.java" afterPath="$PROJECT_DIR$/src/main/java/GUI/main.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Ranker/Ranker.java" afterPath="$PROJECT_DIR$/src/main/java/Ranker/Ranker.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Searcher/Searcher.java" afterPath="$PROJECT_DIR$/src/main/java/Searcher/Searcher.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/main.fxml" afterPath="$PROJECT_DIR$/src/main/resources/main.fxml" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -28,7 +29,7 @@
     <SUITE FILE_PATH="coverage/IR$Tester.ic" NAME="Tester Coverage Results" MODIFIED="1541424630967" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>Parser.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/urban_guacamole$main.coverage" NAME="main Coverage Results" MODIFIED="1545759634336" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="true">
+    <SUITE FILE_PATH="coverage/urban_guacamole$main.coverage" NAME="main Coverage Results" MODIFIED="1545918340471" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="true">
       <FILTER>GUI.*</FILTER>
     </SUITE>
   </component>
@@ -95,7 +96,7 @@
       <file leaf-file-name="FileManager.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Indexer/FileManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
+            <state relative-caret-position="25">
               <caret line="133" column="37" lean-forward="false" selection-start-line="133" selection-start-column="37" selection-end-line="133" selection-end-column="37" />
               <folding>
                 <element signature="method#AddDocToCityIndex#0;class#FileManager#0" expanded="false" />
@@ -107,11 +108,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Controller.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Controller.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/GUI/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="172">
-              <caret line="609" column="33" lean-forward="true" selection-start-line="609" selection-start-column="33" selection-end-line="609" selection-end-column="33" />
+            <state relative-caret-position="246">
+              <caret line="392" column="79" lean-forward="false" selection-start-line="392" selection-start-column="79" selection-end-line="392" selection-end-column="79" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#chooseposting#0;class#Controller#0" expanded="false" />
@@ -144,11 +145,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Searcher.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Searcher.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/Searcher/Searcher.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="66" column="69" lean-forward="false" selection-start-line="66" selection-start-column="69" selection-end-line="66" selection-end-column="69" />
+            <state relative-caret-position="498">
+              <caret line="66" column="60" lean-forward="false" selection-start-line="66" selection-start-column="60" selection-end-line="66" selection-end-column="60" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -184,8 +185,8 @@
             <state />
           </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="485">
-              <caret line="36" column="126" lean-forward="false" selection-start-line="36" selection-start-column="126" selection-end-line="36" selection-end-column="126" />
+            <state relative-caret-position="144">
+              <caret line="25" column="127" lean-forward="false" selection-start-line="25" selection-start-column="127" selection-end-line="25" selection-end-column="127" />
               <folding />
             </state>
           </provider>
@@ -194,8 +195,8 @@
       <file leaf-file-name="Ranker.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Ranker/Ranker.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-118">
-              <caret line="29" column="13" lean-forward="false" selection-start-line="29" selection-start-column="13" selection-end-line="29" selection-end-column="13" />
+            <state relative-caret-position="404">
+              <caret line="40" column="73" lean-forward="false" selection-start-line="40" selection-start-column="73" selection-end-line="40" selection-end-column="73" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -203,11 +204,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DocInfo.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/Ranker/DocInfo.java">
+      <file leaf-file-name="RankDoc.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/Ranker/RankDoc.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="8" column="14" lean-forward="false" selection-start-line="8" selection-start-column="14" selection-end-line="8" selection-end-column="14" />
+            <state relative-caret-position="314">
+              <caret line="21" column="16" lean-forward="true" selection-start-line="21" selection-start-column="16" selection-end-line="21" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -226,7 +227,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>-56741</find>
       <find>-2097</find>
       <find>33.</find>
       <find>FT941-10165</find>
@@ -256,6 +256,7 @@
       <find>ru</find>
       <find>lang</find>
       <find>ent</find>
+      <find>delete()</find>
     </findStrings>
   </component>
   <component name="Git.Rebase.Settings">
@@ -293,14 +294,14 @@
         <option value="$PROJECT_DIR$/src/main/java/Parser/Document.java" />
         <option value="$PROJECT_DIR$/src/main/java/Indexer/Indexer.java" />
         <option value="$PROJECT_DIR$/src/main/java/Parser/ReadFile.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Searcher/Searcher.java" />
         <option value="$PROJECT_DIR$/src/main/java/Indexer/FileManager.java" />
         <option value="$PROJECT_DIR$/src/main/java/Ranker/DocInfo.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Ranker/Ranker.java" />
         <option value="$PROJECT_DIR$/src/main/java/Parser/Parse.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/main.fxml" />
         <option value="$PROJECT_DIR$/src/main/java/GUI/main.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/main.fxml" />
+        <option value="$PROJECT_DIR$/src/main/java/Ranker/Ranker.java" />
         <option value="$PROJECT_DIR$/src/main/java/GUI/Controller.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Searcher/Searcher.java" />
       </list>
     </option>
   </component>
@@ -560,13 +561,6 @@
       <workItem from="1542101767573" duration="7284000" />
       <workItem from="1542132904878" duration="9747000" />
       <workItem from="1543876453396" duration="3343000" />
-    </task>
-    <task id="LOCAL-00017" summary="Started Indexing">
-      <created>1541668575628</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1541668575628</updated>
     </task>
     <task id="LOCAL-00018" summary="Started Indexing">
       <created>1541670360953</created>
@@ -904,7 +898,14 @@
       <option name="project" value="LOCAL" />
       <updated>1545664778087</updated>
     </task>
-    <option name="localTasksCounter" value="66" />
+    <task id="LOCAL-00066" summary="GUI ENTITIES">
+      <created>1545914537416</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1545914537416</updated>
+    </task>
+    <option name="localTasksCounter" value="67" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -933,6 +934,7 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27272728" sideWeight="0.73541665" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21353066" sideWeight="0.49791667" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.0067708334" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -948,7 +950,6 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.0067708334" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -1013,7 +1014,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="FIX STOP WORD&#10;GUI&#10;'s PARSE ROL'" />
     <MESSAGE value="FIX LOAD" />
     <MESSAGE value="FIX STOP WORD AND REGEXT" />
     <MESSAGE value="Fixed &quot;the&quot; showing in dictionary" />
@@ -1038,11 +1038,98 @@
     <MESSAGE value="SEMANTICA" />
     <MESSAGE value="with title added" />
     <MESSAGE value="added filter by cities" />
-    <option name="LAST_COMMIT_MESSAGE" value="added filter by cities" />
+    <MESSAGE value="GUI ENTITIES" />
+    <option name="LAST_COMMIT_MESSAGE" value="GUI ENTITIES" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="765" />
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/Ranker/Ranker.java</url>
+          <line>45</line>
+          <properties />
+          <option name="timeStamp" value="769" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/Ranker/Ranker.java</url>
+          <line>46</line>
+          <properties />
+          <option name="timeStamp" value="770" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/Ranker/Ranker.java</url>
+          <line>48</line>
+          <properties />
+          <option name="timeStamp" value="771" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/Ranker/Ranker.java</url>
+          <line>53</line>
+          <properties />
+          <option name="timeStamp" value="772" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/Ranker/Ranker.java</url>
+          <line>27</line>
+          <properties />
+          <option name="timeStamp" value="774" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/Ranker/Ranker.java</url>
+          <line>28</line>
+          <properties />
+          <option name="timeStamp" value="775" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/Ranker/Ranker.java</url>
+          <line>25</line>
+          <properties />
+          <option name="timeStamp" value="776" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/Ranker/Ranker.java</url>
+          <line>42</line>
+          <properties />
+          <option name="timeStamp" value="779" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/Ranker/RankDoc.java</url>
+          <line>15</line>
+          <properties />
+          <option name="timeStamp" value="780" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/Ranker/RankDoc.java</url>
+          <line>18</line>
+          <properties />
+          <option name="timeStamp" value="781" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/Ranker/RankDoc.java</url>
+          <line>21</line>
+          <properties />
+          <option name="timeStamp" value="782" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/Ranker/Ranker.java</url>
+          <line>30</line>
+          <properties />
+          <option name="timeStamp" value="783" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/Ranker/Ranker.java</url>
+          <line>31</line>
+          <properties />
+          <option name="timeStamp" value="784" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/GUI/Controller.java</url>
+          <line>470</line>
+          <properties />
+          <option name="timeStamp" value="785" />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="786" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
@@ -1091,6 +1178,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="884">
           <caret line="61" column="70" lean-forward="false" selection-start-line="61" selection-start-column="70" selection-end-line="61" selection-end-column="70" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1128,6 +1216,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="510">
           <caret line="39" column="247" lean-forward="false" selection-start-line="39" selection-start-column="247" selection-end-line="39" selection-end-column="247" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1201,6 +1290,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1475">
           <caret line="70" column="53" lean-forward="true" selection-start-line="70" selection-start-column="53" selection-end-line="70" selection-end-column="53" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1212,42 +1302,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Ranker/RankDoc.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="20" column="9" lean-forward="false" selection-start-line="20" selection-start-column="9" selection-end-line="20" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Ranker/DocInfo.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="8" column="14" lean-forward="false" selection-start-line="8" selection-start-column="14" selection-end-line="8" selection-end-column="14" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Indexer/FileManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="133" column="37" lean-forward="false" selection-start-line="133" selection-start-column="37" selection-end-line="133" selection-end-column="37" />
-          <folding>
-            <element signature="method#AddDocToCityIndex#0;class#FileManager#0" expanded="false" />
-            <element signature="method#SetCapitalToLoweCasePosting#0;class#FileManager#0" expanded="false" />
-            <element signature="method#AddCapitalLettersToCache#0;class#FileManager#0" expanded="false" />
-            <element signature="method#AllDocumentsToDisk#0;class#FileManager#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Searcher/Searcher.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="66" column="69" lean-forward="false" selection-start-line="66" selection-start-column="69" selection-end-line="66" selection-end-column="69" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1279,10 +1338,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Ranker/Ranker.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/GUI/main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-118">
-          <caret line="29" column="13" lean-forward="false" selection-start-line="29" selection-start-column="13" selection-end-line="29" selection-end-column="13" />
+        <state relative-caret-position="315">
+          <caret line="30" column="65" lean-forward="true" selection-start-line="30" selection-start-column="65" selection-end-line="30" selection-end-column="65" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1294,29 +1353,60 @@
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="485">
-          <caret line="36" column="126" lean-forward="false" selection-start-line="36" selection-start-column="126" selection-end-line="36" selection-end-column="126" />
+        <state relative-caret-position="144">
+          <caret line="25" column="127" lean-forward="false" selection-start-line="25" selection-start-column="127" selection-end-line="25" selection-end-column="127" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/GUI/main.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/Ranker/RankDoc.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="30" column="65" lean-forward="true" selection-start-line="30" selection-start-column="65" selection-end-line="30" selection-end-column="65" />
+        <state relative-caret-position="314">
+          <caret line="21" column="16" lean-forward="true" selection-start-line="21" selection-start-column="16" selection-end-line="21" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Ranker/Ranker.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="404">
+          <caret line="40" column="73" lean-forward="false" selection-start-line="40" selection-start-column="73" selection-end-line="40" selection-end-column="73" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Indexer/FileManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="25">
+          <caret line="133" column="37" lean-forward="false" selection-start-line="133" selection-start-column="37" selection-end-line="133" selection-end-column="37" />
+          <folding>
+            <element signature="method#AddDocToCityIndex#0;class#FileManager#0" expanded="false" />
+            <element signature="method#SetCapitalToLoweCasePosting#0;class#FileManager#0" expanded="false" />
+            <element signature="method#AddCapitalLettersToCache#0;class#FileManager#0" expanded="false" />
+            <element signature="method#AllDocumentsToDisk#0;class#FileManager#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/GUI/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="172">
-          <caret line="609" column="33" lean-forward="true" selection-start-line="609" selection-start-column="33" selection-end-line="609" selection-end-column="33" />
+        <state relative-caret-position="246">
+          <caret line="392" column="79" lean-forward="false" selection-start-line="392" selection-start-column="79" selection-end-line="392" selection-end-column="79" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#chooseposting#0;class#Controller#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Searcher/Searcher.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="498">
+          <caret line="66" column="60" lean-forward="false" selection-start-line="66" selection-start-column="60" selection-end-line="66" selection-end-column="60" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>

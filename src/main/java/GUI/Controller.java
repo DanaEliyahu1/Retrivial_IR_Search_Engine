@@ -338,11 +338,10 @@ public class Controller {
             return;
         }
         if(new File(resultpathselected.getText()+"\\results.txt").exists()&&
-                new File(resultpathselected.getText()+"\\withentities.txt").exists()&&
                 new File(resultpathselected.getText()+"\\withoutentities.txt").exists()
                 ){
                new File(resultpathselected.getText()+"\\results.txt").delete();
-               new File(resultpathselected.getText()+"\\withentities.txt").delete();
+
                 new File(resultpathselected.getText()+"\\withoutentities.txt").delete();
         }
         SendToParse();
@@ -391,7 +390,7 @@ public class Controller {
             for (int i = 1; i < arrFromFile.length; i++) {
                 String[] curr = arrFromFile[i].split(",");
                 sum += Integer.parseInt(curr[1]);
-                DocsLength.put(curr[0], new DocInfo(Integer.parseInt(curr[1]),0,Integer.parseInt(curr[3])));
+                DocsLength.put(curr[0], new DocInfo(Integer.parseInt(curr[1]),1,Integer.parseInt(curr[3])));
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -603,8 +602,6 @@ public class Controller {
                     }
 
                 }
-
-
 
             }
         } catch (IOException e) {

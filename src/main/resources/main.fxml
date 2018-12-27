@@ -23,7 +23,7 @@
       <Button layoutX="422.0" layoutY="189.0" mnemonicParsing="false" onAction="#Reset" prefHeight="25.0" prefWidth="166.0" text="RESET" />
       <Button layoutX="421.0" layoutY="150.0" mnemonicParsing="false" onAction="#ShowDic" prefHeight="25.0" prefWidth="166.0" text="Show Dictionary" />
       <Label layoutX="14.0" layoutY="252.0" prefHeight="11.0" prefWidth="143.0" text="Enter Query" />
-      <TextField fx:id="Query" layoutX="165.0" layoutY="252.0" prefHeight="25.0" prefWidth="244.0" text="Falkland petroleum exploration" />
+      <TextField fx:id="Query" layoutX="165.0" layoutY="252.0" prefHeight="25.0" prefWidth="244.0" text="British Chunnel impact" />
       <Button layoutX="439.0" layoutY="277.0" mnemonicParsing="false" onAction="#run" prefHeight="26.0" prefWidth="126.0" text="Run" />
       <Button layoutX="9.0" layoutY="284.0" mnemonicParsing="false" onAction="#choosequery" prefHeight="25.0" prefWidth="143.0" text="Choose Query" />
       <TextField fx:id="queryselected" layoutX="165.0" layoutY="285.0" prefHeight="25.0" prefWidth="244.0" text="d:\documents\users\danaeliy\Downloads\queries.txt" />
