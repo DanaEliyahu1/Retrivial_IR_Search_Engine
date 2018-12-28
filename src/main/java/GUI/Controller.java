@@ -568,12 +568,8 @@ public class Controller {
         ShowDictionaryController showd = fxmlLoader.getController();
         String content = null;
         try {
-            if(checkBoxentities.isSelected()){
-                content = new String(Files.readAllBytes(Paths.get(resultpathselected.getText() + "\\withentities.txt")), Charset.defaultCharset());
-        }
-        else {
                 content = new String(Files.readAllBytes(Paths.get(resultpathselected.getText() + "\\withoutentities.txt")), Charset.defaultCharset());
-            }
+
         } catch (IOException e) {
           //  e.printStackTrace();
             showAlert("Please Run Query ");
@@ -594,8 +590,7 @@ public class Controller {
                 String [] Entiite=DocEntities[i].split(",");
                 if(docId.equals(Entiite[0])){
                     if(Entiite.length==4){
-                        ShowEntities.setText(Entiite[2].replaceAll("\\*","\n"));
-                        ShowEntities.setText(Entiite[2].replaceAll("\\_",","));
+                        ShowEntities.setText(Entiite[2].replaceAll("\\*","\n").replaceAll("\\_",","));
                         //Entities.put(Entiite[0],Entiite[2]);
                     }else {
                         ShowEntities.setText("");
