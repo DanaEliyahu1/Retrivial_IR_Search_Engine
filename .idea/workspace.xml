@@ -6,9 +6,8 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0f921457-46cd-4350-bc0e-a504e616ee8d" name="Default Changelist" comment="GUI ENTITIES">
+    <list default="true" id="0f921457-46cd-4350-bc0e-a504e616ee8d" name="Default Changelist" comment="AGASHA 1 NO COMMENT">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/GUI/Controller.java" afterPath="$PROJECT_DIR$/src/main/java/GUI/Controller.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -554,13 +553,6 @@
       <workItem from="1542132904878" duration="9747000" />
       <workItem from="1543876453396" duration="3343000" />
     </task>
-    <task id="LOCAL-00019" summary="STRTED POSTING FOR DOC AND INDEX VALUES">
-      <created>1541869835960</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1541869835961</updated>
-    </task>
     <task id="LOCAL-00020" summary="added folders">
       <created>1541870153865</created>
       <option name="number" value="00020" />
@@ -897,7 +889,14 @@
       <option name="project" value="LOCAL" />
       <updated>1545919656435</updated>
     </task>
-    <option name="localTasksCounter" value="68" />
+    <task id="LOCAL-00068" summary="AGASHA 1 NO COMMENT">
+      <created>1546024575458</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1546024575458</updated>
+    </task>
+    <option name="localTasksCounter" value="69" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -1006,7 +1005,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="FIX LOAD" />
     <MESSAGE value="FIX STOP WORD AND REGEXT" />
     <MESSAGE value="Fixed &quot;the&quot; showing in dictionary" />
     <MESSAGE value="DINAMIC CHANK SIZE&#10;THREAD POOL FIX&#10;15 MINITS" />
@@ -1031,7 +1029,8 @@
     <MESSAGE value="with title added" />
     <MESSAGE value="added filter by cities" />
     <MESSAGE value="GUI ENTITIES" />
-    <option name="LAST_COMMIT_MESSAGE" value="GUI ENTITIES" />
+    <MESSAGE value="AGASHA 1 NO COMMENT" />
+    <option name="LAST_COMMIT_MESSAGE" value="AGASHA 1 NO COMMENT" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
