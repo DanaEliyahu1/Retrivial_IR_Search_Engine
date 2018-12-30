@@ -24,6 +24,8 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
 
+import static Indexer.FileManager.postingpath;
+
 public class Controller {
     public ChoiceBox choiceBoxlang;
     public TreeMap<String, int[]> Index;
@@ -112,6 +114,10 @@ public class Controller {
                 content = new String(Files.readAllBytes(Paths.get(postingselected + "\\NotStemming\\Dictionary.txt")), Charset.defaultCharset());
 
             }
+            if(content==null){
+                showAlert("Start Indexing Or choose another folder");
+                return;
+            }
             String[] Terms = content.split("\n");
             Index = new TreeMap<>();
             for (int i = 0; i < Terms.length; i++) {
@@ -123,6 +129,7 @@ public class Controller {
 
         } catch (IOException e) {
             showAlert("Start Indexing Or choose another folder");
+            return;
         }
         String[] Terms = content.split("\n");
         for (int i = 0; i < Terms.length; i++) {
@@ -149,10 +156,34 @@ public class Controller {
                 City.getItems().addAll(Controller.cityoptions);
             }
 
+
         } catch (IOException e) {
-            e.printStackTrace();
+            showAlert("Start Indexing Or choose another folder");
+            return;
+        }
+        try {
+            String lan = "";
+            if (new File(postingselected + "\\Stemming" + "\\Languages.txt").exists() && IsStem) {
+                lan = new String(Files.readAllBytes(Paths.get(postingselected + "\\Stemming\\Languages.txt")), Charset.defaultCharset());
+
+
+            } else if ((new File(postingselected + "\\NotStemming" + "\\Languages.txt").exists()) && !IsStem) {
+                lan = new String(Files.readAllBytes(Paths.get(postingselected + "\\NotStemming\\Languages.txt")), Charset.defaultCharset());
+
+            }
+            if(City.getItems().size()==0){
+                String[] lang=lan.split("\\|");
+                choiceBoxlang.getItems().addAll(lang);
+
+            }
+
+
+        } catch (IOException e) {
+            showAlert("Start Indexing Or choose another folder");
+            return;
         }
         showAlert("Load dictionary is finished");
+        return;
     }
 
     //choose path of corpus
@@ -300,7 +331,20 @@ public class Controller {
         City.getItems().addAll(Controller.cityoptions);
         Index = Parse.indexer.Index;
         Parse.indexer = null;
+        String lan="";
+        for (int i = 0; i <langoptions.size() ; i++) {
+            lan+=(langoptions.get(i)+"|");
+        }
+        try (FileWriter fw = new FileWriter(postingpath+"\\Languages.txt", false);
+             BufferedWriter bw = new BufferedWriter(fw);
+             PrintWriter out = new PrintWriter(bw)) {
+            out.print(lan.toString());
+            bw.close();
+            fw.close();
 
+        } catch (IOException e) {
+             e.printStackTrace();
+        }
 
     }
 
@@ -319,6 +363,7 @@ public class Controller {
         if (!langoptions.contains(languages)) {
             langoptions.add(languages);
         }
+
     }
 
     public static void SetCities(String cities) {
@@ -386,7 +431,7 @@ public class Controller {
         TreeMap<String, DocInfo> DocsLength = new TreeMap<>();
         //docLength
         try {
-            String[] arrFromFile = new String(Files.readAllBytes(Paths.get(FileManager.postingpath + "/UsefulDocuments.txt")), Charset.defaultCharset()).split("\\|");
+            String[] arrFromFile = new String(Files.readAllBytes(Paths.get(postingpath + "/UsefulDocuments.txt")), Charset.defaultCharset()).split("\\|");
             for (int i = 1; i < arrFromFile.length; i++) {
                 String[] curr = arrFromFile[i].split(",");
                 sum += Integer.parseInt(curr[1]);
@@ -397,7 +442,7 @@ public class Controller {
         }
         //TF-IDF
         try {
-            String[] arrFromFile = new String(Files.readAllBytes(Paths.get(FileManager.postingpath + "/CosSimMechana")), Charset.defaultCharset()).split("\n");
+            String[] arrFromFile = new String(Files.readAllBytes(Paths.get(postingpath + "/CosSimMechana")), Charset.defaultCharset()).split("\n");
             for (int i = 1; i < arrFromFile.length; i++) {
                 String[] curr = arrFromFile[i].split(",");
                 int Doclanght=DocsLength.get(curr[0]).lengthdoc;
@@ -454,9 +499,9 @@ public class Controller {
         }
         Parse.StopWord = StopWord;
         if (checkBoxstem.isSelected()) {
-            FileManager.postingpath = postingselected + "/Stemming";
+            postingpath = postingselected + "/Stemming";
         } else {
-            FileManager.postingpath = postingselected + "/NotStemming";
+            postingpath = postingselected + "/NotStemming";
         }
     }
 
@@ -483,7 +528,7 @@ public class Controller {
         while (iterator.hasNext()) {
             RankDoc curr = iterator.next();
             entities.add(curr.docid);
-            System.out.println("key: " + curr.docid + " ,value:" + curr.rank);
+       //     System.out.println("key: " + curr.docid + " ,value:" + curr.rank);
             trecevalresult += (Qnumber + " 0 " + curr.docid + " 1 42.38 mt\n");
             NoEntities+=(curr.docid+"\n");
          //   WithEntities+=(curr.docid+"\t"+Entities.get(curr.docid)+"\n");
@@ -528,12 +573,14 @@ public class Controller {
         TreeMap<String, String> citiesFromPosting = new TreeMap<>(); // cities from posting
 
         try {
-            String content = new String(Files.readAllBytes(Paths.get(FileManager.postingpath + "\\Cities.txt")), Charset.defaultCharset());
+            String content = new String(Files.readAllBytes(Paths.get(postingpath + "\\Cities.txt")), Charset.defaultCharset());
             String[] cities = content.split("\n");
 
             for (int i = 0; i < cities.length; i++) {
                 String[] cityInfo = cities[i].split("\\|");
-                citiesFromPosting.put(cityInfo[0], cityInfo[4]);
+                if(cityInfo.length==5){
+                    citiesFromPosting.put(cityInfo[0], cityInfo[4]);
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -584,7 +631,7 @@ public class Controller {
     public void ShowEntities(ActionEvent actionEvent) {
         String docId=(String) ((ChoiceBox)actionEvent.getSource()).getValue();
         try {
-            String content = new String(Files.readAllBytes(Paths.get(FileManager.postingpath + "\\UsefulDocuments.txt")), Charset.defaultCharset());
+            String content = new String(Files.readAllBytes(Paths.get(postingpath + "\\UsefulDocuments.txt")), Charset.defaultCharset());
             String[] DocEntities = content.split("\\|");
             for (int i = 1; i < DocEntities.length; i++) {
                 String [] Entiite=DocEntities[i].split(",");
