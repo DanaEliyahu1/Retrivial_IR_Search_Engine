@@ -112,7 +112,7 @@ public class ReadFile {
         File[] FileList = new File(corpuspath).listFiles();
         File[] CurrFolder=null;
         Document[] CurrDoc=null;
-        new Parse().GetIdf();
+//        new Parse().GetIdf();
         for (int i = 0; i < FileList.length; i++) {
     //        System.out.println("*********************************" + i);
             try {
