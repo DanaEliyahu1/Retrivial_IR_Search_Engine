@@ -6,14 +6,9 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0f921457-46cd-4350-bc0e-a504e616ee8d" name="Default Changelist" comment="AGASHA 2 NO COMMENT">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+    <list default="true" id="0f921457-46cd-4350-bc0e-a504e616ee8d" name="Default Changelist" comment="AGASHA 3 WITH COMMENTS">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GUI/main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GUI/main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Ranker/DocInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Ranker/DocInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Ranker/RankDoc.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Ranker/RankDoc.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Ranker/Ranker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Ranker/Ranker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Searcher/Searcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Searcher/Searcher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/GUI/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GUI/Controller.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -95,25 +90,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Controller.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Controller.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/GUI/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret line="2" column="27" selection-start-line="2" selection-start-column="27" selection-end-line="2" selection-end-column="27" />
-              <folding>
-                <element signature="e#7231#7522#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Searcher.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/Searcher/Searcher.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="512">
-              <caret line="138" lean-forward="true" selection-start-line="138" selection-end-line="138" />
+            <state relative-caret-position="137">
+              <caret line="703" column="16" selection-start-line="703" selection-start-column="16" selection-end-line="703" selection-end-column="16" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#1631#2020#0" />
+                <element signature="e#2026#3149#0" />
+                <element signature="e#3155#6939#0" />
+                <element signature="e#6945#7225#0" />
+                <element signature="e#7231#7522#0" />
+                <element signature="e#8064#8323#0" />
               </folding>
             </state>
           </provider>
@@ -193,7 +182,6 @@
         <option value="$PROJECT_DIR$/src/main/java/Indexer/Indexer.java" />
         <option value="$PROJECT_DIR$/src/main/java/Parser/Parse.java" />
         <option value="$PROJECT_DIR$/src/main/java/Indexer/FileManager.java" />
-        <option value="$PROJECT_DIR$/src/main/java/GUI/Controller.java" />
         <option value="$PROJECT_DIR$/src/main/resources/main.fxml" />
         <option value="$PROJECT_DIR$/src/main/resources/META-INF/MANIFEST.MF" />
         <option value="$PROJECT_DIR$/src/main/java/Parser/ReadFile.java" />
@@ -203,6 +191,7 @@
         <option value="$PROJECT_DIR$/src/main/java/Ranker/Ranker.java" />
         <option value="$PROJECT_DIR$/src/main/java/GUI/main.java" />
         <option value="$PROJECT_DIR$/src/main/java/Searcher/Searcher.java" />
+        <option value="$PROJECT_DIR$/src/main/java/GUI/Controller.java" />
       </list>
     </option>
   </component>
@@ -285,48 +274,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="urban-guacamole" type="58d84e3e:PackageViewProjectNode" />
-              <item name="IR" type="616d4139:PackageViewModuleNode" />
-            </path>
-            <path>
-              <item name="urban-guacamole" type="58d84e3e:PackageViewProjectNode" />
-              <item name="IR" type="616d4139:PackageViewModuleNode" />
-              <item name="GUI" type="1f31426a:PackageElementNode" />
-            </path>
-            <path>
-              <item name="urban-guacamole" type="58d84e3e:PackageViewProjectNode" />
-              <item name="IR" type="616d4139:PackageViewModuleNode" />
-              <item name="Indexer" type="1f31426a:PackageElementNode" />
-            </path>
-            <path>
-              <item name="urban-guacamole" type="58d84e3e:PackageViewProjectNode" />
-              <item name="IR" type="616d4139:PackageViewModuleNode" />
-              <item name="Indexer" type="1f31426a:PackageElementNode" />
-              <item name="FileManager.java" type="529ef68f:ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
-            </path>
-            <path>
-              <item name="urban-guacamole" type="58d84e3e:PackageViewProjectNode" />
-              <item name="IR" type="616d4139:PackageViewModuleNode" />
-              <item name="Ranker" type="1f31426a:PackageElementNode" />
-            </path>
-            <path>
-              <item name="urban-guacamole" type="58d84e3e:PackageViewProjectNode" />
-              <item name="IR" type="616d4139:PackageViewModuleNode" />
-              <item name="Searcher" type="1f31426a:PackageElementNode" />
-            </path>
-            <path>
-              <item name="urban-guacamole" type="58d84e3e:PackageViewProjectNode" />
-              <item name="IR" type="616d4139:PackageViewModuleNode" />
-              <item name="Libraries" type="5c3f07af:PackageViewLibrariesNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -381,6 +328,48 @@
         </subPane>
       </pane>
       <pane id="AndroidView" />
+      <pane id="PackagesPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="urban-guacamole" type="58d84e3e:PackageViewProjectNode" />
+              <item name="IR" type="616d4139:PackageViewModuleNode" />
+            </path>
+            <path>
+              <item name="urban-guacamole" type="58d84e3e:PackageViewProjectNode" />
+              <item name="IR" type="616d4139:PackageViewModuleNode" />
+              <item name="GUI" type="1f31426a:PackageElementNode" />
+            </path>
+            <path>
+              <item name="urban-guacamole" type="58d84e3e:PackageViewProjectNode" />
+              <item name="IR" type="616d4139:PackageViewModuleNode" />
+              <item name="Indexer" type="1f31426a:PackageElementNode" />
+            </path>
+            <path>
+              <item name="urban-guacamole" type="58d84e3e:PackageViewProjectNode" />
+              <item name="IR" type="616d4139:PackageViewModuleNode" />
+              <item name="Indexer" type="1f31426a:PackageElementNode" />
+              <item name="FileManager.java" type="529ef68f:ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
+            </path>
+            <path>
+              <item name="urban-guacamole" type="58d84e3e:PackageViewProjectNode" />
+              <item name="IR" type="616d4139:PackageViewModuleNode" />
+              <item name="Ranker" type="1f31426a:PackageElementNode" />
+            </path>
+            <path>
+              <item name="urban-guacamole" type="58d84e3e:PackageViewProjectNode" />
+              <item name="IR" type="616d4139:PackageViewModuleNode" />
+              <item name="Searcher" type="1f31426a:PackageElementNode" />
+            </path>
+            <path>
+              <item name="urban-guacamole" type="58d84e3e:PackageViewProjectNode" />
+              <item name="IR" type="616d4139:PackageViewModuleNode" />
+              <item name="Libraries" type="5c3f07af:PackageViewLibrariesNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -471,14 +460,8 @@
       <workItem from="1542101767573" duration="7284000" />
       <workItem from="1542132904878" duration="9747000" />
       <workItem from="1543876453396" duration="3343000" />
-      <workItem from="1546264166161" duration="2486000" />
-    </task>
-    <task id="LOCAL-00022" summary="STARTED THREAD FIX CITY">
-      <created>1542217091548</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1542217091548</updated>
+      <workItem from="1546264166161" duration="2644000" />
+      <workItem from="1546267718104" duration="1433000" />
     </task>
     <task id="LOCAL-00023" summary="BEFORE GUI">
       <created>1542221733487</created>
@@ -816,11 +799,18 @@
       <option name="project" value="LOCAL" />
       <updated>1546200536119</updated>
     </task>
-    <option name="localTasksCounter" value="71" />
+    <task id="LOCAL-00071" summary="AGASHA 3 WITH COMMENTS">
+      <created>1546266705530</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1546266705531</updated>
+    </task>
+    <option name="localTasksCounter" value="72" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="120966000" />
+    <option name="totallyTimeSpent" value="122557000" />
   </component>
   <component name="TodoView" selected-index="3">
     <todo-panel id="selected-file">
@@ -842,14 +832,14 @@
       <window_info anchor="right" id="Capture Analysis" order="3" />
       <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.26458332" side_tool="true" weight="0.25052854" />
       <window_info anchor="right" id="Maven Projects" order="3" />
-      <window_info anchor="bottom" id="Database Changes" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.49791667" weight="0.21353066" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.73541665" weight="0.27906978" />
       <window_info anchor="bottom" id="Terminal" order="10" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16717096" />
-      <window_info anchor="right" id="Database" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16944024" />
+      <window_info anchor="right" id="Database" order="4" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="2" />
@@ -859,29 +849,29 @@
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Coverage" order="4" side_tool="true" visible="true" weight="0.0067708334" />
       <window_info anchor="bottom" id="Inspection" order="4" weight="0.4" />
+      <window_info anchor="bottom" id="Messages" order="7" sideWeight="0.4875" weight="0.32980973" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="3" weight="0.25" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Messages" order="7" sideWeight="0.4875" weight="0.32980973" />
     </layout>
     <layout-to-restore>
       <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info id="Designer" order="3" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Capture Analysis" order="6" />
-      <window_info id="Capture Tool" order="2" />
+      <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.49791667" weight="0.21353066" />
       <window_info anchor="right" id="Theme Preview" order="7" />
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16510417" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.49791667" weight="0.21353066" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.73541665" visible="true" weight="0.25052854" />
       <window_info id="Image Layers" order="5" />
-      <window_info id="Designer" order="3" />
+      <window_info id="Capture Tool" order="2" />
       <window_info id="UI Designer" order="4" />
+      <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Debug" order="5" sideWeight="0.79791665" weight="0.2716702" />
       <window_info anchor="right" id="Palette&#9;" order="5" />
       <window_info anchor="bottom" id="Terminal" order="10" />
@@ -927,7 +917,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed &quot;the&quot; showing in dictionary" />
     <MESSAGE value="DINAMIC CHANK SIZE&#10;THREAD POOL FIX&#10;15 MINITS" />
     <MESSAGE value="21 MIN" />
     <MESSAGE value="API MODEL" />
@@ -952,23 +941,12 @@
     <MESSAGE value="GUI ENTITIES" />
     <MESSAGE value="AGASHA 1 NO COMMENT" />
     <MESSAGE value="AGASHA 2 NO COMMENT" />
-    <option name="LAST_COMMIT_MESSAGE" value="AGASHA 2 NO COMMENT" />
+    <MESSAGE value="AGASHA 3 WITH COMMENTS" />
+    <option name="LAST_COMMIT_MESSAGE" value="AGASHA 3 WITH COMMENTS" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/GUI/Controller.java</url>
-          <line>584</line>
-          <properties />
-          <option name="timeStamp" value="798" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/GUI/Controller.java</url>
-          <line>585</line>
-          <properties />
-          <option name="timeStamp" value="799" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/GUI/Controller.java</url>
           <line>165</line>
@@ -980,12 +958,6 @@
           <line>166</line>
           <properties />
           <option name="timeStamp" value="801" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/GUI/Controller.java</url>
-          <line>318</line>
-          <properties />
-          <option name="timeStamp" value="806" />
         </line-breakpoint>
       </breakpoints>
       <option name="time" value="817" />
@@ -1142,12 +1114,12 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/main.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="750">
           <caret line="30" column="147" selection-start-line="30" selection-start-column="147" selection-end-line="30" selection-end-column="147" />
         </state>
       </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/META-INF/MANIFEST.MF">
       <provider selected="true" editor-type-id="text-editor">
@@ -1205,9 +1177,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
           <caret line="385" selection-start-line="385" selection-end-line="385" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1221,22 +1190,28 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/GUI/Controller.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/Searcher/Searcher.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="2" column="27" selection-start-line="2" selection-start-column="27" selection-end-line="2" selection-end-column="27" />
+        <state relative-caret-position="512">
+          <caret line="138" selection-start-line="138" selection-end-line="138" />
           <folding>
-            <element signature="e#7231#7522#0" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Searcher/Searcher.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/GUI/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="512">
-          <caret line="138" lean-forward="true" selection-start-line="138" selection-end-line="138" />
+        <state relative-caret-position="137">
+          <caret line="703" column="16" selection-start-line="703" selection-start-column="16" selection-end-line="703" selection-end-column="16" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#1631#2020#0" />
+            <element signature="e#2026#3149#0" />
+            <element signature="e#3155#6939#0" />
+            <element signature="e#6945#7225#0" />
+            <element signature="e#7231#7522#0" />
+            <element signature="e#8064#8323#0" />
           </folding>
         </state>
       </provider>

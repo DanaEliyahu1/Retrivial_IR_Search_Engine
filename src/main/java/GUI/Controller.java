@@ -213,7 +213,7 @@ public class Controller {
             ChooseStopWords.setText(fstopwordsselected.getPath());
         }
     }
-
+    //choose the queries.txt file
     public void choosequery() {
         FileChooser fc = new FileChooser();
         File Qselected = fc.showOpenDialog(stage);
@@ -221,7 +221,7 @@ public class Controller {
             queryselected.setText(Qselected.getPath());
         }
     }
-
+    //choose the folder to add the result to
     public void choosersulttarget() {
         DirectoryChooser dc = new DirectoryChooser();
         File fqueryselected = dc.showDialog(stage);
@@ -331,6 +331,7 @@ public class Controller {
         City.getItems().addAll(Controller.cityoptions);
         Index = Parse.indexer.Index;
         Parse.indexer = null;
+        //saving languages to file
         String lan="";
         for (int i = 0; i <langoptions.size() ; i++) {
             lan+=(langoptions.get(i)+"|");
@@ -366,6 +367,11 @@ public class Controller {
 
     }
 
+    /**
+     * getting a city from the file manager and adding it
+     * to the filter by city choicebox(menubutton in javafx fxml)
+     * @param cities
+     */
     public static void SetCities(String cities) {
         CheckBox cb0 = new CheckBox(cities);
         CustomMenuItem item0 = new CustomMenuItem(cb0);
@@ -373,6 +379,11 @@ public class Controller {
         cityoptions.addAll(item0);
     }
 
+    /**
+     * running a query. getting all input from the text fields.
+     * if there is no input problem we continue to send the query
+     * to search docs and rank them via the right function
+     */
     public void run() {
         if(Index==null || Index.size()==0){
             showAlert("Please load dictionary");
@@ -403,6 +414,11 @@ public class Controller {
 
     }
 
+    /**
+     * getting a list of cities from the multi-choice choicebox
+     * @param items list of menuitems- contains checkboxes and their text
+     * @return a array of city names to filter by (that has been selected by user via checkbox)
+     */
     private String[] getcitiesarr(ObservableList<MenuItem> items) {
         ArrayList<String> CityByuser=new ArrayList<>();
         Iterator<MenuItem> it = items.iterator();
@@ -426,6 +442,12 @@ public class Controller {
         return res;
     }
 
+    /**
+     * this function will be used by the ranker to calculate scores.
+     * @param avdl a int which we need to be reference so we made into a an arr
+     *             and will be updated
+     * @return a treemap with info on docs for each docId string
+     */
     private TreeMap<String, DocInfo> getDocLength(int[] avdl) {
         int sum = 0;
         TreeMap<String, DocInfo> DocsLength = new TreeMap<>();
@@ -456,7 +478,10 @@ public class Controller {
         avdl[0] = (sum / DocsLength.size());
         return DocsLength;
     }
-
+/*
+    runs queries from file. we parse the query file and send it to the regular
+    function which runs the query and returns the results for the user
+ */
     public void QueryFromFile() {
         String path = queryselected.getText();
         String content = null;
@@ -471,12 +496,15 @@ public class Controller {
             String QueryNum = number.split("\n")[0].replace(" ", "");
             String befortitle = number.split("<title>")[1];
             String Query = befortitle.split("\n")[0];
-            RunQuery(Query, QueryNum);
+            RunQuery(Query, QueryNum); //actually running the query
 
         }
 
     }
 
+    /**
+     * before each run we need to configure the parsing's settings
+     */
     public void SendToParse() {
         Parse.isStemmig = checkBoxstem.isSelected();
         HashSet StopWord = new HashSet();
@@ -504,7 +532,9 @@ public class Controller {
             postingpath = postingselected + "/NotStemming";
         }
     }
-
+/*
+actually running the query
+ */
     public void RunQuery(String Query, String Qnumber) {
         Searcher searcher = new Searcher();
         TreeMap<String, String> Searchresults = searcher.Searcher(Query, Index, checksemantica.isSelected());
@@ -519,6 +549,12 @@ public class Controller {
 
     }
 
+    /**
+     * writing files with the results' docs.
+     * @param Rankedresults - list of results
+     * @param Qnumber - if needed, else has a random number. for trec_eval use
+     * @param query query so the user will know which results are listed
+     */
     private void ResultToUser(TreeSet<RankDoc> Rankedresults, String Qnumber, String query) {
         Iterator<RankDoc> iterator = Rankedresults.iterator();
         String trecevalresult = "";
@@ -567,6 +603,12 @@ public class Controller {
 
     }
 
+    /**
+     * getting searchers results and filtering it before ranking
+     * @param getcitiesarr - the arr of chosen cities by user
+     * @param searchResults - the docs
+     * @return docs only from the wanted cities
+     */
     private TreeMap<String, String> filterBycities(String[] getcitiesarr, TreeMap<String, String> searchResults) {
         TreeMap<String, String> filteredResults = new TreeMap<>();  //docs to return
         HashSet<String> docsFromCities = new HashSet<String>();     //docs from cities the user selecte4d
@@ -628,6 +670,10 @@ public class Controller {
 
     }
 
+    /**
+     * when choosing from choicebox we will get entites of the doc
+     * @param actionEvent -the wanted doc which triggered the event
+     */
     public void ShowEntities(ActionEvent actionEvent) {
         String docId=(String) ((ChoiceBox)actionEvent.getSource()).getValue();
         try {
@@ -652,6 +698,11 @@ public class Controller {
         }
 
     }
+
+    /**
+     * disabling the entities search when the user didnt spacify he wanted search by
+     * entities.
+     */
    public void OpenChoiseEntities(){
         if(checkBoxentities.isSelected()){
             ChooseDocForEntities.setDisable(false);
