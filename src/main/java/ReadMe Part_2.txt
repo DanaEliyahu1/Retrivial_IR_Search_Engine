@@ -1,7 +1,10 @@
 In order to search you need to :
 0.Some computers in building 96 have a very small default memory in the heap. Therefore please run the jar on computers with higher memory.
-We checked on computer 7 in lab -107
-Click on the JAR APPLICATION
+We checked on computer 7 in lab -107.
+if you want to run through intellij clone https://github.com/haiatn/urban-guacamole and select in the sdk the jdk C:\Program Files\Java\jdk1.8.0_131
+in order to run the JAR file: open command line and enter "java -jar IR.jar"
+or Click on the JAR APPLICATION.
+
 1.Choose the folder you chose in part A for posting target in the button "choose Posting Target".
 2.Click on the stemming check box if you have posting files with stemming. if you have posting files without stemming dont check.
 3. Click load dictionary and wait for finish alert(wait 5-10 seconds)

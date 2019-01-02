@@ -55,9 +55,10 @@ public class Controller {
     // deleting all files created while indexing
     public void Reset() {
         new File(postingselected).renameTo(new File(new File(postingselected).getParent() + "\\" + "Deleted"));
-        try {
 
+        try {
             FileUtils.deleteDirectory((new File(new File(postingselected).getParent() + "\\" + "Deleted")));
+            Index = new TreeMap<>();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -171,7 +172,7 @@ public class Controller {
                 lan = new String(Files.readAllBytes(Paths.get(postingselected + "\\NotStemming\\Languages.txt")), Charset.defaultCharset());
 
             }
-            if(City.getItems().size()==0){
+            if(choiceBoxlang.getItems().size()==0){
                 String[] lang=lan.split("\\|");
                 choiceBoxlang.getItems().addAll(lang);
 
