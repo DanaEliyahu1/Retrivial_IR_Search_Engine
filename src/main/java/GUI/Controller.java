@@ -54,10 +54,15 @@ public class Controller {
 
     // deleting all files created while indexing
     public void Reset() {
-        new File(postingselected).renameTo(new File(new File(postingselected).getParent() + "\\" + "Deleted"));
+        //new File(postingselected).renameTo(new File(new File(postingselected).getParent() + "\\" + "Deleted"));
 
         try {
-            FileUtils.deleteDirectory((new File(new File(postingselected).getParent() + "\\" + "Deleted")));
+            if(checkBoxstem.isSelected()){
+                FileUtils.deleteDirectory((new File(postingselected + "\\" + "Stemming")));
+            }
+           else{
+                FileUtils.deleteDirectory((new File(postingselected + "\\" + "NotStemming")));
+            }
             Index = new TreeMap<>();
         } catch (IOException e) {
             e.printStackTrace();
